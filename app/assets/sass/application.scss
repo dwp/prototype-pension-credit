@@ -1,6 +1,18 @@
 //
 // For guidance on how to add CSS and SCSS see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
-// 
+//
 
 // Add extra styles here
+
+.agent-header {
+  // Fix header padding after removing GOV.UK link
+  .govuk-header__content {
+    padding-left: 0;
+  }
+
+  // Fix menu button spacing due to lack of GOV.UK link
+  .govuk-header__menu-button {
+    top: 12px;
+  }
+}
