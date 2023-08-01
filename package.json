@@ -6,9 +6,17 @@
   },
   "dependencies": {
     "@dwp/dwp-frontend": "2.4.0",
+<<<<<<< HEAD
     "@govuk-prototype-kit/common-templates": "1.2.1",
     "@ministryofjustice/frontend": "1.8.0",
     "govuk-frontend": "4.7.0",
     "govuk-prototype-kit": "13.10.0"
+=======
+    "@govuk-prototype-kit/common-templates": "1.1.1",
+    "@ministryofjustice/frontend": "1.6.6",
+    "govuk-frontend": "4.6.0",
+    "govuk-prototype-kit": "13.8.0",
+    "hmrc-frontend": "^5.41.0"
+>>>>>>> 0dead04 (First draft of the citizen record)
   }
 }

@@ -1,0 +1,77 @@
+{% from "timeline/macro.njk" import dwpTimeline %}
+
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'award' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% include './partials/name/mabel.njk' %}
+    {% include './partials/tabs.njk' %}
+
+    <p><a href="javascript:history.go(-1)" class="govuk-back-link">Back</a></p>
+
+     <h2 class="govuk-heading-m">Award calculation</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            From
+          </dt>
+          <dd class="govuk-summary-list__value">
+            19 March 2023
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Claim processed
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Weekly award
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £0
+          </dd>
+        </div>
+      </dl>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            New State Pension
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £123.65
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Other pensions
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £86.72
+          </dd>
+        </div>
+      </dl>
+
+      <p><a href="award-data">View amendment details</a></p>
+
+     
+    </div>
+
+  </div>
+ 
+</div>
+
+{% endblock %}

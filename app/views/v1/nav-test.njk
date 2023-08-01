@@ -1,0 +1,204 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'application' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    {% include './partials/name/mabel.njk' %}
+    {% include './partials/tabs.njk' %}
+
+    {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%}
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-one-third">
+
+        <nav class="app-subnav" aria-labelledby="app-subnav-heading">
+  <h2 class="govuk-visually-hidden" id="app-subnav-heading">Pages in this section</h2>
+
+  <ul class="app-subnav__section ">
+
+    <li class="app-subnav__section-item app-subnav__section-item--current">
+      <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#1">The applicant</a>
+
+      <ul class="app-subnav__section app-subnav__section--nested">
+        <li class="app-subnav__section-item">
+          <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#2">State pension and benefits</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+          <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#3">Non-state pension and incomes</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+          <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#5">Dependents</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+          <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#6">Hospital visits</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="app-subnav__section-item">
+      <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline">Applicants partner</a>
+
+      <ul class="app-subnav__section app-subnav__section--nested">
+        <li class="app-subnav__section-item">
+          <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#3">Income and benefits</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+          <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#4">Resiency Status</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="app-subnav__section-item">
+      <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#7">Claim dates</a>
+    </li>
+
+    <li class="app-subnav__section-item">
+      <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#8">Non-dependents</a>
+    </li>
+
+    <li class="app-subnav__section-item">
+      <a class="app-subnav__link govuk-link govuk-link--no-visited-state govuk-link--no-underline" href="#9">Contact preferences</a>
+    </li>
+  </ul>
+</nav>
+      </div>
+
+      <div class="govuk-grid-column-two-thirds">
+
+     <div id="1">
+        <h3 class="govuk-heading-m" >The applicant</h3>
+        <dl id="1" class="govuk-summary-list govuk-!-margin-bottom-9">
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="govuk-summary-list__value">
+            26 September 1958
+          </dd>
+          <dd class="govuk-summary-list__actions govuk-visually-hidden">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Nationality
+          </dt>
+          <dd class="govuk-summary-list__value">
+            British
+          </dd>
+          <dd class="govuk-summary-list__actions govuk-visually-hidden">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Registered blind date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Not applicable
+          </dd>
+          <dd class="govuk-summary-list__actions govuk-visually-hidden">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            UK resident for the past 2 years?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Yes
+          </dd>
+          <dd class="govuk-summary-list__actions govuk-visually-hidden">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      </div>
+
+      <div id="2">
+        <h3 class="govuk-heading-m" >State pension and benefits</h3>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                State pension amount 
+              </dt>
+              <dd class="govuk-summary-list__value">
+                £165.76
+              </dd>
+              <dd class="govuk-summary-list__actions govuk-visually-hidden">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> date</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Personal Independence Payment (PIP)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                £231.23
+              </dd>
+              <dd class="govuk-summary-list__actions govuk-visually-hidden">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> name</span>
+                </a>
+              </dd>
+            </div>
+          </dl>
+      </div>
+
+      
+      <div id="3">
+        <h3 class="govuk-heading-m" >Non-state pension and income</h3>
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Tesco PLC workplace pension
+            </dt>
+            <dd class="govuk-summary-list__value">
+              £13.23
+            </dd>
+            <dd class="govuk-summary-list__actions govuk-visually-hidden">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> date</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+        
+       
+    
+
+        
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

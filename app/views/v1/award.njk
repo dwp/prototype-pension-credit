@@ -1,0 +1,54 @@
+{% from "timeline/macro.njk" import dwpTimeline %}
+
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'award' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% include './partials/name/mabel.njk' %}
+    {% include './partials/tabs.njk' %}
+      
+      
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Pension Credit awards</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Award date</th>
+            <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Action</span></th>
+            <th scope="col" class="govuk-table__header">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">21 June 2023</th>
+            <td class="govuk-table__cell">£12 per week</td>
+            <td class="govuk-table__cell"><a href="award-detail">View calculation</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag">Active</strong>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">18 May 2023</th>
+            <td class="govuk-table__cell">£0 per week</td>
+            <td class="govuk-table__cell"><a href="award-detail-1">View calculation</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Historic</strong>
+          </tr>
+        </tbody>
+      </table>
+
+     
+    </div>
+
+  </div>
+ 
+</div>
+
+{% endblock %}
