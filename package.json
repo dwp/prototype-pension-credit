@@ -9,7 +9,7 @@
     "@govuk-prototype-kit/common-templates": "1.2.1",
     "@ministryofjustice/frontend": "1.8.0",
     "govuk-frontend": "4.7.0",
-    "govuk-prototype-kit": "13.10.0",
+    "govuk-prototype-kit": "13.11.0",
     "hmrc-frontend": "^5.41.0"
   }
 }
