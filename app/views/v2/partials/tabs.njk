@@ -1,0 +1,22 @@
+{%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
+
+{{ mojSubNavigation({
+  label: 'Sub navigation',
+  items: [
+    {
+      text: 'Personal',
+      href: 'personal',
+      active: true if primaryNavSection === 'personal'
+    },
+    {
+      text: 'History',
+      href: 'history',
+      active: true if primaryNavSection === 'history'
+    },
+    {
+      text: 'Awards',
+      href: 'award',
+      active: true if primaryNavSection === 'award'
+    }
+  ]
+}) }}
