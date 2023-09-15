@@ -1,0 +1,137 @@
+{% from "timeline/macro.njk" import dwpTimeline %}
+
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'award' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% include './partials/name/nil-award.njk' %}
+    {% include './partials/tabs.njk' %}
+
+    <p><a href="javascript:history.go(-1)" class="govuk-back-link">Back</a></p>
+
+     <h2 class="govuk-heading-m">Closed pension credit award calculation</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            From
+          </dt>
+          <dd class="govuk-summary-list__value">
+            19 May 2023
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Weekly award
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Not entitled
+          </dd>
+        </div>
+      </dl>
+
+      <table class="govuk-table govuk-!-margin-bottom-9">
+        <thead class="govuk-table__head govuk-visually-hidden">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Description</th>
+            <th scope="col" class="govuk-table__header">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-table__caption--m">Applicable amounts</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">
+                
+                £201.05
+                
+              </td>
+            </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Standard amount</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            
+            
+            £201.05
+           
+            
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+
+  
+     
+        <table class="govuk-table">
+          <thead class="govuk-table__head govuk-visually-hidden">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Description</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-table__caption--m">Total weekly income</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£261.69</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">
+                State Pension
+              </th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">
+              Aviva pension - paid monthly<br>
+              <p>Pension payment used for net average</p>
+              <ul class="govuk-list govuk-list--bullet">
+                  <li>12 Feb 2023 - £106.56</li>
+                  <li>13 Mar 2023 - £26.44</li>
+                  <li>12 Apr 2023 - 
+              </ul>
+
+              </th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£27.46</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Sunlife pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£10.38</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Sunlife pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£48.97</td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+      
+      
+      
+
+      
+
+      <p><a href="award-data">View claim details</a></p>
+
+     
+    </div>
+
+  </div>
+ 
+</div>
+
+{% endblock %}

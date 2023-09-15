@@ -2,7 +2,7 @@
 {% set globalNavSection = 'find-someone' %}
 
 {# Set which primary nav tab to highlight #}
-{% set primaryNavSection = 'payment' %}
+{% set primaryNavSection = 'personal' %}
 
 {% extends "./layout.njk" %}
 
@@ -11,120 +11,125 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include './partials/name/mabel.njk' %}
+    {% include './partials/name/nil-award.njk' %}
     {% include './partials/tabs.njk' %}
 
-
-    <p><a href="javascript:history.go(-1)" class="govuk-back-link">Back</a></p>
-
-    <h2 class="govuk-heading-m">Payment details</h2>
-
+    
+      <h2 class="govuk-heading-m">Applicants details</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Payment amount
+            Full name
           </dt>
           <dd class="govuk-summary-list__value">
-            £70.41
+            Alex Round
           </dd>
-          
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Payment period
+            National Insurance number
           </dt>
           <dd class="govuk-summary-list__value">
-            29 June 2023 to 19 July 2023
+            QQ 23 44 56 J
           </dd>
-          
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Award basis
+            Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            3 weeks of <a href="award-detail">award decision dated 21 June 2023</a>
+            12 April 1951
           </dd>
-          
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Status
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Paid
           </dd>
-          
         </div>
       </dl>
 
-      <h2 class="govuk-heading-m">Payment calculation</h2>
-
+      {% if data['scenario'] | truncate(6) == "couple..." %}
+      
+      <h2 class="govuk-heading-m">Partners details</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Weekly amount
+            Full name
           </dt>
           <dd class="govuk-summary-list__value">
-            £23.47
+            Jo Round
           </dd>
-          
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Total deductions
+            National Insurance number
           </dt>
           <dd class="govuk-summary-list__value">
-            £0.00
+            CD 45 67 89 J
           </dd>
-          
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Total adjustments
+            Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            £0.00
+            2 September 1951
           </dd>
-          
+          </dd>
         </div>
       </dl>
 
-      <h2 class="govuk-heading-m">Account the payment was sent to</h2>
-
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Account holder
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Mrs M Stevens
-          </dd>
-          
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Sort code
-          </dt>
-          <dd class="govuk-summary-list__value">
-            	54 76 98
-          </dd>
-          
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            	Account number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            9876 5409
-          </dd>
-          
-        </div>
-      </dl>
-            
-
+      {% endif %}
   
- </div>
+
+     
+      <h2 class="govuk-heading-m">Contact details</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            	Flat 7a <br>
+              Hunton House<br>
+              Gravelly Hill<br>
+              West Midlands<br>
+              B23 7NH
+          </dd>
+        </div>
+         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Correspondence address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            	Flat 7a <br>
+              Hunton House<br>
+              Gravelly Hill<br>
+              West Midlands<br>
+              B23 7NH
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Phone number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            	0121 786 1699
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            	a.round996x@yahoo.co.uk
+          </dd>
+        </div>
+      </dl>
+
+      
+
+    </div>
+
+  </div>
 </div>
 
 {% endblock %}

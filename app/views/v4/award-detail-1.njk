@@ -1,9 +1,11 @@
+{% from "timeline/macro.njk" import dwpTimeline %}
+
 {# Set which global nav link to highlight #}
 {% set globalNavSection = 'find-someone' %}
-{% set PageInclude = './' + data['scenario'] + '/personal.njk' %}
 
 {# Set which primary nav tab to highlight #}
-{% set primaryNavSection = 'personal' %}
+{% set primaryNavSection = 'award' %}
+{% set PageInclude = './' + data['scenario'] + '/award-detail-1.njk' %}
 
 {% extends "./layout.njk" %}
 
@@ -12,8 +14,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include PageInclude %}
-
+  {% include PageInclude %}
 
   </div>
 </div>
