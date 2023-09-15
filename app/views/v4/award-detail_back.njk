@@ -1,0 +1,310 @@
+{% from "timeline/macro.njk" import dwpTimeline %}
+
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'award' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% include './partials/name/nil-award.njk' %}
+    {% include './partials/tabs.njk' %}
+
+    <p><a href="javascript:history.go(-1)" class="govuk-back-link">Back</a></p>
+
+     <h2 class="govuk-heading-m">Closed pension credit award calculation</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            From
+          </dt>
+          <dd class="govuk-summary-list__value">
+            19 May 2023
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Weekly award
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Not entitled
+          </dd>
+        </div>
+      </dl>
+
+      <table class="govuk-table govuk-!-margin-bottom-9">
+        <thead class="govuk-table__head govuk-visually-hidden">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Description</th>
+            <th scope="col" class="govuk-table__header">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-table__caption--m">Applicable amounts</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">
+                {% if data['scenario'] | truncate(6) == "couple..." %}
+                £306.85
+                {% else %}
+                £201.05
+                {% endif %}
+              </td>
+            </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Standard amount</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            
+            {% if data['scenario'] | truncate(6) == "couple..." %}
+            £306.85
+            {% else %}
+            £201.05
+            {% endif %}
+            
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+
+      <!--- This displays the calculation for a single person with NSPs if selected in the scenario selection --->
+      {% if data['scenario'] == "single-with-nsp" %}
+     
+        <table class="govuk-table">
+          <thead class="govuk-table__head govuk-visually-hidden">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Description</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-table__caption--m">Total income</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£261.69</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">State Pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Aviva pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£27.46</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Sunlife pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£10.38</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Sunlife pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£48.97</td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+      
+      <!--- This displays the calculation for a couple with only SP if selected in the scenario selection --->
+      {% elseif data['scenario'] == "couple-sp-only" %}
+
+        <table class="govuk-table">      
+          <thead class="govuk-table__head govuk-visually-hidden">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Description</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+            </tr>
+          </thead>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-table__caption--m">Total income</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£381.43</td>
+          </tr>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Applicants State Pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Partners State Pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      <!--- This displays the calculation for a couple with SP and NSPs without grouping if selected in the scenario selection --->
+      {% elseif data['scenario'] == "couple-no-grouping" %}
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head govuk-visually-hidden">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Description</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+            </tr>
+          </thead>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-table__caption--m">Total income</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£415.79</td>
+          </tr>
+          <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Aviva pension - Partner</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£5.01</td>
+            </tr>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Applicants State Pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Sunlife pension - Applicant</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£23.49</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Partners State Pension</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Aviva pension - Partner</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£5.86</td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+      <!--- This displays the calculation for a couple with SP and NSPs grouped by person if selected in the scenario selection --->
+      {% elseif data['scenario'] == "couple-group-person" %}
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head govuk-visually-hidden">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Description</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+            </tr>
+          </thead>
+          
+          <tbody class="govuk-table__body">
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-table__caption--m">Total income</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£415.79</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Applicants total income</th>
+              <td class="govuk-table__header govuk-table__header--numeric">£227.34</td>
+            </tr>
+
+            
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Applicants State Pension</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Sunlife pension - Applicant</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£23.49</td>
+            </tr>
+
+             <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Partners total income</th>
+              <td class="govuk-table__header govuk-table__header--numeric">£188.45</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Partners State Pension</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Aviva pension - Partner</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£5.01</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Aviva pension - Partner</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£5.86</td>
+            </tr>
+            
+          </tbody>
+        </table>    
+
+      <!--- This displays the calculation for a couple with SP and NSPs grouped by pension if selected in the scenario selection --->
+      {% elseif data['scenario'] == "couple-group-pension" %}
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head govuk-visually-hidden">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Description</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+            </tr>
+          </thead>
+          
+          <tbody class="govuk-table__body">
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-table__caption--m">Total income</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£415.79</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Total State Pension</th>
+              <td class="govuk-table__header govuk-table__header--numeric">£381.43</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Applicants State Pension</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Partners State Pension</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
+            </tr>
+
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Total other pensions</th>
+              <td class="govuk-table__header govuk-table__header--numeric">£34.36</td>
+            </tr>
+            
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Aviva pension - Partner</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£5.01</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Sunlife pension - Applicant</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£23.49</td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Aviva pension - Partner</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£5.86</td>
+            </tr>
+            
+          </tbody>
+        </table>      
+
+      {% endif %}
+
+      <p><a href="award-data">View claim details</a></p>
+
+     
+    </div>
+
+  </div>
+ 
+</div>
+
+{% endblock %}

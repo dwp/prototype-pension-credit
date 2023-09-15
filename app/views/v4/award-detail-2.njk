@@ -1,8 +1,11 @@
+{% from "timeline/macro.njk" import dwpTimeline %}
+
 {# Set which global nav link to highlight #}
 {% set globalNavSection = 'find-someone' %}
 
 {# Set which primary nav tab to highlight #}
-{% set primaryNavSection = 'change' %}
+{% set primaryNavSection = 'award' %}
+{% set PageInclude = './' + data['scenario'] + '/award-detail-2.njk' %}
 
 {% extends "./layout.njk" %}
 
@@ -11,11 +14,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include './partials/name/mabel.njk' %}
-    {% include './partials/tabs.njk' %}
-
-    <h2 class="govuk-heading-m">Way to amend awards goes here</h2>
-    <p class="govuk-body">Data segmentation still to be decided</p>
+  {% include PageInclude %}
 
   </div>
 </div>

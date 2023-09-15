@@ -1,100 +1,84 @@
-{# Set which global nav link to highlight #}
-{% set globalNavSection = 'find-someone' %}
-
-{# Set which primary nav tab to highlight #}
-{% set primaryNavSection = 'payment' %}
-
-{% extends "./layout.njk" %}
-
-{% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    {% include './partials/name/mabel.njk' %}
-    {% include './partials/tabs.njk' %}
 
 
-    <p><a href="javascript:history.go(-1)" class="govuk-back-link">Back</a></p>
+    <h1 class="govuk-heading-xl">
+      Mabel Stevens
+      <span class="govuk-caption-l">QQ 12 34 56 X</span>
+      <strong class="govuk-tag">
+        Not entitled
+      </strong>
+    </h1>
 
-    <h2 class="govuk-heading-m">Payment details</h2>
+    {% include '../partials/tabs.njk' %}
 
+    
+      <h2 class="govuk-heading-m">Claimant's details</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Payment amount
+            Full name
           </dt>
           <dd class="govuk-summary-list__value">
-            £93.88
+            Mabel Stevens
           </dd>
-          
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Payment period
+            National Insurance number
           </dt>
           <dd class="govuk-summary-list__value">
-            20 July 2023 to 16 August 2023
+            QQ 12 34 56 X
           </dd>
-          
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Payment based on
+            Date of birth
           </dt>
           <dd class="govuk-summary-list__value">
-            4 weeks of <a href="award-detail">award decision dated 21 June 2023</a>
+            12 April 1951
           </dd>
-          
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Status
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Upcoming
           </dd>
-          
         </div>
       </dl>
 
-      <h2 class="govuk-heading-m">Payment calculation</h2>
-
+     
+      <h2 class="govuk-heading-m">Contact details</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Weekly amount
+            Address
           </dt>
           <dd class="govuk-summary-list__value">
-            £23.47
+            	55 Main Street<br>
+              Guildford<br>
+              GU79 6YW
           </dd>
-          
+        </div>
+         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Correspondence address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            	55 Main Street<br>
+              Guildford<br>
+              GU79 6YW
+          </dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Total deductions
+            Phone number
           </dt>
           <dd class="govuk-summary-list__value">
-            £0.00
+            	0191 446 1876
           </dd>
-          
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Total adjustments
+            Email address
           </dt>
           <dd class="govuk-summary-list__value">
-            £0.00
+            	mabel.stevens@gmail.com
           </dd>
-          
         </div>
       </dl>
 
-      
-            
-
-  
- </div>
-</div>
-
-{% endblock %}

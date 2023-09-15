@@ -10,10 +10,16 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Alex Round
-      <span class="govuk-caption-l">QQ 23 44 56 J</span>
-	  </h1>
+    
+    {% if data['scenario'] == "TS1" %}
+     {% include './partials/name/TS1.njk' %}
+    {% elseif data['scenario'] == "TS2" %}
+     {% include './partials/name/TS2.njk' %}
+    {% elseif data['scenario'] == "TS3" %}
+     {% include './partials/name/TS3.njk' %}
+    {% else %}
+      {% include './partials/name/mabel.njk' %}
+    {% endif %}
 
     <a href="security-check" class="govuk-button">Confirm</a>
   </div>
