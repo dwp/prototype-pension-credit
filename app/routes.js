@@ -6,7 +6,8 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-// Add your routes here
+// v4 routes
+// not used seperate routs yet as there isn't a need to
 
 router.post('*/security-check', function(req, res) {
     var SecurityConfirm = req.session.data['SecurityCheck'];
@@ -30,5 +31,24 @@ router.post('/v4/scenario', function(req, res) {
     }
 });
 
+router.post('/v4/find-someone-confirm', function(req, res) {
+   
+    if(req.session.data['personConfirmation'] == "yes"){
+        res.redirect("need-security-questions")
+    }
+    else{
+        res.redirect("find-someone")
+    }
+});
+
+router.post('/v4/need-security-questions', function(req, res) {
+   
+    if(req.session.data['needIDV'] == "yes"){
+        res.redirect("security-check")
+    }
+    else{
+        res.redirect("personal")
+    }
+});
 
 
