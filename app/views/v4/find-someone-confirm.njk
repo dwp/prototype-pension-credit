@@ -21,7 +21,38 @@
       {% include './partials/name/mabel.njk' %}
     {% endif %}
 
-    <a href="security-check" class="govuk-button">Confirm</a>
+    <form method="post">
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      name: "personConfirmation",
+      fieldset: {
+        legend: {
+          text: "Do you want to access this person's record?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+    {{ govukButton({
+      text: "Confirm"
+    }) }}
+    
+
+    </form>
   </div>
 </div>
 
