@@ -1,0 +1,56 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'personal' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    
+    <h1 class="govuk-heading-xl">
+      Lou Reece
+      <span class="govuk-caption-l">LM 35 22 32 F</span>
+    </h1>
+   
+
+    <form method="post">
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      name: "personConfirmation",
+      fieldset: {
+        legend: {
+          text: "Do you want to access this person's record?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+    {{ govukButton({
+      text: "Confirm"
+    }) }}
+    
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
