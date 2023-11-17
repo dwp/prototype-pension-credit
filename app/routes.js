@@ -51,4 +51,33 @@ router.post('/v4/need-security-questions', function(req, res) {
     }
 });
 
+// v5 routes
+// not used seperate routs yet as there isn't a need to
+router.post('/v5/scenario', function(req, res) {
+   
+    res.redirect("find-someone")
 
+});
+
+router.post('/v5/find-someone-confirm', function(req, res) {
+   
+    if(req.session.data['personConfirmation'] == "yes"){
+        res.redirect("need-security-questions")
+    }
+    else{
+        res.redirect("find-someone")
+    }
+});
+
+router.post('/v5/need-security-questions', function(req, res) {
+   
+    if(req.session.data['needIDV'] == "yes"){
+        res.redirect("security-check")
+    }
+    else{
+        res.redirect("personal")
+    }
+});
+router.post('/v5/mr-yes-no', function(req, res) {
+    res.redirect("award-detail")
+});
