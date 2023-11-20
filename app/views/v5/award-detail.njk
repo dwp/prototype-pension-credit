@@ -30,9 +30,9 @@
       </div>
       <div class="govuk-notification-banner__content">
         <p class="govuk-notification-banner__heading">
-          Decision under reconsideration.<br>
+          Decision under mandatory reconsideration<br>
           {% if data['scenario'] =='T5' %}
-          <a class="govuk-notification-banner__link" href="mr-yes-no">Remove</a>
+          <a class="govuk-notification-banner__link" href="mr-yes-no">Update</a>
           {%endif%}
         </p>
       </div>
@@ -93,28 +93,28 @@
           <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header govuk-table__caption--m">Applicable amounts</th>
               <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">
-                
+
                 £201.05
-                
+
               </td>
             </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">Standard amount</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">
-            
-            
+
+
             £201.05
-           
-            
+
+
             </td>
           </tr>
-          
-          
+
+
         </tbody>
       </table>
 
-  
-     
+
+
         <table class="govuk-table">
           <thead class="govuk-table__head govuk-visually-hidden">
             <tr class="govuk-table__row">
@@ -145,7 +145,7 @@
               <td class="govuk-table__cell govuk-table__cell--numeric">£37.71</td>
             </tr>
 
-            
+
 
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__cell">
@@ -168,7 +168,7 @@
                   <li>14 Feb 2023 - £67.43</li>
                   <li>14 Mar 2023 - £23.66</li>
                   <li>14 Apr 2023 - £58.44</li>
-                  
+
                 </ul>
               </th>
               <td class="govuk-table__cell govuk-table__cell--numeric">£11.50</td>
@@ -190,17 +190,17 @@
               </th>
               <td class="govuk-table__cell govuk-table__cell--numeric">£39.13</td>
             </tr>
-            
+
           </tbody>
         </table>
       <p><a href="#">View claim details</a></p>
-      
+
       {% if data['MRConfirmation']=='yes' %}
-     
+
       {% elseif data['scenario'] =='T5' %}
         <p><a href="mr-yes-no">Mark as under reconsideration</a></p>
       {%endif%}
-      
+
       {%if data['scenario'] == 'T3'%}
        <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
@@ -222,15 +222,15 @@
                   <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="organisation" name="MRConfirmation" type="checkbox" value="yes" {% if data['MRConfirmation']=='yes' %}checked='checked'{%endif%}>
                     <label class="govuk-label govuk-checkboxes__label" for="organisation">
-                      The citizen has requested a mandatory reconsideration
+                      The claimant has asked for a mandatory reconsideration
                     </label>
                   </div>
                 </div>
               </fieldset>
             </div>
-            
+
             <button class="govuk-button" data-module="govuk-button">
-              Continue
+              Confirm
             </button>
           </form>
         </div>

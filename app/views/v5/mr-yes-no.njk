@@ -10,10 +10,10 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    
-    
+
+
      {% include './partials/name/TS3.njk' %}
-   
+
 
     <form method="post">
 
@@ -21,10 +21,10 @@
       <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
           <h1 class="govuk-fieldset__heading">
-            Mark this decision as under reconsideration?
+            Mark this decision as under mandatory reconsideration?
           </h1>
         </legend>
-       
+
         <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="changedName" name="MRConfirmation" type="radio" value="yes" {% if data['MRConfirmation']=='yes' %}checked='checked'{%endif%}>
@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        
+
       </fieldset>
     </div>
     <button class="govuk-button" data-module="govuk-button">

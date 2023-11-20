@@ -14,8 +14,8 @@
   <div class="govuk-grid-column-two-thirds">
 
     {% include './partials/name/TS3.njk' %}
-    
-    
+
+
     {% include './partials/tabs.njk' %}
 
       <table class="govuk-table">
@@ -31,20 +31,22 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">18 Apr 2023</th>
             <td class="govuk-table__cell"><a href="award-detail">View calculation</a></td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">
               {% if data['MRConfirmation']=='yes' %}
-                MR
+              <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">
+                REVIEW
               {%else%}
+              <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">
+
                 Closed
               {%endif%}
-              
+
             </strong>
           </tr>
         </tbody>
       </table>
 
   </div>
- 
+
 </div>
 
 {% endblock %}
