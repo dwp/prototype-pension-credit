@@ -19,7 +19,7 @@
 
     <p><a href="award" class="govuk-back-link">Back</a></p>
 
-    {% if data['MRConfirmation']=='yes' %}
+    {% if data['T1_MR'] or data['DR6_check'] or data['T3_MR']%}
     <div class="govuk-notification-banner" role="region"
       aria-labelledby="govuk-notification-banner-title"
       data-module="govuk-notification-banner">
@@ -29,12 +29,26 @@
         </h2>
       </div>
       <div class="govuk-notification-banner__content">
-        <p class="govuk-notification-banner__heading">
-          Decision under mandatory reconsideration<br>
-          {% if data['scenario'] =='T5' %}
-          <a class="govuk-notification-banner__link" href="mr-yes-no">Update</a>
-          {%endif%}
-        </p>
+        {% if data['T1_MR'] %}
+          <p class="govuk-notification-banner__heading">
+            Check for a DR6 in DRS for further information<br>
+          </p>
+
+        {% elif data['T2_Explained'] == "yes" or data['T3_MR'] == 'yes'%}
+          <p class="govuk-notification-banner__heading">
+            Reconsideration requested</p>
+          <p class="govuk-body">
+          Claimant accepted our explanation. DR6 uploaded to DRS.<br>
+          </p>
+
+        {% elif data['T2_Explained'] == "no" or data['T3_MR'] == 'no' %}
+          <p class="govuk-notification-banner__heading">
+            Reconsideration requested</p>
+          <p class="govuk-body">
+            DR6 sent to PDRT team for Mandatory Reconsideration.<br>
+          </p>
+
+        {%endif%}
       </div>
     </div>
     {%endif%}
@@ -195,47 +209,58 @@
         </table>
       <p><a href="#">View claim details</a></p>
 
-      {% if data['MRConfirmation']=='yes' %}
+      {% if data['T1_MR'] or data['T2_Explained'] or data['T3_MR']%}
 
-      {% elseif data['scenario'] =='T5' %}
-        <p><a href="mr-yes-no">Mark as under reconsideration</a></p>
-      {%endif%}
+      {% elseif data['scenario'] =='T1' %}
+        <p><a href="mr-yes-no">Claimant disagrees with decison</a></p>
+   
 
-      {%if data['scenario'] == 'T3'%}
+      {% elseif data['scenario'] == 'T2'%}
        <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
-            Mark as under reconsideration
+            Claimant disagrees with decision
           </span>
         </summary>
         <div class="govuk-details__text">
           <form method="post">
 
             <div class="govuk-form-group">
+              <p class="govuk-body">Use this information to explain how we made our decision.</p>
               <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m govuk-visually-hidden-focusable">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                   <h1 class="govuk-fieldset__heading">
-                    Organisation
+                    Did they accept your explanation
                   </h1>
                 </legend>
-                <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                  <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="organisation" name="MRConfirmation" type="checkbox" value="yes" {% if data['MRConfirmation']=='yes' %}checked='checked'{%endif%}>
-                    <label class="govuk-label govuk-checkboxes__label" for="organisation">
-                      The claimant has asked for a mandatory reconsideration
+
+                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="changedName" name="T2_Explained" type="radio" value="yes" {% if data['ExplanationAccepted']=='yes' %}checked='checked'{%endif%}>
+                    <label class="govuk-label govuk-radios__label" for="changedName">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="changedName-2" name="T2_Explained" type="radio" value="no" {% if data['ExplanationAccepted']=='no' %}checked='checked'{%endif%}>
+                    <label class="govuk-label govuk-radios__label" for="changedName-2">
+                      No
                     </label>
                   </div>
                 </div>
               </fieldset>
             </div>
+           
 
             <button class="govuk-button" data-module="govuk-button">
-              Confirm
+              Continue
             </button>
           </form>
         </div>
       </details>
-      {% endif %}
+      {% elseif data['scenario'] =='T3' %}
+        <p><a href="reconT3-yes-no">Reconsideration requested</a></p>
+      {%endif%}
 
   </div>
 </div>
