@@ -31,7 +31,7 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">18 Apr 2023</th>
             <td class="govuk-table__cell"><a href="award-detail">View calculation</a></td>
-              {% if data['MRConfirmation']=='yes' %}
+              {% if data['T1_MR'] or data['T2_Explained'] or data['T3_MR']%}
               <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">
                 REVIEW
               {%else%}
