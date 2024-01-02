@@ -25,9 +25,9 @@
               <ul class="govuk-list govuk-error-summary__list">
                 <li>
                   {% if data['T2_Explained']=="yes"%}
-                    <a href="#check-error">Select that you have uploaded the DR6 form to DRS</a>
+                    <a href="#check-error">Confirm that you have uploaded the DR6 form to DRS</a>
                   {% else %}
-                    <a href="#check-error">Select that you have sent the DR6 form to the PDRT team</a>
+                    <a href="#check-error">Confirm that you have sent the DR6 form to the PDRT team</a>
                   {% endif %}
                 </li>
               </ul>
@@ -61,9 +61,9 @@
               {% endif %}
           </p>
           <div class="govuk-checkboxes {% if data['DR6ConfirmationError']=='true' %}govuk-form-group--error{%endif%}" data-module="govuk-checkboxes">
-             {% if data['DR6ConfirmationError']=='true' %} 
+             {% if data['DR6ConfirmationError']=='true' %}
               <p id="check-error" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> 
+                <span class="govuk-visually-hidden">Error:</span>
                 {% if data['T2_Explained']=="yes"%}
                     Select that you have uploaded the DR6 form to DRS
                   {% else %}
@@ -72,14 +72,14 @@
               </p>
               {%endif%}
             <div class="govuk-checkboxes__item">
-            
+
               <input class="govuk-checkboxes__input" id="DR6_check" name="DR6_check" type="checkbox" value="true">
-              
+
               <label class="govuk-label govuk-checkboxes__label" for="DR6_check">
                 {% if data['T2_Explained']=="yes"%}
                   I have uploaded the DR6 form to DRS
                 {% else %}
-                  I have sent the DR6 form to PDRT team
+                  I have sent the DR6 form to the PDRT team
                 {% endif %}
               </label>
             </div>
@@ -88,7 +88,7 @@
       </div>
 
       <button class="govuk-button" data-module="govuk-button">
-          Continue
+          Confirm
         </button>
     </form>
   </div>
