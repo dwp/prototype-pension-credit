@@ -14,18 +14,18 @@
 
      {% include './partials/name/TS3.njk' %}
 
-   
+
 
       <div class="govuk-form-group">
-       
-          <h1 class="govuk-heading-m">
+
+          <h1 class="govuk-heading-l">
             {% if data['T3_MR']=="yes"%}
               Explanation accepted
             {% else %}
               Request a mandatory reconsideration
             {% endif %}
           </h1>
-          
+
           <p class="govuk-body">
               {% if data['T3_MR']=="yes"%}
                 Complete a DR6 form, include details of: 
@@ -40,7 +40,7 @@
           </p>
 
       </div>
-       
+
 
       <a href="award-detail"  class="govuk-button" data-module="govuk-button">
         {% if data['T3_MR']=="yes" %}
