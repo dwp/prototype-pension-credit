@@ -29,7 +29,18 @@
         </thead>
         <tbody>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">18 Apr 2023</th>
+            <th scope="row" class="govuk-table__header">
+              {% if data['scenario'] == 'T2' %}
+                21 December 2023
+              {% elif data['scenario'] == 'T21' %}
+                22 December 2023
+              {% elif data['scenario'] == 'T3' %}
+                28 December 2023
+              {% else %}
+                2 January 2023
+              {% endif %}
+              
+            </th>
             <td class="govuk-table__cell"><a href="award-detail">View calculation</a></td>
               {% if data['T1_MR'] or data['T2_Explained'] or data['T3_MR']%}
               <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">
