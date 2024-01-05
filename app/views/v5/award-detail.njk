@@ -61,15 +61,7 @@
             Decision date
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['scenario'] == 'T2' %}
-              21 December 2023
-            {% elif data['scenario'] == 'T21' %}
-              22 December 2023
-            {% elif data['scenario'] == 'T3' %}
-              28 December 2023
-            {% else %}
-              2 January 2023
-            {% endif %}
+            21 June 2023
           </dd>
         </div>
          <div class="govuk-summary-list__row">
@@ -77,15 +69,7 @@
             Back dating period start date
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['scenario'] == 'T2' %}
-              22 September 2023
-            {% elif data['scenario'] == 'T21' %}
-              23 September 2023
-            {% elif data['scenario'] == 'T3' %}
-              29 September 2023
-            {% else %}
-              3 October 2023
-            {% endif %}
+            12 April 2023
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -152,109 +136,76 @@
               <th scope="col" class="govuk-table__header">Amount</th>
             </tr>
           </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-table__caption--m">Total weekly income</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£260.74</td>
+            </tr>
 
-          {% if data['scenario'] == 'T2' %}
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header govuk-table__caption--m">Total weekly income</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£214.27</td>
-              </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">
+                State Pension
+              </th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£164.60</td>
+            </tr>
 
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__cell">
-                  State Pension
-                </th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£214.27</td>
-              </tr>
-            </tbody>
-
-          {% elif data['scenario'] == 'T21' %}
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header govuk-table__caption--m">Total weekly income</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£235.27</td>
-              </tr>
-
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__cell">
-                  State Pension
-                </th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
-              </tr>
-
-              <tr class="govuk-table__row">
+            <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__cell">
                 AVIVA Pension (paid monthly)
                 <p class="govuk-body">
-                  The 14 Dec 2023 payment of £50.88 was used to calculate the weekly income from this pension.
+                  The 14 February 2023 payment of £163.42 was used to calculate the weekly income from this pension.
                 </p>
               </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£12.72</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£37.71</td>
+            </tr>
+
+
+
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">
+                AVIVA pension (paid yearly)
+                <p class="govuk-body">
+                  The 14 December 2022 payment of £406.07 was used to calculate the weekly income from this pension.
+                </p>
+              </th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£7.80</td>
             </tr>
 
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__cell">
-                FIDELITY Pension (paid monthly)
+                AVIVA pension (paid monthly)
                 <p class="govuk-body">
-                  The 26 Nov 2023 payment of £74.80 was used to calculate the weekly income from this pension.
+                  Pension payments used to calculate the average weekly income:
                 </p>
+
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>14 Feb 2023 - £67.43</li>
+                  <li>14 Mar 2023 - £23.66</li>
+                  <li>14 Apr 2023 - £58.44</li>
+
+                </ul>
               </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£18.70</td>
-            </tr>
-            </tbody>
-            
-
-            {% elif data['scenario'] == 'T3' %}
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header govuk-table__caption--m">Total weekly income</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£203.85</td>
-              </tr>
-
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__cell">
-                  State Pension
-                </th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
-              </tr>
-            </tbody>
-
-          {% else %}
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header govuk-table__caption--m">Total weekly income</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric govuk-table__caption--m ">£214.27</td>
-              </tr>
-
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__cell">
-                  State Pension
-                </th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
-              </tr>
-
-              <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__cell">
-                LEGAL & GENERAL Pension (paid monthly)
-                <p class="govuk-body">
-                  The 14 Dec 2023 payment of £142.07 was used to calculate the weekly income from this pension.
-                </p>
-              </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£32.78</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£11.50</td>
             </tr>
 
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__cell">
-                FIDELITY Pension (paid monthly)
+                SUNLIFE PLC pension (paid monthly)
                 <p class="govuk-body">
-                  The 18 Dec 2023 payment of £74.80 was used to calculate the weekly income from this pension.
+                  Pension payments used to calculate the average weekly income:
                 </p>
-              </th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£18.70</td>
-            </tr>
-            </tbody>
 
-          {% endif %}
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>14 Mar 2023 - £145.78</li>
+                  <li>13 Apr 2023 - £145.78</li>
+                  <li>14 May 2023 - £187.34</li>
+                  <li>16 Jun 2023 - £199.45</li>
+                </ul>
+              </th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£39.13</td>
+            </tr>
+
+          </tbody>
         </table>
       <p><a href="#">View claim details</a></p>
 
@@ -262,9 +213,9 @@
 
       {% elseif data['scenario'] =='T1' %}
         <p><a href="mr-yes-no">Claimant disagrees with decison</a></p>
-   
 
-      {% elseif data['scenario'] == 'T2' or data['scenario'] == 'T21' %}
+
+      {% elseif data['scenario'] == 'T2'%}
        <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
@@ -275,11 +226,11 @@
           <form method="post">
 
             <div class="govuk-form-group">
-              <p class="govuk-body">Use this information to explain how we made our decision.</p>
+              <p class="govuk-body">Explain how we made our decision using the award information.</p>
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                   <h1 class="govuk-fieldset__heading">
-                    Did they accept your explanation
+                    Did they accept your explanation?
                   </h1>
                 </legend>
 
@@ -299,7 +250,7 @@
                 </div>
               </fieldset>
             </div>
-           
+
 
             <button class="govuk-button" data-module="govuk-button">
               Continue
@@ -307,7 +258,7 @@
           </form>
         </div>
       </details>
-      {% elseif data['scenario'] =='T3' or data['scenario'] == 'T31' %}
+      {% elseif data['scenario'] =='T3' %}
         <p><a href="reconT3-yes-no">Reconsideration requested</a></p>
       {%endif%}
 
