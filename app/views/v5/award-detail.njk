@@ -36,16 +36,16 @@
 
         {% elif data['T2_Explained'] == "yes" or data['T3_MR'] == 'yes'%}
           <p class="govuk-notification-banner__heading">
-            Reconsideration requested</p>
+            Claimant disagreed with decision</p>
           <p class="govuk-body">
-          Claimant accepted our explanation. DR6 uploaded to DRS.<br>
+          Explanation accepted. DR6 uploaded to DRS.<br>
           </p>
 
         {% elif data['T2_Explained'] == "no" or data['T3_MR'] == 'no' %}
           <p class="govuk-notification-banner__heading">
             Reconsideration requested</p>
           <p class="govuk-body">
-            DR6 sent to PDRT team for Mandatory Reconsideration.<br>
+            Check for a DR6 in DRS for further information.
           </p>
 
         {%endif%}
@@ -279,7 +279,7 @@
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                   <h1 class="govuk-fieldset__heading">
-                    Did they accept your explanation
+                    Did they accept your explanation?
                   </h1>
                 </legend>
 
@@ -312,6 +312,31 @@
       {%endif%}
 
   </div>
+  <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-one-third">
+        <br><br>
+        <h2 class="govuk-heading-m">Action history
+        </h2>
+        <ol class="app-timeline">
+          <li class="app-timeline__entry">
+              <h3 class="govuk-heading-s govuk-!-margin-bottom-0">
+  DR6 sent to PDR team     </h3>
+              <p class="app-timeline__info govuk-!-margin-bottom-0">
+                <span class="govuk-visually-hidden"></span>
+                <span class="app-timeline__date">
+                  5 January 2024</span>
+            </li>
+            <li class="app-timeline__entry">
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-0">
+          DR6 uploaded in DRS     </h3>
+                <p class="app-timeline__info govuk-!-margin-bottom-0">
+                  <span class="govuk-visually-hidden"></span>
+                  <span class="app-timeline__date">
+                    5 January 2024</span>
+              </li>
+          </ol></div</div>
+
 </div>
 
 {% endblock %}
