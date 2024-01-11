@@ -36,16 +36,16 @@
 
         {% elif data['T2_Explained'] == "yes" or data['T3_MR'] == 'yes'%}
           <p class="govuk-notification-banner__heading">
-            Claimant disagreed with decision</p>
+            Record updated</p>
           <p class="govuk-body">
-          Explanation accepted. DR6 uploaded to DRS.<br>
+          Claimant disagreed with decision. DR6 uploaded to DRS.<br>
           </p>
 
         {% elif data['T2_Explained'] == "no" or data['T3_MR'] == 'no' %}
           <p class="govuk-notification-banner__heading">
             Reconsideration requested</p>
           <p class="govuk-body">
-            Check for a DR6 in DRS for further information.
+            This decision has been sent for Mandatory Reconsideration. Check for a DR6 in DRS for further information.
           </p>
 
         {%endif%}
@@ -74,7 +74,7 @@
         </div>
          <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Back dating period start date
+            Backdating period start date
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['scenario'] == 'T2' %}
@@ -102,8 +102,11 @@
             Status
           </dt>
           <dd class="govuk-summary-list__value">
+
             {% if data['MRConfirmation']=='yes' %}
               MR
+              {% elif data['T2_Explained'] == "no" or data['T3_MR'] == 'no'%}
+  Review
             {% else %}
               Closed
             {% endif %}
@@ -163,6 +166,7 @@
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__cell">
                   State Pension
+
                 </th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£214.27</td>
               </tr>
@@ -178,6 +182,7 @@
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__cell">
                   State Pension
+
                 </th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
               </tr>
@@ -214,6 +219,7 @@
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__cell">
                   State Pension
+
                 </th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£203.85</td>
               </tr>
@@ -229,6 +235,7 @@
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__cell">
                   State Pension
+
                 </th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£177.58</td>
               </tr>
@@ -312,23 +319,31 @@
       {%endif%}
 
   </div>
-  
-  
+
+
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third"> 
-      
+    <div class="govuk-grid-column-one-third">
+
     {% if data['T1_MR'] or data['DR6_check'] or data['T3_MR']%}
       <div class="dwp-timeline">
-        <h1 class="govuk-heading-m">Action history</h1>
+        <h1 class="govuk-heading-m">Award history</h1>
         <ol class="dwp-timeline__events">
         {% if data['T2_Explained'] == "no" or data['T3_MR'] == 'no' %}
         <li class="dwp-timeline__events--entry">
-            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">DR6 sent to PDR team</h2>
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Reconsideration requested</h2>
+            <p class="govuk-caption-m govuk-!-margin-bottom-1">DR6 sent to PDR team</p>
+
+            <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
+        </li>
+        <li class="dwp-timeline__events--entry">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Reconsideration requested</h2>
             <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
         </li>
         {% elif data['T2_Explained'] == "yes" or data['T3_MR'] == 'yes'%}
+
         <li class="dwp-timeline__events--entry">
-            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">DR6 uploaded to DRS</h2>
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Claimant disagreed with decision</h2>
+            <p class="govuk-caption-m govuk-!-margin-bottom-1">DR6 uploaded to DRS</p>
             <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
         </li>
         {% endif %}
@@ -336,9 +351,9 @@
       </div>
     {% endif %}
 
-  </div>  
-</div> 
-    
+  </div>
+</div>
+
 
 </div>
 
