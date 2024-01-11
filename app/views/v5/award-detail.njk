@@ -19,7 +19,24 @@
 
     <p><a href="award" class="govuk-back-link">Back</a></p>
 
-    {% if data['T1_MR'] or data['DR6_check'] or data['T3_MR']%}
+    
+{% if data['tempDisplay'] == 'true'%}
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          Record updated
+        </h3>
+        <p class="govuk-body">Claimant disagreed with decision. DR6 uploaded to DRS.</p>
+      </div>
+    </div>
+{% endif %}
+
+{% if data['T2_Explained'] == 'no'%}
     <div class="govuk-notification-banner" role="region"
       aria-labelledby="govuk-notification-banner-title"
       data-module="govuk-notification-banner">
@@ -29,29 +46,16 @@
         </h2>
       </div>
       <div class="govuk-notification-banner__content">
-        {% if data['T1_MR'] %}
-          <p class="govuk-notification-banner__heading">
-            Check for a DR6 in DRS for further information<br>
-          </p>
 
-        {% elif data['T2_Explained'] == "yes" or data['T3_MR'] == 'yes'%}
-          <p class="govuk-notification-banner__heading">
-            Record updated</p>
-          <p class="govuk-body">
-          Claimant disagreed with decision. DR6 uploaded to DRS.<br>
-          </p>
-
-        {% elif data['T2_Explained'] == "no" or data['T3_MR'] == 'no' %}
           <p class="govuk-notification-banner__heading">
             Reconsideration requested</p>
           <p class="govuk-body">
             This decision has been sent for Mandatory Reconsideration. Check for a DR6 in DRS for further information.
           </p>
 
-        {%endif%}
       </div>
     </div>
-    {%endif%}
+{%endif%}
 
      <h2 class="govuk-heading-m">Pension Credit calculation</h2>
 
@@ -264,7 +268,7 @@
         </table>
       <p><a href="#">View claim details</a></p>
 
-      {% if data['T1_MR'] or data['T2_Explained'] or data['T3_MR']%}
+      {% if data['T2_Explained'] == "no"%}
 
       {% elseif data['scenario'] =='T1' %}
         <p><a href="mr-yes-no">Claimant disagrees with decison</a></p>
@@ -323,22 +327,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-third">
 
-    {% if data['T1_MR'] or data['DR6_check'] or data['T3_MR']%}
+    {% if data['T2_Explained'] %}
       <div class="dwp-timeline">
         <h1 class="govuk-heading-m">Award history</h1>
         <ol class="dwp-timeline__events">
-        {% if data['T2_Explained'] == "no" or data['T3_MR'] == 'no' %}
+        {% if data['T2_Explained'] == "no" %}
         <li class="dwp-timeline__events--entry">
             <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Reconsideration requested</h2>
             <p class="govuk-caption-m govuk-!-margin-bottom-1">DR6 sent to PDR team</p>
 
             <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
         </li>
-        <li class="dwp-timeline__events--entry">
-            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Reconsideration requested</h2>
-            <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
-        </li>
-        {% elif data['T2_Explained'] == "yes" or data['T3_MR'] == 'yes'%}
+        
+        {% elif data['T2_Explained'] == "yes" %}
 
         <li class="dwp-timeline__events--entry">
             <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Claimant disagreed with decision</h2>

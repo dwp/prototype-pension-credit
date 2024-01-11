@@ -101,6 +101,12 @@ router.post('/v5/award-detail', function(req, res) {
 });
 
 router.post('/v5/DR6Confirmation', function(req, res) {
+    if(req.session.data['T2_Explained'] == 'no'){
+        req.session.data['tempDisplay']='false';
+    }
+    else{
+        req.session.data['tempDisplay']='true';
+    }
     if (req.session.data['DR6_check']=='true') {
         var today = new Date();
         req.session.data['dr6_date'] = today.toLongFormat();
@@ -110,5 +116,15 @@ router.post('/v5/DR6Confirmation', function(req, res) {
         req.session.data['DR6ConfirmationError']='true';
         res.redirect("DR6Confirmation")
     }
+});
+
+router.get('/v5/award', function(req, res) {
+    req.session.data['tempDisplay'] = 'false';
+    res.render("v5/award");
+});
+
+router.get('/v5/personal', function(req, res) {
+    req.session.data['tempDisplay'] = 'false';
+    res.render("v5/personal");
 });
 
