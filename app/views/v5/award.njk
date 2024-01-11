@@ -42,7 +42,7 @@
               
             </th>
             <td class="govuk-table__cell"><a href="award-detail">View calculation</a></td>
-              {% if data['T1_MR'] or data['T2_Explained'] or data['T3_MR']%}
+              {% if data['T2_Explained'] == "no" %}
               <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">
                 REVIEW
               {%else%}
