@@ -312,30 +312,33 @@
       {%endif%}
 
   </div>
+  
+  
   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third"> 
+      
+    {% if data['T1_MR'] or data['DR6_check'] or data['T3_MR']%}
+      <div class="dwp-timeline">
+        <h1 class="govuk-heading-m">Action history</h1>
+        <ol class="dwp-timeline__events">
+        {% if data['T2_Explained'] == "no" or data['T3_MR'] == 'no' %}
+        <li class="dwp-timeline__events--entry">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">DR6 sent to PDR team</h2>
+            <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
+        </li>
+        {% elif data['T2_Explained'] == "yes" or data['T3_MR'] == 'yes'%}
+        <li class="dwp-timeline__events--entry">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">DR6 uploaded to DRS</h2>
+            <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
+        </li>
+        {% endif %}
+        </ol>
+      </div>
+    {% endif %}
 
-      <div class="govuk-grid-column-one-third">
-        <br><br>
-        <h2 class="govuk-heading-m">Action history
-        </h2>
-        <ol class="app-timeline">
-          <li class="app-timeline__entry">
-              <h3 class="govuk-heading-s govuk-!-margin-bottom-0">
-  DR6 sent to PDR team     </h3>
-              <p class="app-timeline__info govuk-!-margin-bottom-0">
-                <span class="govuk-visually-hidden"></span>
-                <span class="app-timeline__date">
-                  5 January 2024</span>
-            </li>
-            <li class="app-timeline__entry">
-                <h3 class="govuk-heading-s govuk-!-margin-bottom-0">
-          DR6 uploaded in DRS     </h3>
-                <p class="app-timeline__info govuk-!-margin-bottom-0">
-                  <span class="govuk-visually-hidden"></span>
-                  <span class="app-timeline__date">
-                    5 January 2024</span>
-              </li>
-          </ol></div</div>
+  </div>  
+</div> 
+    
 
 </div>
 
