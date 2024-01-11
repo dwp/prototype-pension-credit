@@ -332,15 +332,17 @@
       <div class="dwp-timeline">
         <h1 class="govuk-heading-m">Award history</h1>
         <ol class="dwp-timeline__events">
-        {% if data['T2_Explained'] == "no" %}
+
+        {% if data['MR_requested'] == "yes" %}
         <li class="dwp-timeline__events--entry">
             <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Reconsideration requested</h2>
             <p class="govuk-caption-m govuk-!-margin-bottom-1">DR6 sent to PDR team</p>
 
             <p class="govuk-caption-m govuk-!-margin-bottom-1">{{ data['dr6_date'] }}</p>
         </li>
+        {% endif %}
         
-        {% elif data['T2_Explained'] == "yes" %}
+        {% if data['DR6-uploaded'] == "yes" %}
 
         <li class="dwp-timeline__events--entry">
             <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Claimant disagreed with decision</h2>
