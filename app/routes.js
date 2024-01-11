@@ -6,8 +6,41 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+Date.prototype.toShortFormat = function() {
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr",
+                        "May", "Jun", "Jul", "Aug",
+                        "Sep", "Oct", "Nov", "Dec"];
+    
+    const day = this.getDate();
+    
+    const monthIndex = this.getMonth();
+    const monthName = monthNames[monthIndex];
+    
+    const year = this.getFullYear();
+    
+    return `${day} ${monthName} ${year}`;  
+}
+
+Date.prototype.toLongFormat = function() {
+
+    const monthNames = ["January", "February", "March", "April",
+                        "May", "June", "July", "August",
+                        "September", "October", "November", "December"];
+    
+    const day = this.getDate();
+    
+    const monthIndex = this.getMonth();
+    const monthName = monthNames[monthIndex];
+    
+    const year = this.getFullYear();
+    
+    return `${day} ${monthName} ${year}`;  
+}
+
 // v4 routes
 // not used seperate routs yet as there isn't a need to
+
 
 router.post('*/security-check', function(req, res) {
     var SecurityConfirm = req.session.data['SecurityCheck'];
@@ -69,6 +102,8 @@ router.post('/v5/award-detail', function(req, res) {
 
 router.post('/v5/DR6Confirmation', function(req, res) {
     if (req.session.data['DR6_check']=='true') {
+        var today = new Date();
+        req.session.data['dr6_date'] = today.toLongFormat();
         res.redirect("award-detail")
     } 
     else {
