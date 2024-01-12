@@ -1,4 +1,24 @@
-//
+// Date tranformation functions
+
+Date.prototype.toShortFormat = function() {
+const shortMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
+const day = this.getDate();
+const monthIndex = this.getMonth();
+const monthName = shortMonthNames[monthIndex];
+const year = this.getFullYear();
+return `${day} ${monthName} ${year}`;  
+}
+
+Date.prototype.toLongFormat = function() {
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const day = this.getDate();
+const monthIndex = this.getMonth();
+const monthName = monthNames[monthIndex];
+const year = this.getFullYear();
+return `${day} ${monthName} ${year}`;  
+}
+
+
 // For guidance on how to create routes see:
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
@@ -6,38 +26,21 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-Date.prototype.toShortFormat = function() {
 
-    const monthNames = ["Jan", "Feb", "Mar", "Apr",
-                        "May", "Jun", "Jul", "Aug",
-                        "Sep", "Oct", "Nov", "Dec"];
-    
-    const day = this.getDate();
-    
-    const monthIndex = this.getMonth();
-    const monthName = monthNames[monthIndex];
-    
-    const year = this.getFullYear();
-    
-    return `${day} ${monthName} ${year}`;  
-}
+// import individual routes files
+require('./views/v6/tasks/_taskroutes')
+require('./views/v6/_routes')
 
-Date.prototype.toLongFormat = function() {
 
-    const monthNames = ["January", "February", "March", "April",
-                        "May", "June", "July", "August",
-                        "September", "October", "November", "December"];
-    
-    const day = this.getDate();
-    
-    const monthIndex = this.getMonth();
-    const monthName = monthNames[monthIndex];
-    
-    const year = this.getFullYear();
-    
-    return `${day} ${monthName} ${year}`;  
-}
 
+
+
+
+
+
+
+
+// Older routing
 // v4 routes
 // not used seperate routs yet as there isn't a need to
 
@@ -130,4 +133,5 @@ router.get('/v5/personal', function(req, res) {
     req.session.data['tempDisplay'] = 'false';
     res.render("v5/personal");
 });
+
 
