@@ -1,0 +1,92 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Process application" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        <h2 class="govuk-heading-l">Other applications</h2>
+
+        <div class="govuk-body">
+            Check CAM for other applications that are waiting to be processed.
+        </div>
+
+
+        <form method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="telephone" name="telephone" type="checkbox" value="carcasses">
+                <label class="govuk-label govuk-checkboxes__label" for="telephone">
+                  I have looked for telephone applications
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="IDOC" name="IDOC" type="checkbox" value="mines">
+                <label class="govuk-label govuk-checkboxes__label" for="IDOC">
+                  I have looked for IDOCs between [DATE] and today
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="online" name="online" type="checkbox" value="farm">
+                <label class="govuk-label govuk-checkboxes__label" for="online">
+                  I have looked for online applications
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="paper" name="paper" type="checkbox" value="farm">
+                <label class="govuk-label govuk-checkboxes__label" for="paper">
+                  I have looked for paper applications (PC1)
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        
+            <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                    Do any other applications exist?
+                </h1>
+                </legend>
+                
+                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="OtherApplications" name="OtherApplications" type="radio" value="yes">
+                    <label class="govuk-label govuk-radios__label" for="OtherApplications">
+                    Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="OtherApplications-2" name="OtherApplications" type="radio" value="no">
+                    <label class="govuk-label govuk-radios__label" for="OtherApplications-2">
+                    No
+                    </label>
+                </div>
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+        
+
+</div>
+</div>
+
+{% endblock %}
