@@ -7,35 +7,99 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
     <h1 class="govuk-heading-xl">
-      {{ serviceName }}
+      Pension Credits Pay and Maintain
     </h1>
 
-    <h2><a class="govuk-link" href="/v6/find-someone">Version 6</a></h2>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>New task process</li>
-        </ul>
-      </li>
-    </ul>
 
-    <h2><a class="govuk-link" href="/v5/test-scenarios">Version 5</a></h2>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>Solutions for MR issue
-        <ul class="govuk-list govuk-list--number">
-          <li>test without hand holding</li>
-          <li>hand-holding with positive confirmation</li>
-          <li>hand-holding using GYSP patterns</li>
-        </ul>
-      </li>
-     
+<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-3"
+          style="font-size: 16pt;">
+          Version 6 - Creation of new agent task
+        </span>
+      </h2>
+    </div>
+    <div id="accordion-with-summary-sections-content-3" class="govuk-accordion__section-content"
+      aria-labelledby="accordion-with-summary-sections-heading-3">
+          
+      <div class="app-most-recent">
+        <strong class="govuk-tag govuk-tag--orange ">Not tested</strong>
+        <h2 class="govuk-heading-m govuk-!-padding-top-3">Changes to agent process and application journeys to improve flow and data collection for non-dependent checking.</h2>
+        <ol class="govuk-list govuk-list--bullet">
+          <li>Regrouping of task processes based on December 2023 UR</li>
+          <li>Removal of DoD check as this can be automated</li>
+          <li>Reduce the amount of agent screens by grouping checks to a single screen based on December 2023 UR</li>
 
-    </ul>
-
+        </ol>
+  
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <p>Date of design: January 2024</br>
+              Designers: Mark Keeling and Matt Hall</p>
+          </div>
+        
+        </div>
+        <a href="/v6/find-someone" class="govuk-button govuk-button--secondary">Prototype</a>
+      </div>
+    </div>
     
+  </div>
 
-    <h2><a class="govuk-link" href="/v4/test-scenarios">Version 4</a></h2>
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-3"
+          style="font-size: 16pt;">
+          Version 5 - Interation of MR task
+        </span>
+      </h2>
+    </div>
+    <div id="accordion-with-summary-sections-content-3" class="govuk-accordion__section-content"
+      aria-labelledby="accordion-with-summary-sections-heading-3">
+          
+      <div class="app-most-recent">
+        <strong class="govuk-tag govuk-tag--green ">Tested</strong>
+        <h2 class="govuk-heading-m govuk-!-padding-top-3">The addition of a hand-holding flow to guide agents through completing the process when a claimant queries their award.</h2>
+        <ol class="govuk-list govuk-list--bullet">
+          <li>Updated from Lo-Fi prototype following SME discussion</li>
+          <li>Tested two options using GYSP patterns and a positive confirmation design</li>
+        </ol>
+
+        <p class="govuk-body">UR outcomes:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Positive confirmation route seems to yeild better results (Test 2.1)</li>
+          <li>Included GYSP timeline to inform of date of DR6 following participant observation</li>
+        </ul>
+  
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <p>Date of design: December 2024</br>
+              Designers: Mark Keeling and Matt Hall</p>
+          </div>
+        
+        </div>
+        <a href="/v5/test-scenarios" class="govuk-button govuk-button--secondary">Prototype</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-3"
+          style="font-size: 16pt;">
+          Archive
+        </span>
+      </h2>
+    </div>
+    <div id="accordion-with-summary-sections-content-3" class="govuk-accordion__section-content"
+      aria-labelledby="accordion-with-summary-sections-heading-3">
+      <strong class="govuk-tag govuk-tag--green ">Tested</strong>
+
+      <h2><a class="govuk-link" href="/v4/test-scenarios">Version 4</a></h2>
     <ul class="govuk-list govuk-list--bullet">
       <li>Update to all NSP scenarios and security checks into the citizens record ready for November release</li>
       
@@ -71,6 +135,17 @@
     <ul class="govuk-list">
       Initial draft following discussion with GYSP team and PC team.      
     </ul>
+        
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+
+    
   </div>
 </div>
 

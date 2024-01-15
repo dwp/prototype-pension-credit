@@ -19,11 +19,18 @@ router.post('/' + version + '/tasks/bank-name', function(req, res) {
 });
 
 router.post('/' + version + '/tasks/other-applications', function(req, res) {
-    if(req.session.data['OtherApplications'] == 'yes') {
-        res.redirect("dropout")
-    } 
+    if(req.session.data['telephone']=='yes' && req.session.data['IDOC']=='yes' && req.session.data['online']=='yes'&& req.session.data['paper']=='yes'){
+        req.session.data['OtherApplicationError'] = 'false';
+        if(req.session.data['OtherApplications'] == 'yes') {
+            res.redirect("dropout")
+        } 
+        else{
+            res.redirect("tasklist")
+        }
+    }
     else{
-        res.redirect("tasklist")
+        req.session.data['OtherApplicationError'] = 'true';
+        res.redirect("other-applications")
     }
 });
 

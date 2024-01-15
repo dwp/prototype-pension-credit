@@ -12,39 +12,58 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
+        {% if data['OtherApplicationError'] == 'true' %}
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#error">Ensure you have checked CAM for all possible applications </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
         <h2 class="govuk-heading-l">Other applications</h2>
 
-        <div class="govuk-body">
-            Check CAM for other applications that are waiting to be processed.
-        </div>
-
-
+        <div id="error" class="govuk-body {% if data['OtherApplicationError'] == 'true' %}govuk-form-group--error{% endif %}">
+            <p class="govuk-body">Check CAM for other applications that are waiting to be processed.</p>
+            {% if data['OtherApplicationError'] == 'true' %}
+            <p id="passport-issued-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error: </span>Ensure you have checked CAM for all possible applications 
+            </p>
+            {% endif %}
         <form method="post">
 
-        <div class="govuk-form-group">
+        <div class="govuk-form-group ">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="telephone" name="telephone" type="checkbox" value="carcasses">
+                <input class="govuk-checkboxes__input" id="telephone" name="telephone" type="checkbox" value="yes" {%if data['telephone'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="telephone">
                   I have looked for telephone applications
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="IDOC" name="IDOC" type="checkbox" value="mines">
+                <input class="govuk-checkboxes__input" id="IDOC" name="IDOC" type="checkbox" value="yes"{%if data['IDOC'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="IDOC">
                   I have looked for IDOCs between [DATE] and today
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="online" name="online" type="checkbox" value="farm">
+                <input class="govuk-checkboxes__input" id="online" name="online" type="checkbox" value="yes"{%if data['online'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="online">
                   I have looked for online applications
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="paper" name="paper" type="checkbox" value="farm">
+                <input class="govuk-checkboxes__input" id="paper" name="paper" type="checkbox" value="yes"{%if data['paper'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="paper">
                   I have looked for paper applications (PC1)
                 </label>
@@ -52,6 +71,8 @@
             </div>
           </fieldset>
         </div>
+        </div>
+
 
         
             <div class="govuk-form-group">
@@ -64,13 +85,13 @@
                 
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="OtherApplications" name="OtherApplications" type="radio" value="yes">
+                    <input class="govuk-radios__input" id="OtherApplications" name="OtherApplications" type="radio" value="yes" {%if data['OtherApplications'] == 'yes'%}checked='checked'{% endif %}>
                     <label class="govuk-label govuk-radios__label" for="OtherApplications">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="OtherApplications-2" name="OtherApplications" type="radio" value="no">
+                    <input class="govuk-radios__input" id="OtherApplications-2" name="OtherApplications" type="radio" value="no" {%if data['OtherApplications'] == 'no'%}checked='checked'{% endif %}>
                     <label class="govuk-label govuk-radios__label" for="OtherApplications-2">
                     No
                     </label>
