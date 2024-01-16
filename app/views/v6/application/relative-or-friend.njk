@@ -1,0 +1,73 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Add another person" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    
+
+    <form method="post" >
+            <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    Who is {{ data['currentName'] }}?
+                </h1>
+                </legend>
+
+                
+                <div class="govuk-radios govuk-radios-" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="relationship" name="relationship" type="radio" value="Parent, step-parent or parent-in-law">
+                      <label class="govuk-label govuk-radios__label" for="relationship">
+                      Parent, step-parent or parent-in-law
+                      </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="relationship-2" name="relationship" type="radio" value="Son, step-son or son-in law">
+                      <label class="govuk-label govuk-radios__label" for="relationship-2">
+                      Son, step-son or son-in law
+                      </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="relationship-3" name="relationship" type="radio" value="Other">
+                      <label class="govuk-label govuk-radios__label" for="relationship-3">
+                      Other
+                      </label>
+                  </div>
+                
+                </div>
+
+               
+            </fieldset>
+            </div>
+             <p class="govuk-body">Awaiting full list</p>
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+        
+        
+
+  </div>
+</div>
+
+{% endblock %}

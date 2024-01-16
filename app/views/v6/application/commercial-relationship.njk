@@ -1,0 +1,91 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Add another person" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    
+
+    <form method="post" >
+            <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    What is your relationship to {{ data['currentName'] }}?
+                </h1>
+                </legend>
+                
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Relationship" name="relationship" type="radio" value="A commercial boarder, lodger or subtenant">
+                    <label class="govuk-label govuk-radios__label" for="Relationship">
+                    A commercial boarder, lodger or subtenant</br>
+                    <span class="govuk-hint">Someone who pays you to share your home or rent part of the property.</span>
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Relationship-1" name="relationship" type="radio" value=" A joint tenant or owner occupier">
+                    <label class="govuk-label govuk-radios__label" for="Relationship-1">
+                    A joint tenant or owner occupier</br>
+                    <span class="govuk-hint">Someone who is named on the mortgage or tenancy agreement.</span>
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Relationship-2" name="relationship" type="radio" value="A person who is separately liable to make payments to the landlord">
+                    <label class="govuk-label govuk-radios__label" for="Relationship-2">
+                    A person who is separately liable to make payments to the landlord</br>
+                    <span class="govuk-hint">Someone who has a separate agreement with the same landlord as you.</span>
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Relationship-3" name="relationship" type="radio" value="Someone from a charity or voluntary organisation">
+                    <label class="govuk-label govuk-radios__label" for="Relationship-3">
+                    Someone from a charity or voluntary organisation</br>
+                    <span class="govuk-hint">Someone who volunteers or is paid to live in your home to care for you.</span>
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Relationship-4" name="relationship" type="radio" value="A landlord, landlady and their family">
+                    <label class="govuk-label govuk-radios__label" for="Relationship-4">
+                    A landlord, landlady and their family
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Relationship-5" name="relationship" type="radio" value="Someone else">
+                    <label class="govuk-label govuk-radios__label" for="Relationship-5">
+                    Someone else
+                    </label>
+                </div>
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+        
+        
+
+  </div>
+</div>
+
+{% endblock %}

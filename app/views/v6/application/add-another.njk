@@ -44,7 +44,7 @@
           {% if data['claimantname'+i] != null%}
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">{{data['claimantname'+(i)] }}</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="#">Change</a>  |  <a href="delete?person={{i}}">Delete</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="change?person={{i}}">Change</a>  |  <a href="delete?person={{i}}">Delete</a></td>
           </tr>
           {% endif %}
         {%- endfor %}
