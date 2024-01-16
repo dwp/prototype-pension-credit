@@ -30,6 +30,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 // import individual routes files
 require('./views/v6/tasks/_taskroutes')
 require('./views/v6/_routes')
+require('./views/v6/application/_applicationroutes')
 
 
 

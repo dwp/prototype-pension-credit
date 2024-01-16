@@ -1,0 +1,97 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Add another person" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <h1 class="govuk-heading-l">
+      You have added {{data['ActualCount']}} 
+      {% if data['ActualCount'] == '1'%} person {%else%} people {% endif %}
+      over 18 who 
+      {% if data['ActualCount'] == '1'%} lives {%else%} live {% endif %} 
+      with you
+    </h2>
+  
+    
+    
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">{% if data['PeopleCount'] == '1'%} Name {%else%} Names {% endif %}</th>
+          <th scope="col" class="govuk-table__header"><div class="govuk-visually-hidden">Actions</div></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for i in range(1, data['PeopleCount']+1) -%}
+          {% if data['claimantname'+i] != null%}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{data['claimantname'+(i)] }}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="#">Change</a>  |  <a href="delete?person={{i}}">Delete</a></td>
+          </tr>
+          {% endif %}
+        {%- endfor %}
+        
+      </tbody>
+    </table>
+
+    <form method="post" >
+            <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                    Add another person?
+                </h1>
+                </legend>
+
+                <div class="govuk-body">
+                    Only tell us about people over 18
+                </div>
+                
+                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="addanother" name="addanother" type="radio" value="yes">
+                    <label class="govuk-label govuk-radios__label" for="addanother">
+                    Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="addanother-2" name="addanother" type="radio" value="no">
+                    <label class="govuk-label govuk-radios__label" for="addanother-2">
+                    No
+                    </label>
+                </div>
+                
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+        
+        
+
+  </div>
+</div>
+
+{% endblock %}
