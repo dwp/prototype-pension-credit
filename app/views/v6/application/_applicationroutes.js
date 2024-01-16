@@ -26,22 +26,14 @@ router.post('/'+ version +'/application/number-of-adults', function(req, res) {
       req.session.data['CurrentPerson'] = '1';
       req.session.data['ActualCount'] = '1';
 
-      console.log(req.session.data['ExtraAdults']);
-      console.log(req.session.data['PeopleCount']);
-      console.log(req.session.data['CurrentPerson']);
-      console.log(req.session.data['ActualCount']);
-
        res.redirect("name")
    }
 });
 
 router.post('/'+ version +'/application/name', function(req, res) {
     
-   console.log('claimantname' + String(req.session.data['CurrentPerson']));
-   console.log(req.session.data['currentName']);
     
    req.session.data['claimantname' + String(req.session.data['CurrentPerson'])] = req.session.data['currentName'];
-   //console.log(x);
 
     res.redirect("DoB")  
  }); 

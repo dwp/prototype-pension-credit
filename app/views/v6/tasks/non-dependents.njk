@@ -19,6 +19,7 @@
         </div>
 
 
+
         <table class="govuk-table">
           <caption class="govuk-table__caption govuk-table__caption--m">People we know about</caption>
           <thead class="govuk-table__head">
@@ -28,6 +29,17 @@
             </tr>
           </thead>
           <tbody class="govuk-table__body">
+          {%if data['claimantname1'] %}
+            {% for i in range(1, data['PeopleCount']+1) -%}
+              {% if data['claimantname'+i] != null%}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">{{data['claimantname'+(i)] }}</td>
+                <td class="govuk-table__cell">{{data['relationship'+(i)] }}</td>
+              </tr>
+              {% endif %}
+            {%- endfor %}
+          {% else %}
+          
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Angela Berry</th>
               <td class="govuk-table__cell">Daughter</td>
@@ -36,6 +48,8 @@
               <td class="govuk-table__cell">Shaun Ryder</th>
               <td class="govuk-table__cell">Grandson</td>
             </tr>
+
+          {% endif %}
           </tbody>
         </table>
 
