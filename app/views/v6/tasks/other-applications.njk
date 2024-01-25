@@ -21,7 +21,7 @@
             <div class="govuk-error-summary__body">
               <ul class="govuk-list govuk-error-summary__list">
                 <li>
-                  <a href="#error">Ensure you have checked CAM for all possible applications </a>
+                  <a href="#error">You must check CAM for all other applications </a>
                 </li>
               </ul>
             </div>
@@ -29,10 +29,10 @@
         </div>
         {% endif %}
 
-        <h2 class="govuk-heading-l">Other applications</h2>
+        <h2 class="govuk-heading-l">Check CAM for other applications </h2>
 
         <div id="error" class="govuk-body {% if data['OtherApplicationError'] == 'true' %}govuk-form-group--error{% endif %}">
-            <p class="govuk-body">Check CAM for other applications that are waiting to be processed.</p>
+            <p class="govuk-body">Select the different types of application you have checked for.</p>
             {% if data['OtherApplicationError'] == 'true' %}
             <p id="passport-issued-error" class="govuk-error-message">
               <span class="govuk-visually-hidden">Error: </span>Ensure you have checked CAM for all possible applications 
@@ -42,30 +42,30 @@
 
         <div class="govuk-form-group ">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-            
+
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="telephone" name="telephone" type="checkbox" value="yes" {%if data['telephone'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="telephone">
-                  I have looked for telephone applications
+                  Telephone applications
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="IDOC" name="IDOC" type="checkbox" value="yes"{%if data['IDOC'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="IDOC">
-                  I have looked for IDOCs between [DATE] and today
+                  IDOCs between [DATE] and today
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="online" name="online" type="checkbox" value="yes"{%if data['online'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="online">
-                  I have looked for online applications
+                  Online applications
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="paper" name="paper" type="checkbox" value="yes"{%if data['paper'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="paper">
-                  I have looked for paper applications (PC1)
+                  Paper applications (PC1)
                 </label>
               </div>
             </div>
@@ -74,7 +74,7 @@
         </div>
 
 
-        
+
             <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -82,7 +82,7 @@
                     Do any other applications exist?
                 </h1>
                 </legend>
-                
+
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="OtherApplications" name="OtherApplications" type="radio" value="yes" {%if data['OtherApplications'] == 'yes'%}checked='checked'{% endif %}>
@@ -105,7 +105,7 @@
             </button>
 
         </form>
-        
+
 
 </div>
 </div>
