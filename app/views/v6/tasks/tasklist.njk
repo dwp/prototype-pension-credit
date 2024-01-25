@@ -89,7 +89,8 @@
         </div>
         {% endif %}
       </li>
-      {% if data['NilAward'] != 'yes'%}
+
+      {% if data['taskType'] == 'pay'%}
      
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         <div class="govuk-task-list__name-and-hint">
@@ -107,10 +108,29 @@
         </div>
         {% endif %}
       </li>
+
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="prepare-application-3-status">Income</a>
+        </div>
+        {% if data['Income'] == 'no'%}
+        <div class="govuk-task-list__status" id="before-you-start-1-status">
+              Completed
+            </div>
+        {% else %}
+        <div class="govuk-task-list__status" id="prepare-application-2-status">
+          <strong class="govuk-tag govuk-tag--blue">
+            Incomplete
+          </strong>
+        </div>
+        {% endif %}
+      </li>
+
      {% endif %}
+    
     </ul>
 
-    {% if data['NilAward'] == 'yes'%}
+    {% if data['taskType'] == 'nil'%}
 
     <h2 class="govuk-heading-m govuk-!-margin-top-5">Check pension information</h2>
     <ul class="govuk-task-list">

@@ -3,6 +3,30 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 var version = "v6";
 
+router.get('/'+version+'/tasks/randomise', function(req, res) {
+    //this randomises whether we display nil or pay award first
+    
+    if(req.session.data['taskType']){
+        if(req.session.data['taskType']=='pay'){
+            req.session.data['taskType'] = 'nil'
+        }
+        else{
+            req.session.data['taskType'] = 'pay'
+        }
+    }
+    else{
+        var random = Math.floor((Math.random() * 2) + 1);
+        if(random > 1){
+            req.session.data['taskType'] = 'nil'
+        }
+        else{
+            req.session.data['taskType'] = 'pay'
+        }
+        
+    }
+    res.redirect("/"+version+"/tasks/tasklist")
+});
+
 router.get('/'+ version + '/tasks/tasklist', function(req, res) {
     req.session.data['TaskSuccess'] = 'no';
     res.render(version + "/tasks/tasklist");
