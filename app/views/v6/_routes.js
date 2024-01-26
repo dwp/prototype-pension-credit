@@ -6,13 +6,13 @@ var version = "v6";
 
 router.get('/v6/tasks', function(req, res) {
     req.session.data['scenario'] = 'T21';
-    if(req.session.data['TaskAmount']){
+    if(req.session.data['TaskAmount'] > '2'){
         req.session.data['TaskAmount'] = req.session.data['TaskAmount'] - 1;
         req.session.data['TaskAmountReady'] = req.session.data['TaskAmount'] - 1;
 
     }
     else{
-        req.session.data['TaskAmount'] = Math.floor(Math.random() * 15) + 1;
+        req.session.data['TaskAmount'] = Math.floor(Math.random() * 15) + 2;
         req.session.data['TaskAmountReady'] = req.session.data['TaskAmount'] - 1;
     }
 

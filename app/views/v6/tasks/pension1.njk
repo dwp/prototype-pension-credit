@@ -12,38 +12,34 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
-        <h2 class="govuk-heading-l">Personal details</h2>
+        <h2 class="govuk-heading-l">Check the pension payments from AVIVA</h2>
 
         <div class="govuk-body">
-            Check if the information given in the application matches what is in Searchlight.
+            Claim submitted on {{data['claimSubmittedDate']}}.
         </div>
 
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Eric James Munroe
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Address
-            </dt>
-            <dd class="govuk-summary-list__value">
-              9 Wilthy St, Preston, PR2 7RT
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone number
-            </dt>
-            <dd class="govuk-summary-list__value">
-              07665 678776
-            </dd>
-          </div>
-        </dl>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Payment date (monthly)</th>
+              <th scope="col" class="govuk-table__header">Net pay</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">{{data['pension1']}}</td>
+              <td class="govuk-table__cell">£120</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">{{data['pension2']}}</td>
+              <td class="govuk-table__cell">£120</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__cell">{{data['pension3']}}</td>
+              <td class="govuk-table__cell">£120</td>
+            </tr>
+          </tbody>
+        </table>
 
         <form method="post">
             <div class="govuk-form-group">
@@ -56,15 +52,17 @@
                 
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="PersonalDetails" name="PersonalDetails" type="radio" value="yes"
-                    {%if data['PersonalDetails']=="yes"%}checked="checked"{%endif%}
+                    <input class="govuk-radios__input" id="PersonalDetails" name="pension1Complete" type="radio" value="yes"
+                    {% if data['pension1Complete'] == 'yes' %}checked="checked"{% endif %} 
                     >
                     <label class="govuk-label govuk-radios__label" for="PersonalDetails">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="PersonalDetails-2" name="PersonalDetails" type="radio" value="no">
+                    <input class="govuk-radios__input" id="PersonalDetails-2" name="pension1Complete" type="radio" value="no"
+                    {% if data['pension1Complete'] == 'no' %}checked="checked"{% endif %}
+                    >
                     <label class="govuk-label govuk-radios__label" for="PersonalDetails-2">
                     No
                     </label>
