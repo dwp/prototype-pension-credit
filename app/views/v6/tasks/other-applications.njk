@@ -53,7 +53,7 @@
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="IDOC" name="IDOC" type="checkbox" value="yes"{%if data['IDOC'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="IDOC">
-                  IDOCs between [DATE] and today
+                  IDOCs between {{data['backdatingDate']}} and today
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
