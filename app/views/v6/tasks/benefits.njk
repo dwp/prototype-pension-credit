@@ -48,19 +48,22 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h3 class="govuk-fieldset__heading">
-                    Has the applicant received any qualifying benefits for premiums today or since [DATE]?
+                    Has the applicant received any qualifying benefits for premiums today or since {{data['backdatingDate']}}?
                 </h3>
                 </legend>
                 
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BankDetReceivingBenefitsails" name="ReceivingBenefits" type="radio" value="yes">
+                    <input class="govuk-radios__input" id="BankDetReceivingBenefitsails" name="ReceivingBenefits" type="radio" value="yes"
+                    {%if data['ReceivingBenefits']=="yes"%}checked="checked"{%endif%}
+                    >
                     <label class="govuk-label govuk-radios__label" for="ReceivingBenefits">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="ReceivingBenefits-2" name="ReceivingBenefits" type="radio" value="no">
+                    <input class="govuk-radios__input" id="ReceivingBenefits-2" name="ReceivingBenefits" type="radio" value="no"
+                    {%if data['ReceivingBenefits']=="no"%}checked="checked"{%endif%}>
                     <label class="govuk-label govuk-radios__label" for="ReceivingBenefits-2">
                     No
                     </label>
@@ -73,19 +76,23 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                    Are there any open or closed interests shown for qualifying benefits for premiums today or since [DATE]?
+                    Are there any open or closed interests shown for qualifying benefits for premiums today or since {{data['backdatingDate']}}?
                 </h1>
                 </legend>
                 
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BenefitInterests" name="BenefitInterests" type="radio" value="yes">
+                    <input class="govuk-radios__input" id="BenefitInterests" name="BenefitInterests" type="radio" value="yes"
+                    {%if data['BenefitInterests']=="yes"%}checked="checked"{%endif%}
+                    >
                     <label class="govuk-label govuk-radios__label" for="BenefitInterests">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BenefitInterests-2" name="BenefitInterests" type="radio" value="no">
+                    <input class="govuk-radios__input" id="BenefitInterests-2" name="BenefitInterests" type="radio" value="no"
+                    {%if data['BenefitInterests']=="no"%}checked="checked"{%endif%}
+                    >
                     <label class="govuk-label govuk-radios__label" for="BenefitInterests-2">
                     No
                     </label>
