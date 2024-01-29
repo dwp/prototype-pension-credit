@@ -12,47 +12,32 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
-        <h2 class="govuk-heading-l">Bank name</h2>
+        <h2 class="govuk-heading-l">Check for other benefits</h2>
 
         <div class="govuk-body">
-Check if the claimant gets their State Pension paid into this bank or building society.
-        </div>
-
-
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-          Given in application
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Barclays
-            </dd>
-          </div>
-        </dl>
-
+            Check Searchlight for any open or closed interests for other benefits.
+</div>
         <form method="post">
+
+
             <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                    Is their State Pension paid into this bank?
+                    Are there any interests for other benefits since [DATE]?
                 </h1>
-                    </legend>
-<div id="signIn-hint" class="govuk-hint">            Use <a href="#">Check Payment Account Details</a> and CPS to check.
-                </div>
-
+                </legend>
 
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BankDetails" name="BankDetails" type="radio" value="yes"
-                    {%if data['BankDetails']=="yes"%}checked="checked"{%endif%}>
-                    <label class="govuk-label govuk-radios__label" for="BankDetails">
+                    <input class="govuk-radios__input" id="BenefitInterests" name="BenefitInterests" type="radio" value="yes">
+                    <label class="govuk-label govuk-radios__label" for="BenefitInterests">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BankDetails-2" name="BankDetails" type="radio" value="no">
-                    <label class="govuk-label govuk-radios__label" for="BankDetails-2">
+                    <input class="govuk-radios__input" id="BenefitInterests-2" name="BenefitInterests" type="radio" value="no">
+                    <label class="govuk-label govuk-radios__label" for="BenefitInterests-2">
                     No
                     </label>
                 </div>

@@ -16,7 +16,7 @@
     <div class="govuk-body">
     Complete these checks to see if this claim meets the criteria for this system.</div>
 
-    <h2 class="govuk-heading-m">Verify claimant's identity</h2>
+    <h2 class="govuk-heading-m">Verify identity</h2>
     <ul class="govuk-task-list">
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         <div class="govuk-task-list__name-and-hint">
@@ -94,7 +94,7 @@
 
 
       {% if data['taskType'] == 'pay'%}
-     
+
 
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         <div class="govuk-task-list__name-and-hint">
@@ -131,7 +131,7 @@
       </li>
 
      {% endif %}
-    
+
     </ul>
 
     {% if data['taskType'] == 'nil'%}
@@ -207,12 +207,12 @@
   {% endif %}
 
   <!-- Nil award -->
-  {% 
-  if data['taskType'] == 'nil' 
-  and data['BankDetails'] == 'yes' 
-  and data['OtherApplications'] == 'no' 
-  and data['PersonalDetails'] == 'yes' 
-  and data['Benefits'] == 'no' 
+  {%
+  if data['taskType'] == 'nil'
+  and data['BankDetails'] == 'yes'
+  and data['OtherApplications'] == 'no'
+  and data['PersonalDetails'] == 'yes'
+  and data['Benefits'] == 'no'
   and data['pension1Complete'] == 'yes'
   and data['pension2Complete']
   and data['pension3Complete'] == 'yes'
