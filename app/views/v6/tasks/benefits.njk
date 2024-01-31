@@ -7,108 +7,142 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds">
 
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+        {% if data['taskType'] == 'nil' %}
+            <h2 class="govuk-heading-l">Benefits</h2>
 
-        <h2 class="govuk-heading-l">Benefits</h2>
-
-        <div class="govuk-body">
-            Check Searchlight to see if there are any qualifying benefits for premiums.
-        </div>
-
-        <details class="govuk-details" data-module="govuk-details" >
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">
-                Qualifying benefits for premiums
-              </span>
-            </summary>
-            <div class="govuk-details__text">
-              
-                        <p class=" govuk-!-margin-bottom-2">Qualifying benefits for premiums include:</p>
-                        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-
-                          <li>Adult Disability Payment daily living component</li>
-                          <li>Armed Forces Independence Payment</li>
-                          <li>Attendance Allowance</li>
-                          <li>Carer's Allowance, including an underlying entitlement</li>
-                          <li>Constant Attendance Allowance</li>
-                          <li>Disability Living Allowance care component (middle or highest rate)</li>
-                          <li>Personal Independence Payment daily living component</li>
-
-                        </ul>
-
-                        
+            <div class="govuk-body">
+                Check Searchlight to see if there are any qualifying benefits for premiums.
             </div>
-          </details>
 
-        <form method="post">
-            <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h3 class="govuk-fieldset__heading">
-                    Has the applicant received any qualifying benefits for premiums today or since {{data['backdatingDate']}}?
-                </h3>
-                </legend>
+            <details class="govuk-details" data-module="govuk-details" >
+                <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Qualifying benefits for premiums
+                </span>
+                </summary>
+                <div class="govuk-details__text">
                 
-                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BankDetReceivingBenefitsails" name="ReceivingBenefits" type="radio" value="yes"
-                    {%if data['ReceivingBenefits']=="yes"%}checked="checked"{%endif%}
-                    >
-                    <label class="govuk-label govuk-radios__label" for="ReceivingBenefits">
-                    Yes
-                    </label>
+                            <p class=" govuk-!-margin-bottom-2">Qualifying benefits for premiums include:</p>
+                            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+
+                            <li>Adult Disability Payment daily living component</li>
+                            <li>Armed Forces Independence Payment</li>
+                            <li>Attendance Allowance</li>
+                            <li>Carer's Allowance, including an underlying entitlement</li>
+                            <li>Constant Attendance Allowance</li>
+                            <li>Disability Living Allowance care component (middle or highest rate)</li>
+                            <li>Personal Independence Payment daily living component</li>
+
+                            </ul>
+
+                            
                 </div>
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="ReceivingBenefits-2" name="ReceivingBenefits" type="radio" value="no"
-                    {%if data['ReceivingBenefits']=="no"%}checked="checked"{%endif%}>
-                    <label class="govuk-label govuk-radios__label" for="ReceivingBenefits-2">
-                    No
-                    </label>
+            </details>
+
+            <form method="post">
+                <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h3 class="govuk-fieldset__heading">
+                        Has the applicant received any qualifying benefits for premiums today or since {{data['backdatingDate']}}?
+                    </h3>
+                    </legend>
+                    
+                    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="BankDetReceivingBenefitsails" name="ReceivingBenefits" type="radio" value="yes"
+                        {%if data['ReceivingBenefits']=="yes"%}checked="checked"{%endif%}
+                        >
+                        <label class="govuk-label govuk-radios__label" for="ReceivingBenefits">
+                        Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ReceivingBenefits-2" name="ReceivingBenefits" type="radio" value="no"
+                        {%if data['ReceivingBenefits']=="no"%}checked="checked"{%endif%}>
+                        <label class="govuk-label govuk-radios__label" for="ReceivingBenefits-2">
+                        No
+                        </label>
+                    </div>
+                    </div>
+                </fieldset>
                 </div>
+
+                <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-fieldset__heading">
+                        Are there any open or closed interests shown for qualifying benefits for premiums today or since {{data['backdatingDate']}}?
+                    </h1>
+                    </legend>
+                    
+                    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="BenefitInterests" name="BenefitInterests" type="radio" value="yes"
+                        {%if data['BenefitInterests']=="yes"%}checked="checked"{%endif%}
+                        >
+                        <label class="govuk-label govuk-radios__label" for="BenefitInterests">
+                        Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="BenefitInterests-2" name="BenefitInterests" type="radio" value="no"
+                        {%if data['BenefitInterests']=="no"%}checked="checked"{%endif%}
+                        >
+                        <label class="govuk-label govuk-radios__label" for="BenefitInterests-2">
+                        No
+                        </label>
+                    </div>
+                    </div>
+                </fieldset>
                 </div>
-            </fieldset>
+
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+
+            </form>
+        {% else %}
+            <h2 class="govuk-heading-l">Check for other benefits</h2>
+            <div class="govuk-body">
+                Check Searchlight for any open or closed interests for other benefits.
             </div>
+            <form method="post">
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            <h1 class="govuk-fieldset__heading">
+                                Are there any interests for other benefits since {{data['backdatingDate']}}?
+                            </h1>
+                        </legend>
 
-            <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h1 class="govuk-fieldset__heading">
-                    Are there any open or closed interests shown for qualifying benefits for premiums today or since {{data['backdatingDate']}}?
-                </h1>
-                </legend>
-                
-                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BenefitInterests" name="BenefitInterests" type="radio" value="yes"
-                    {%if data['BenefitInterests']=="yes"%}checked="checked"{%endif%}
-                    >
-                    <label class="govuk-label govuk-radios__label" for="BenefitInterests">
-                    Yes
-                    </label>
+                        <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="BenefitInterests" name="BenefitInterests" type="radio" value="yes">
+                                <label class="govuk-label govuk-radios__label" for="BenefitInterests">
+                                Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="BenefitInterests-2" name="BenefitInterests" type="radio" value="no">
+                                <label class="govuk-label govuk-radios__label" for="BenefitInterests-2">
+                                No
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BenefitInterests-2" name="BenefitInterests" type="radio" value="no"
-                    {%if data['BenefitInterests']=="no"%}checked="checked"{%endif%}
-                    >
-                    <label class="govuk-label govuk-radios__label" for="BenefitInterests-2">
-                    No
-                    </label>
-                </div>
-                </div>
-            </fieldset>
-            </div>
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+            </form>
+        {% endif %}
 
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-                Continue
-            </button>
-
-        </form>
-        
-
-</div>
+    </div>
 </div>
 
 {% endblock %}
