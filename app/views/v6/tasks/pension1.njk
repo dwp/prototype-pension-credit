@@ -46,14 +46,13 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                    Does this information match Searchlight?
-                </h1>
+Do the payment dates, frequency, and net pay match what is in Searchlight?                </h1>
                 </legend>
-                
+
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="PersonalDetails" name="pension1Complete" type="radio" value="yes"
-                    {% if data['pension1Complete'] == 'yes' %}checked="checked"{% endif %} 
+                    {% if data['pension1Complete'] == 'yes' %}checked="checked"{% endif %}
                     >
                     <label class="govuk-label govuk-radios__label" for="PersonalDetails">
                     Yes
@@ -76,7 +75,7 @@
             </button>
 
         </form>
-        
+
 
 </div>
 </div>
