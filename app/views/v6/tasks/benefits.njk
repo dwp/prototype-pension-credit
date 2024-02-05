@@ -12,21 +12,21 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
         {% if data['taskType'] == 'nil' %}
-            <h2 class="govuk-heading-l">Benefits</h2>
+            <h2 class="govuk-heading-l">Other benefits</h2>
 
             <div class="govuk-body">
-                Check Searchlight to see if there are any qualifying benefits for premiums.
+                Check Searchlight to see if the claimant has received any qualifying benefits since {{data['backdatingDate']}}.
             </div>
 
             <details class="govuk-details" data-module="govuk-details" >
                 <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
-                    Qualifying benefits for premiums
+                    Qualifying benefits
                 </span>
                 </summary>
                 <div class="govuk-details__text">
-                
-                            <p class=" govuk-!-margin-bottom-2">Qualifying benefits for premiums include:</p>
+
+                            <p class=" govuk-!-margin-bottom-2">Qualifying benefits include:</p>
                             <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
 
                             <li>Adult Disability Payment daily living component</li>
@@ -39,47 +39,21 @@
 
                             </ul>
 
-                            
+
                 </div>
             </details>
-
+<br>
             <form method="post">
-                <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    <h3 class="govuk-fieldset__heading">
-                        Has the applicant received any qualifying benefits for premiums today or since {{data['backdatingDate']}}?
-                    </h3>
-                    </legend>
-                    
-                    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="BankDetReceivingBenefitsails" name="ReceivingBenefits" type="radio" value="yes"
-                        {%if data['ReceivingBenefits']=="yes"%}checked="checked"{%endif%}
-                        >
-                        <label class="govuk-label govuk-radios__label" for="ReceivingBenefits">
-                        Yes
-                        </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="ReceivingBenefits-2" name="ReceivingBenefits" type="radio" value="no"
-                        {%if data['ReceivingBenefits']=="no"%}checked="checked"{%endif%}>
-                        <label class="govuk-label govuk-radios__label" for="ReceivingBenefits-2">
-                        No
-                        </label>
-                    </div>
-                    </div>
-                </fieldset>
-                </div>
 
                 <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h1 class="govuk-fieldset__heading">
-                        Are there any open or closed interests shown for qualifying benefits for premiums today or since {{data['backdatingDate']}}?
+                        Have they received any qualifying benefits since {{data['backdatingDate']}}?
                     </h1>
                     </legend>
-                    
+                    <div id="signIn-hint" class="govuk-hint">
+ This includes any payments and open or closed interests.</div>
                     <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                     <div class="govuk-radios__item">
                         <input class="govuk-radios__input" id="BenefitInterests" name="BenefitInterests" type="radio" value="yes"
@@ -107,7 +81,7 @@
 
             </form>
         {% else %}
-            <h2 class="govuk-heading-l">Check for other benefits</h2>
+        <h2 class="govuk-heading-l">Other benefits</h2>
             <div class="govuk-body">
                 Check Searchlight for any open or closed interests for other benefits.
             </div>

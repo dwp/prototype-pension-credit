@@ -21,7 +21,7 @@
             <div class="govuk-error-summary__body">
               <ul class="govuk-list govuk-error-summary__list">
                 <li>
-                  <a href="#error">You must check CAM for all other applications </a>
+                  <a href="#error">You must check CAM for all of these applications</a>
                 </li>
               </ul>
             </div>
@@ -29,14 +29,15 @@
         </div>
         {% endif %}
 
-        <h2 class="govuk-heading-l">Check CAM for other applications </h2>
+        <h2 class="govuk-heading-l">Recent applications </h2>
 
         <div id="error" class="govuk-body {% if data['OtherApplicationError'] == 'true' %}govuk-form-group--error{% endif %}">
-            <p class="govuk-body">Select the different types of applications you have checked for.</p>
+            <p class="govuk-body">Check CAM for applications that are waiting to be processed.</p>    <br>
             {% if data['OtherApplicationError'] == 'true' %}
             <p id="passport-issued-error" class="govuk-error-message">
-              <span class="govuk-visually-hidden">Error: </span>Ensure you have checked CAM for all possible applications 
+              <span class="govuk-visually-hidden">Error: </span>You must check CAM for all of these applications 
             </p>
+
             {% endif %}
         <form method="post">
 
@@ -47,25 +48,25 @@
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="telephone" name="telephone" type="checkbox" value="yes" {%if data['telephone'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="telephone">
-                  Telephone applications
+                  Telephone applications checked
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="IDOC" name="IDOC" type="checkbox" value="yes"{%if data['IDOC'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="IDOC">
-                  IDOCs between {{data['backdatingDate']}} and today
+                  IDOCs between {{data['backdatingDate']}} and today checked
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="online" name="online" type="checkbox" value="yes"{%if data['online'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="online">
-                  Online applications
+                  Online applications checked
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="paper" name="paper" type="checkbox" value="yes"{%if data['paper'] == 'yes'%}checked='checked'{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="paper">
-                  Paper applications (PC1)
+                  Paper applications (PC1) checked
                 </label>
               </div>
             </div>
@@ -74,12 +75,12 @@
         </div>
 
 
-
+<br>
             <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                    Do any other applications exist?
+                    Are there any applications waiting to be processed?
                 </h1>
                 </legend>
 
