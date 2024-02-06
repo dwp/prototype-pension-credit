@@ -4,6 +4,24 @@ const router = govukPrototypeKit.requests.setupRouter()
 var version = "v6";
 
 router.get('/'+version+'/tasks/randomise', function(req, res) {
+    //clears the data for the tasklist to ensure a fresh task each time
+    req.session.data['BankDetails'] = '';
+    req.session.data['OtherApplications'] = '';
+    req.session.data['PersonalDetails'] = '';
+    req.session.data['Benefits'] = '';
+    req.session.data['BenefitInterests'] = '';
+    req.session.data['ReceivingBenefits'] = '';
+    req.session.data['NonDependents'] = '';
+    req.session.data['online'] = '';
+    req.session.data['telephone'] = '';
+    req.session.data['paper'] = '';
+    req.session.data['IDOC'] = '';
+    req.session.data['pension1Complete'] = '';
+    req.session.data['pension2Complete'] = '';
+    req.session.data['pension3Complete'] = '';
+    req.session.data['TaskSuccess'] = 'yes';
+    
+    
     //this randomises whether we display nil or pay award first
     // whichever displays first, the opposite will display second and then they keep alternating
     if(req.session.data['taskType']){
@@ -113,7 +131,7 @@ router.post('/' + version + '/tasks/personal-details', function(req, res) {
 });
 
 router.post('/' + version + '/tasks/benefits', function(req, res) {
-    if(req.session.data['BenefitInterests'] == 'no' && req.session.data['ReceivingBenefits'] == 'no') {
+    if(req.session.data['BenefitInterests'] == 'no' ){
         req.session.data['Benefits'] = 'no'
         if(req.session.data['taskType']=='nil'){
             res.redirect("tasklist")
