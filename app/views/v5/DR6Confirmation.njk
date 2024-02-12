@@ -27,7 +27,7 @@
                   {% if data['T2_Explained']=="yes"%}
                     <a href="#check-error">Confirm that you have uploaded the DR6 form to DRS</a>
                   {% else %}
-                    <a href="#check-error">Confirm that you have sent the DR6 form to the PDRT team</a>
+                    <a href="#check-error">Confirm that you have sent the DR6 form to sharon.wilson@dwp.gov.uk</a>
                   {% endif %}
                 </li>
               </ul>
@@ -57,7 +57,7 @@
                   <li>your explanation</li>
                 </ul>
               {% else %}
-                You should complete a DR6 form and send it to matt.hall1@dwp.gov.uk
+                You should complete a DR6 form and send it to sharon.wilson@dwp.gov.uk
               {% endif %}
           </p>
           <div class="govuk-checkboxes {% if data['DR6ConfirmationError']=='true' %}govuk-form-group--error{%endif%}" data-module="govuk-checkboxes">
@@ -67,7 +67,7 @@
                 {% if data['T2_Explained']=="yes"%}
                     Select that you have uploaded the DR6 form to DRS
                   {% else %}
-                    Select that you have sent the DR6 form to the PDR team
+                    Select that you have sent the DR6 form to sharon.wilson@dwp.gov.uk
                   {% endif %}
               </p>
               {%endif%}
