@@ -19,23 +19,25 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    
+
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
-    
+
 
     <form method="post" >
             <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                    Is {{ data['currentName'] }} a close relative or friend?
+                <span class="govuk-caption-l"> {{ data['currentName'] }} </span>
+
+                    Are you related to {{ data['currentName'] }} ?
                 </h1>
                 </legend>
 
                 <div class="govuk-body">
-                    For example, a parent, parent-in-law, son, son-in-law, daughter, daughter-in-law, step-parent, step-son, step-daughter, brother, sister, or anyone that is the partner of one of these people.
+                  You could be related by blood or by marriage.
                 </div>
-                
+
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="isRelative" name="isRelative" type="radio" value="yes">
@@ -49,7 +51,7 @@
                     No
                     </label>
                 </div>
-                
+
                 </div>
             </fieldset>
             </div>
@@ -59,8 +61,8 @@
             </button>
 
         </form>
-        
-        
+
+
 
   </div>
 </div>

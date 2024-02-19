@@ -19,18 +19,16 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    
+
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
     <h1 class="govuk-heading-l">
-      You have added {{data['ActualCount']}} 
+      You have added {{data['ActualCount']}}
       {% if data['ActualCount'] == '1'%} person {%else%} people {% endif %}
-      over 18 who 
-      {% if data['ActualCount'] == '1'%} lives {%else%} live {% endif %} 
-      with you
+
     </h2>
-  
-    
-    
+
+
+
 
     <table class="govuk-table">
       <thead class="govuk-table__head">
@@ -48,7 +46,7 @@
           </tr>
           {% endif %}
         {%- endfor %}
-        
+
       </tbody>
     </table>
 
@@ -57,14 +55,14 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                    Add another person?
+                    Add another person who lives with you?
                 </h1>
                 </legend>
 
-                <div class="govuk-body">
-                    Only tell us about people over 18
-                </div>
-                
+                  <p class="govuk-hint">
+                    Only tell us about people over 18.
+                </p>
+
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="addanother" name="addanother" type="radio" value="yes">
@@ -78,7 +76,7 @@
                     No
                     </label>
                 </div>
-                
+
                 </div>
             </fieldset>
             </div>
@@ -88,8 +86,8 @@
             </button>
 
         </form>
-        
-        
+
+
 
   </div>
 </div>
