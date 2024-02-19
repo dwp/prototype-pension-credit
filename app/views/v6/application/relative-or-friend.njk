@@ -19,52 +19,56 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    
+
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
-    
+
 
     <form method="post" >
             <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
                 <h1 class="govuk-fieldset__heading">
-                    Who is {{ data['currentName'] }}?
+                  <span class="govuk-caption-l"> {{ data['currentName'] }} </span>
+
+                    How is {{ data['currentName'] }} related to you?
                 </h1>
                 </legend>
+                <div id="signIn-hint" class="govuk-hint">
+If you are their parent, select child.                   </div>
 
-                
                 <div class="govuk-radios govuk-radios-" data-module="govuk-radios">
-                  
+
                   <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="relationship-1" name="relationship" type="radio" value="Son or stepson">
                       <label class="govuk-label govuk-radios__label" for="relationship-1">
-                      Son or Daughter 
+                      Child
                       </label>
                   </div>
-                  
-                  
+
+
                   <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="relationship-2" name="relationship" type="radio" value="Brother or step-brother">
                       <label class="govuk-label govuk-radios__label" for="relationship-2">
-                        Stepson or stepdaughter
+                        Step-child
                       </label>
                   </div>
                   <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="relationship-3" name="relationship" type="radio" value="Daughter or stepdaughter">
                       <label class="govuk-label govuk-radios__label" for="relationship-3">
-                      Grandson or granddaughter
+                      Grandchild
                       </label>
                   </div>
                   <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="relationship-4" name="relationship" type="radio" value="Daughter or stepdaughter">
                       <label class="govuk-label govuk-radios__label" for="relationship-4">
-                      Brother or Sister
+                      Sibling
                       </label>
                   </div>
                   <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="relationship-5" name="relationship" type="radio" value="Sister or step-sister">
                       <label class="govuk-label govuk-radios__label" for="relationship-5">
-                        Step-brother or step-sister
+                        Step-sibling
                       </label>
                   </div>
                   <div class="govuk-radios__item">
@@ -80,27 +84,15 @@
                       </label>
                   </div>
                   <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="relationship-8" name="relationship" type="radio" value="A partner of a close relative">
-                      <label class="govuk-label govuk-radios__label" for="relationship-8">
-                       A partner of anyone listed above
-                      </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="relationship-9" name="relationship" type="radio" value="Friend">
-                      <label class="govuk-label govuk-radios__label" for="relationship-9">
-                       A friend
-                      </label>
-                  </div>
-                  <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="relationship-10" name="relationship" type="radio" value="Other">
                       <label class="govuk-label govuk-radios__label" for="relationship-10">
                       Other
                       </label>
                   </div>
-                
+
                 </div>
 
-               
+
             </fieldset>
             </div>
             <button type="submit" class="govuk-button" data-module="govuk-button">
@@ -108,8 +100,8 @@
             </button>
 
         </form>
-        
-        
+
+
 
   </div>
 </div>
