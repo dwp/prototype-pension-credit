@@ -22,24 +22,38 @@
 
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-    <h1 class="govuk-heading-l">
-    <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-
-        How are you related to them?
-    </h1>
-
-<p class="govuk-body">For example, 'we are cousins'.
     <form method="post" >
-            <div class="govuk-form-group">
-            <textarea class="govuk-textarea" id="more-detail" name="relationship" rows="1" aria-describedby="more-detail-hint"></textarea>
+      <!--- This is other relation --->
+      {% if data['relationship'] == "Other" %} 
+        <h1 class="govuk-heading-l govuk-!-padding-top-7">
+        <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
+            How are you related to them?
+        </h1>
+        <p class="govuk-body">For example, 'we are cousins'.
 
-            </div>
+      <!--- This is other commercial --->
+      {% elif data['relationship'] == "Someone else" %} 
+        <h1 class="govuk-heading-l govuk-!-padding-top-7">
+        <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
+            Describe your living arrangements?
+        </h1>
+        <p class="govuk-body">For example, they are living with you temporarily.
+      {% endif %} 
 
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-                Continue
-            </button>
+      <div class="govuk-form-group">
+        <textarea class="govuk-textarea" id="more-detail" name="relationship" rows="
+        {% if data['relationship'] == "Other" %} 
+          1
+        {% elif data['relationship'] == "Someone else" %} 
+          3
+        {% endif %}
+        " aria-describedby="more-detail-hint"></textarea>
+      </div>
 
-        </form>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+      </button>
+    </form>
 
 
 
