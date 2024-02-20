@@ -24,14 +24,14 @@
 
         <form method="post">
 
-        <div class="govuk-form-group">
+        <div class="govuk-form-group govuk-!-padding-top-7">
             <h1 class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="event-name">
-                What is the name of the first person that lives with you?
+                What is the name of the {%if data['ActualCount'] == 1%}first{% else %}next{%endif%} person that lives with you?
                 </label>
             </h1>
             <p class="govuk-hint">Tell us about people one at a time. Only tell us about people over 18.</p>
-            <input class="govuk-input" id="event-name" name="currentName" type="text">
+            <input class="govuk-input govuk-!-width-three-quarters" id="event-name" name="currentName" type="text">
         </div>
 
 
