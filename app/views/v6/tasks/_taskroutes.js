@@ -71,6 +71,7 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
 
     // this resets the success banner on the task selection screen
     req.session.data['TaskSuccess'] = 'no';
+    req.session.data['SuspendClaim'] = '';
 
     //this creates the data for pension3
     req.session.data['scenario3-pension1-net'] = "350";
@@ -98,11 +99,20 @@ router.get('/'+ version + '/tasks/tasklist', function(req, res) {
 
 router.post('/' + version + '/tasks/bank-name', function(req, res) {
     if(req.session.data['BankDetails'] == 'yes') {
-        res.redirect("tasklist")
+        if(req.session.data['taskType'] == "pay"){
+            res.redirect("bank-encashed")
+        }
+        else{
+         res.redirect("tasklist")
+        }
     } 
     else{
         res.redirect("dropout")
     }
+});
+
+router.post('/' + version + '/tasks/bank-encashed', function(req, res) {
+    res.redirect("tasklist")
 });
 
 router.post('/' + version + '/tasks/other-applications', function(req, res) {
@@ -270,6 +280,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
 router.post('/' + version + '/tasks/dropout', function(req, res) {
     // Reset all sessions
     req.session.data['BankDetails'] = '';
+    req.session.data['BankEncashed'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
     req.session.data['Benefits'] = '';
@@ -290,6 +301,7 @@ router.post('/' + version + '/tasks/dropout', function(req, res) {
 router.post('/' + version + '/tasks/tasklist', function(req, res) {
     // Reset all sessions
     req.session.data['BankDetails'] = '';
+    req.session.data['BankEncashed'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
     req.session.data['Benefits'] = '';
