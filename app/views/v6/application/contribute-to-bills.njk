@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Close relative or friend" %}
+{% set pageName = "Who pays your household bills?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -29,23 +29,29 @@
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
                   <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-                    Do they pay towards your household bills?
+                    Who pays your household bills?
                 </h1>
                 </legend>
                 <div id="DoB-hint" class="govuk-hint">
-                  This includes rent, mortgage, phone, broadband, TV, water, gas and electricity.
+                  This includes rent, mortgage, phone, broadband, TV, water, gas, electricity and other fixed costs.
                 </div>
-                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="contribute" name="contribute" type="radio" value="Yes">
+                    <input class="govuk-radios__input" id="contribute" name="contribute" type="radio" value="Me">
                     <label class="govuk-label govuk-radios__label" for="contribute">
-                    Yes
+                    Me
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="contribute-2" name="contribute" type="radio" value="No">
+                    <input class="govuk-radios__input" id="contribute-2" name="contribute" type="radio" value="Them">
                     <label class="govuk-label govuk-radios__label" for="contribute-2">
-                    No
+                    Them
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="contribute-2" name="contribute" type="radio" value="Both of us">
+                    <label class="govuk-label govuk-radios__label" for="contribute-2">
+                    Both of us
                     </label>
                 </div>
 
