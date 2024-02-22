@@ -24,27 +24,25 @@
 
     <form method="post" >
       <!--- This is other relation --->
-      {% if data['relationship'] == "Other" %} 
+      {% if data['relationship'] == "Other" %}
         <h1 class="govuk-heading-l govuk-!-padding-top-7">
         <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-            How are you related to them?
-        </h1>
-        <p class="govuk-body">For example, 'we are cousins'.
+            Tell us how you are related</h1>
+        <div class="govuk-hint">For example, 'we are cousins' or 'they are my neice'.</div>
 
       <!--- This is other commercial --->
-      {% elif data['relationship'] == "Someone else" %} 
+      {% elif data['relationship'] == "Someone else" %}
         <h1 class="govuk-heading-l govuk-!-padding-top-7">
         <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-            Describe your living arrangements?
+            Tell us about your living arrangements
         </h1>
-        <p class="govuk-body">For example, they are living with you temporarily.
-      {% endif %} 
 
+      {% endif %}
       <div class="govuk-form-group">
         <textarea class="govuk-textarea" id="more-detail" name="relationship" rows="
-        {% if data['relationship'] == "Other" %} 
+        {% if data['relationship'] == "Other" %}
           1
-        {% elif data['relationship'] == "Someone else" %} 
+        {% elif data['relationship'] == "Someone else" %}
           3
         {% endif %}
         " aria-describedby="more-detail-hint"></textarea>

@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Add another person" %}
+{% set pageName = "How are you related?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -31,11 +31,10 @@
                 <h1 class="govuk-fieldset__heading">
                   <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
 
-                    How are you related to them?
+                    How are you related?
                 </h1>
                 </legend>
-                <div id="signIn-hint" class="govuk-hint">
-If they are your son or daughter, select child.                   </div>
+
 
                 <div class="govuk-radios govuk-radios-" data-module="govuk-radios">
 
@@ -50,7 +49,7 @@ If they are your son or daughter, select child.                   </div>
                   <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="relationship-2" name="relationship" type="radio" value="I am their step-parent">
                       <label class="govuk-label govuk-radios__label" for="relationship-2">
-                        I am their step-parent                      
+                        I am their step-parent
                       </label>
                   </div>
                   <div class="govuk-radios__item">
@@ -83,10 +82,12 @@ If they are your son or daughter, select child.                   </div>
                         I am their step-child
                       </label>
                   </div>
+                  <div class="govuk-radios__divider">or</div>
+
                   <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="relationship-10" name="relationship" type="radio" value="Other">
+                      <input class="govuk-radios__input" id="relationship-10" name="relationship" type="radio" value="Not related">
                       <label class="govuk-label govuk-radios__label" for="relationship-10">
-                      Other
+                      None of these
                       </label>
                   </div>
 
