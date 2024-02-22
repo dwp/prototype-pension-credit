@@ -34,12 +34,12 @@
           In progress
           </strong>
         </div>
-        
+
         {% elif data['BankDetails'] == 'yes' and data['BankEncashed'] != 'yes' %}
         <div class="govuk-task-list__status" id="before-you-start-1-status">
           Done
         </div>
-        
+
         {% else %}
         <div class="govuk-task-list__status" id="prepare-application-2-status">
           <strong class="govuk-tag govuk-tag--blue">
@@ -189,7 +189,7 @@
   <!-- Payment success -->
   {% if data['taskType'] == 'pay' and data['BankDetails'] == 'yes' and data['OtherApplications'] == 'no' and data['PersonalDetails'] == 'yes' and data['Benefits'] == 'no' and data['NonDependents'] == 'no'%}
   <form method="post">
-    
+
     {% if data['BankEncashed'] == 'no' %}
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
@@ -208,7 +208,7 @@
             <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="BankDetails" name="SuspendClaim" type="radio" value="yes"}>
                 <label class="govuk-label govuk-radios__label" for="BankDetails">
-                Suspend the task for 5 days
+                Postpone this task for 5 days
                 </label>
             </div>
             <div class="govuk-radios__item">
@@ -226,14 +226,13 @@
       </button>
 
     {% else %}
-      <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Claimant entitled to an award</h3>
+      <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Checks complete</h3>
       <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
-        A letter will be automatically sent to the claimant. It will notify them that they are
-      entitled to Pension Credit and give details of the award amount.
+        A letter will be automatically sent. It will tell the applicant how much Pension Credit they will get.
       </p>
 
       <button type="submit" class="govuk-button" data-module="govuk-button">
-          Confirm and notify
+        End task and send letter
       </button>
     {% endif %}
 
@@ -252,13 +251,13 @@
   and data['pension3Complete'] == 'yes'
   %}
   <form method="post">
-    <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Not entitled to Pension Credit</h3>
+    <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Checks complete</h3>
     <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
-      A letter will be automatically sent to the applicant to tell them.
+      A letter will be automatically sent. It will tell the the applicant why they are not entitled to Pension Credit.
     </p>
 
     <button type="submit" class="govuk-button" data-module="govuk-button">
-        Confirm and notify
+        End task and send letter
     </button>
 
   </form>
