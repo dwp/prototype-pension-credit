@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "What are your living arrangements?" %}
+{% set pageName = "What is your housing situation?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -30,7 +30,7 @@
                 <h1 class="govuk-fieldset__heading">
                   <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
 
-                    What are your living arrangements?
+                    What is your housing situation?
                 </h1>
                 </legend>
 
@@ -39,7 +39,7 @@
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="Relationship-1" name="relationship" type="radio" value=" Joint tenants or owner occupiers">
                     <label class="govuk-label govuk-radios__label" for="Relationship-1">
-                    We are joint tenants or owner occupiers</br>
+                    We are joint owners or joint tenants</br>
                     <span class="govuk-hint">Both your names are on the mortgage or tenancy agreement.</span>
                     </label>
                 </div>
@@ -47,22 +47,22 @@
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="Relationship-2" name="relationship" type="radio" value="Individual tenants">
                     <label class="govuk-label govuk-radios__label" for="Relationship-2">
-                  We have individual tenancies </br>
-                    <span class="govuk-hint">You have separate agreements with the same landlord.</span>
+                  We are individual tenants</br>
+                    <span class="govuk-hint">You have your own agreements with the same landlord.</span>
                     </label>
                 </div>
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="Relationship" name="relationship" type="radio" value="Boarder, lodger or subtenant">
                     <label class="govuk-label govuk-radios__label" for="Relationship">
-                    They are a boarder, lodger or subtenant in my home</br>
-                    <span class="govuk-hint">They pay you to share your home, or rent part of your property.</span>
+                    They are my boarder, lodger or subtenant</br>
+                    <span class="govuk-hint">They pay to share your home, or rent part of your property.</span>
                     </label>
                 </div>
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="Relationship-4" name="relationship" type="radio" value="Landlord or a member of their family">
                     <label class="govuk-label govuk-radios__label" for="Relationship-4">
-                  They are my landlord or a member of their family<br>
-                    <span class="govuk-hint">You pay them to share their home, or rent part of their property.</span>
+                  They are my landlord, or a member of my landlord's family<br>
+                    <span class="govuk-hint">You pay to share their home, or rent part of their property.</span>
 
                     </label>
                 </div>
@@ -70,7 +70,7 @@
                     <input class="govuk-radios__input" id="Relationship-3" name="relationship" type="radio" value="Someone from a charity or voluntary organisation">
                     <label class="govuk-label govuk-radios__label" for="Relationship-3">They are from a charity or voluntary organisation
                   </br>
-                    <span class="govuk-hint">They volunteer, or are paid to live in your home and care for you.</span>
+                    <span class="govuk-hint">They are paid, or volunteer to live in your home and care for you.</span>
                     </label>
                 </div>
                  <div class="govuk-radios__divider">or</div>
