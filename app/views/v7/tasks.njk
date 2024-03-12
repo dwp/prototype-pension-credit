@@ -1,0 +1,68 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "./layout.njk" %}
+
+{% set pageName = "Process application" %}
+
+{% block content %}
+
+{% if data['TaskSuccess'] == 'yes'%}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    {% if data['SuspendClaim'] == 'yes'%}
+    <div class="govuk-notification-banner govuk-notification-banner--information" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Important
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-heading-m">Task postponed</p>
+      </div>
+    </div>
+
+    {% else %}
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-heading-m">Task complete</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+              <h1 class="govuk-heading-l">Tasks</h1>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <h1 class="govuk-heading-m">Process applications
+    <p class="govuk-body-l"><a href="tasks/randomise" class="govuk-link"><b>Get next task</b></a></p></h1>
+  </div>
+
+  <div class="govuk-grid-column-one-quarter">
+        <h3 class="govuk-heading-l">{{data['TaskAmount']}}
+          <p class="govuk-body govuk-!-font-size-24">total tasks</p>
+        </h3>
+  </div>
+
+  <div class="govuk-grid-column-one-quarter">
+        <h3 class="govuk-heading-l">{{data['TaskAmountReady']}}
+          <p class="govuk-body govuk-!-font-size-24">tasks ready to work</p>
+        </h3>
+  </div>
+
+</div>
+
+
+{% endblock %}
