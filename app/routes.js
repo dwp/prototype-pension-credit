@@ -32,6 +32,10 @@ require('./views/v6/tasks/_taskroutes')
 require('./views/v6/_routes')
 require('./views/v6/application/_applicationroutes')
 
+require('./views/v7/tasks/_taskroutes')
+require('./views/v7/_routes')
+require('./views/v7/application/_applicationroutes')
+
 
 
 
