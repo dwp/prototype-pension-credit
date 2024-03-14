@@ -43,7 +43,12 @@
           </div>
 
         </div>
-        <a href="/v7/find-someone" class="govuk-button govuk-button--secondary">Prototype - Agent Journey</a></br>
+        <form method="post" action="/v7/find-someone">
+          <input type="hidden" id="version7" name="version" value="v7" />
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Prototype - Agent Journey
+          </button>
+        </form>
        </div>
     </div>
 
@@ -78,8 +83,19 @@
           </div>
 
         </div>
-        <a href="/v6/find-someone" class="govuk-button govuk-button--secondary">Prototype - Agent Journey</a></br>
-        <a href="/v6/application/number-of-adults" class="govuk-button govuk-button--secondary">Prototype - Claimant Journey</a>
+        <form action="/v6/find-someone" method="post" >
+          <input type="hidden" id="version6" name="version" value="v6" />
+          <input type="submit" class="govuk-button govuk-button--secondary" value="Prototype - Agent Journey">
+            
+        </form>
+
+        <form action="/v6/application/number-of-adults" method="post" >
+          <input type="hidden" id="version6" name="version" value="v6" />
+          <input type="submit" class="govuk-button govuk-button--secondary" value="Prototype - Claimaint Journey">
+        </form>
+
+      
+        
       </div>
     </div>
 
