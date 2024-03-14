@@ -99,12 +99,13 @@ router.get('/'+ version + '/tasks/tasklist', function(req, res) {
 
 router.post('/' + version + '/tasks/bank-name', function(req, res) {
     if(req.session.data['BankDetails'] == 'yes') {
-        if(req.session.data['taskType'] == "pay"){
-            res.redirect("bank-encashed")
-        }
-        else{
+        // KEEP THIS IS AS ITS BOUND TO CHANGE AGAIN!
+        // if(req.session.data['taskType'] == "pay"){
+        //     res.redirect("bank-encashed")
+        // }
+        // else{
          res.redirect("tasklist")
-        }
+        // }
     } 
     else{
         res.redirect("dropout")
@@ -133,7 +134,7 @@ router.post('/' + version + '/tasks/other-applications', function(req, res) {
 
 router.post('/' + version + '/tasks/personal-details', function(req, res) {
     if(req.session.data['PersonalDetails'] == 'yes') {
-        res.redirect("benefits")
+        res.redirect("non-dependents")
     } 
     else{
         res.redirect("dropout")
@@ -158,6 +159,15 @@ router.post('/' + version + '/tasks/benefits', function(req, res) {
 
 router.post('/' + version + '/tasks/non-dependents', function(req, res) {
     if(req.session.data['NonDependents'] == 'no') {
+        res.redirect("tasklist")
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
+router.post('/' + version + '/tasks/cold-weather-payments', function(req, res) {
+    if(req.session.data['ColdWeather'] == 'no') {
         res.redirect("tasklist")
     } 
     else{
@@ -291,6 +301,7 @@ router.post('/' + version + '/tasks/dropout', function(req, res) {
     req.session.data['telephone'] = '';
     req.session.data['paper'] = '';
     req.session.data['IDOC'] = '';
+    req.session.data['ColdWeather'] = '';
     req.session.data['pension1Complete'] = '';
     req.session.data['pension2Complete'] = '';
     req.session.data['pension3Complete'] = '';
@@ -312,6 +323,7 @@ router.post('/' + version + '/tasks/tasklist', function(req, res) {
     req.session.data['telephone'] = '';
     req.session.data['paper'] = '';
     req.session.data['IDOC'] = '';
+    req.session.data['ColdWeather'] = '';
     req.session.data['pension1Complete'] = '';
     req.session.data['pension2Complete'] = '';
     req.session.data['pension3Complete'] = '';
