@@ -133,11 +133,20 @@ router.post('/' + version + '/tasks/other-applications', function(req, res) {
 });
 
 router.post('/' + version + '/tasks/personal-details', function(req, res) {
-    if(req.session.data['PersonalDetails'] == 'yes') {
-        res.redirect("non-dependents")
-    } 
+    if(req.session.data['taskType']=='pay')
+        if(req.session.data['PersonalDetails'] == 'yes') {
+            res.redirect("non-dependents")
+        } 
+        else{
+            res.redirect("dropout")
+        }
     else{
-        res.redirect("dropout")
+        if(req.session.data['PersonalDetails'] == 'yes') {
+            res.redirect("benefits")
+        } 
+        else{
+            res.redirect("dropout")
+        }
     }
 });
 
