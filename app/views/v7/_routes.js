@@ -4,7 +4,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 var version = "v7";
 
 
-router.get('/v6/tasks', function(req, res) {
+router.get('/'+ version +'/tasks', function(req, res) {
     req.session.data['scenario'] = 'T21';
     if(req.session.data['TaskAmount'] > '2'){
         req.session.data['TaskAmount'] = req.session.data['TaskAmount'] - 1;
@@ -17,9 +17,9 @@ router.get('/v6/tasks', function(req, res) {
     }
 
     
-    res.render("v6/tasks");
+    res.render(version +"/tasks");
 });
-router.get('/v6/find-someone', function(req, res) {
+router.get('/'+version+'/find-someone', function(req, res) {
     req.session.data['scenario'] = 'T21';
     if(req.session.data['TaskAmount']){
         req.session.data['TaskAmount'] = req.session.data['TaskAmount'] - 1;
@@ -30,7 +30,7 @@ router.get('/v6/find-someone', function(req, res) {
         req.session.data['TaskAmount'] = Math.floor(Math.random() * 15) + 1;
         req.session.data['TaskAmountReady'] = req.session.data['TaskAmount'] - 1;
     }
-    res.render("v6/find-someone");
+    res.render(version + "/find-someone");
 });
 
 

@@ -42,9 +42,6 @@ require('./views/v7/application/_applicationroutes')
 
 
 
-
-
-
 // Older routing
 // v4 routes
 // not used seperate routs yet as there isn't a need to
