@@ -15,7 +15,8 @@
         <h2 class="govuk-heading-l">Cold Weather Payments</h2>
 
         <div class="govuk-body">
-          Check if the claimant should get any Cold Weather Payments since {{data['backdatingDate']}}.
+
+    <a href="https://cwp.agent-service.prod.rbcdwp.net/check-cold-weather-payments/citizen-location" target="_blank"> Check if the claimant should get any Cold Weather Payments</a> with their first Pension Credit payment.<br>
         </div>
 
         <div class="govuk-group">
@@ -35,12 +36,10 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                    Should the claimant get any Cold Weather Payments?
+                    Have there been any cold weather periods since {{data['backdatingDate']}}?
                 </h1>
                     </legend>
-                <div id="signIn-hint" class="govuk-hint">
-                  Use <a href="https://cwp.agent-service.prod.rbcdwp.net/check-cold-weather-payments/citizen-location" target="_blank">Check Cold Weather Payments</a>
-                </div>
+
 
 
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
