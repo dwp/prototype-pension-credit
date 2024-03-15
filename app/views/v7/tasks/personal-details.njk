@@ -24,7 +24,11 @@
               Name
             </dt>
             <dd class="govuk-summary-list__value">
-              Eric James Munroe
+              {% if data['taskType'] == 'pay' %}
+                Eric James Munroe
+              {% else %}
+                mable jackie stevens
+              {% endif %}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -32,7 +36,11 @@
               Address
             </dt>
             <dd class="govuk-summary-list__value">
-              9 Wilthy St, Preston, PR2 7RT
+              {% if data['taskType'] == 'pay' %}
+                9 Wilthy St, Preston, PR2 7RT
+              {% else %}
+                24 lyme rd, montgomery, powys, hr3 5rj
+              {% endif %}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -40,7 +48,11 @@
               Phone number
             </dt>
             <dd class="govuk-summary-list__value">
-              07665 678776
+              {% if data['taskType'] == 'pay' %}
+                07665 678776
+              {% else %}
+                07989 829665
+              {% endif %}
             </dd>
           </div>
         </dl>
