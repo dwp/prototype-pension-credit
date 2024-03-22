@@ -112,7 +112,7 @@
 
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         <div class="govuk-task-list__name-and-hint">
-          <a class="govuk-link govuk-task-list__link" href="non-dependents" aria-describedby="prepare-application-3-status">Living together</a>
+          <a class="govuk-link govuk-task-list__link" href="non-dependents" aria-describedby="prepare-application-3-status">Living alone</a>
         </div>
         {% if data['NonDependents'] == 'no'%}
         <div class="govuk-task-list__status" id="before-you-start-1-status">
@@ -131,14 +131,14 @@
 
     </ul>
 
-    <!--- Cold weather paymentf for pay journey --->
+    <!--- Cold weather payment for pay journey --->
     {% if data['taskType'] == 'pay' %}
       {%if data['BankDetails'] == 'yes' and data['OtherApplications'] == 'no' and data['PersonalDetails'] == 'yes' and data['NonDependents'] == 'no'%}
-        <h2 class="govuk-heading-m">Check passport benefits</h2>
+        <h2 class="govuk-heading-m">Check for payments</h2>
         <ul class="govuk-task-list">
           <li class="govuk-task-list__item govuk-task-list__item--with-link">
             <div class="govuk-task-list__name-and-hint">
-              <a class="govuk-link govuk-task-list__link" href="cold-weather-payments">Cold weather payments</a>
+              <a class="govuk-link govuk-task-list__link" href="cold-weather-payments">Cold Weather Payments</a>
             </div>
             {% if data['ColdWeather'] == 'no'%}
             <div class="govuk-task-list__status" id="before-you-start-1-status">
@@ -154,12 +154,12 @@
           </li>
         </ul>
       {% else %}
-      <h2 class="govuk-heading-m">Check passport benefits</h2>
+      <h2 class="govuk-heading-m">Check for payments</h2>
         <ul class="govuk-task-list">
           <li class="govuk-task-list__item govuk-task-list__item--with-link">
             <div class="govuk-task-list__name-and-hint">
                 <div>
-                  Cold weather payments
+                  Cold Weather Payments
                 </div>
               </div>
               <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="application-details-3-status">
