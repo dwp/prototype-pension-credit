@@ -31,8 +31,12 @@
 
         <h2 class="govuk-heading-l">Recent applications </h2>
 
-        <div id="error" class="govuk-body {% if data['OtherApplicationError'] == 'true' %}govuk-form-group--error{% endif %}">
-            <p class="govuk-body">Check CAM for applications that are waiting to be processed.</p>    <br>
+
+            <p class="govuk-body">Check for applications that are waiting to be processed.</p>    <br>
+            <h1 class="govuk-heading-m">
+                1. Check CAM for applications
+            </h1>
+              <div id="error" class="govuk-body {% if data['OtherApplicationError'] == 'true' %}govuk-form-group--error{% endif %}">
             {% if data['OtherApplicationError'] == 'true' %}
             <p id="passport-issued-error" class="govuk-error-message">
               <span class="govuk-visually-hidden">Error: </span>You must check CAM for all of these applications 
@@ -80,7 +84,7 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                    Are there any applications waiting to be processed?
+                    2. Are there any applications waiting to be processed?
                 </h1>
                 </legend>
 
