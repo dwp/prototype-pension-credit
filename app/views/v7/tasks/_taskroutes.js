@@ -167,7 +167,7 @@ router.post('/' + version + '/tasks/benefits', function(req, res) {
 });
 
 router.post('/' + version + '/tasks/non-dependents', function(req, res) {
-    if(req.session.data['NonDependents'] == 'no') {
+    if(req.session.data['NonDependents'] == 'yes') {
         res.redirect("tasklist")
     } 
     else{
