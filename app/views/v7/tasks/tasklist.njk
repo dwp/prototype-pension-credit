@@ -114,7 +114,7 @@
         <div class="govuk-task-list__name-and-hint">
           <a class="govuk-link govuk-task-list__link" href="non-dependents" aria-describedby="prepare-application-3-status">Living alone</a>
         </div>
-        {% if data['NonDependents'] == 'no'%}
+        {% if data['NonDependents'] == 'yes'%}
         <div class="govuk-task-list__status" id="before-you-start-1-status">
           Done
             </div>
@@ -133,7 +133,7 @@
 
     <!--- Cold weather payment for pay journey --->
     {% if data['taskType'] == 'pay' %}
-      {%if data['BankDetails'] == 'yes' and data['OtherApplications'] == 'no' and data['PersonalDetails'] == 'yes' and data['NonDependents'] == 'no'%}
+      {%if data['BankDetails'] == 'yes' and data['OtherApplications'] == 'no' and data['PersonalDetails'] == 'yes' and data['NonDependents'] == 'yes'%}
         <h2 class="govuk-heading-m">Check for payments</h2>
         <ul class="govuk-task-list">
           <li class="govuk-task-list__item govuk-task-list__item--with-link">
