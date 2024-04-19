@@ -97,3 +97,9 @@ router.post('/'+ version +'/application/contribute-to-bills', function(req, res)
         res.redirect("name") 
     }
  });
+
+ router.post('/'+ version +'/application/passport', function(req, res) {
+   if(req.session.data['passport']=='EEA' || req.session.data['passport']=='Other'){   
+      res.redirect("nationalities") 
+  }
+});
