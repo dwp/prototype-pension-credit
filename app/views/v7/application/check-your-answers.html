@@ -1,0 +1,1198 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Check these details" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<a href="bank" class="govuk-back-link">Back</a>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+Check your answers before sending your application    </h1>
+    <div>
+
+    <h2 class="govuk-heading-m ">Applicant details</h2><dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+<dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Which country do you live in?
+            </dt>
+            <dd class="govuk-summary-list__value">
+England
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="reside-in-uk">
+                  Change<span class="govuk-visually-hidden"> which country you live in</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is your date of birth
+            </dt>
+            <dd class="govuk-summary-list__value">
+12 April 1950            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="over-spa">
+                  Change<span class="govuk-visually-hidden"> your date of birth</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is your nationality?
+            </dt>
+            <dd class="govuk-summary-list__value">
+British
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="reside-in-uk">
+                  Change<span class="govuk-visually-hidden"> your nationality</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have a partner?
+            </dt>
+            <dd class="govuk-summary-list__value">
+No
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> whether you have a partner</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Tell us about your UK State Pension
+            </dt>
+            <dd class="govuk-summary-list__value">
+Receiving State Pension
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="@ChangeURL">
+                  Change<span class="govuk-visually-hidden"> whether you have claimed your State Pension</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Which bank or building society is your State Pension paid into?
+            </dt>
+            <dd class="govuk-summary-list__value">
+Barclays
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="@ChangeURL">
+                  Change<span class="govuk-visually-hidden"> whether you have claimed your State Pension</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Have you been outside the UK for a period of more than four weeks since [3 months or SPA]?
+            </dt>
+            <dd class="govuk-summary-list__value">
+No
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="doc-absence">
+                  Change<span class="govuk-visually-hidden"> whether you been outside the UK for a period of more than 4 weeks since [3 months or SPA]?</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              How many periods of more than 4 weeks have you spent outside the UK since [calculated EED]?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="doc-absence-plural">
+                  Change<span class="govuk-visually-hidden"> how many periods of more than 4 weeks have you spent outside the UK since [calculated EED]?</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Was the period you spent outside the UK connected to medical treatment or the death of a partner or child?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="doc-absence-medical">
+                  Change<span class="govuk-visually-hidden"> whether the period you spent outside the UK connected to medical treatment or the death of a partner or child?</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you want us to consider backdating your application to [Calculated EED]?
+            </dt>
+            <dd class="govuk-summary-list__value">
+Yes
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="doc-draft-date">
+                  Change<span class="govuk-visually-hidden"> whether you want us to consider backdating your application to [Calculated EED]?</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What date do you want us to consider your application from?
+            </dt>
+            <dd class="govuk-summary-list__value">
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="XXX">
+                  Change<span class="govuk-visually-hidden"> the date you want us to consider your application from</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is your National Insurance number?
+            </dt>
+            <dd class="govuk-summary-list__value">
+XX123456D
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> your National Insurance number</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is your name?
+            </dt>
+            <dd class="govuk-summary-list__value">
+Eric James Munroe
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="claimant-details">
+                  Change<span class="govuk-visually-hidden"> your name</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Are you registered blind or severely sight impaired?
+            </dt>
+            <dd class="govuk-summary-list__value">
+No
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> whether you are registered blind or severely sight impaired</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Were you registered blind or severely sight impaired on or before 23 January 2023?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> whether you registered blind or severely sight impaired on or before 23 January 2023</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What date were you registered blind or severely sight impaired?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> what date you were registered blind or severely sight impaired</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+
+        <div><h2 class="govuk-heading-m"> Time spent in hospital</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Have you had any overnight stays in hospital between 23 January 2023 and today?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> whether you have you stayed overnight in hopspital between 23 January 2023 and today</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+        <div><h2 class="govuk-heading-m">Housing details</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you live permanently in a care home?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-care-home-check">
+                  Change<span class="govuk-visually-hidden"> whether you live permanently in a care home</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Your home address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Address line one
+                  <br>Address line Two
+                  <br>Address line Three
+                  <br>undefined
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="address-post-code-lookup">
+                  Change<span class="govuk-visually-hidden"> your home address</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Are you responsible for paying the rent or Council Tax for the place where you live?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="address-post-code-lookup">
+                  Change<span class="govuk-visually-hidden"> whether you are responsible for paying the rent, Council Tax or both for the place where you live</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Which best describes the place where you live?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-ownership">
+                  Change<span class="govuk-visually-hidden"> which best describes the place where you live</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you pay any service charges?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-own-service-charges">
+                  Change<span class="govuk-visually-hidden"> whether you pay any service charges</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you pay ground rent?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-own-ground-rent">
+                  Change<span class="govuk-visually-hidden"> whether you pay ground rent</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have a mortgage or loan secured against your home?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-mortgage">
+                  Change<span class="govuk-visually-hidden"> whether you have a mortgage or loan secured against your home</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you currently get Support for Mortgage Interest (SMI)?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-own-ground-rent">
+                  Change<span class="govuk-visually-hidden"> whether you pay ground rent</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you want us to send you a form to reapply for Support for Mortgage Interest (SMI)?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-own-ground-rent">
+                  Change<span class="govuk-visually-hidden"> whether you pay ground rent</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have any money or income from an equity release scheme?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="home-mortgage">
+                  Change<span class="govuk-visually-hidden"> whether you have any money or income from an equity release scheme</span>
+                  </a>
+
+              </dd>
+
+          </div>
+    </dl>
+
+
+
+
+        <div><h2 class="govuk-heading-m">Other people that live with you</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+          <div class="govuk-summary-list__row govuk-summary-list">
+            <dt class="govuk-summary-list__key">
+              Are you responsible for any children or qualifying young people who live with you?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="@ChangeURL">
+                  Change<span class="govuk-visually-hidden"> whether any children or qualifying young people live with you</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Does anyone else who is over 18 live with you [and your partner]?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="non-deps-living-with-you">
+                  Change<span class="govuk-visually-hidden"> whether anyone else lives with you</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+
+
+
+
+
+      <div><h2 class="govuk-heading-m">Benefits</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Does anyone get Carer Support Payment or the Carer's Element of Universal Credit for looking after you?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="benefit-check">
+                  Change<span class="govuk-visually-hidden"> whether you have applied for any benefits that you are waiting to hear about</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Have you applied for any benefits that you are waiting to hear about?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="benefit-check">
+                  Change<span class="govuk-visually-hidden"> whether you have applied for any benefits that you are waiting to hear about</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+
+
+
+    <div><h2 class="govuk-heading-m">Employment and income</h2>
+
+
+
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have any income from employment?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="employment-check">
+                  Change<span class="govuk-visually-hidden"> whether you have any income from employment</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Have you had any income from self-employment now or in the 3 months before [date of claim]?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="employment-check">
+                  Change<span class="govuk-visually-hidden"> whether you have any income from self-employment now or in the 3 months before your claim date</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Have you paid into any non-UK pensions?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="pension-foreign-check">
+                  Change<span class="govuk-visually-hidden"> @pensions</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Have you paid into any UK personal pensions that you have not taken yet?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="pension-check">
+                  Change<span class="govuk-visually-hidden"> @pensions</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you receive any other regular income or payments?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="employment-other-money">
+                  Change<span class="govuk-visually-hidden"> whether you receive any other regular income or payments</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+
+
+                <div><h2 class="govuk-heading-m">Money</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Tell us what accounts or investments you have
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="money-total">
+                  Change<span class="govuk-visually-hidden"> how much money you had on your claim start date</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you own any property or land other than the home you live in?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="money-second-property-check">
+                  Change<span class="govuk-visually-hidden"> whether you own any property or land other than your home</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Savings that you intend to use to buy or make essential repairs to your main home
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="money-disregards-all">
+                  Change<span class="govuk-visually-hidden"> whether you have any savings that you intend to use to buy or make essential repairs to your main home</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Payments and payouts you have had
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="money-disregards-all">
+                  Change<span class="govuk-visually-hidden"> whether you have had any payments or payouts</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+
+        <div><h2 class="govuk-heading-m">Applicant's residency in the UK</h2>
+
+
+
+
+
+
+
+
+
+    <dl class="govuk-summary-list">
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have the right to live or work in the UK without any immigration restrictions?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="hrt-claimant-immigration-restrictions">
+                  Change<span class="govuk-visually-hidden"> whether have the right to live or work in the UK without any immigration restrictions</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Have you lived permanently in the UK for the last 2 years?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="hrt-claimant-permanently-in-UK">
+                  Change<span class="govuk-visually-hidden"> whether you have lived permanently in the UK for the last 2 years</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+
+      <div><h2 class="govuk-heading-m">Contact details</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Which of these best describes you?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> which of these best describes you</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have a contact telephone number?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> whether you have a contact telephone number</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is your contact telephone number?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> your contact telephone number</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What language should we use when we call you?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> the anguage we should use when we call you</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What formats so you need us to use when we contact you by letter or phone?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> what formats so you need us to use when we contact you by letter or phone</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What address should we send letters to?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              A different address
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="">
+                  Change<span class="govuk-visually-hidden"> the address we should send letters to</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              The address we should send letters to
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Address line one
+                      <br>Address line Two
+                      <br>Address line Three
+                      <br>undefined
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="address-correspondence-post-code-lookup">
+                  Change<span class="govuk-visually-hidden"> the address we should send letters to</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Should we send an email to confirm you have submitted an application?
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+
+              <dd class="govuk-summary-list__actions">
+
+                  <a class="govuk-link" href="del-auth-email-confirmation">
+                  Change<span class="govuk-visually-hidden"> whether we should send an email confirmation that we have received an application</span>
+                  </a>
+
+              </dd>
+
+          </div>
+
+
+    </dl>
+
+
+
+
+
+    </div>
+    </div>
+    <br><br>
+  <br>
+      <div class="dont-print">
+    <!-- <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"> -->
+
+      <p class="govuk-body"> If you are happy with the answers you have given, you can either print them out or save them to your computer, tablet or mobile phone.</p>
+      <p class="govuk-body"> If you change anything you will need to print or save a new copy.</p>
+
+  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Print your answer </button>
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/citizen-version-2-8-ur/mvp/claim.pdf" download="">Save a copy of your answers</a> (PDF, 230KB)</p>
+
+
+    </div>
+  <br><br>
+
+
+
+
+
+
+
+
+
+  <button class="govuk-button dont-print" data-module="govuk-button">
+    Continue
+  </button>
+
+
+
+
+
+
+
+
+          </div></div></div></div></div></div></div>
+
+
+
+
+
+  <br><br>
+<br>
+
+<br>
+
+
+
+<div class="govuk-heading-s">
+      <h2 class="govuk-heading-m">Get help with your application</h2>
+
+      <!---- NORTHERN IRELAND ---->
+
+        <ul class="govuk-list govuk-!-margin-bottom-2">
+          <li>Telephone: 0800 99 1234</li>
+          <li>Textphone: 0800 169 0133</li>
+        </ul>
+
+        <ul class="govuk-list govuk-!-margin-bottom-2">
+          <li>If you cannot hear or speak on the phone, use <br><a href="https://www.relayuk.bt.com/">Relay UK (opens in a new tab)</a>: 18001 then 0800 99 1234</li>
+        </ul>
+
+        <ul class="govuk-list govuk-!-margin-bottom-2">
+          <li><a href="https://dwppensioncredit.signvideo.net/">Video relay service (opens in a new tab)</a> for British Sign Language (BSL) users - <a href="https://www.youtube.com/watch?v=Osx7FFxFpNY">check you can use this service (opens in a new tab)</a></li>
+          </ul>
+
+          <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-4">Monday to Friday, 8:30am to 6pm (closed on bank holidays).<br><a href="https://www.gov.uk/call-charges">Find out about call charges</a></p>
+
+       <!--  <p class="govuk-body">
+  <a class="govuk-link" href="https://www.gov.uk/call-charges">Find out about call charges (opens in a new tab)</a> -->
+<p></p>
+
+        <!---- COUNTRY END ---->
+
+
+</div>
+
+</form>
+
+
+
+{% endblock %}
