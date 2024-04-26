@@ -98,8 +98,22 @@ router.post('/'+ version +'/application/contribute-to-bills', function(req, res)
     }
  });
 
+ router.get('/'+ version + '/application/passport', function(req, res) {
+   req.session.data['backURL'] = req.header('Referer') || '/';
+   res.render(version + '/application/passport')
+});
+
  router.post('/'+ version +'/application/passport', function(req, res) {
    if(req.session.data['passport']=='EEA' || req.session.data['passport']=='Other'){   
       res.redirect("nationalities") 
   }
+  else{
+   res.redirect('back');
+  }
+});
+
+router.post('/'+ version +'/application/nationality', function(req, res) {
+   
+   res.redirect('passport')
+  
 });
