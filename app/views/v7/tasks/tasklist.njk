@@ -229,7 +229,15 @@
     {% endif %}
 
   <!-- Payment success -->
-  {% if data['ColdWeather'] == 'no' and data['taskType'] == 'pay' and data['BankDetails'] == 'yes' and data['OtherApplications'] == 'no' and data['PersonalDetails'] == 'yes' and data['NonDependents'] == 'no'%}
+  {% if 
+  data['ColdWeather'] == 'no' and 
+  data['taskType'] == 'pay' and 
+  data['BankDetails'] == 'yes' and 
+  data['OtherApplications'] == 'no' and 
+  data['PersonalDetails'] == 'yes' and 
+  data['NonDependents'] == 'yes'
+  %}
+
   <form method="post">
 
     {% if data['BankEncashed'] == 'no' %}
