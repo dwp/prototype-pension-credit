@@ -55,3 +55,30 @@ router.post('/'+ version +'/need-security-questions', function(req, res) {
     }
 });
 
+router.post('/'+ version +'/award-detail', function(req, res) {
+    if(req.session.data['T2_Explained']) {
+        res.redirect("DR6Confirmation")
+    } 
+});
+
+router.post('/'+ version +'/DR6Confirmation', function(req, res) {
+    if(req.session.data['T2_Explained'] == 'no'){
+        req.session.data['MR_requested'] = 'yes';
+        req.session.data['tempDisplay']='false';
+    }
+    else{
+        req.session.data['tempDisplay']='true';
+        req.session.data['DR6-uploaded'] = 'yes';
+    }
+
+    if (req.session.data['DR6_check']=='true') {
+        var today = new Date();
+        req.session.data['dr6_date'] = today.toLongFormat();
+        res.redirect("award-detail")
+    } 
+    else {
+        req.session.data['DR6ConfirmationError']='true';
+        res.redirect("DR6Confirmation")
+    }
+});
+
