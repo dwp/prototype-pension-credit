@@ -37,7 +37,10 @@ require('./views/v7/_routes')
 require('./views/v7/application/_applicationroutes')
 require('./views/v7/application/_flowroutes')
 
-
+require('./views/v8/tasks/_taskroutes')
+require('./views/v8/_routes')
+require('./views/v8/application/_applicationroutes')
+require('./views/v8/application/_flowroutes')
 
 
 
