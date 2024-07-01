@@ -16,23 +16,26 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds"> 
+    <div class="govuk-grid-column-two-thirds">
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
         <form method="post">
             <h1 class="govuk-heading-l">
-                The quickest way for DWP to contact you is by phone
-            </h1>  
-            
-            <p class="govuk-body">We might need to contact you about Pension Credit, either while we are processing your application or once it is in payment. We might also need to contact you about other benefits that you might get now or in the future.</p>
+    The quickest way for DWP to contact you is by phone
+            </h1>
+
+            <p class="govuk-body">We may need to call you:</p>
+            <ul class="govuk-list govuk-list--bullet">
+          <li>about your Pension Credit application</li>
+              <li>in the future, if we pay you Pension Credit or another DWP benefit</li></ul>
 
             <div class="govuk-form-group">
-                
+
                 <h1 class="govuk-heading-m">
                     Which phone number should we use to contact you?
-                </h1>
+
                 <div id="phone-hint" class="govuk-hint">
-                    You can provide more than one phone number.
-                </div>
+                    You can provide more than one.
+                </div></h1>
 
                 <div class="govuk-form-group">
                     <h1 class="govuk-label-wrapper">
@@ -42,8 +45,8 @@
                     </h1>
                     <input class="govuk-input govuk-input--width-20" id="event-name" name="eventName" type="number">
                 </div>
-                   
-                   
+
+
                 <div class="govuk-form-group">
                     <h1 class="govuk-label-wrapper">
                         <label class="govuk-label govuk-label--s" for="event-name">
@@ -61,8 +64,8 @@
                     </h1>
                     <input class="govuk-input govuk-input--width-20" id="event-name" name="eventName" type="number">
                 </div>
-            
-                   
+
+
             </div>
 
             <div class="govuk-form-group">
@@ -83,7 +86,7 @@
 <script>
    function hideShow(element){
     var type = document.getElementById(element);
-    
+
     if (type.style.display === "none") {
         type.style.display = "block";
     } else {
