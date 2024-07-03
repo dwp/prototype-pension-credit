@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "  Which account would you like us to pay your Pension Credit into?" %}
+{% set pageName = "Which account do we pay your State Pension into?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -20,14 +20,9 @@
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
         <form method="post" action="phone">
 
+          <span class="govuk-caption-l">Protecting your identity</span>
 
-            <h1 class="govuk-heading-l">  Which account would you like us to pay your Pension Credit into?</h1>
-          <div class="govuk-form-group">
-                      <label class="govuk-label" for="name-on-the-account">
-                        Name on the account
-                      </label>
-
-                      <input class="govuk-input" id="name-on-the-account" name="name-on-the-account" type="text" spellcheck="false"></div>
+            <h1 class="govuk-heading-l">Which account do we pay your State Pension into?</h1>
 
             <div class="govuk-form-group">
                 <label class="govuk-label" for="sort-code">
@@ -47,15 +42,7 @@
                 </div>
                 <input class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" id="account-number" name="accountNumber" type="text" spellcheck="false" aria-describedby="account-number-hint" inputmode="numeric">
             </div>
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="roll-number">
-                Building society roll number (if you have one)
-              </label>
-              <div id="roll-number-hint" class="govuk-hint">
-                You can find it on your card, statement or passbook
-              </div>
-              <input class="govuk-input govuk-input--width-10" id="roll-number" name="roll-number" type="text" spellcheck="false" aria-describedby="roll-number-hint">
-            </div>
+
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
