@@ -22,42 +22,52 @@
            <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" role="group">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                      <span class="govuk-caption-l">Protecting your identity</span>
-                        <h2 class="govuk-heading-l">Have you applied for any of these DWP benefits in the past?
+                      
+                        <h1 class="govuk-heading-l">
+                          <span class="govuk-caption-l">Protecting your identity</span>
+                          Have you applied for any of these DWP benefits in the past?
+                        </h1>
 
-                        <div id="countries-hint" class="govuk-hint">
+                        <p id="countries-hint" class="govuk-hint">
     Select all the benefits you have applied for.
-  </div></h2>
+  </p>
                     </h2>
                     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="countries" name="countries" type="checkbox" value="france">
-        <label class="govuk-label govuk-checkboxes__label" for="countries">
+        <input class="govuk-checkboxes__input" id="pensionApplied" name="pensionApplied" type="checkbox" value="SP">
+        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied">
           State Pension
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="countries-2" name="countries" type="checkbox" value="portugal">
-        <label class="govuk-label govuk-checkboxes__label" for="countries-2">
+        <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="PC">
+        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-2">
           Pension Credit
         </label>
       </div>
+      {% if data['benefitsGetting'].includes('AA')%}
+      {% else %}
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="countries-3" name="countries" type="checkbox" value="spain">
-        <label class="govuk-label govuk-checkboxes__label" for="countries-3">
+        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="AA">
+        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
           Attendance Allowance
         </label>
       </div>
+      {% endif %}
+
+      {% if data['benefitsGetting'].includes('CA')%}
+      {% else %}
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="countries-3" name="countries" type="checkbox" value="spain">
-        <label class="govuk-label govuk-checkboxes__label" for="countries-3">
+        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="CA">
+        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
           Carer's Allowance
         </label>
       </div>
+      {% endif %}
       <div class="govuk-checkboxes__divider">or</div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="countries-5" name="countries" type="checkbox" value="none" data-behaviour="exclusive">
-        <label class="govuk-label govuk-checkboxes__label" for="countries-5">
+        <input class="govuk-checkboxes__input" id="pensionApplied-5" name="pensionApplied" type="checkbox" value="none" data-behaviour="exclusive">
+        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-5">
         None of these
         </label>
       </div>
