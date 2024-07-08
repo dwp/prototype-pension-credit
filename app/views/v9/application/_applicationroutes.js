@@ -50,3 +50,12 @@ router.post('/'+ version +'/application/bank-confirm', function(req, res) {
       res.redirect("bank-details")
    }
 });
+
+router.post('/'+ version +'/application/phone', function(req, res) { 
+   res.redirect("bank-details")
+
+});
+router.post('/'+ version +'/application/phone2', function(req, res) { 
+   res.redirect("bank-details")
+
+});
