@@ -19,6 +19,45 @@
       <h2 class="govuk-accordion__section-heading">
         <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-3"
           style="font-size: 16pt;">
+          Version 10 - Additions to MVP
+        </span>
+      </h2>
+    </div>
+    <div id="accordion-with-summary-sections-content-3" class="govuk-accordion__section-content"
+      aria-labelledby="accordion-with-summary-sections-heading-3">
+
+      <div class="app-most-recent">
+        <strong class="govuk-tag govuk-tag--green ">IN DESIGN</strong>
+        <h2 class="govuk-heading-m govuk-!-padding-top-3">Changes to add IDV checks for Nil and Pay as well as nationality checks for Pay.</h2>
+        <p class="govuk-body">This looks to fix security concerns and add additional task in case the Residency api isn't available.</p>
+        <ol class="govuk-list govuk-list--bullet">
+          <li>Semi automated task for British and Irish citizens</li>
+          <li>Manual check that all other citizens have the right to live and work in the UK</li>
+         </ol>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <p>Date of iteration: July 2024</br>
+              Designers: Mark Keeling and Matt Hall</p>
+          </div>
+
+        </div>
+        <form method="post" action="/v10/tasks">
+          <input type="hidden" id="version10" name="version" value="v10" />
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Prototype - Agent Journey
+          </button>
+        </form>
+       </div>
+    </div>
+
+  </div>
+  
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-3"
+          style="font-size: 16pt;">
           Version 9 - Eric IDV
         </span>
       </h2>
