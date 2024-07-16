@@ -26,7 +26,11 @@
                 Sortcode
               </dt>
               <dd class="govuk-summary-list__value">
-                20 12 22
+                {% if data['SP-sortcode']%}
+                  {{data['SP-sortcode']}}
+                {% else %}
+                  20 12 22
+                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -34,7 +38,11 @@
                 Account number
               </dt>
               <dd class="govuk-summary-list__value">
-                71667299
+                {% if data['SP-account']%}
+                  {{data['SP-account']}}
+                {% else %}
+                  19862672
+                {% endif %}
               </dd>
             </div>
         </div>
