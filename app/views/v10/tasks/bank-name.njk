@@ -3,7 +3,7 @@
 
 {% extends "../layout.njk" %}
 
-{% set pageName = "Bank name" %}
+{% set pageName = "Bank details" %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -12,20 +12,29 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
-        <h2 class="govuk-heading-l">Bank name</h2>
+        <h1 class="govuk-heading-l">Bank details</h1>
 
         <div class="govuk-body">
-          Use <a href="#">Check Payment Account Details</a> and CPS to find the bank details we hold for the claimant's State Pension.
+          Use CPS to find the bank details we hold for the claimant's State Pension.
         </div>
 
+        <h2 class="govuk-heading-s">Given in application:</h2>
         <div class="govuk-group">
           <dl class="govuk-summary-list govuk-!-margin-bottom-7">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-            Given in application
+                Sortcode
               </dt>
               <dd class="govuk-summary-list__value">
-                Barclays
+                20 12 22
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Account number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                71667299
               </dd>
             </div>
         </div>
@@ -34,9 +43,9 @@
             <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h1 class="govuk-fieldset__heading">
-                    Did the claimant give the correct bank name in their application?
-                </h1>
+                <h2 class="govuk-fieldset__heading">
+                    Did the claimant give the correct bank details in their application?
+                </h2>
                     </legend>
 <div id="signIn-hint" class="govuk-hint">
                 </div>
