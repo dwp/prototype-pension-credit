@@ -33,11 +33,18 @@ router.post('/'+ version +'/application/benefits', function(req, res) {
 });
 
 router.post('/'+ version +'/application/benefits-applied', function(req, res) { 
-      res.redirect("finish")
+      res.redirect("bank-details")
    
 });
 
 router.post('/'+ version +'/application/SP-bank', function(req, res) { 
+   let sortcode = req.session.data['SP-sortcode'];
+   if(sortcode.length === 6){
+      let formattedSortcode = sortcode.slice(0,2) + ' ';
+      formattedSortcode += sortcode.slice(2,4) + ' ';
+      formattedSortcode += sortcode.slice(4,6);
+      req.session.data['SP-sortcode'] = formattedSortcode;
+   }
    res.redirect("bank-confirm")
 });
 
