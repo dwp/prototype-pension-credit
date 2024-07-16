@@ -33,7 +33,7 @@ router.post('/'+ version +'/application/benefits', function(req, res) {
 });
 
 router.post('/'+ version +'/application/benefits-applied', function(req, res) { 
-      res.redirect("finish")
+      res.redirect("bank-details")
    
 });
 
