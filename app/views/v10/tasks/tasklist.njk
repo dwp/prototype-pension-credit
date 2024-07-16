@@ -16,13 +16,13 @@
     <div class="govuk-body">
     Complete these checks to see if the claimant meets the criteria for this system.</div>
 
-<!--- probably not needed anymore. BA's to check. 
+  {% if data['taskType'] == 'nil'%}
 
     <h2 class="govuk-heading-m">Verify identity</h2>
     <ul class="govuk-task-list">
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         <div class="govuk-task-list__name-and-hint">
-          <a class="govuk-link govuk-task-list__link" href="bank-name" aria-describedby="before-you-start-1-status">Bank name</a>
+          <a class="govuk-link govuk-task-list__link" href="bank-name" aria-describedby="before-you-start-1-status">Bank details</a>
         </div>
 
         {% if data['BankDetails'] == 'yes' and data['BankEncashed'] == 'yes' %}
@@ -52,7 +52,7 @@
       </li>
     </ul>
 
-  --->
+  {% endif %}
 
     <h2 class="govuk-heading-m">Check CAM</h2>
     <ul class="govuk-task-list">
