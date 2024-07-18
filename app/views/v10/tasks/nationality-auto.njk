@@ -26,43 +26,10 @@
        <div class="govuk-form-group ">
           {% if data['nationalityCheck']=='No nationality'%}
             <h2 class="govuk-heading-m">No nationality held in CIS</h2>
-            <p class="govuk-body">The system should confirm that the claimant in their application has declared:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>to be British or Irish</li>
-              <li>they've lived in the UK for the last two years</li>
-            </ul>
-            <p class="govuk-!-font-weight-bold">If either are false, it should be returned to BAU</p>
+            <p class="govuk-body">The system should confirm that the claimant has declared to be British or Irish in their application.</p>
+            <p class="govuk-!-font-weight-bold">If not, it should be returned to BAU</p>
           {% endif %}
         </div>
-
-        <div class="govuk-form-group ">
-          {% if data['nationalityCheck']=='British'%}
-            <h2 class="govuk-heading-m">A British nationality in CIS and on the application</h2>
-            <p class="govuk-body">The system should confirm that the claimant in their application has declared they've lived in the UK for the last two years</p>
-            <p class="govuk-!-font-weight-bold">If false, it should be returned to BAU</p>
-          {% endif %}
-        </div>
-
-        <div class="govuk-form-group ">
-          {% if data['nationalityCheck']=='Irish'%}
-            <h2 class="govuk-heading-m">An Irish nationality in CIS and on the application</h2>
-            <p class="govuk-body">The system should confirm that the claimant in their application has declared they've lived in the UK for the last two years</p>
-            <p class="govuk-!-font-weight-bold">If false, it should be returned to BAU</p>
-          {% endif %}
-        </div>
-
-        <div class="govuk-form-group ">
-          {% if data['nationalityCheck']=='Something else'%}
-            <h2 class="govuk-heading-m">Non-UK and Non-Irish claims</h2>
-            <p class="govuk-body">The system should confirm that the claimant in their application has declared:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>they've lived in the UK for the last two years</li>
-            </ul>
-            <p class="govuk-!-font-weight-bold">If false, it should be returned to BAU</p>
-          {% endif %}
-        </div>
-
-        
 
 
         <form method="post">
