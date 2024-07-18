@@ -195,7 +195,8 @@ router.post('/' + version + '/tasks/confirm-nationality', function(req, res) {
 
 router.post('/' + version + '/tasks/immigration-status', function(req, res) {
     if(req.session.data['recourseToPublicFunds'] == 'yes' && req.session.data['leaveToRemain'] == 'yes') {
-        res.redirect("nationality-auto")
+        req.session.data['NationalityTask'] = 'yes'
+        res.redirect("tasklist")
     } 
     else{
         res.redirect("dropout")
