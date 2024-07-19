@@ -159,7 +159,7 @@
 
     <!--- Cold weather payment for pay journey --->
     {% if data['taskType'] == 'pay' %}
-      {%if data['BankDetails'] == 'yes' and data['OtherApplications'] == 'no' and data['PersonalDetails'] == 'yes' and data['NonDependents'] == 'yes' and data['NationalityTask'] == 'yes' %}
+      {%if data['OtherApplications'] == 'no' and data['PersonalDetails'] == 'yes' and data['NonDependents'] == 'yes' and data['NationalityTask'] == 'yes' %}
         <h2 class="govuk-heading-m">Check for payments</h2>
         <ul class="govuk-task-list">
           <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -258,7 +258,6 @@
   {% if 
   data['ColdWeather'] == 'no' and 
   data['taskType'] == 'pay' and 
-  data['BankDetails'] == 'yes' and 
   data['OtherApplications'] == 'no' and 
   data['PersonalDetails'] == 'yes' and 
   data['NonDependents'] == 'yes'
