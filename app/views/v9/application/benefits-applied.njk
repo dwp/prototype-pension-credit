@@ -24,11 +24,12 @@
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-heading-l">
                           <span class="govuk-caption-l">Protecting your identity</span>
-                          Have you applied for any of these DWP benefits in the past?
+                          Which of these benefits have you claimed since 23 July 2021?
                         </h1>
+                        <p id="benefits-hint" class="govuk-hint">Select all of the benefits you have claimed for since 23 July 2021.</p>
+
                     </legend>
-                       
-                    <p id="countries-hint" class="govuk-hint">Select all the benefits you have applied for.</p>
+
                     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                       <div class="govuk-checkboxes__item">
                         <input class="govuk-checkboxes__input" id="pensionApplied" name="pensionApplied" type="checkbox" value="SP">
@@ -36,24 +37,27 @@
                           State Pension
                         </label>
                       </div>
-                      
+
                       <div class="govuk-checkboxes__item">
                         <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="PC">
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-2">
-                          Pension Credit
+                          Universal Credit
                         </label>
                       </div>
-                    
-                    {% if data['benefitsGetting'].includes('DLA')%}
-                    {% else %}
                       <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="HB">
-                        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
-                          Housing Benefit
+                        <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="PC">
+                        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-2">
+                          Jobseeker's Allowance (JSA)
                         </label>
                       </div>
-                    {% endif %}
-                    
+
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="PC">
+                        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-2">
+                          Employment and Support Allowance (ESA)
+                        </label>
+                      </div>
+
                     {% if data['benefitsGetting'].includes('AA')%}
                     {% else %}
                       <div class="govuk-checkboxes__item">
@@ -89,13 +93,13 @@
                       <div class="govuk-checkboxes__item">
                         <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="DLA">
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
-                          Disability Living Allowance 
+                          Disability Living Allowance
                         </label>
                       </div>
                     {% endif %}
 
                       <div class="govuk-checkboxes__divider">or</div>
-                      
+
                       <div class="govuk-checkboxes__item">
                         <input class="govuk-checkboxes__input" id="pensionApplied-5" name="pensionApplied" type="checkbox" value="none" data-behaviour="exclusive">
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-5">
