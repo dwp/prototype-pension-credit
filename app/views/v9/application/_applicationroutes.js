@@ -2,6 +2,7 @@ const govukPrototypeKit = require('govuk-prototype-kit');
 const router = govukPrototypeKit.requests.setupRouter();
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var date = new Date(); //get todays date
 
 var version = "v9";
 
@@ -19,6 +20,8 @@ router.post('/'+ version +'/application/live-with-partner', function(req, res) {
 });
 
 router.post('/'+ version +'/application/protect-identity', function(req, res) { 
+   let pastYear = date.getFullYear()-3;
+   req.session.data['benefitDate'] = date.getDate() + ' ' + months[date.getMonth()] + ' ' + pastYear;
    res.redirect("benefits")
 });
 
