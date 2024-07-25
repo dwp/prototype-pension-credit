@@ -19,46 +19,25 @@
     <div class="govuk-grid-column-two-thirds">
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
         <form method="post">
-          <h1 class="govuk-heading-l">State Pension account details</h1>
-
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Sort code
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['SP-sortcode']}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Account number
-              </dt>
-              <dd class="govuk-summary-list__value">
-                 {{data['SP-account']}}
-              </dd>
-            </div>
-          </dl>
-          
 
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h2 class="govuk-fieldset__heading">
-                  Do you want us to pay your Pension Credit into this account?
-                </h2>
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Which account should we pay your Pension Credit into?
+                </h1>
               </legend>
-              <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+              <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="sameBank" name="sameBank" type="radio" value="yes">
                   <label class="govuk-label govuk-radios__label" for="sameBank">
-                    Yes
+                    The same account my State Pension
                   </label>
                 </div>
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="sameBank-2" name="sameBank" type="radio" value="no">
                   <label class="govuk-label govuk-radios__label" for="sameBank-2">
-                    No
+                    A different account
                   </label>
                 </div>
               </div>
