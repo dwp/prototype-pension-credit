@@ -20,8 +20,13 @@
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
         <form method="post" action="finish">
 
-
+          {%  if data['benefitsGetting'].includes('SP') %}
           <h1 class="govuk-heading-l">Bank or building society account details</h1>
+          {% else %}
+          <h1 class="govuk-heading-l">Which account should we pay your Pension Credit into?</h1>
+          {% endif %}
+
+
           <div class="govuk-form-group">
                       <label class="govuk-label" for="name-on-the-account">
                         Name on the account
