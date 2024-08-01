@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "What is your nationality as shown on your passport or travel document?" %}
+{% set pageName = "Which phone numbers should we use to contact you?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -23,12 +23,18 @@
             <div class="govuk-form-group">
 
                 <h1 class="govuk-heading-l">
-                    <span class="govuk-caption-l">Protecting your identity</span>
-                    Which phone number do we use to contact you?
+                    Which phone numbers should we use to contact you?
                 </h1>
-                <div id="phone-hint" class="govuk-hint">
-                You can provide more than one phone number.
-                </div>
+                <p class="govuk-body">
+
+                  You must give us at least one number. We may contact you on these numbers if: </p>
+<ul class="govuk-list govuk-list--bullet">
+                <li>    we need more information to process this application</li>
+                  <li>you are paid Pension Credit and we need to contact you in the future</li>
+
+        </ul>
+
+              <br>    <br>
 
                 <div class="govuk-form-group">
                     <h1 class="govuk-label-wrapper">
@@ -68,10 +74,7 @@
             </div>
         </form>
 
-         <div class="govuk-form-group">
-         <p class="govuk-body"><a href="phone">Alternative version</a></p>
 
-    </div>
 </div>
 
 {% endblock %}
