@@ -22,7 +22,7 @@
 
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
     <h1 class="govuk-heading-l govuk-!-padding-top-7">
-      You have added {{data['ActualHospitalCount']}} hospital 
+      You have added {{data['ActualHospitalCount']}} hospital
       {% if data['ActualHospitalCount'] == '1'%} stay {%else%} stays {% endif %}
 
     </h1>
@@ -42,8 +42,8 @@
             <td class="govuk-table__cell">
               {{data['hospitalIn'+(i)] }}
             </td>
-            <td class="govuk-table__cell"> 
-              {% if data['HospitalExpectedDischarge'+i] == "No" %} 
+            <td class="govuk-table__cell">
+              {% if data['HospitalExpectedDischarge'+i] == "No" %}
                 Not known
               {% else %}
                 {{data['hospitalOut'+(i)]}}
@@ -63,9 +63,11 @@
                 <h1 class="govuk-fieldset__heading">
                     Do you want to add another overnight stay in hospital?
                 </h1>
+                <p class="govuk-hint">We only need to know about hospital stays since {{data['backdateDateString']}}.</p>
+
                 </legend>
 
-                
+
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="Hospitaladdanother" name="Hospitaladdanother" type="radio" value="yes">
