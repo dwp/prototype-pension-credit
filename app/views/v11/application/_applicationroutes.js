@@ -6,6 +6,101 @@ var date = new Date(); //get todays date
 
 var version = "v11";
 
+//HOSPITAL STAYS
+
+router.get('/'+ version + '/application/hospital-delete', function(req, res) {
+   var i = req.query.hospital;
+   req.session.data['hospitalIn'+i] = null;
+   req.session.data['hospitalOut'+i] = null;
+   req.session.data['ActualHospitalCount'] = req.session.data['ActualHospitalCount'] - 1;
+   res.redirect("hospital-add-another")
+});
+
+
+router.get('/'+ version + '/application/hospital-change', function(req, res) {
+  var i = req.query.hospital;
+  req.session.data['CurrentHospital'] = i;
+  res.redirect("hospital-check-answers")
+});
+
+router.get('/'+ version + '/index', function(req, res) {
+   var backdateDate = new Date()
+   backdateDate.setMonth(backdateDate.getMonth() - 6)
+   var backdateDateString = backdateDate.getDate() + " " + months[backdateDate.getDay()-1] + " " + backdateDate.getFullYear()
+   req.session.data['backdateDateString'] = backdateDateString
+   res.render(version + '/index')
+ });
+
+router.post('/'+ version +'/application/hospital-stays', function(req, res) {
+   if(req.session.data['HospitalStays']=="Yes"){
+      req.session.data['HospitalCount'] = '1';
+      req.session.data['CurrentHospital'] = '1';
+      req.session.data['ActualHospitalCount'] = '1';
+ 
+      res.redirect("hospital-still")
+   }
+ });
+
+router.post('/'+ version +'/application/hospital-still', function(req, res) {
+   req.session.data['HospitalStill' + String(req.session.data['CurrentHospital'])] = req.session.data['HospitalStill'];
+   if(req.session.data['HospitalStill']=="Yes"){
+      res.redirect("hospital-you-are-in")
+   }
+   else{
+      res.redirect("hospital-dates")
+   }
+});
+
+router.post('/'+ version +'/application/hospital-dates', function(req, res) {
+   req.session.data['hospitalIn' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalIn-day'] + ' ' + months[req.session.data['hospitalIn-month']-1] + ' ' + req.session.data['hospitalIn-year'];;
+   req.session.data['hospitalOut' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalOut-day'] + ' ' + months[req.session.data['hospitalOut-month']-1] + ' ' + req.session.data['hospitalOut-year'];;
+   req.session.data['hospitalNHS' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalNHS']
+   res.redirect("hospital-check-answers")
+});
+
+router.post('/'+ version +'/application/hospital-check-answers', function(req, res) {
+  res.redirect("hospital-add-another")
+});
+
+router.post('/'+ version +'/application/hospital-add-another', function(req, res) {
+   if(req.session.data['Hospitaladdanother']=='yes'){   
+       req.session.data['HospitalCount'] ++;
+       req.session.data['CurrentHospital'] = req.session.data['HospitalCount'];
+       req.session.data['ActualHospitalCount'] ++;
+       res.redirect("hospital-dates") 
+   }
+});
+
+router.post('/'+ version +'/application/hospital-you-are-in', function(req, res) {
+   req.session.data['hospitalName' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalName'] 
+   req.session.data['hospitalLocation' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalLocation']
+   req.session.data['hospitalNHS' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalNHS']
+   res.redirect("hospital-in") 
+});
+
+router.post('/'+ version +'/application/hospital-in', function(req, res) {
+   req.session.data['hospitalIn' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalIn-day'] + ' ' + months[req.session.data['hospitalIn-month']-1] + ' ' + req.session.data['hospitalIn-year'];
+   res.redirect("hospital-expected-discharge") 
+});
+
+router.post('/'+ version +'/application/hospital-expected-discharge', function(req, res) {
+   req.session.data['HospitalExpectedDischarge' + String(req.session.data['CurrentHospital'])] = req.session.data['HospitalExpectedDischarge'] 
+   if(req.session.data['HospitalExpectedDischarge']=="Yes"){
+      res.redirect("hospital-discharge-date") 
+   }
+   else{
+      res.redirect("hospital-check-answers") 
+   }
+});
+
+router.post('/'+ version +'/application/hospital-discharge-date', function(req, res) {
+   req.session.data['hospitalOut' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalOut-day'] + ' ' + months[req.session.data['hospitalOut-month']-1] + ' ' + req.session.data['hospitalOut-year'];;
+   req.session.data['hospitalDischargeLocation' + String(req.session.data['CurrentHospital'])] = req.session.data['hospitalDischargeLocation']
+   res.redirect("hospital-check-answers") 
+});
+
+
+// NON-DEPENDENTS
 router.get('/'+ version + '/application/delete', function(req, res) {
    var i = req.query.person;
    req.session.data['claimantname'+i] = null;
