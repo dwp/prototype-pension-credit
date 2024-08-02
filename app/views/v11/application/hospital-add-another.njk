@@ -25,15 +25,19 @@
       You have added {{data['ActualHospitalCount']}} hospital 
       {% if data['ActualHospitalCount'] == '1'%} stay {%else%} stays {% endif %}
 
+    </h1>
+
+
+
+    <h2 class="govuk-heading-s">
+      {% if data['HospitalCount'] == '1'%} Hospital stay {%else%} Hospital stays {% endif %}
     </h2>
-
-
-
 
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">{% if data['HospitalCount'] == '1'%} Hospital stay {%else%} Hospital stays {% endif %}</th>
+          <th scope="col" class="govuk-table__header">Date went into hospital</th>
+          <th scope="col" class="govuk-table__header">Discharge date</th>
           <th scope="col" class="govuk-table__header"><div class="govuk-visually-hidden">Actions</div></th>
         </tr>
       </thead>
@@ -42,18 +46,14 @@
           {% if data['hospitalIn'+i] != null%}
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">
-              {% if data['HospitalStill'+i] == "No" %}
-                <!--- standard dates --->
-                {{data['hospitalIn'+(i)] }} to {{data['hospitalOut'+(i)]}}
+              {{data['hospitalIn'+(i)] }}
+            </td>
+            <td class="govuk-table__cell"> 
+              {% if data['HospitalExpectedDischarge'+i] == "No" %} 
+                Not known
               {% else %}
-                {% if data['HospitalExpectedDischarge'+i] == "Yes" %}
-                <!--- future discharge date --->
-                {{data['hospitalIn'+(i)] }} to {{data['hospitalOut'+(i)]}}
-                {% else %}
-                <!--- no discharge date --->
-                From {{data['hospitalIn'+(i)] }}
-                {%endif%}
-              {%endif%}
+                {{data['hospitalOut'+(i)]}}
+              {% endif %}
             </td>
             <td class="govuk-table__cell govuk-table__cell--numeric"><a href="hospital-change?hospital={{i}}">Change</a>  |  <a href="hospital-delete?hospital={{i}}">Delete</a></td>
           </tr>
