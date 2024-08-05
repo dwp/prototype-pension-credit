@@ -6,6 +6,9 @@
 // Add extra styles here
 
 @import "side-navigation";
+.no-wrap {
+  white-space:nowrap;
+}
 
 .agent-header {
   // Fix header padding after removing GOV.UK link
