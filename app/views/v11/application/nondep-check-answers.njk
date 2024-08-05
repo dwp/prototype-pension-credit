@@ -22,7 +22,7 @@
       <div class="govuk-grid-column-two-thirds-from-desktop">
         <h1 class="govuk-heading-l">Check these details</h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Name
@@ -31,7 +31,7 @@
               {{data['nondepName'+data['CurrentPerson']]}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> their name</span></a>
             </dd>
           </div>
 
@@ -39,16 +39,16 @@
 
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                How are you related?
+                Your relationship
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['relationship'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> relationship</span></a>
+                <a class="govuk-link" href="nondep-are-relations">Change<span class="govuk-visually-hidden"> your relationship</span></a>
               </dd>
             </div>
-          
+
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Date of birth
@@ -57,7 +57,7 @@
                 {{data['nondepDOB'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> their date of birth</span></a>
               </dd>
             </div>
 
@@ -69,19 +69,19 @@
                 {{data['isBlind'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> if they are registerd blind or severley sight impaired</span></a>
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> whether they are registerd blind or severley sight impaired</span></a>
               </dd>
             </div>
-            
+
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                When did you start living together?
+                Date you started living together
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['LiveTogetherDate'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date</span></a>
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">the date you started living together</span></a>
               </dd>
             </div>
 
@@ -93,7 +93,7 @@
                 {{data['inEducation'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> education</span></a>
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">whether they are in eduction</span></a>
               </dd>
             </div>
 
@@ -105,11 +105,11 @@
                 {{data['inEmployment'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> employment</span></a>
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> whether they are they earning any money from work</span></a>
               </dd>
             </div>
 
-            
+
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Do they pay towards the rent or mortgage?
@@ -118,27 +118,27 @@
                 {{data['contribute'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contribution</span></a>
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> whether they pay towards the rent or mortgage</span></a>
               </dd>
             </div>
           {% endif %}
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What is your housing situation?
+              Your living situation
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['commercialRelationship'+data['CurrentPerson']]}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> relationship</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">your living situation</span></a>
             </dd>
           </div>
 
           {% if data['commercialRelationship'+data['CurrentPerson']] == 'Someone from a charity or voluntary organisation' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What is the name of the charity they work for?
+              Name of the charity
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['charityName'+data['CurrentPerson']]}}
