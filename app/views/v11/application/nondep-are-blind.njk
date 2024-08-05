@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Who pays your household bills?" %}
+{% set pageName = "Are they registerd blind or severley sight impaired?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -28,27 +28,24 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-                    Do they pay towards the household bills?
+                <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
+                Are they registered blind or severley sight impaired?
                 </h1>
                 </legend>
-                <div id="DoB-hint" class="govuk-hint">
-                  This includes rent, mortgage, phone, broadband, TV, water, gas, electricity and other fixed costs.
-                </div>
+
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="contribute" name="contribute" type="radio" value="Yes">
-                    <label class="govuk-label govuk-radios__label" for="contribute">
+                    <input class="govuk-radios__input" id="isBlind" name="isBlind" type="radio" value="Yes" {% if data['isBlind'+data['CurrentPerson']] == 'Yes' %}checked=checked{% endif %} >
+                    <label class="govuk-label govuk-radios__label" for="isBlind">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="contribute-2" name="contribute" type="radio" value="No">
-                    <label class="govuk-label govuk-radios__label" for="contribute-2">
+                    <input class="govuk-radios__input" id="isBlind-2" name="isBlind" type="radio" value="No" {% if data['isBlind'+data['CurrentPerson']] == 'No' %}checked=checked{% endif %} >
+                    <label class="govuk-label govuk-radios__label" for="isBlind-2">
                     No
                     </label>
                 </div>
-
 
                 </div>
             </fieldset>
