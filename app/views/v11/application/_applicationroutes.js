@@ -100,99 +100,125 @@ router.post('/'+ version +'/application/hospital-discharge-date', function(req, 
 });
 
 
-// NON-DEPENDENTS
-router.get('/'+ version + '/application/delete', function(req, res) {
+///////// NON-DEPENDENTS  //////////////
+
+router.get('/'+ version + '/application/nondep-delete', function(req, res) {
    var i = req.query.person;
-   req.session.data['claimantname'+i] = null;
+   req.session.data['nondepName'+i] = null;
    req.session.data['ActualCount'] = req.session.data['ActualCount'] - 1;
-   res.redirect("add-another")
+   res.redirect("nondep-add-another")
 });
 
 
-router.get('/'+ version + '/application/change', function(req, res) {
+router.get('/'+ version + '/application/nondep-change', function(req, res) {
   var i = req.query.person;
   req.session.data['CurrentPerson'] = i;
-  res.redirect("check-answers")
+  res.redirect("nondep-check-answers")
 });
 
-router.post('/'+ version +'/application/number-of-adults', function(req, res) {
+router.post('/'+ version +'/application/nondep-number-of-adults', function(req, res) {
   if(req.session.data['ExtraAdults']=="Yes"){
      req.session.data['PeopleCount'] = '1';
      req.session.data['CurrentPerson'] = '1';
      req.session.data['ActualCount'] = '1';
 
-     res.redirect("name")
+     res.redirect("nondep-name")
   }
 });
 
-router.post('/'+ version +'/application/name', function(req, res) {
-   
-   
-  req.session.data['claimantname' + String(req.session.data['CurrentPerson'])] = req.session.data['currentName'];
+router.post('/'+ version +'/application/nondep-name', function(req, res) {
+   req.session.data['nondepName' + String(req.session.data['CurrentPerson'])] = req.session.data['currentName'];
+   res.redirect("nondep-are-relations")  
+});  
 
-   res.redirect("DoB")  
+router.post('/'+ version +'/application/nondep-are-relations', function(req, res) {
+   req.session.data['isRelative'+ String(req.session.data['CurrentPerson'])] = req.session.data['isRelative'];
+     
+   if(req.session.data['isRelative']=='Yes'){
+     res.redirect("nondep-relative-or-friend") }
+  else if(req.session.data['isRelative']=='No'){
+  res.redirect("nondep-commercial-relationship") }  
 }); 
 
-router.post('/'+ version +'/application/DoB', function(req, res) {
+router.post('/'+ version +'/application/nondep-relative-or-friend', function(req, res) {
+  if(req.session.data['relationship']=='Other relation'){
+     res.redirect("nondep-other-relationship") 
+  }
+  else{
+     req.session.data['relationship'+ String(req.session.data['CurrentPerson'])] = req.session.data['relationship'];
+     res.redirect("nondep-DoB") 
+  }
+}); 
+
+router.post('/'+ version +'/application/nondep-DoB', function(req, res) {
    var LongDoB = req.session.data['DoBDay'] + ' ' + months[req.session.data['DoBMonth']-1] + ' ' + req.session.data['DoBYear'];
-   req.session.data['claimantDOB' + String(req.session.data['CurrentPerson'])] = LongDoB;
-   res.redirect("are-relations")  
-}); 
+   req.session.data['nondepDOB' + String(req.session.data['CurrentPerson'])] = LongDoB;
+   res.redirect("nondep-are-blind")  
+});
 
-router.post('/'+ version +'/application/are-relations', function(req, res) {
-  if(req.session.data['isRelative']=='yes'){
-     res.redirect("relative-or-friend") }
-  else if(req.session.data['isRelative']=='no'){
-  res.redirect("commercial-relationship") }  
-}); 
+router.post('/'+ version +'/application/nondep-are-blind', function(req, res) {
+   req.session.data['isBlind' + String(req.session.data['CurrentPerson'])] = req.session.data['isBlind'];
+   res.redirect("nondep-lived-with-you")  
+});
 
-router.post('/'+ version +'/application/relative-or-friend', function(req, res) {
-  if(req.session.data['relationship']=='Other'){
-     res.redirect("other-relationship") 
-  }
+router.post('/'+ version +'/application/nondep-lived-with-you', function(req, res) {
+   var LongDate = req.session.data['LiveTogetherDay'] + ' ' + months[req.session.data['LiveTogetherMonth']-1] + ' ' + req.session.data['LiveTogetherYear'];
+   req.session.data['LiveTogetherDate' + String(req.session.data['CurrentPerson'])] = LongDate;
+   res.redirect("nondep-in-education")  
+});
+
+router.post('/'+ version +'/application/nondep-in-education', function(req, res) {
+   req.session.data['inEducation' + String(req.session.data['CurrentPerson'])] = req.session.data['inEducation'];
+   res.redirect("nondep-is-employed")  
+});
+
+router.post('/'+ version +'/application/nondep-is-employed', function(req, res) {
+   req.session.data['inEmployment' + String(req.session.data['CurrentPerson'])] = req.session.data['inEmployment'];
+   res.redirect("nondep-contribute-to-bills")  
+});
+
+router.post('/'+ version +'/application/nondep-commercial-relationship', function(req, res) {
+   req.session.data['commercialRelationship' + String(req.session.data['CurrentPerson'])] = req.session.data['commercialRelationship'];
+   if(req.session.data['commercialRelationship']=='Someone from a charity or voluntary organisation'){
+   res.redirect("nondep-charity-name") 
+   }
   else{
-     req.session.data['relationship'+ String(req.session.data['CurrentPerson'])] = req.session.data['relationship'];
-     res.redirect("contribute-to-bills") 
+     req.session.data['commercialRelationship'+ String(req.session.data['CurrentPerson'])] = req.session.data['commercialRelationship'];
+     res.redirect("nondep-check-answers") 
   }
 }); 
 
-router.post('/'+ version +'/application/commercial-relationship', function(req, res) {
-  if(req.session.data['relationship']=='Someone else'){
-     res.redirect("other-relationship") 
-  }
-  else{
+router.post('/'+ version +'/application/nondep-other-relationship', function(req, res) {
      req.session.data['relationship'+ String(req.session.data['CurrentPerson'])] = req.session.data['relationship'];
-     res.redirect("check-answers") 
-  }
+     res.redirect("nondep-DoB")
 }); 
 
-router.post('/'+ version +'/application/other-relationship', function(req, res) {
-
-     req.session.data['relationship'+ String(req.session.data['CurrentPerson'])] = req.session.data['relationship'];
-     res.redirect("contribute-to-bills") 
-  
-}); 
-
-router.post('/'+ version +'/application/contribute-to-bills', function(req, res) {
-
+router.post('/'+ version +'/application/nondep-contribute-to-bills', function(req, res) {
   req.session.data['contribute'+ String(req.session.data['CurrentPerson'])] = req.session.data['contribute'];
-  res.redirect("check-answers") 
-
+  res.redirect("nondep-commercial-relationship")
 }); 
 
-router.post('/'+ version +'/application/check-answers', function(req, res) {
-  res.redirect("add-another")  
+router.post('/'+ version +'/application/nondep-check-answers', function(req, res) {
+  res.redirect("nondep-add-another")  
 }); 
 
-router.post('/'+ version +'/application/add-another', function(req, res) {
+router.post('/'+ version +'/application/nondep-add-another', function(req, res) {
    if(req.session.data['addanother']=='yes'){   
        req.session.data['PeopleCount'] ++;
        req.session.data['CurrentPerson'] = req.session.data['PeopleCount'];
        req.session.data['ActualCount'] ++;
-       res.redirect("name") 
+       res.redirect("nondep-name") 
    }
 });
 
+router.post('/'+ version +'/application/nondep-charity-name', function(req, res) {
+   req.session.data['charityName'+ String(req.session.data['CurrentPerson'])] = req.session.data['charityName'];
+   res.redirect("nondep-check-answers") 
+ }); 
+
+
+
+//OTHER STUFF
 
 
 router.post('/'+ version +'/application/date-of-birth', function(req, res) { 

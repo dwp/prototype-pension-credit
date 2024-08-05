@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Add another person" %}
+{% set pageName = "Add another person who lives with you?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -25,7 +25,7 @@
       You have added {{data['ActualCount']}}
       {% if data['ActualCount'] == '1'%} person {%else%} people {% endif %}
 
-    </h2>
+    </h1>
 
 
 
@@ -39,10 +39,10 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for i in range(1, data['PeopleCount']+1) -%}
-          {% if data['claimantname'+i] != null%}
+          {% if data['nondepName'+i] != null%}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{{data['claimantname'+(i)] }}</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="change?person={{i}}">Change</a>  |  <a href="delete?person={{i}}">Delete</a></td>
+            <td class="govuk-table__cell">{{data['nondepName'+(i)] }}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="nondep-change?person={{i}}">Change</a>  |  <a href="nondep-delete?person={{i}}">Delete</a></td>
           </tr>
           {% endif %}
         {%- endfor %}
@@ -54,9 +54,9 @@
             <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h1 class="govuk-fieldset__heading">
+                <h2 class="govuk-fieldset__heading">
                     Add another person who lives with you?
-                </h1>
+                </h2>
                 </legend>
 
                   <p class="govuk-hint">

@@ -1,0 +1,164 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Check these details" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row govuk-!-padding-top-7">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l">Check these details</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['nondepName'+data['CurrentPerson']]}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+            </dd>
+          </div>
+
+          {% if data['isRelative'+data['CurrentPerson']] == 'Yes' %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                How are you related?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['relationship'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> relationship</span></a>
+              </dd>
+            </div>
+          
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of birth
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['nondepDOB'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are they registered blind or severley sight impaired?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['isBlind'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> if they are registerd blind or severley sight impaired</span></a>
+              </dd>
+            </div>
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                When did you start living together?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['LiveTogetherDate'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date</span></a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are they in education?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['inEducation'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> education</span></a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are they earning any money from work?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['inEmployment'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> employment</span></a>
+              </dd>
+            </div>
+
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Do they pay towards the rent or mortgage?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['contribute'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contribution</span></a>
+              </dd>
+            </div>
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is your housing situation?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['commercialRelationship'+data['CurrentPerson']]}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> relationship</span></a>
+            </dd>
+          </div>
+
+          {% if data['commercialRelationship'+data['CurrentPerson']] == 'Someone from a charity or voluntary organisation' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is the name of the charity they work for?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['charityName'+data['CurrentPerson']]}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+            </dd>
+          </div>
+          {% endif %}
+
+
+        </dl>
+
+        <form method="post" novalidate>
+          <input type="hidden" name="answers-checked" value="true">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+
+{% endblock %}
