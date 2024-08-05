@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Other relationship" %}
+{% set pageName = "Tell us how you are related" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -23,29 +23,15 @@
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
     <form method="post" >
-      <!--- This is other relation --->
-      {% if data['relationship'] == "Other" %}
+      
+      
         <h1 class="govuk-heading-l govuk-!-padding-top-7">
         <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
             Tell us how you are related</h1>
         <div class="govuk-hint">For example, 'we are cousins' or 'they are my neice'.</div>
 
-      <!--- This is other commercial --->
-      {% elif data['relationship'] == "Someone else" %}
-        <h1 class="govuk-heading-l govuk-!-padding-top-7">
-        <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-            Tell us about your living arrangements
-        </h1>
-
-      {% endif %}
       <div class="govuk-form-group">
-        <textarea class="govuk-textarea" id="more-detail" name="relationship" rows="
-        {% if data['relationship'] == "Other" %}
-          1
-        {% elif data['relationship'] == "Someone else" %}
-          3
-        {% endif %}
-        " aria-describedby="more-detail-hint"></textarea>
+        <input class="govuk-input govuk-!-width-full" id="event-name" name="relationship" type="text">
       </div>
 
       <button type="submit" class="govuk-button" data-module="govuk-button">
