@@ -24,39 +24,63 @@
 
 
     <form method="post" >
+            <h1 class="govuk-heading-l">
+              <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
+                Money they get from working
+            </h1>
             <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
-            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h2 class="govuk-fieldset__heading">
+                      Are they in employment?
+                    </h2>
+                  </legend>
 
-                <h1 class="govuk-fieldset__heading">
-                  <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-
-                    Are they earning any money from work?
-                </h1>
-                </legend>
-                <p class="govuk-hint">They could be earning money from employed or self employed work.</p>
-
-
-                <div class="govuk-radios govuk-radios-" data-module="govuk-radios">
-
-                  <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="inEmployment-1" name="inEmployment" type="radio" value="Yes">
-                      <label class="govuk-label govuk-radios__label" for="inEmployment-1">
-                        Yes
-                      </label>
+                  <div class="govuk-radios govuk-radios-" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="inEmployment-1" name="inEmployment" type="radio" value="Yes, full time">
+                        <label class="govuk-label govuk-radios__label" for="inEmployment-1">
+                          Yes, full time
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="inEmployment-2" name="inEmployment" type="radio" value="Yes, part time">
+                        <label class="govuk-label govuk-radios__label" for="inEmployment-2">
+                          Yes, part time
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="inEmployment-3" name="inEmployment" type="radio" value="No">
+                        <label class="govuk-label govuk-radios__label" for="inEmployment-3">
+                        No
+                        </label>
+                    </div>
                   </div>
+              </fieldset>
+            </div>
+            <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
+              <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h2 class="govuk-fieldset__heading">
+                      Are they self employed?
+                    </h2>
+                  </legend>
 
-                  <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="inEmployment-3" name="inEmployment" type="radio" value="No">
-                      <label class="govuk-label govuk-radios__label" for="inEmployment-3">
-                      No
-                      </label>
+                  <div class="govuk-radios govuk-radios-" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="selfEmployed-1" name="selfEmployed" type="radio" value="Yes">
+                        <label class="govuk-label govuk-radios__label" for="selfEmployed-1">
+                          Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="selfEmployed-3" name="selfEmployed" type="radio" value="No">
+                        <label class="govuk-label govuk-radios__label" for="selfEmployed-3">
+                        No
+                        </label>
+                    </div>
                   </div>
-
-                </div>
-
-
-            </fieldset>
+              </fieldset>
             </div>
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue

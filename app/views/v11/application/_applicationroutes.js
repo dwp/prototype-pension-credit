@@ -174,6 +174,8 @@ router.post('/'+ version +'/application/nondep-in-education', function(req, res)
 
 router.post('/'+ version +'/application/nondep-is-employed', function(req, res) {
    req.session.data['inEmployment' + String(req.session.data['CurrentPerson'])] = req.session.data['inEmployment'];
+   req.session.data['selfEmployed' + String(req.session.data['CurrentPerson'])] = req.session.data['selfEmployed'];
+   
    res.redirect("nondep-contribute-to-bills")  
 });
 
