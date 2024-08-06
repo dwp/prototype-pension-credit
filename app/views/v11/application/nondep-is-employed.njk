@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Are they earning any money from work?" %}
+{% set pageName = "Money from working" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -26,7 +26,7 @@
     <form method="post" >
             <h1 class="govuk-heading-l">
               <span class="govuk-caption-l">About {{ data['currentName'] }} </span>
-                Money they get from working
+              Money from working
             </h1>
             <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
               <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
