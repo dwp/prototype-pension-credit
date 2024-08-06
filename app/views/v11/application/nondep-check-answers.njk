@@ -99,10 +99,22 @@
 
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Are they earning any money from work?
+                Are they in employment?
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['inEmployment'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> whether they are they earning any money from work</span></a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are they self employed?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['selfEmployed'+data['CurrentPerson']]}}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> whether they are they earning any money from work</span></a>
