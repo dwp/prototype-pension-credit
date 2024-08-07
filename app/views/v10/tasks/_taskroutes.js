@@ -2,6 +2,8 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
 var version = "v10";
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 
 router.get('/'+version+'/tasks/randomise', function(req, res) {
     //clears the data for the tasklist to ensure a fresh task each time
@@ -176,11 +178,17 @@ router.post('/' + version + '/tasks/non-dependents', function(req, res) {
 });
 
 router.post('/' + version + '/tasks/nationality', function(req, res) {
+    //get six month date
+    var immigrationDate = new Date()
+    immigrationDate.setMonth(immigrationDate.getMonth() - 6)
+   var immigrationDateString = immigrationDate.getDate() + " " + months[immigrationDate.getDay()-1] + " " + immigrationDate.getFullYear()
+   req.session.data['immigrationDateString'] = immigrationDateString
+
     if(req.session.data['nationalityCheck'] == 'Something else') {
         res.redirect("confirm-nationality")
     } 
     else{
-        res.redirect("nationality-auto")
+        res.redirect("past-presence")
     }
 });
 
@@ -195,7 +203,16 @@ router.post('/' + version + '/tasks/confirm-nationality', function(req, res) {
 
 router.post('/' + version + '/tasks/immigration-status', function(req, res) {
     if(req.session.data['recourseToPublicFunds'] == 'yes' && req.session.data['leaveToRemain'] == 'yes') {
-        req.session.data['NationalityTask'] = 'yes'
+        res.redirect("past-presence")
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
+router.post('/' + version + '/tasks/past-presence', function(req, res) {
+    if(req.session.data['pastPresence'] == 'no' ){
+        req.session.data['NationalityTask'] = 'yes';
         res.redirect("tasklist")
     } 
     else{
