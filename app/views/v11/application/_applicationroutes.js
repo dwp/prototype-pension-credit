@@ -218,10 +218,232 @@ router.post('/'+ version +'/application/nondep-charity-name', function(req, res)
    res.redirect("nondep-check-answers") 
  }); 
 
+////////////////////
+////////////////////    ELIGIBILITY
+////////////////////
+
+router.post('/'+ version +'/application/eligibility-start-dob', function(req, res) { 
+   req.session.data['Carersamount'] = '0'
+   req.session.data['EASDamount'] = '0'
+   var claimantDoB = new Date()
+   claimantDoB.setTime(0)
+   claimantDoB.setDate(req.session.data["dateOfBirthdd"])
+   claimantDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
+   claimantDoB.setYear(req.session.data["dateOfBirthyy"])
+   req.session.data['claimantDoB'] = claimantDoB
+   res.redirect("eligibility-claimant-sex")
+});
+
+router.post('/'+ version +'/application/eligibility-claimant-sex', function(req, res) { 
+   let dob = new Date(Date.parse(req.session.data['claimantDoB']));
+   
+   if(req.session.data['claimantSex'] == 'Male'){
+      let SC_SPaDate = new Date(Date.parse('05 May 1951 00:00:00 GMT'));
+      if(dob < SC_SPaDate){
+         req.session.data['dropout'] = "savings";
+         res.redirect("eligibility-dropout");
+      }
+      else{
+         res.redirect("eligibility-housing-costs")
+      }
+   }
+   else{
+      let SC_SPaDate = new Date(Date.parse('05 May 1956 00:00:00 GMT'));
+      if(dob < SC_SPaDate){
+         req.session.data['dropout'] = "savings";
+         res.redirect("eligibility-dropout");
+      }
+      else{
+         res.redirect("eligibility-housing-costs")
+      }
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-housing-costs', function(req, res) { 
+   if(req.session.data['serviceCharge'] == 'Yes' || req.session.data['serviceCharge'] == 'Yes' ){
+      req.session.data['dropout'] = "housing";
+      res.redirect("eligibility-dropout");
+   }
+   else{
+      res.redirect("eligibility-benefits-claimant");
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-benefits-claimant', function(req, res) {
+   let benefits = req.session.data['ClaimantBenefitsEntitled'];
+
+   if(   benefits.includes('AA') || benefits.includes('DLA') || 
+         benefits.includes('PIP') || benefits.includes('ADP') || 
+         benefits.includes('AFIP')){
+      req.session.data['claimantEASD'] = 'true';
+   }
+
+   if(benefits.includes('CA') || benefits.includes('CSP')){
+      req.session.data['claimantCarers'] = 'true';
+   }
+
+   res.redirect("eligibility-benefits-awaiting-claimant");
+
+});
+
+router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant', function(req, res) {
+   let benefits = req.session.data['ClaimantBenefitsAwaiting'];
+
+   if(   benefits.includes('AA') || benefits.includes('DLA') || 
+         benefits.includes('PIP') || benefits.includes('ADP') || 
+         benefits.includes('AFIP')){
+      req.session.data['claimantEASD'] = 'true';
+   }
+
+   if(benefits.includes('CA') || benefits.includes('CSP')){
+      req.session.data['claimantCarers'] = 'true';
+   }
+
+   req.session.data['standardamount'] = '218.15'
+
+   if(req.session.data['claimantEASD'] == 'true'){
+      req.session.data['EASDamount'] = '81.50'
+   }
+   if(req.session.data['claimantEASD'] == 'true'){
+      req.session.data['Carersamount'] = '45.60'
+   }
+   let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
+   req.session.data['applicableamount'] = applicable.toFixed(2)
+   let disregard = 5;
+   let monthlyapplicable = ((disregard+applicable) * 52)/12;
+   req.session.data['monthlyapplicableamount'] = Math.round(monthlyapplicable * 100) / 100
+   res.redirect("eligibility-has-partner");
+});
+
+router.post('/'+ version +'/application/eligibility-has-partner', function(req, res) { 
+   if( req.session.data['hasPartner'] == 'Yes, we live together'){
+      res.redirect("eligibility-partner-dob")
+   }
+   else{
+      res.redirect("eligibility-income")
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-partner-dob', function(req, res) { 
+   var partnerDoB = new Date()
+   partnerDoB.setTime(0)
+   partnerDoB.setDate(req.session.data["dateOfBirthdd"])
+   partnerDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
+   partnerDoB.setYear(req.session.data["dateOfBirthyy"])
+   req.session.data['partnerDoB'] = partnerDoB
+   res.redirect("eligibility-partner-sex")
+});
+
+router.post('/'+ version +'/application/eligibility-partner-sex', function(req, res) { 
+   let dob = new Date(Date.parse(req.session.data['partnerDoB']));
+   let today = new Date();
+   let SPadate = today.setFullYear(today.getFullYear() - 66);
+   let claimantdob = new Date(Date.parse(req.session.data['claimantDoB']))
+   
+   if(req.session.data['partnerSex'] == 'Male'){
+      let SC_SPaDate = new Date(Date.parse('05 May 1951 00:00:00 GMT'));
+      
+         if(claimantdob > SPadate && dob > SPadate){
+            req.session.data['dropout'] = "spa";
+            res.redirect("eligibility-dropout");
+         }
+         else if(claimantdob > SPadate || dob > SPadate){
+            req.session.data['dropout'] = "mixed";
+            res.redirect("eligibility-dropout");
+         }
+         else if(dob < SC_SPaDate){
+            req.session.data['dropout'] = "savings";
+            res.redirect("eligibility-dropout");
+         }
+         else{
+            res.redirect("eligibility-benefits-partner")
+         }  
+      
+   }
+   else{
+      let SC_SPaDate = new Date(Date.parse('05 May 1956 00:00:00 GMT'));
+      
+         if(claimantdob > SPadate && dob > SPadate){
+            req.session.data['dropout'] = "spa";
+            res.redirect("eligibility-dropout");
+         }
+         else if(claimantdob > SPadate || dob > SPadate){
+            req.session.data['dropout'] = "mixed";
+            res.redirect("eligibility-dropout");
+         }
+         else if(dob < SC_SPaDate){
+            req.session.data['dropout'] = "savings";
+            res.redirect("eligibility-dropout");
+         }
+         else{
+            res.redirect("eligibility-benefits-partner")
+         }  
+     
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-benefits-partner', function(req, res) {
+   let benefits = req.session.data['PartnerBenefitsEntitled'];
+
+   if(   benefits.includes('AA') || benefits.includes('DLA') || 
+         benefits.includes('PIP') || benefits.includes('ADP') || 
+         benefits.includes('AFIP')){
+      req.session.data['partnerEASD'] = 'true';
+   }
+
+   if(benefits.includes('CA') || benefits.includes('CSP')){
+      req.session.data['partnerCarers'] = 'true';
+   }
+
+   res.redirect("eligibility-benefits-awaiting-partner");
+
+});
+
+router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', function(req, res) {
+   let benefits = req.session.data['PartnerBenefitsAwaiting'];
+
+   if(   benefits.includes('AA') || benefits.includes('DLA') || 
+         benefits.includes('PIP') || benefits.includes('ADP') || 
+         benefits.includes('AFIP')){
+      req.session.data['claimantEASD'] = 'true';
+   }
+
+   if(benefits.includes('CA') || benefits.includes('CSP')){
+      req.session.data['claimantCarers'] = 'true';
+   }
+
+   req.session.data['standardamount'] = '332.95'
+
+   if(req.session.data['claimantEASD'] == 'true'){
+      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
+   }
+   if(req.session.data['claimantEASD'] == 'true'){
+      req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 45.60;
+   }
+   let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
+   req.session.data['applicableamount'] = applicable.toFixed(2)
+   let disregard = 10;
+   let monthlyapplicable = ((disregard+applicable) * 52)/12;
+   req.session.data['monthlyapplicableamount'] = Math.round(monthlyapplicable * 100) / 100
+
+   res.redirect("eligibility-income");
+});
+
+
+
+
+
+
+
+
+
+
 
 
 //OTHER STUFF
-
+router.post('/'+ version +'/application/date-of-birth', function(req, res) { 
+   res.redirect("applicant-nationality-passport")
+});
 
 router.post('/'+ version +'/application/date-of-birth', function(req, res) { 
    res.redirect("applicant-nationality-passport")
