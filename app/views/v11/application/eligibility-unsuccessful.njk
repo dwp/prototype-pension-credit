@@ -1,0 +1,43 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Have you had any overnight stays in hospital since data['backdateDateString']?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <form method="post" >
+
+        <div class="govuk-form-group govuk-!-padding-top-7">
+            <h1 class="govuk-heading-l">You will not get any Pension Credit at this time</h1>
+            <p class="govuk-body">Based on your answers, you could get Pension Credit to top up your total income to £[amount calculated] a week. </p>
+            <p class="govuk-body">Your income is already more than this, so you are not entitled to any Pension Credit at this time.</p>
+            {% if data['ClaimantBenefitsEntitled'] == 'none' or data['ClaimantBenefitsEntitled'] == 'none' or data['PartnerBenefitsEntitled'] == 'none' or data['PartnerBenefitsEntitled'] == 'none' %}
+             <p class="govuk-body">You should apply again if your income changes, anyone moves into or out of your home, or if you {% if data['hasPartner'] == "Yes, we live together" %}or your partner{% endif %} start getting any of the following:</p>
+            {% else %}
+            <p class="govuk-body">You should apply again if your income changes, or if anyone moves into or out of your home.</p>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}
