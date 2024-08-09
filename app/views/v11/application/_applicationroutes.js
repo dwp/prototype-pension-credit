@@ -225,13 +225,27 @@ router.post('/'+ version +'/application/nondep-charity-name', function(req, res)
 router.post('/'+ version +'/application/eligibility-start-dob', function(req, res) { 
    req.session.data['Carersamount'] = '0'
    req.session.data['EASDamount'] = '0'
-   var claimantDoB = new Date()
+   let claimantDoB = new Date()
    claimantDoB.setTime(0)
    claimantDoB.setDate(req.session.data["dateOfBirthdd"])
    claimantDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
    claimantDoB.setYear(req.session.data["dateOfBirthyy"])
    req.session.data['claimantDoB'] = claimantDoB
-   res.redirect("eligibility-claimant-sex")
+
+   let SPa = claimantDoB
+   SPa.setFullYear(claimantDoB. getFullYear() + 66);
+   let today = new Date()
+   today.setMonth(today. getMonth() + 4);
+   console.log(SPa)
+   console.log(today)
+
+   if(SPa<today){
+      res.redirect("eligibility-claimant-sex")
+   }
+   else{
+      res.redirect("eligibility-too-young")
+   }
+
 });
 
 router.post('/'+ version +'/application/eligibility-claimant-sex', function(req, res) { 
