@@ -334,13 +334,6 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
       req.session.data['Carersamount'] = '45.60'
    }
 
-   if(req.session.data['ClaimantBenefitsEntitled'] == "none" && req.session.data['ClaimantBenefitsAwaiting'] == "none"){
-      req.session.data['claimantEASD'] = 'false'
-      req.session.data['claimantCarers'] = 'false'
-      req.session.data['Carersamount'] = 0
-      req.session.data['EASDamount'] = 0
-   }
-
 
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
@@ -349,17 +342,17 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    
    if(req.session.data['claimantEASD'] == 'true'){
-      res.redirect("eligibility-has-partner");
+      res.redirect("eligibility-CA-claimant");
    }
    else{
-      res.redirect("eligibility-CA-claimant");
+      res.redirect("eligibility-has-partner");
    }
    
 });
 
 router.post('/'+ version +'/application/eligibility-CA-claimant', function(req, res) { 
    if( req.session.data['isCaredFor'] == 'Yes'){
-      req.session.data['EASDamount'] = '81.50';
+      req.session.data['EASDamount'] = '0';
       req.session.data['claimantEASD'] = 'true';
       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
       req.session.data['applicableamount'] = applicable.toFixed(2)
@@ -472,16 +465,10 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    if(req.session.data['partnerEASD'] == 'true'){
       req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
    }
-   if(req.session.data['partnerEASD'] == 'true'){
+   if(req.session.data['partnerCarers'] == 'true'){
       req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 45.60;
    }
 
-   if(req.session.data['PartnerBenefitsAwaiting'] == "none" && req.session.data['PartnerBenefitsEntitled'] == "none"){
-      req.session.data['partnerEASD'] == 'false'
-   }
-
-
-   
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 10;
@@ -489,15 +476,16 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
 
    if(req.session.data['partnerEASD'] == 'true'){
-      res.redirect("eligibility-income");}
-   else{
       res.redirect("eligibility-CA-partner");
+   }
+   else{
+      res.redirect("eligibility-income");
    }
 });
 
 router.post('/'+ version +'/application/eligibility-CA-partner', function(req, res) { 
-   if( req.session.data['isCaredFor'] == 'Yes'){
-      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
+   if( req.session.data['isPartnerCaredFor'] == 'Yes'){
+      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) - 81.50;
       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
       req.session.data['applicableamount'] = applicable.toFixed(2)
       let disregard = 10;
