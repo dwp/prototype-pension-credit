@@ -330,8 +330,15 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
    if(req.session.data['claimantEASD'] == 'true'){
       req.session.data['EASDamount'] = '81.50'
    }
-   if(req.session.data['claimantEASD'] == 'true'){
+   if(req.session.data['claimantCarers'] == 'true'){
       req.session.data['Carersamount'] = '45.60'
+   }
+
+   if(req.session.data['ClaimantBenefitsEntitled'] == "none" && req.session.data['ClaimantBenefitsAwaiting'] == "none"){
+      req.session.data['claimantEASD'] = 'false'
+      req.session.data['claimantCarers'] = 'false'
+      req.session.data['Carersamount'] = 0
+      req.session.data['EASDamount'] = 0
    }
 
 
@@ -353,6 +360,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
 router.post('/'+ version +'/application/eligibility-CA-claimant', function(req, res) { 
    if( req.session.data['isCaredFor'] == 'Yes'){
       req.session.data['EASDamount'] = '81.50';
+      req.session.data['claimantEASD'] = 'true';
       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
       req.session.data['applicableamount'] = applicable.toFixed(2)
       let disregard = 5;
@@ -471,6 +479,8 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    if(req.session.data['PartnerBenefitsAwaiting'] == "none" && req.session.data['PartnerBenefitsEntitled'] == "none"){
       req.session.data['partnerEASD'] == 'false'
    }
+
+
    
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
