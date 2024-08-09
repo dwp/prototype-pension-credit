@@ -18,24 +18,36 @@
     <div class="govuk-grid-column-two-thirds">
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-        <form method="post" >
 
         <div class="govuk-form-group govuk-!-padding-top-7">
-            <h1 class="govuk-heading-l">You will not get any Pension Credit at this time</h1>
-            <p class="govuk-body">Based on your answers, you could get Pension Credit to top up your total income to £[amount calculated] a week. </p>
-            <p class="govuk-body">Your income is already more than this, so you are not entitled to any Pension Credit at this time.</p>
-            {% if data['ClaimantBenefitsEntitled'] == 'none' or data['ClaimantBenefitsEntitled'] == 'none' or data['PartnerBenefitsEntitled'] == 'none' or data['PartnerBenefitsEntitled'] == 'none' %}
-             <p class="govuk-body">You should apply again if your income changes, anyone moves into or out of your home, or if you {% if data['hasPartner'] == "Yes, we live together" %}or your partner{% endif %} start getting any of the following:</p>
-            {% else %}
-            <p class="govuk-body">You should apply again if your income changes, or if anyone moves into or out of your home.</p>
-            {% endif %}
+            <h1 class="govuk-heading-l">You are not entitled to any Pension Credit at this time.</h1>
+            <p class="govuk-body">To get any Pension Credit your total weekly income must be less than £{{data['applicableamount']}} a week.</p>
+            <p class="govuk-body">Based on your estimated monthly income your total weekly income is more than this amount.</p>
+            <p class="govuk-body">
+                You should apply again if:
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>you start getting another benefit</li>
+                    <li>your income changes</li>
+                    <li>anyone moves into or out of your home</li>
+                </ul>
+            </p>
+            <p class="govuk-body">
+                You can close this tab, return to <a href="https://www.gov.uk/">the GOV.UK homepage</a>, or check what other 
+                benefits you could get by using a <a href="https://www.gov.uk/benefits-calculators">benefit calculator</a>.
+            </p>
+            <p class="govuk-body govuk-!-padding-bottom-7">
+                If you still want to apply for Pension Credit you can <a href="index">continue with 
+                your Pension Credit application</a>. You are unlikely to get any 
+                Pension Credit and it could take us around X months to assess 
+                your application.
+            </p>
+
+            
         </div>
 
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-            Continue
-        </button>
+    
 
-        </form>
+  
         
     </div>
 </div>
