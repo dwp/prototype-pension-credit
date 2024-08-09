@@ -42,25 +42,25 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h2 class="govuk-fieldset__heading">
-                    How much money do you and your partner get each month?
+                    How much money do you {%if data['hasPartner'] == 'Yes, we live together'%}and your partner {%endif%}get each month?
                 </h2>
                 </legend>
 
                 <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="incomeAmount" name="incomeAmount" type="radio" value="above applicable amount">
+                    <input class="govuk-radios__input" id="incomeAmount" name="incomeAmount" type="radio" value="below">
                     <label class="govuk-label govuk-radios__label" for="incomeAmount">
                     Less than £{{ data['monthlyapplicableamount'] }}
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="incomeAmount-1" name="incomeAmount" type="radio" value="above applicable amount">
+                    <input class="govuk-radios__input" id="incomeAmount-1" name="incomeAmount" type="radio" value="above">
                     <label class="govuk-label govuk-radios__label" for="incomeAmount-1">
                     More than £{{ data['monthlyapplicableamount'] }}
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="incomeAmount-2" name="incomeAmount" type="radio" value="below applicable amount">
+                    <input class="govuk-radios__input" id="incomeAmount-2" name="incomeAmount" type="radio" value="below">
                     <label class="govuk-label govuk-radios__label" for="incomeAmount-2">
                     I'm not sure
                     </label>

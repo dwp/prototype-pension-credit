@@ -24,6 +24,7 @@
             {% elif data['dropout'] == "housing"%} Contains housing costs
             {% elif data['dropout'] == "spa"%} Neither claimant has reached SPa
             {% elif data['dropout'] == "mixed"%} Mixed age couple, one not reached SPa
+            {% elif data['dropout'] == "children"%} Possibly has qualifying children
             {% endif %} 
           </h1>
           {% if data['dropout'] != "spa" %}

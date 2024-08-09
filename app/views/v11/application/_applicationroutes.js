@@ -244,7 +244,8 @@ router.post('/'+ version +'/application/eligibility-claimant-sex', function(req,
          res.redirect("eligibility-dropout");
       }
       else{
-         res.redirect("eligibility-housing-costs")
+         res.redirect("eligibility-has-children")
+         //res.redirect("eligibility-housing-costs")
       }
    }
    else{
@@ -254,8 +255,19 @@ router.post('/'+ version +'/application/eligibility-claimant-sex', function(req,
          res.redirect("eligibility-dropout");
       }
       else{
-         res.redirect("eligibility-housing-costs")
+         res.redirect("eligibility-has-children")
+         //res.redirect("eligibility-housing-costs")
       }
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-has-children', function(req, res) { 
+   if(req.session.data['hasChildren']=="Yes"){
+      req.session.data['dropout'] = "children";
+      res.redirect("eligibility-dropout");
+   }
+   else{
+      res.redirect("eligibility-housing-costs")
    }
 });
 
@@ -311,7 +323,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 5;
    let monthlyapplicable = ((disregard+applicable) * 52)/12;
-   req.session.data['monthlyapplicableamount'] = Math.round(monthlyapplicable * 100) / 100
+   req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    res.redirect("eligibility-has-partner");
 });
 
@@ -424,12 +436,19 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 10;
    let monthlyapplicable = ((disregard+applicable) * 52)/12;
-   req.session.data['monthlyapplicableamount'] = Math.round(monthlyapplicable * 100) / 100
+   req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
 
    res.redirect("eligibility-income");
 });
 
-
+router.post('/'+ version +'/application/eligibility-income', function(req, res) { 
+   if(req.session.data['incomeAmount']=='above'){
+      res.redirect("eligibility-unsuccessful")
+   }
+   else{
+      res.redirect("eligibility-successful")
+   }
+});
 
 
 
