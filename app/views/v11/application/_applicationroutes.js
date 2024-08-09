@@ -225,19 +225,19 @@ router.post('/'+ version +'/application/nondep-charity-name', function(req, res)
 router.post('/'+ version +'/application/eligibility-start-dob', function(req, res) { 
    req.session.data['Carersamount'] = '0'
    req.session.data['EASDamount'] = '0'
-   let claimantDoB = new Date()
+   
+   var claimantDoB = new Date()
    claimantDoB.setTime(0)
    claimantDoB.setDate(req.session.data["dateOfBirthdd"])
    claimantDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
    claimantDoB.setYear(req.session.data["dateOfBirthyy"])
    req.session.data['claimantDoB'] = claimantDoB
 
-   let SPa = claimantDoB
-   SPa.setFullYear(claimantDoB. getFullYear() + 66);
+   let SPa = new Date(Date.parse(req.session.data['claimantDoB']))
+   SPa.setFullYear(SPa. getFullYear() + 66);
    let today = new Date()
    today.setMonth(today. getMonth() + 4);
-   console.log(SPa)
-   console.log(today)
+   
 
    if(SPa<today){
       res.redirect("eligibility-claimant-sex")
@@ -333,11 +333,32 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
    if(req.session.data['claimantEASD'] == 'true'){
       req.session.data['Carersamount'] = '45.60'
    }
+
+
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 5;
    let monthlyapplicable = ((disregard+applicable) * 52)/12;
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
+   
+   if(req.session.data['claimantEASD'] == 'true'){
+      res.redirect("eligibility-has-partner");
+   }
+   else{
+      res.redirect("eligibility-CA-claimant");
+   }
+   
+});
+
+router.post('/'+ version +'/application/eligibility-CA-claimant', function(req, res) { 
+   if( req.session.data['isCaredFor'] == 'Yes'){
+      req.session.data['EASDamount'] = '81.50';
+      let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
+      req.session.data['applicableamount'] = applicable.toFixed(2)
+      let disregard = 5;
+      let monthlyapplicable = ((disregard+applicable) * 52)/12;
+      req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
+   }
    res.redirect("eligibility-has-partner");
 });
 
@@ -431,27 +452,48 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    if(   benefits.includes('AA') || benefits.includes('DLA') || 
          benefits.includes('PIP') || benefits.includes('ADP') || 
          benefits.includes('AFIP')){
-      req.session.data['claimantEASD'] = 'true';
+      req.session.data['partnerEASD'] = 'true';
    }
 
    if(benefits.includes('CA') || benefits.includes('CSP')){
-      req.session.data['claimantCarers'] = 'true';
+      req.session.data['partnerCarers'] = 'true';
    }
 
    req.session.data['standardamount'] = '332.95'
 
-   if(req.session.data['claimantEASD'] == 'true'){
+   if(req.session.data['partnerEASD'] == 'true'){
       req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
    }
-   if(req.session.data['claimantEASD'] == 'true'){
+   if(req.session.data['partnerEASD'] == 'true'){
       req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 45.60;
    }
+
+   if(req.session.data['PartnerBenefitsAwaiting'] == "none" && req.session.data['PartnerBenefitsEntitled'] == "none"){
+      req.session.data['partnerEASD'] == 'false'
+   }
+   
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 10;
    let monthlyapplicable = ((disregard+applicable) * 52)/12;
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
 
+   if(req.session.data['partnerEASD'] == 'true'){
+      res.redirect("eligibility-income");}
+   else{
+      res.redirect("eligibility-CA-partner");
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-CA-partner', function(req, res) { 
+   if( req.session.data['isCaredFor'] == 'Yes'){
+      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
+      let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
+      req.session.data['applicableamount'] = applicable.toFixed(2)
+      let disregard = 10;
+      let monthlyapplicable = ((disregard+applicable) * 52)/12;
+      req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
+   }
    res.redirect("eligibility-income");
 });
 
