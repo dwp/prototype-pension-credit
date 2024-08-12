@@ -197,8 +197,19 @@ router.post('/'+ version +'/application/nondep-other-relationship', function(req
 
 router.post('/'+ version +'/application/nondep-contribute-to-bills', function(req, res) {
   req.session.data['contribute'+ String(req.session.data['CurrentPerson'])] = req.session.data['contribute'];
-  res.redirect("nondep-commercial-relationship")
+  if(req.session.data['contribute']=='Yes'){
+   res.redirect("nondep-start-paying")
+  }
+  else{
+   res.redirect("nondep-commercial-relationship")
+   }
 }); 
+
+router.post('/'+ version +'/application/nondep-start-paying', function(req, res) {
+   var LongDoB = req.session.data['startPayDay'] + ' ' + months[req.session.data['startPayMonth']-1] + ' ' + req.session.data['startPayYear'];
+   req.session.data['nondepStartPay' + String(req.session.data['CurrentPerson'])] = LongDoB;
+   res.redirect("nondep-commercial-relationship")
+ });
 
 router.post('/'+ version +'/application/nondep-check-answers', function(req, res) {
   res.redirect("nondep-add-another")  
