@@ -133,6 +133,20 @@
                 <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> whether they pay towards the rent or mortgage</span></a>
               </dd>
             </div>
+
+            {% if data['contribute'+data['CurrentPerson']] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                When did they start paying towards the rent or mortgage?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['nondepStartPay'+data['CurrentPerson']]}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> whether they pay towards the rent or mortgage</span></a>
+              </dd>
+            </div>
+            {% endif %}
           {% endif %}
 
           <div class="govuk-summary-list__row">
