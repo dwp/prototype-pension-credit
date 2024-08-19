@@ -22,8 +22,8 @@
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
         <h1 class="govuk-heading-l">Overnight stays in hospital since <span class="no-wrap">{{data['backdateDateString']}}</span></h1>
-        <p class="govuk-hint"> If you stayed overnight in hospital more than once, you can tell us later in this application.</p>
-<br>
+        <p class="govuk-body govuk-!-margin-bottom-7">If you were in hospital for more than one overnight stay tell us about them one at a time.</p>
+
         <form method="post">
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
@@ -100,6 +100,26 @@
             </div>
 
             <div class="govuk-form-group">
+            
+            <div class="govuk-form-group">
+                <h2 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--m" for="hospital-name">
+                    What is the name of the hospital?
+                    </label>
+                </h2>
+                <input class="govuk-input" id="hospital-name" name="hospitalName" type="text">
+            </div>
+            
+            <div class="govuk-form-group">
+                <h2 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--m" for="hospital-location">
+                    Which town, city or area is the hospital in?
+                    </label>
+                </h2>
+                <input class="govuk-input" id="hospital-location" name="hospitalLocation" type="text">
+            </div>
+
+            <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h1 class="govuk-fieldset__heading">
@@ -124,11 +144,11 @@
                 </fieldset>
             </div>
 
-
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-                Continue
-            </button>
-
+            <div class="govuk-form-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+            </div>
         </form>
 
 
