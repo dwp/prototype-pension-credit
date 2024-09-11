@@ -351,7 +351,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 5;
-   let monthlyapplicable = ((disregard+applicable) * 52)/12;
+   let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    
    if(req.session.data['claimantEASD'] == 'true'){
@@ -370,7 +370,7 @@ router.post('/'+ version +'/application/eligibility-CA-claimant', function(req, 
       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
       req.session.data['applicableamount'] = applicable.toFixed(2)
       let disregard = 5;
-      let monthlyapplicable = ((disregard+applicable) * 52)/12;
+      let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
       req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    }
    res.redirect("eligibility-has-partner");
@@ -485,7 +485,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 10;
-   let monthlyapplicable = ((disregard+applicable) * 52)/12;
+   let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
 
    if(req.session.data['partnerEASD'] == 'true'){
@@ -502,7 +502,7 @@ router.post('/'+ version +'/application/eligibility-CA-partner', function(req, r
       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
       req.session.data['applicableamount'] = applicable.toFixed(2)
       let disregard = 10;
-      let monthlyapplicable = ((disregard+applicable) * 52)/12;
+      let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
       req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    }
    res.redirect("eligibility-income");
