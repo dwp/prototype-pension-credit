@@ -234,6 +234,24 @@ router.post('/'+ version +'/application/nondep-charity-name', function(req, res)
 ////////////////////
 ////////////////////    ELIGIBILITY
 ////////////////////
+router.post('/'+ version +'/application/eligibility-service-start', function(req, res) { 
+   if(req.session.data["hasEverything"]=='Yes'){
+      res.redirect("eligibility-country-you-live-in")
+   }
+   else{
+      res.redirect("eligibility-need-information")
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-country-you-live-in', function(req, res) { 
+   if(req.session.data["countryLiveIn"]=='Somewhere else'){
+      res.redirect("eligibility-do-not-live-uk")
+   }
+   else{
+      res.redirect("eligibility-how-we-use-information")
+   }
+});
+
 
 router.post('/'+ version +'/application/eligibility-start-dob', function(req, res) { 
    req.session.data['Carersamount'] = '0'
@@ -267,31 +285,26 @@ router.post('/'+ version +'/application/eligibility-claimant-sex', function(req,
    if(req.session.data['claimantSex'] == 'Male'){
       let SC_SPaDate = new Date(Date.parse('05 May 1951 00:00:00 GMT'));
       if(dob < SC_SPaDate){
-         req.session.data['dropout'] = "savings";
-         res.redirect("eligibility-dropout");
+         res.redirect("eligibility-nationality");
       }
       else{
          res.redirect("eligibility-has-children")
-         //res.redirect("eligibility-housing-costs")
       }
    }
    else{
       let SC_SPaDate = new Date(Date.parse('05 May 1956 00:00:00 GMT'));
       if(dob < SC_SPaDate){
-         req.session.data['dropout'] = "savings";
-         res.redirect("eligibility-dropout");
+         res.redirect("eligibility-nationality");
       }
       else{
          res.redirect("eligibility-has-children")
-         //res.redirect("eligibility-housing-costs")
       }
    }
 });
 
 router.post('/'+ version +'/application/eligibility-has-children', function(req, res) { 
    if(req.session.data['hasChildren']=="Yes"){
-      req.session.data['dropout'] = "children";
-      res.redirect("eligibility-dropout");
+      res.redirect("eligibility-nationality");
    }
    else{
       res.redirect("eligibility-housing-costs")
@@ -299,9 +312,8 @@ router.post('/'+ version +'/application/eligibility-has-children', function(req,
 });
 
 router.post('/'+ version +'/application/eligibility-housing-costs', function(req, res) { 
-   if(req.session.data['serviceCharge'] == 'Yes' || req.session.data['serviceCharge'] == 'Yes' ){
-      req.session.data['dropout'] = "housing";
-      res.redirect("eligibility-dropout");
+   if(req.session.data['serviceCharge'] == 'Yes' || req.session.data['groundRent'] == 'Yes' ){
+      res.redirect("eligibility-nationality");
    }
    else{
       res.redirect("eligibility-benefits-claimant");
@@ -351,7 +363,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 5;
-   let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
+   let monthlyapplicable = ((disregard+applicable) * 52)/12;
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    
    if(req.session.data['claimantEASD'] == 'true'){
@@ -370,7 +382,7 @@ router.post('/'+ version +'/application/eligibility-CA-claimant', function(req, 
       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
       req.session.data['applicableamount'] = applicable.toFixed(2)
       let disregard = 5;
-      let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
+      let monthlyapplicable = ((disregard+applicable) * 52)/12;
       req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    }
    res.redirect("eligibility-has-partner");
@@ -485,7 +497,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
    let disregard = 10;
-   let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
+   let monthlyapplicable = ((disregard+applicable) * 52)/12;
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
 
    if(req.session.data['partnerEASD'] == 'true'){
@@ -502,7 +514,7 @@ router.post('/'+ version +'/application/eligibility-CA-partner', function(req, r
       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
       req.session.data['applicableamount'] = applicable.toFixed(2)
       let disregard = 10;
-      let monthlyapplicable = (((disregard+applicable)*1.005) * 52)/12;
+      let monthlyapplicable = ((disregard+applicable) * 52)/12;
       req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    }
    res.redirect("eligibility-income");
