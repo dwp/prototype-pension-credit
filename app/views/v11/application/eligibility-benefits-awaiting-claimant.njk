@@ -31,48 +31,76 @@
                 Select each benefit you have applied for and are waiting to find out if you are eligible.
             </div>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+            {% if data['ClaimantBenefitsEntitled'].includes('AA')%}
+            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting" name="ClaimantBenefitsAwaiting" type="checkbox" value="AA">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting">
                 Attendance Allowance
                 </label>
             </div>
+            {% endif %}
+
+            {% if data['ClaimantBenefitsEntitled'].includes('DLA')%}
+            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-1" name="ClaimantBenefitsAwaiting" type="checkbox" value="DLA">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-1">
                 The middle or highest rate from the care component of Disability Living Allowance (DLA)
                 </label>
             </div>
+            {% endif %}
+            
+            {% if data['ClaimantBenefitsEntitled'].includes('PIP')%}
+            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-2" name="ClaimantBenefitsAwaiting" type="checkbox" value="PIP">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-2">
                 The daily living component of Personal Independence Payment (PIP)
                 </label>
             </div>
+            {% endif %}
+            
+            {% if data['ClaimantBenefitsEntitled'].includes('ADP')%}
+            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-3" name="ClaimantBenefitsAwaiting" type="checkbox" value="ADP">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-3">
                 The daily living component of Adult Disability Payment (ADP)
                 </label>
             </div>
+            {% endif %}
+            
+            {% if data['ClaimantBenefitsEntitled'].includes('AFIP')%}
+            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-4" name="ClaimantBenefitsAwaiting" type="checkbox" value="AFIP">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-4">
                 Armed Forces Independence Payment
                 </label>
             </div>
+            {% endif %}
+            
+            {% if data['ClaimantBenefitsEntitled'].includes('CA')%}
+            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-5" name="ClaimantBenefitsAwaiting" type="checkbox" value="CA">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-5">
                 Carer's allowance
                 </label>
             </div>
+            {% endif %}
+            
+            {% if data['ClaimantBenefitsEntitled'].includes('CSP')%}
+            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-6" name="ClaimantBenefitsAwaiting" type="checkbox" value="CSP">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-6">
                 Carer support payment
                 </label>
             </div>
+            {% endif %}
 
             <div class="govuk-checkboxes__divider">or</div>
             <div class="govuk-checkboxes__item">
