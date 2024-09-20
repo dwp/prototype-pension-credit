@@ -285,7 +285,7 @@ router.post('/'+ version +'/application/eligibility-claimant-sex', function(req,
    if(req.session.data['claimantSex'] == 'Male'){
       let SC_SPaDate = new Date(Date.parse('05 May 1951 00:00:00 GMT'));
       if(dob < SC_SPaDate){
-         res.redirect("eligibility-nationality");
+         res.redirect("aboutyou-nationality");
       }
       else{
          res.redirect("eligibility-has-children")
@@ -294,7 +294,7 @@ router.post('/'+ version +'/application/eligibility-claimant-sex', function(req,
    else{
       let SC_SPaDate = new Date(Date.parse('05 May 1956 00:00:00 GMT'));
       if(dob < SC_SPaDate){
-         res.redirect("eligibility-nationality");
+         res.redirect("aboutyou-nationality");
       }
       else{
          res.redirect("eligibility-has-children")
@@ -304,7 +304,7 @@ router.post('/'+ version +'/application/eligibility-claimant-sex', function(req,
 
 router.post('/'+ version +'/application/eligibility-has-children', function(req, res) { 
    if(req.session.data['hasChildren']=="Yes"){
-      res.redirect("eligibility-nationality");
+      res.redirect("aboutyou-nationality");
    }
    else{
       res.redirect("eligibility-housing-costs")
@@ -313,7 +313,7 @@ router.post('/'+ version +'/application/eligibility-has-children', function(req,
 
 router.post('/'+ version +'/application/eligibility-housing-costs', function(req, res) { 
    if(req.session.data['serviceCharge'] == 'Yes' || req.session.data['groundRent'] == 'Yes' ){
-      res.redirect("eligibility-nationality");
+      res.redirect("aboutyou-nationality");
    }
    else{
       res.redirect("eligibility-benefits-claimant");
@@ -425,8 +425,7 @@ router.post('/'+ version +'/application/eligibility-partner-sex', function(req, 
             res.redirect("eligibility-dropout");
          }
          else if(dob < SC_SPaDate){
-            req.session.data['dropout'] = "savings";
-            res.redirect("eligibility-dropout");
+            res.redirect("aboutyou-nationality");
          }
          else{
             res.redirect("eligibility-benefits-partner")
@@ -445,8 +444,7 @@ router.post('/'+ version +'/application/eligibility-partner-sex', function(req, 
             res.redirect("eligibility-dropout");
          }
          else if(dob < SC_SPaDate){
-            req.session.data['dropout'] = "savings";
-            res.redirect("eligibility-dropout");
+            res.redirect("aboutyou-nationality");
          }
          else{
             res.redirect("eligibility-benefits-partner")
@@ -529,73 +527,60 @@ router.post('/'+ version +'/application/eligibility-income', function(req, res) 
    }
 });
 
+//////// ABOUT YOU
 
-
-
-
-
-
-
-
-
-//OTHER STUFF
-router.post('/'+ version +'/application/date-of-birth', function(req, res) { 
-   res.redirect("applicant-nationality-passport")
-});
-
-router.post('/'+ version +'/application/date-of-birth', function(req, res) { 
-   res.redirect("applicant-nationality-passport")
-});
-
-router.post('/'+ version +'/application/applicant-nationality-passport', function(req, res) { 
-   res.redirect("live-with-partner")
-});
-
-router.post('/'+ version +'/application/live-with-partner', function(req, res) { 
-   res.redirect("protect-identity")
-});
-
-router.post('/'+ version +'/application/protect-identity', function(req, res) { 
-   let pastYear = date.getFullYear()-3;
-   req.session.data['benefitDate'] = date.getDate() + ' ' + months[date.getMonth()] + ' ' + pastYear;
-   res.redirect("benefits")
-});
-
-router.post('/'+ version +'/application/benefits', function(req, res) { 
-   let benefits = req.session.data['benefitsGetting'];
-   if(benefits.includes('SP')){
-      res.redirect("SP-bank")
+router.post('/'+ version +'/application/aboutyou-nationality', function(req, res) {  
+   if(req.session.data['hasPartner']){
+      res.redirect("IDV-protect-identity")
    }
    else{
-      res.redirect("benefits-applied")
+      res.redirect("aboutyou-live-with-partner")
    }
 });
-
-router.post('/'+ version +'/application/benefits-applied', function(req, res) { 
-      res.redirect("bank-details")
-   
+router.post('/'+ version +'/application/aboutyou-live-with-partner', function(req, res) { 
+   res.redirect("IDV-protect-identity")
 });
-
-router.post('/'+ version +'/application/SP-bank', function(req, res) { 
-   let sortcode = req.session.data['SP-sortcode'];
-   if(sortcode.length === 6){
-      let formattedSortcode = sortcode.slice(0,2) + ' ';
-      formattedSortcode += sortcode.slice(2,4) + ' ';
-      formattedSortcode += sortcode.slice(4,6);
-      req.session.data['SP-sortcode'] = formattedSortcode;
-   }
-   res.redirect("bank-confirm")
-});
-
-router.post('/'+ version +'/application/bank-confirm', function(req, res) { 
+router.post('/'+ version +'/application/aboutyou-bank-confirm', function(req, res) { 
    
    if(req.session.data['sameBank']=='yes'){
       res.redirect("finish")
    }
    else{
-      res.redirect("bank-details")
+      res.redirect("aboutyou-bank-details")
    }
 });
+
+
+
+//////// IDV
+router.post('/'+ version +'/application/IDV-protect-identity', function(req, res) { 
+   let pastYear = date.getFullYear()-3;
+   req.session.data['benefitDate'] = date.getDate() + ' ' + months[date.getMonth()] + ' ' + pastYear;
+   res.redirect("IDV-benefits")
+});
+
+router.post('/'+ version +'/application/IDV-benefits', function(req, res) { 
+   let benefits = req.session.data['benefitsGetting'];
+   if(benefits.includes('SP')){
+      res.redirect("IDV-SP-bank")
+   }
+   else{
+      res.redirect("IDV-benefits-applied")
+   }
+});
+
+router.post('/'+ version +'/application/IDV-benefits-applied', function(req, res) { 
+   res.redirect("aboutyou-bank-details")
+
+});
+
+router.post('/'+ version +'/application/IDV-SP-bank', function(req, res) { 
+   res.redirect("aboutyou-bank-confirm")
+});
+
+
+//OTHER STUFF
+
 
 router.post('/'+ version +'/application/phone', function(req, res) { 
    res.redirect("bank-details")

@@ -38,25 +38,25 @@
                     </label>
                   </div>
                   <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="benefitsGetting-3" name="benefitsGetting" type="checkbox" value="AA">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-3" name="benefitsGetting" type="checkbox" value="AA" {% if data['ClaimantBenefitsEntitled']%}{% if data['ClaimantBenefitsEntitled'].includes('AA')%}checked="checked"{%endif%}{%endif%}>
                     <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-3">
                       Attendance Allowance
                     </label>
                   </div>
                   <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="benefitsGetting-4" name="benefitsGetting" type="checkbox" value="CA">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-4" name="benefitsGetting" type="checkbox" value="CA" {% if data['ClaimantBenefitsEntitled']%}{% if data['ClaimantBenefitsEntitled'].includes('CA')%}checked="checked"{%endif%}{%endif%}>
                     <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-4">
                       Carer's Allowance
                     </label>
                   </div>
                   <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="benefitsGetting-5" name="benefitsGetting" type="checkbox" value="PIP">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-5" name="benefitsGetting" type="checkbox" value="PIP" {% if data['ClaimantBenefitsEntitled']%}{% if data['ClaimantBenefitsEntitled'].includes('PIP')%}checked="checked"{%endif%}{%endif%}>
                     <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-5">
                       Personal Independance Payment (PIP)
                     </label>
                   </div>
                   <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="benefitsGetting-6" name="benefitsGetting" type="checkbox" value="DLA">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-6" name="benefitsGetting" type="checkbox" value="DLA" {% if data['ClaimantBenefitsEntitled']%}{% if data['ClaimantBenefitsEntitled'].includes('DLA')%}checked="checked"{%endif%}{%endif%}>
                     <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-6">
                       Disability Living Allowance
                     </label>

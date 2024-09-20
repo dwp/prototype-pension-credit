@@ -45,14 +45,14 @@
                         </label>
                       </div>
                       <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="PC">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="JSA">
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-2">
                           Jobseeker's Allowance (JSA)
                         </label>
                       </div>
 
                       <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="PC">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-2" name="pensionApplied" type="checkbox" value="ESA">
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-2">
                           Employment and Support Allowance (ESA)
                         </label>
@@ -61,7 +61,11 @@
                     {% if data['benefitsGetting'].includes('AA')%}
                     {% else %}
                       <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="pensionApplied-4" name="pensionApplied" type="checkbox" value="AA">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-4" name="pensionApplied" type="checkbox" value="AA" 
+                        {% if data['ClaimantBenefitsAwaiting']%}
+                          {% if data['ClaimantBenefitsAwaiting'].includes('AA')%} checked="checked" {%endif%}
+                        {%endif%}
+                        >
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-4">
                           Attendance Allowance
                         </label>
@@ -71,7 +75,7 @@
                     {% if data['benefitsGetting'].includes('CA')%}
                     {% else %}
                       <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="CA">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="CA" {% if data['ClaimantBenefitsAwaiting']%}{% if data['ClaimantBenefitsAwaiting'].includes('CA')%}checked="checked"{%endif%}{%endif%}>
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
                           Carer's Allowance
                         </label>
@@ -81,7 +85,7 @@
                     {% if data['benefitsGetting'].includes('PIP')%}
                     {% else %}
                       <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="PIP">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="PIP" {% if data['ClaimantBenefitsAwaiting']%}{% if data['ClaimantBenefitsAwaiting'].includes('PIP')%}checked="checked"{%endif%}{%endif%}>
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
                           Personal Independence Payment (PIP)
                         </label>
@@ -91,7 +95,7 @@
                     {% if data['benefitsGetting'].includes('DLA')%}
                     {% else %}
                       <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="DLA">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="DLA" {% if data['ClaimantBenefitsAwaiting']%}{% if data['ClaimantBenefitsAwaiting'].includes('DLA')%}checked="checked"{%endif%}{%endif%}>
                         <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
                           Disability Living Allowance
                         </label>
