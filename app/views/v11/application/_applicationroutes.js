@@ -2,6 +2,9 @@ const govukPrototypeKit = require('govuk-prototype-kit');
 const router = govukPrototypeKit.requests.setupRouter();
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const SPa_Boundry_Start = new Date(Date.parse('06 April 1951 00:00:00 GMT'))
+const SPa_Boundry_End = new Date(Date.parse('06 April 1953 00:00:00 GMT'))
+
 var date = new Date(); //get todays date
 
 var version = "v11";
@@ -234,6 +237,7 @@ router.post('/'+ version +'/application/nondep-charity-name', function(req, res)
 ////////////////////
 ////////////////////    ELIGIBILITY
 ////////////////////
+
 router.post('/'+ version +'/application/eligibility-service-start', function(req, res) { 
    if(req.session.data["hasEverything"]=='Yes'){
       res.redirect("eligibility-country-you-live-in")
@@ -265,13 +269,19 @@ router.post('/'+ version +'/application/eligibility-start-dob', function(req, re
    req.session.data['claimantDoB'] = claimantDoB
 
    let SPa = new Date(Date.parse(req.session.data['claimantDoB']))
+   let DoB = new Date(Date.parse(req.session.data['claimantDoB']))
    SPa.setFullYear(SPa. getFullYear() + 66);
    let today = new Date()
    today.setMonth(today. getMonth() + 4);
    
 
    if(SPa<today){
-      res.redirect("eligibility-claimant-sex")
+      if(DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End){
+         res.redirect("eligibility-claimant-sex")
+      }
+      else{
+         res.redirect("eligibility-has-children")
+      }
    }
    else{
       res.redirect("eligibility-too-young")
@@ -404,7 +414,13 @@ router.post('/'+ version +'/application/eligibility-partner-dob', function(req, 
    partnerDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
    partnerDoB.setYear(req.session.data["dateOfBirthyy"])
    req.session.data['partnerDoB'] = partnerDoB
-   res.redirect("eligibility-partner-sex")
+
+   if(partnerDoB > SPa_Boundry_Start && partnerDoB < SPa_Boundry_End){
+      res.redirect("eligibility-partner-sex")
+   }
+   else{
+      res.redirect("eligibility-benefits-partner")
+   }
 });
 
 router.post('/'+ version +'/application/eligibility-partner-sex', function(req, res) { 
