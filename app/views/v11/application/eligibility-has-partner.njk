@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Have you had any overnight stays in hospital since data['backdateDateString']?" %}
+{% set pageName = "Do you have a partner?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -30,7 +30,7 @@
                 </h1>
                 </legend>
                 <p class="govuk-hint">
-                    If you live with a partner, their details must be included as part of your application. A partner is a husband, wife, civil partner or someone that you are in a relationship with. 
+                    If you live with a partner, their details must be included as part of your application. A partner is a husband, wife, civil partner or someone that you are in a relationship with.
                 </p>
 
                 <div class="govuk-radios govuk-radios" data-module="govuk-radios">
@@ -49,7 +49,7 @@
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="hasPartner-2" name="hasPartner" type="radio" value="No">
                     <label class="govuk-label govuk-radios__label" for="hasPartner-2">
-                    No 
+                    No
                     </label>
                 </div>
                 </div>

@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Have you had any overnight stays in hospital since data['backdateDateString']?" %}
+{% set pageName = "Is your partner waiting for a decision about any of these benefits?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -31,7 +31,7 @@
                 Select each benefit you have applied for and are waiting to find out if you are eligible.
             </div>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-           
+
             {% if data['PartnerBenefitsEntitled'].includes('AA')%}
             {% else %}
             <div class="govuk-checkboxes__item">
