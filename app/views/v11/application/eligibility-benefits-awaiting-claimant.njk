@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Have you had any overnight stays in hospital since data['backdateDateString']?" %}
+{% set pageName = "Are you waiting for a decision about any of these benefits?" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -51,7 +51,7 @@
                 </label>
             </div>
             {% endif %}
-            
+
             {% if data['ClaimantBenefitsEntitled'].includes('PIP')%}
             {% else %}
             <div class="govuk-checkboxes__item">
@@ -61,7 +61,7 @@
                 </label>
             </div>
             {% endif %}
-            
+
             {% if data['ClaimantBenefitsEntitled'].includes('ADP')%}
             {% else %}
             <div class="govuk-checkboxes__item">
@@ -71,7 +71,7 @@
                 </label>
             </div>
             {% endif %}
-            
+
             {% if data['ClaimantBenefitsEntitled'].includes('AFIP')%}
             {% else %}
             <div class="govuk-checkboxes__item">
@@ -81,7 +81,7 @@
                 </label>
             </div>
             {% endif %}
-            
+
             {% if data['ClaimantBenefitsEntitled'].includes('CA')%}
             {% else %}
             <div class="govuk-checkboxes__item">
@@ -91,7 +91,7 @@
                 </label>
             </div>
             {% endif %}
-            
+
             {% if data['ClaimantBenefitsEntitled'].includes('CSP')%}
             {% else %}
             <div class="govuk-checkboxes__item">
