@@ -32,7 +32,15 @@
             </div>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
 
-            {% if data['PartnerBenefitsEntitled'].includes('AA')%}
+            {% 
+            if data['PartnerBenefitsEntitled'].includes('AA')
+            or data['PartnerBenefitsEntitled'].includes('DLA')
+            or data['PartnerBenefitsEntitled'].includes('PIP')
+            or data['PartnerBenefitsEntitled'].includes('ADP')
+            or data['PartnerBenefitsEntitled'].includes('AFIP')
+            or data['PartnerBenefitsEntitled'].includes('PADP')
+            or data['PartnerBenefitsEntitled'].includes('CAA')
+            %}
             {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting" name="PartnerBenefitsAwaiting" type="checkbox" value="AA">
@@ -40,49 +48,48 @@
                 Attendance Allowance
                 </label>
             </div>
-            {% endif %}
-
-            {% if data['PartnerBenefitsEntitled'].includes('DLA')%}
-            {% else %}
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-7" name="PartnerBenefitsAwaiting" type="checkbox" value="PADP">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-7">
+                Pension Age Disability Payment
+                </label>
+            </div>
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-1" name="PartnerBenefitsAwaiting" type="checkbox" value="DLA">
                 <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-1">
                 The middle or highest rate from the care component of Disability Living Allowance (DLA)
                 </label>
             </div>
-            {% endif %}
-
-            {% if data['PartnerBenefitsEntitled'].includes('PIP')%}
-            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-2" name="PartnerBenefitsAwaiting" type="checkbox" value="PIP">
                 <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-2">
                 The daily living component of Personal Independence Payment (PIP)
                 </label>
             </div>
-            {% endif %}
-
-            {% if data['PartnerBenefitsEntitled'].includes('ADP')%}
-            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-3" name="PartnerBenefitsAwaiting" type="checkbox" value="ADP">
                 <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-3">
                 The daily living component of Adult Disability Payment (ADP)
                 </label>
             </div>
-            {% endif %}
-
-            {% if data['PartnerBenefitsEntitled'].includes('AFIP')%}
-            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-4" name="PartnerBenefitsAwaiting" type="checkbox" value="AFIP">
                 <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-4">
                 Armed Forces Independence Payment
                 </label>
             </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-8" name="PartnerBenefitsAwaiting" type="checkbox" value="CAA">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-8">
+                Constant Attendance Allowance
+                </label>
+            </div>
             {% endif %}
 
-            {% if data['PartnerBenefitsEntitled'].includes('CA')%}
+            {% 
+            if data['PartnerBenefitsEntitled'].includes('CSP')
+            or data['PartnerBenefitsEntitled'].includes('CA')
+            %}
             {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-5" name="PartnerBenefitsAwaiting" type="checkbox" value="CA">
@@ -90,10 +97,6 @@
                 Carer's allowance
                 </label>
             </div>
-            {% endif %}
-
-            {% if data['PartnerBenefitsEntitled'].includes('CSP')%}
-            {% else %}
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-6" name="PartnerBenefitsAwaiting" type="checkbox" value="CSP">
                 <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-6">
