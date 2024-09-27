@@ -50,6 +50,12 @@
                     </label>
                   </div>
                   <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-2" name="benefitsGetting" type="checkbox" value="CSP" {% if data['ClaimantBenefitsEntitled']%}{% if data['ClaimantBenefitsEntitled'].includes('CSP')%}checked="checked"{%endif%}{%endif%}>
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-2">
+                      Carer Support Payment
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="benefitsGetting-5" name="benefitsGetting" type="checkbox" value="PIP" {% if data['ClaimantBenefitsEntitled']%}{% if data['ClaimantBenefitsEntitled'].includes('PIP')%}checked="checked"{%endif%}{%endif%}>
                     <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-5">
                       Personal Independance Payment (PIP)
@@ -63,8 +69,8 @@
                   </div>
                   <div class="govuk-checkboxes__divider">or</div>
                   <div class="govuk-checkboxes__item">
-                    <input class="govuk-checkboxes__input" id="benefitsGetting-5" name="benefitsGetting" type="checkbox" value="none" data-behaviour="exclusive">
-                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-5">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-7" name="benefitsGetting" type="checkbox" value="none" data-behaviour="exclusive">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-7">
                     None of these
                     </label>
                   </div>
