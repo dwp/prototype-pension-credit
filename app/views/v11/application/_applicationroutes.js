@@ -338,7 +338,6 @@ router.post('/'+ version +'/application/eligibility-benefits-claimant', function
          benefits.includes('AFIP') || benefits.includes('PADP') ||
          benefits.includes('CAA')
       ){
-      console.log("Claimant has EASD")
       req.session.data['claimantEASD'] = 'true';
    }
 
@@ -378,7 +377,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
 
 router.post('/'+ version +'/application/eligibility-income-from-employment', function(req, res) {
    
-   if( req.session.data['hasEmploymentIncome'] == 'Yes'){
+   if( req.session.data['hasPartner'] == 'Yes, we live together'){
       res.redirect("eligibility-calculate");
    }
    else{
