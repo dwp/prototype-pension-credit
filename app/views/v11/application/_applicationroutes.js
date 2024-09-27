@@ -335,75 +335,78 @@ router.post('/'+ version +'/application/eligibility-benefits-claimant', function
 
    if(   benefits.includes('AA') || benefits.includes('DLA') || 
          benefits.includes('PIP') || benefits.includes('ADP') || 
-         benefits.includes('AFIP')){
+         benefits.includes('AFIP') || benefits.includes('PADP') ||
+         benefits.includes('CAA')
+      ){
+      console.log("Claimant has EASD")
       req.session.data['claimantEASD'] = 'true';
    }
 
    if(benefits.includes('CA') || benefits.includes('CSP')){
+      console.log("Claimant has Carers")
       req.session.data['claimantCarers'] = 'true';
    }
 
-   res.redirect("eligibility-benefits-awaiting-claimant");
-
+   if( req.session.data['claimantCarers'] == 'true' && req.session.data['claimantEASD'] == 'true'){
+      res.redirect("eligibility-income-from-employment");
+   }
+   else{
+      res.redirect("eligibility-benefits-awaiting-claimant");
+   }
 });
+
 
 router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant', function(req, res) {
    let benefits = req.session.data['ClaimantBenefitsAwaiting'];
 
    if(   benefits.includes('AA') || benefits.includes('DLA') || 
          benefits.includes('PIP') || benefits.includes('ADP') || 
-         benefits.includes('AFIP')){
+         benefits.includes('AFIP') || benefits.includes('PADP') ||
+         benefits.includes('CAA')){
       req.session.data['claimantEASD'] = 'true';
    }
 
    if(benefits.includes('CA') || benefits.includes('CSP')){
       req.session.data['claimantCarers'] = 'true';
    }
-
-   req.session.data['standardamount'] = '218.15'
-
-   if(req.session.data['claimantEASD'] == 'true'){
-      req.session.data['EASDamount'] = '81.50'
-   }
-   if(req.session.data['claimantCarers'] == 'true'){
-      req.session.data['Carersamount'] = '45.60'
-   }
-
-
-   let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
-   req.session.data['applicableamount'] = applicable.toFixed(2)
-   let disregard = 5;
-   let monthlyapplicable = ((disregard+applicable) * 52)/12;
-   req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
    
-   if(req.session.data['claimantEASD'] == 'true'){
-      res.redirect("eligibility-CA-claimant");
+   
+   res.redirect("eligibility-income-from-employment");
+
+   
+});
+
+router.post('/'+ version +'/application/eligibility-income-from-employment', function(req, res) {
+   
+   if( req.session.data['hasEmploymentIncome'] == 'Yes'){
+      res.redirect("eligibility-calculate");
    }
    else{
       res.redirect("eligibility-has-partner");
    }
-   
 });
 
-router.post('/'+ version +'/application/eligibility-CA-claimant', function(req, res) { 
-   if( req.session.data['isCaredFor'] == 'Yes'){
-      req.session.data['EASDamount'] = '0';
-      req.session.data['claimantEASD'] = 'true';
-      let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
-      req.session.data['applicableamount'] = applicable.toFixed(2)
-      let disregard = 5;
-      let monthlyapplicable = ((disregard+applicable) * 52)/12;
-      req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
-   }
-   res.redirect("eligibility-has-partner");
-});
+
+
+// router.post('/'+ version +'/application/eligibility-CA-claimant', function(req, res) { 
+//    if( req.session.data['isCaredFor'] == 'Yes'){
+//       req.session.data['EASDamount'] = '0';
+//       req.session.data['claimantEASD'] = 'true';
+//       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
+//       req.session.data['applicableamount'] = applicable.toFixed(2)
+//       let disregard = 5;
+//       let monthlyapplicable = ((disregard+applicable) * 52)/12;
+//       req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
+//    }
+//    res.redirect("eligibility-has-partner");
+// });
 
 router.post('/'+ version +'/application/eligibility-has-partner', function(req, res) { 
    if( req.session.data['hasPartner'] == 'Yes, we live together'){
       res.redirect("eligibility-partner-dob")
    }
    else{
-      res.redirect("eligibility-income")
+      res.redirect("eligibility-calculate");
    }
 });
 
@@ -474,7 +477,8 @@ router.post('/'+ version +'/application/eligibility-benefits-partner', function(
 
    if(   benefits.includes('AA') || benefits.includes('DLA') || 
          benefits.includes('PIP') || benefits.includes('ADP') || 
-         benefits.includes('AFIP')){
+         benefits.includes('AFIP') || benefits.includes('PADP') ||
+         benefits.includes('CAA')){
       req.session.data['partnerEASD'] = 'true';
    }
 
@@ -482,7 +486,14 @@ router.post('/'+ version +'/application/eligibility-benefits-partner', function(
       req.session.data['partnerCarers'] = 'true';
    }
 
-   res.redirect("eligibility-benefits-awaiting-partner");
+   if(req.session.data['partnerCarers'] == 'true' && req.session.data['partnerEASD'] == 'true'){
+      res.redirect("eligibility-income-from-employment");
+   }
+   else{
+      res.redirect("eligibility-benefits-awaiting-partner");
+   }
+
+   
 
 });
 
@@ -491,7 +502,8 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
 
    if(   benefits.includes('AA') || benefits.includes('DLA') || 
          benefits.includes('PIP') || benefits.includes('ADP') || 
-         benefits.includes('AFIP')){
+         benefits.includes('AFIP') || benefits.includes('PADP') ||
+         benefits.includes('CAA')){
       req.session.data['partnerEASD'] = 'true';
    }
 
@@ -499,39 +511,76 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
       req.session.data['partnerCarers'] = 'true';
    }
 
-   req.session.data['standardamount'] = '332.95'
+   res.redirect("eligibility-income-from-employment");
 
+});
+
+// router.post('/'+ version +'/application/eligibility-CA-partner', function(req, res) { 
+//    if( req.session.data['isPartnerCaredFor'] == 'Yes'){
+//       req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) - 81.50;
+//       let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
+//       req.session.data['applicableamount'] = applicable.toFixed(2)
+//       let disregard = 10;
+//       let monthlyapplicable = ((disregard+applicable) * 52)/12;
+//       req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
+//    }
+//    res.redirect("eligibility-income");
+// });
+
+router.get('/'+ version +'/application/eligibility-calculate', function(req, res) {
+   // clear sessioon data
+   req.session.data['standardamount'] = 0
+   req.session.data['disregard'] = 0
+   req.session.data['EASDamount'] = 0
+   req.session.data['Carersamount'] = 0
+   req.session.data['applicableamount'] = 0 
+
+   // calculate standard amount
+   if(req.session.data['hasPartner'] == 'Yes, we live together'){
+      req.session.data['standardamount'] = '332.95'
+      if(
+         (req.session.data['claimantCarers'] == 'true'|| req.session.data['partnerCarers'] == 'true') 
+         && req.session.data['hasEmploymentIncome'] == 'Yes')
+         {
+            req.session.data['disregard'] = 20;
+         }
+         else{
+            req.session.data['disregard'] = 10;
+         }
+   }
+   else{
+      req.session.data['standardamount'] = '218.15'
+      req.session.data['disregard'] = 5;
+   }
+
+   // add any EASD
+   if(req.session.data['claimantEASD'] == 'true'){
+      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
+   }
    if(req.session.data['partnerEASD'] == 'true'){
       req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
    }
+
+   // add any Carers Premium
+   if(req.session.data['claimantCarers'] == 'true'){
+      req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 45.60;
+   }
+
    if(req.session.data['partnerCarers'] == 'true'){
       req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 45.60;
    }
 
+   // calculate applicable amount
    let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
    req.session.data['applicableamount'] = applicable.toFixed(2)
-   let disregard = 10;
-   let monthlyapplicable = ((disregard+applicable) * 52)/12;
+
+   // Perform weekly to monthly convertion
+   let monthlyapplicable = ((req.session.data['disregard']+applicable) * 52)/12;
+
+   // Round up to nearest pound
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
 
-   if(req.session.data['partnerEASD'] == 'true'){
-      res.redirect("eligibility-CA-partner");
-   }
-   else{
-      res.redirect("eligibility-income");
-   }
-});
-
-router.post('/'+ version +'/application/eligibility-CA-partner', function(req, res) { 
-   if( req.session.data['isPartnerCaredFor'] == 'Yes'){
-      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) - 81.50;
-      let applicable = parseFloat(req.session.data['standardamount']) + parseFloat(req.session.data['EASDamount']) + parseFloat(req.session.data['Carersamount']);
-      req.session.data['applicableamount'] = applicable.toFixed(2)
-      let disregard = 10;
-      let monthlyapplicable = ((disregard+applicable) * 52)/12;
-      req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
-   }
-   res.redirect("eligibility-income");
+   res.redirect("eligibility-income")
 });
 
 router.post('/'+ version +'/application/eligibility-income', function(req, res) { 
