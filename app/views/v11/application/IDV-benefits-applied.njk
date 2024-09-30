@@ -82,6 +82,16 @@
                       </div>
                     {% endif %}
 
+                    {% if data['benefitsGetting'].includes('CSP')%}
+                    {% else %}
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="pensionApplied-3" name="pensionApplied" type="checkbox" value="CSP" {% if data['ClaimantBenefitsAwaiting']%}{% if data['ClaimantBenefitsAwaiting'].includes('CSP')%}checked="checked"{%endif%}{%endif%}>
+                        <label class="govuk-label govuk-checkboxes__label" for="pensionApplied-3">
+                          Carer Support Payment
+                        </label>
+                      </div>
+                    {% endif %}
+
                     {% if data['benefitsGetting'].includes('PIP')%}
                     {% else %}
                       <div class="govuk-checkboxes__item">
