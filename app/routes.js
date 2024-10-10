@@ -54,6 +54,7 @@ require('./views/v10/application/_flowroutes')
 
 require('./views/v11/application/_applicationroutes')
 
+require('./views/v12/application/_applicationroutes')
 
 // Older routing
 // v4 routes
