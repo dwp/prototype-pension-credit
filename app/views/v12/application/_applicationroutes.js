@@ -9,6 +9,65 @@ var date = new Date(); //get todays date
 
 var version = "v12";
 
+//////// SAVINGS AND INVESTMENTS
+//////// aka CAPITAL
+
+router.post('/'+ version +'/application/capital-select-capital', function(req, res) {
+   
+   //Create backdating date
+   var backdateDate = new Date()
+   backdateDate.setMonth(backdateDate.getMonth() - 3)
+   var backdateDateString = backdateDate.getDate() + " " + months[backdateDate.getMonth()] + " " + backdateDate.getFullYear()
+   req.session.data['backdateDateString'] = backdateDateString
+
+   // Routing
+   let capitalTypes = req.session.data['capitalTypes']
+   if(capitalTypes == 'none'){
+      res.redirect("capital-check-answers")
+   }
+   else{
+      if(capitalTypes.includes('Shares') || capitalTypes.includes('Income or Capital Bonds') || capitalTypes.includes('Unit trusts')){
+         res.redirect("capital-complex")
+      }
+      else{ res.redirect("capital-total-TAM") }
+   }
+});
+
+router.post('/'+ version +'/application/capital-total-TAM', function(req, res) {
+   res.redirect("capital-total-increased-or-decreased")
+});
+
+router.post('/'+ version +'/application/capital-total-increased-or-decreased', function(req, res) {
+   let tamTotal = req.session.data['tamTotal']
+   if(req.session.data['hasIncreasedDecreased'] == 'No'){
+      if(tamTotal>9999){
+         res.redirect("capital-complex")
+      }
+      else{
+         res.redirect("capital-check-answers")
+      }
+   }
+   else{
+      res.redirect("capital-total-today")
+   }
+});
+
+router.post('/'+ version +'/application/capital-total-today', function(req, res) {
+   let tamTotal = parseFloat(req.session.data['tamTotal'])
+   let todayTotal = parseFloat(req.session.data['todayTotal'])
+   let averageTotal = (tamTotal + todayTotal)/2
+
+   req.session.data['averageTotal'] = averageTotal
+
+   if (averageTotal < 10000){
+      res.redirect("capital-check-answers")
+   }
+   else{
+      res.redirect("capital-complex")
+   }
+});
+
+
 //HOSPITAL STAYS
 
 router.get('/'+ version + '/application/hospital-delete', function(req, res) {
@@ -19,7 +78,6 @@ router.get('/'+ version + '/application/hospital-delete', function(req, res) {
    res.redirect("hospital-add-another")
 });
 
-
 router.get('/'+ version + '/application/hospital-change', function(req, res) {
   var i = req.query.hospital;
   req.session.data['CurrentHospital'] = i;
@@ -28,7 +86,7 @@ router.get('/'+ version + '/application/hospital-change', function(req, res) {
 
 router.get('/'+ version + '/index', function(req, res) {
    var backdateDate = new Date()
-   backdateDate.setMonth(backdateDate.getMonth() - 6)
+   backdateDate.setMonth(backdateDate.getMonth() - 3)
    var backdateDateString = backdateDate.getDate() + " " + months[backdateDate.getDay()-1] + " " + backdateDate.getFullYear()
    req.session.data['backdateDateString'] = backdateDateString
    res.render(version + '/index')
