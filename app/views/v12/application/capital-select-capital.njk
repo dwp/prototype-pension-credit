@@ -1,0 +1,106 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Do you or your partner have any of the these accounts or investments?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <form method="post" >
+
+        <div class="govuk-form-group govuk-!-padding-top-7">
+        <fieldset class="govuk-fieldset" aria-describedby="countries-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+                {{pageName}}
+            </h1>
+            </legend>
+            <div class="govuk-hint">
+                Select all that apply
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes" name="capitalTypes" type="checkbox" value="Any bank, building society or post office accounts">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes">
+                    Any bank, building society or post office accounts<br>
+                    <span class="govuk-hint">For example, savings or deposit accounts</span>
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-1" name="capitalTypes" type="checkbox" value="ISAs">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-1">
+                    ISAs
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-2" name="capitalTypes" type="checkbox" value="Shares">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-2">
+                    Shares
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-3" name="capitalTypes" type="checkbox" value="National Savings and Investment products">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-3">
+                    National Savings and Investment products<br>
+                    <span class="govuk-hint">For example, Premium Bonds or Growth Bonds</span>
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-4" name="capitalTypes" type="checkbox" value="Cash at home">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-4">
+                    Cash at home
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-5" name="capitalTypes" type="checkbox" value="Income or capital bonds">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-5">
+                    Income or capital bonds
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-6" name="capitalTypes" type="checkbox" value="Unit trusts">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-6">
+                    Unit trusts
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-7" name="capitalTypes" type="checkbox" value="Money held in foreign bank accounts">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-7">
+                    Money held in foreign bank accounts
+                    </label>
+                </div>
+
+                <div class="govuk-checkboxes__divider">or</div>
+
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="capitalTypes-none" name="capitalTypes" type="checkbox" value="none" data-behaviour="exclusive">
+                    <label class="govuk-label govuk-checkboxes__label" for="capitalTypes-none">
+                    None of these
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
