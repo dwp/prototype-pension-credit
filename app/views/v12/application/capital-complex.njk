@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "  Which account would you like us to pay your Pension Credit into?" %}
+{% set pageName = "This is a complex case" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -24,6 +24,28 @@
             This is a complex case
           </h1>
           <div class="govuk-panel__body">Additional data will need to be collected</div>
+        </div>
+        <div class="govuk-form-group">
+        <h2 class="govuk-heading-m">Reason for complexity</h2>
+          {% if data['averageTotal'] > 10000 %}
+            <p class="govuk-body">Average captial is £{{data['averageTotal']}}</p> 
+          {% elseif data['tamTotal'] > 10000 %}
+            <p class="govuk-body">TAM total is £{{data['tamTotal']}} and hasn't decreased</p> 
+          {%endif%}
+          {% 
+            if data['capitalTypes'].includes('Shares')
+            or data['capitalTypes'].includes('Income or capital bonds')
+            or data['capitalTypes'].includes('Unit trusts')
+          %}
+          <p class="govuk-body">
+            Capital types include: 
+             <ul class="govuk-list govuk-list--bullet">
+              {% if data['capitalTypes'].includes('Shares') %}<li>Shares</li>{% endif %}
+              {% if data['capitalTypes'].includes('Income or capital bonds') %}<li>Income or capital bonds</li>{% endif %}
+              {% if data['capitalTypes'].includes('Unit trusts') %}<li>Unit trusts</li>{% endif %}
+            </ul>
+          </p>
+          {% endif %}
         </div>
       </div>
     </div>
