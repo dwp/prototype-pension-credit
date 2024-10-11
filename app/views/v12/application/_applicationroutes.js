@@ -34,10 +34,16 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
 });
 
 router.post('/'+ version +'/application/capital-total-TAM', function(req, res) {
-   res.redirect("capital-total-increased-or-decreased")
+   if (req.session.data['route'] == "2"){
+      res.redirect("capital-total-today")
+   }
+   else{
+      res.redirect("capital-total-increased-or-decreased")
+   }
 });
 
 router.post('/'+ version +'/application/capital-total-increased-or-decreased', function(req, res) {
+   
    let tamTotal = req.session.data['tamTotal']
    if(req.session.data['hasIncreasedDecreased'] == 'No'){
       if(tamTotal>9999){
@@ -50,6 +56,7 @@ router.post('/'+ version +'/application/capital-total-increased-or-decreased', f
    else{
       res.redirect("capital-total-today")
    }
+    
 });
 
 router.post('/'+ version +'/application/capital-total-today', function(req, res) {
