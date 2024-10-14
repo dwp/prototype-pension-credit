@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Your current savings and investments" %}
+{% set pageName = "Do you have" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -23,14 +23,11 @@
 
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
-            <h1 class="govuk-heading-l">{{pageName}}</h1>
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h2 class="govuk-fieldset__heading">
-                    Has the value of your savings and investments 
-                    {% if data['tamTotal'] < 10000%}increased {% else %}decreased {% endif %}
-                    since <span class="no-wrap">{{data['backdateDateString']}}?</span>
-                </h2>
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    Do you have {% if data['tamTotal'] < 10000%}more than {% else %}less than {% endif %}£{{data['tamTotal']}} in your savings and investments today?
+                </h1>
                 </legend>
 
                 <div class="govuk-radios govuk-radios" data-module="govuk-radios">
