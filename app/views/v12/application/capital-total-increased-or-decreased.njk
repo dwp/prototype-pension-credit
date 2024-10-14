@@ -34,7 +34,7 @@
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="hasIncreasedDecreased" name="hasIncreasedDecreased" type="radio" value="Yes">
                     <label class="govuk-label govuk-radios__label" for="hasIncreasedDecreased">
-                    Yes
+                    Yes, {% if data['tamTotal'] < 10000%}more than {% else %}less than {% endif %}£{{data['tamTotal']}}
                     </label>
                 </div>
                 <div class="govuk-radios__item">
