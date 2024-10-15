@@ -52,7 +52,7 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h2 class="govuk-fieldset__heading">
-                    Did the claimant give the correct bank details in their application?
+                    Did the claimant give the correct sortcode in their application?
                 </h2>
                     </legend>
 <div id="signIn-hint" class="govuk-hint">
@@ -61,15 +61,43 @@
 
                 <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BankDetails" name="BankDetails" type="radio" value="yes"
-                    {%if data['BankDetails']=="yes"%}checked="checked"{%endif%}>
-                    <label class="govuk-label govuk-radios__label" for="BankDetails">
+                    <input class="govuk-radios__input" id="bankSort" name="bankSort" type="radio" value="yes"
+                    {%if data['bankSort']=="yes"%}checked="checked"{%endif%}>
+                    <label class="govuk-label govuk-radios__label" for="bankSort">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="BankDetails-2" name="BankDetails" type="radio" value="no">
-                    <label class="govuk-label govuk-radios__label" for="BankDetails-2">
+                    <input class="govuk-radios__input" id="bankSort-2" name="bankSort" type="radio" value="no">
+                    <label class="govuk-label govuk-radios__label" for="bankSort-2">
+                    No
+                    </label>
+                </div>
+                </div>
+            </fieldset>
+            </div>
+            <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">
+                    Did the claimant give the correct account number in their application?
+                </h2>
+                    </legend>
+<div id="signIn-hint" class="govuk-hint">
+                </div>
+
+
+                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="bankAccount" name="bankAccount" type="radio" value="yes"
+                    {%if data['bankAccount']=="yes"%}checked="checked"{%endif%}>
+                    <label class="govuk-label govuk-radios__label" for="bankAccount">
+                    Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="bankAccount-2" name="bankAccount" type="radio" value="no">
+                    <label class="govuk-label govuk-radios__label" for="bankAccount-2">
                     No
                     </label>
                 </div>
