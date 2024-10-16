@@ -7,7 +7,8 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 
 router.get('/'+version+'/tasks/randomise', function(req, res) {
     //clears the data for the tasklist to ensure a fresh task each time
-    req.session.data['BankDetails'] = '';
+    req.session.data['bankSort'] = '';
+    req.session.data['bankAccount'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
     req.session.data['Benefits'] = '';
@@ -100,7 +101,7 @@ router.get('/'+ version + '/tasks/tasklist', function(req, res) {
 
 
 router.post('/' + version + '/tasks/bank-name', function(req, res) {
-    if(req.session.data['BankDetails'] == 'yes') {
+    if(req.session.data['bankSort'] == 'yes' && req.session.data['bankAccount'] == 'yes'  ) {
         // KEEP THIS IS AS ITS BOUND TO CHANGE AGAIN!
         // if(req.session.data['taskType'] == "pay"){
         //     res.redirect("bank-encashed")
@@ -350,7 +351,8 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
 
 router.post('/' + version + '/tasks/dropout', function(req, res) {
     // Reset all sessions
-    req.session.data['BankDetails'] = '';
+    req.session.data['bankSort'] = '';
+    req.session.data['bankAccount'] = '';
     req.session.data['BankEncashed'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
@@ -372,7 +374,8 @@ router.post('/' + version + '/tasks/dropout', function(req, res) {
 
 router.post('/' + version + '/tasks/tasklist', function(req, res) {
     // Reset all sessions
-    req.session.data['BankDetails'] = '';
+    req.session.data['bankSort'] = '';
+    req.session.data['bankAccount'] = '';
     req.session.data['BankEncashed'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
