@@ -25,19 +25,7 @@
           <a class="govuk-link govuk-task-list__link" href="bank-name" aria-describedby="before-you-start-1-status">Bank details</a>
         </div>
 
-        {% if data['BankDetails'] == 'yes' and data['BankEncashed'] == 'yes' %}
-        <div class="govuk-task-list__status" id="before-you-start-1-status">
-          Done
-        </div>
-
-        {% elif data['BankDetails'] == 'yes' and data['BankEncashed'] == 'no' %}
-        <div class="govuk-task-list__status" id="prepare-application-2-status">
-          <strong class="govuk-tag govuk-tag--blue">
-          In progress
-          </strong>
-        </div>
-
-        {% elif data['BankDetails'] == 'yes' and data['BankEncashed'] != 'yes' %}
+        {% if data['bankAccount'] == 'yes' and data['bankSort'] == 'yes' %}
         <div class="govuk-task-list__status" id="before-you-start-1-status">
           Done
         </div>
