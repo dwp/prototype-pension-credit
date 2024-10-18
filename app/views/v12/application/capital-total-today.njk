@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Your savings and investments today" %}
+{% set pageName = "  Money you have today" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -29,7 +29,7 @@
 
                 <div class="govuk-body">
                     <p>
-                        We need to know how much money you and your partner have in savings and investments. This includes any money you have in:
+                          So we do not pay you too much Pension Credit, you must include all the money that you and your partner have in:
                         <ul class="govuk-list govuk-list--bullet">
                             {% for item in data['capitalTypes'] %}
                             <li>{{ item }}</li>
@@ -37,14 +37,16 @@
                         </ul>
                     </p>
                 </div>
-
-                <h2 class="govuk-heading-m">How much money do you have in savings or investments today?</h2>
+                <div class="govuk-inset-text">
+          If you do not enter anything for more than 1 hour, your application will time out and you will have to start again.
+          </div>
+                <h2 class="govuk-heading-m">How much money do you have today?</h2>
 
                 <div class="govuk-input__wrapper">
                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                     <input class="govuk-input govuk-input--width-10" id="todayTotal" name="todayTotal" spellcheck="false">
                 </div>
-            
+
             </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
