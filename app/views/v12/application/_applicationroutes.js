@@ -26,7 +26,7 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
       res.redirect("capital-check-answers")
    }
    else{
-      if(capitalTypes.includes('Shares') || capitalTypes.includes('Income or Capital Bonds') || capitalTypes.includes('Unit trusts')){
+      if(capitalTypes.includes('shares') || capitalTypes.includes('income bonds or capital bonds') || capitalTypes.includes('Unit trusts')){
          res.redirect("capital-complex")
       }
       else{ res.redirect("capital-total-TAM") }

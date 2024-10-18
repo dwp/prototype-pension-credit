@@ -29,7 +29,11 @@
               Do you or your partner have any of the these accounts or investments?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{data['capitalTypes']}}
+              <ul class="govuk-list govuk-list--bullet">
+                {% for bullet in data['capitalTypes']%}
+                  <li>{{bullet}}</li>
+                {% endfor %}
+              </ul>
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> hidden bit</span></a>
