@@ -33,16 +33,16 @@
             <p class="govuk-body">TAM total is £{{data['tamTotal']}} and hasn't decreased</p> 
           {%endif%}
           {% 
-            if data['capitalTypes'].includes('Shares')
-            or data['capitalTypes'].includes('Income or capital bonds')
-            or data['capitalTypes'].includes('Unit trusts')
+            if data['capitalTypes'].includes('shares')
+            or data['capitalTypes'].includes('income bonds or capital bonds')
+            or data['capitalTypes'].includes('unit trusts')
           %}
           <p class="govuk-body">
             Capital types include: 
              <ul class="govuk-list govuk-list--bullet">
-              {% if data['capitalTypes'].includes('Shares') %}<li>Shares</li>{% endif %}
-              {% if data['capitalTypes'].includes('Income or capital bonds') %}<li>Income or capital bonds</li>{% endif %}
-              {% if data['capitalTypes'].includes('Unit trusts') %}<li>Unit trusts</li>{% endif %}
+              {% if data['capitalTypes'].includes('shares') %}<li>Shares</li>{% endif %}
+              {% if data['capitalTypes'].includes('income bonds or capital bonds') %}<li>Income bonds or capital bonds</li>{% endif %}
+              {% if data['capitalTypes'].includes('unit trusts') %}<li>Unit trusts</li>{% endif %}
             </ul>
           </p>
           {% endif %}
