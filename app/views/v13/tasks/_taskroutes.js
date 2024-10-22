@@ -255,7 +255,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension1-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension1-net']);
       count++
-      console.log(average)
+      
     }
     else{
       req.session.data['scenario3-pension1-selected'] = 'No'
@@ -264,7 +264,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension2-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension2-net']);
       count++
-      console.log(average)
+      
     }
     else{
       req.session.data['scenario3-pension2-selected'] = 'No'
@@ -273,7 +273,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension3-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension3-net']);
       count++
-      console.log(average)
+      
     }
     else{
       req.session.data['scenario3-pension3-selected'] = 'No'
@@ -282,7 +282,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension4-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension4-net']);
       count++
-      console.log(average)
+      
     }
     else{
       req.session.data['scenario3-pension4-selected'] = 'No'
@@ -291,7 +291,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension5-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension5-net']);
       count++
-      console.log(average)
+      
     }
     else{
       req.session.data['scenario3-pension5-selected'] = 'No'
@@ -300,7 +300,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension6-selected'] == 'Yes'){
       average += parseFloat(req.session.data['scenario3-pension6-net']);
       count++
-      console.log(average)
+      
     }
     else{
       req.session.data['scenario3-pension6-selected'] = 'No'
