@@ -586,6 +586,9 @@ router.post('/'+ version +'/application/eligibility-income', function(req, res) 
    if(req.session.data['incomeAmount']=='above'){
       res.redirect("eligibility-unsuccessful")
    }
+   else if(req.session.data['incomeAmount']=='not sure'){
+      res.redirect("aboutyou-nationality")
+   }
    else{
       res.redirect("eligibility-successful")
    }
