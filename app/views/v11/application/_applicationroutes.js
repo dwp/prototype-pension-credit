@@ -273,11 +273,19 @@ router.post('/'+ version +'/application/eligibility-start-dob', function(req, re
    SPa.setFullYear(SPa. getFullYear() + 66);
    let today = new Date()
    today.setMonth(today. getMonth() + 4);
-   
+
+   console.log("SPa: "+SPa)
+   console.log("DoB: "+DoB)
+   console.log("SPa boundry start: "+SPa_Boundry_Start)
+   console.log("SPa boundry end: "+SPa_Boundry_End)
+   console.log("Today: "+today)
 
    if(SPa<today){
       if(DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End){
          res.redirect("eligibility-claimant-sex")
+      }
+      else if(DoB<SPa_Boundry_Start){
+         res.redirect("aboutyou-nationality");
       }
       else{
          res.redirect("eligibility-has-children")
