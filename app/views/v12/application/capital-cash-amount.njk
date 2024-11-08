@@ -20,19 +20,20 @@
     <div class="govuk-grid-column-two-thirds">
       <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-        <form method="post" action="capital-money-amount">
-          <div class="govuk-form-group">
+        <form method="post">
+          <div class="govuk-form-group govuk-!-margin-top-7">
+          <span class="govuk-caption-l">Your cash at home</span> 
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--l govuk-!-margin-top-9" for="cost-per-item">
+              <label class="govuk-label govuk-label--l " for="cost-per-item">
                 How much {{data['currencyType'].slice(0, -3)}} do you have?
               </label>
             </h1>
             <div class="govuk-input__wrapper">
               {%if data['currencyType'].slice(-3) == "GBP"%}
                 <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                <input class="govuk-input govuk-input--width-5" id="cost-per-item" name="costPerItem" type="number" spellcheck="false">
+                <input class="govuk-input govuk-input--width-5" id="cashAmount" name="cashAmount" type="number" spellcheck="false">
               {% else %}
-                <input class="govuk-input govuk-input--width-5" id="cost-per-item" name="costPerItem" type="number" spellcheck="false">
+                <input class="govuk-input govuk-input--width-5" id="cashAmount" name="cashAmount" type="number" spellcheck="false">
                 <div class="govuk-input__suffix" aria-hidden="true">{{data['currencyType'].slice(-3) }}</div>
               {% endif %}
             </div>

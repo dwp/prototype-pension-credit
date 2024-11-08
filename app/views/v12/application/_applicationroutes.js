@@ -13,6 +13,11 @@ var version = "v12";
 //////// aka CAPITAL
 
 router.post('/'+ version +'/application/capital-select-capital', function(req, res) {
+
+   //reset variables
+   req.session.data['complex'] = 'false';
+   req.session.data['numberCapitalSelections'] = '0';
+   req.session.data['currentCapitalSelection'] = '0';
    
    //Create backdating date
    var backdateDate = new Date()
@@ -27,7 +32,7 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
    }
    else{
       if(capitalTypes.includes('shares') || capitalTypes.includes('income bonds or capital bonds') || capitalTypes.includes('Unit trusts')){
-         res.redirect("capital-complex")
+         res.redirect("capital-complex-routing")
       }
       else{ res.redirect("capital-total-TAM") }
    }
@@ -47,7 +52,7 @@ router.post('/'+ version +'/application/capital-total-increased-or-decreased', f
    let tamTotal = req.session.data['tamTotal']
    if(req.session.data['hasIncreasedDecreased'] == 'No'){
       if(tamTotal>9999){
-         res.redirect("capital-complex")
+         res.redirect("capital-complex-routing")
       }
       else{
          res.redirect("capital-check-answers")
@@ -70,9 +75,177 @@ router.post('/'+ version +'/application/capital-total-today', function(req, res)
       res.redirect("capital-check-answers")
    }
    else{
-      res.redirect("capital-complex")
+      res.redirect("capital-complex-routing")
    }
 });
+
+router.post('/'+ version +'/application/capital-check-answers', function(req, res) {
+      res.redirect("capital-complete") 
+});
+
+////////////// COMPLEX ROUTING ///////////////////
+
+
+router.get('/'+ version + '/application/capital-complex-routing', function(req, res) {
+
+   let capitalArray = req.session.data['capitalTypes']
+   let numberCapital = capitalArray.length
+   let currentCapital = parseInt(req.session.data['currentCapitalSelection'])
+
+   console.log(capitalArray[currentCapital])
+
+   if(currentCapital == numberCapital){
+      res.redirect("capital-complete")
+   }
+   else{
+      if(capitalArray[currentCapital] == "bank and building society accounts"){
+         if(req.session.data['bankComplete'] == 'true'){
+            req.session.data['currentCapitalSelection'] = currentCapital + 1 
+            res.redirect("capital-complex-routing")
+         }
+         else{
+            res.redirect("capital-bank-name")
+         }
+      }
+
+      if(capitalArray[currentCapital] == "credit union and Post Office accounts"){
+         // these skip this jounrney until its built
+         req.session.data['currentCapitalSelection'] = currentCapital + 1 
+         res.redirect("capital-complex-routing")
+      }
+
+      if(capitalArray[currentCapital] == "cash at home"){
+         if(req.session.data['cashComplete'] == 'true'){
+            req.session.data['currentCapitalSelection'] = currentCapital + 1 
+            res.redirect("capital-complex-routing")
+         }
+         else{
+            res.redirect("capital-cash-type")
+         }
+      }
+
+      if(capitalArray[currentCapital] == "income bonds or capital bonds"){
+         // these skip this jounrney until its built
+         req.session.data['currentCapitalSelection'] = currentCapital + 1 
+         res.redirect("capital-complex-routing")
+      }
+      
+      if(capitalArray[currentCapital] == "Premium Bonds or other National Savings and Investment products"){
+         // these skip this jounrney until its built
+         req.session.data['currentCapitalSelection'] = currentCapital + 1 
+         res.redirect("capital-complex-routing")
+      }
+
+      if(capitalArray[currentCapital] == "cash, investments and accounts outside the UK"){
+         // these skip this jounrney until its built
+         req.session.data['currentCapitalSelection'] = currentCapital + 1 
+         res.redirect("capital-complex-routing")
+      }
+
+      if(capitalArray[currentCapital] == "shares"){
+         if(req.session.data['sharesComplete'] == 'true'){
+            req.session.data['currentCapitalSelection'] = currentCapital + 1 
+            res.redirect("capital-complex-routing")
+         }
+         else{
+            res.redirect("capital-shares-company")
+         }
+      }
+
+      if(capitalArray[currentCapital] == "unit trusts"){
+         // these skip this jounrney until its built
+         req.session.data['currentCapitalSelection'] = currentCapital + 1 
+         res.redirect("capital-complex-routing")
+      }
+   }
+});
+
+
+////////////// SHARES ///////////////////
+router.post('/'+ version +'/application/capital-shares-company', function(req, res) {
+   res.redirect("capital-shares-number")
+});
+router.post('/'+ version +'/application/capital-shares-number', function(req, res) {
+   res.redirect("capital-shares-prebackdating")
+});
+router.post('/'+ version +'/application/capital-shares-prebackdating', function(req, res) {
+   if(req.session.data['sharesIssuedPrebackdating']=="No"){
+      res.redirect("capital-shares-issued")
+   }
+   else{
+      res.redirect("capital-shares-check-answers")
+   }
+});
+router.post('/'+ version +'/application/capital-shares-issued', function(req, res) {
+   req.session.data['sharesIssuedDate'] = req.session.data['sharesIssued-day'] + ' ' + months[req.session.data['sharesIssued-month']-1] + ' ' + req.session.data['sharesIssued-year'];
+   res.redirect("capital-shares-check-answers")
+});
+router.post('/'+ version +'/application/capital-shares-check-answers', function(req, res) {
+   res.redirect("capital-shares-add-another")
+});
+router.post('/'+ version +'/application/capital-shares-add-another', function(req, res) {
+   req.session.data['sharesComplete'] = 'true'
+   res.redirect("capital-complex-routing")
+});
+
+////////////// BANK AND BUILDING SOCIETY ///////////////////
+router.post('/'+ version +'/application/capital-bank-name', function(req, res) {
+   res.redirect("capital-bank-type")
+});
+router.post('/'+ version +'/application/capital-bank-type', function(req, res) {
+   res.redirect("capital-bank-TAM")
+});
+router.post('/'+ version +'/application/capital-bank-TAM', function(req, res) {
+   res.redirect("capital-bank-today")
+});
+router.post('/'+ version +'/application/capital-bank-today', function(req, res) {
+   res.redirect("capital-bank-check-answers")
+});
+router.post('/'+ version +'/application/capital-bank-check-answers', function(req, res) {
+   res.redirect("capital-bank-add-another")
+});
+router.post('/'+ version +'/application/capital-bank-add-another', function(req, res) {
+   req.session.data['bankComplete'] = 'true'
+   res.redirect("capital-complex-routing")
+});
+
+////////////// ISA ///////////////////
+router.post('/'+ version +'/application/capital-isa-name', function(req, res) {
+   res.redirect("capital-bank-type")
+});
+router.post('/'+ version +'/application/capital-isa-TAM', function(req, res) {
+   res.redirect("capital-bank-today")
+});
+router.post('/'+ version +'/application/capital-isa-today', function(req, res) {
+   res.redirect("capital-bank-check-answers")
+});
+router.post('/'+ version +'/application/capital-isa-check-answers', function(req, res) {
+   res.redirect("capital-bank-add-another")
+});
+router.post('/'+ version +'/application/capital-isa-add-another', function(req, res) {
+   req.session.data['isaComplete'] = 'true'
+   res.redirect("capital-complex-routing")
+});
+
+////////////// CASH ///////////////////
+router.post('/'+ version +'/application/capital-cash-type', function(req, res) {
+   res.redirect("capital-cash-amount")
+});
+router.post('/'+ version +'/application/capital-cash-amount', function(req, res) {
+   res.redirect("capital-cash-check-answers")
+});
+router.post('/'+ version +'/application/capital-cash-check-answers', function(req, res) {
+   res.redirect("capital-cash-add-another")
+});
+router.post('/'+ version +'/application/capital-cash-add-another', function(req, res) {
+   req.session.data['cashComplete'] = 'true'
+   res.redirect("capital-complex-routing")
+});
+
+
+
+
+
 
 
 //HOSPITAL STAYS
