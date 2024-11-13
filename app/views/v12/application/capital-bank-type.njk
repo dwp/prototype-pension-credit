@@ -23,11 +23,10 @@
 
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
-                <span class="govuk-caption-l">Your {{data['bankName']}} account</span>
-                <h1 class="govuk-heading-l">
-                    How would you describe this account?
+  <span class="govuk-caption-l">Your {{data['bankName']}} account</span>                <h1 class="govuk-heading-l">
+                    What type of account do you have with {{data['bankName']}}?
                 </h1>
-                <p class="govuk-form-hint">For example, savings account</p>
+                <p class="govuk-hint">For example, current account, savings account or ISA.</p>
 
                 <div class="govuk-input__wrapper">
                     <input class="govuk-input" id="tamTotal" name="bankType" spellcheck="false">

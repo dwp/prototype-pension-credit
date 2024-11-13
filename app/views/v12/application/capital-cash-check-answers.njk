@@ -23,36 +23,36 @@
         <h1 class="govuk-heading-l">Check your account information</h1>
 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
-  
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What is the currency type?
+              Which currency is your cash in?
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['currencyType'].slice(0, -3)}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> share company</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">which currency your cash is in</span></a>
             </dd>
           </div>
 
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              How much {{data['currencyType'].slice(0, -3)}} do you have?
+              How much do you have?
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['cashAmount']}} {{data['currencyType'].slice(-3) }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> number of shares</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">how much you have</span></a>
             </dd>
           </div>
-  
-          
 
-          
-          
+
+
+
+
         </dl>
 
         <form method="post" novalidate>
