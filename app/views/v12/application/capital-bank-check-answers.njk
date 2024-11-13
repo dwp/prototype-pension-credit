@@ -23,10 +23,10 @@
         <h1 class="govuk-heading-l">Check your account information</h1>
 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
-  
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What is the name of your first bank or building society?
+              Name of bank or building society 
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['bankName']}}
@@ -39,7 +39,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              How would you describe this account?
+            Type of account
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['bankType']}}
@@ -48,10 +48,10 @@
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> number of shares</span></a>
             </dd>
           </div>
-  
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What was the balance of the account at the end of the day on {{data['backdateDateString']}}?
+            Account balance on <span class="no-wrap">{{data['backdateDateString']}}</span>
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['bankTAM']}}
@@ -63,7 +63,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What was the balance of the account today?
+                  Account balance today
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['bankToday']}}
@@ -73,8 +73,8 @@
             </dd>
           </div>
 
-          
-          
+
+
         </dl>
 
         <form method="post" novalidate>
