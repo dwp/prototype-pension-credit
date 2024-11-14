@@ -1,0 +1,77 @@
+{# Set which global nav link to highlight #}
+{% include '../partials/name/eric.njk' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName="Session Data" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% include '../partials/name/eric.njk' %}
+
+    <h1 class="govuk-heading-l">Marks example json quiz</h1>
+ 
+    <h2 class="govuk-heading-m">{{ data.json.quiz.sport.q1.question }}</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      {% for item in data.json.quiz.sport.q1.options %}
+      <li>{{ item }}</li>
+      {% endfor %}
+      </ul>
+    </ol>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Answer
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        {{ data.json.quiz.sport.q1.answer }}
+      </div>
+    </details>
+
+
+    <h2 class="govuk-heading-m">{{ data.json.quiz.maths.q1.question }}</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      {% for item in data.json.quiz.maths.q1.options %}
+      <li>{{ item }}</li>
+      {% endfor %}
+      </ul>
+    </ol>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Answer
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        {{ data.json.quiz.maths.q1.answer }}
+      </div>
+    </details>
+
+    <h2 class="govuk-heading-m">{{ data.json.quiz.maths.q2.question }}</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      {% for item in data.json.quiz.maths.q2.options %}
+      <li>{{ item }}</li>
+      {% endfor %}
+      </ul>
+    </ol>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Answer
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        {{ data.json.quiz.maths.q2.answer }}
+      </div>
+    </details>
+     
+  </div>
+</div>
+
+{% endblock %}
