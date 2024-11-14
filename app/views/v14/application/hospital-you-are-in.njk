@@ -1,0 +1,84 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "About the hospital you are in" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <h1 class="govuk-heading-l">About the hospital you are in</h1>
+
+        <form method="post" >
+            <div class="govuk-form-group">
+            
+            <div class="govuk-form-group">
+                <h2 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--m" for="hospital-name">
+                    What is the name of the hospital?
+                    </label>
+                </h2>
+                <input class="govuk-input" id="hospital-name" name="hospitalName" type="text">
+            </div>
+            
+            <div class="govuk-form-group">
+                <h2 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--m" for="hospital-location">
+                    Which town, city or area is the hospital in?
+                    </label>
+                </h2>
+                <input class="govuk-input" id="hospital-location" name="hospitalLocation" type="text">
+            </div>
+            
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-fieldset__heading">
+                        Is your hospital treatment being provided by the NHS?
+                    </h1>
+                    </legend>
+                    
+                    <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="hospitalNHS" name="hospitalNHS" type="radio" value="Yes">
+                        <label class="govuk-label govuk-radios__label" for="hospitalNHS">
+                        Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="hospitalNHS-2" name="hospitalNHS" type="radio" value="No">
+                        <label class="govuk-label govuk-radios__label" for="hospitalNHS-2">
+                        No
+                        </label>
+                    </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+        
+
+</div>
+</div>
+
+{% endblock %}
