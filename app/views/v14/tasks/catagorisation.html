@@ -1,0 +1,364 @@
+{# Set which global nav link to highlight #}
+{% include '../partials/name/eric.njk' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName="Session Data" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include '../partials/name/eric.njk' %}
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#outcome">
+            Expected outcome
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#details">
+            Claim details
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#feedback">
+            Outcome feedback
+          </a>
+        </li>
+      </ul>
+      <div class="govuk-tabs__panel" id="outcome">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <h2 class="govuk-heading-m">Expected outcome</h2>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                  Award likely
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Yes
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                  Applicable amount
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  £218.15
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                  Income
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  £102.04
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                  Likely award amount
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  £116.11
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+        
+      </div>
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="details">
+        <h2 class="govuk-heading-m">Claim details</h2>
+        <div class="govuk-grid-row">
+
+          <div class="govuk-grid-column-one-quarter">
+        
+            <nav class="moj-side-navigation" aria-label="Side navigation">
+              <ul class="moj-side-navigation__list">
+                <li class="moj-side-navigation__item moj-side-navigation__item--active">
+                  <a href="#1" aria-current="location">Applicant Details</a>
+                </li>
+        
+                <li class="moj-side-navigation__item">
+                  <a href="#2">Accomodation</a>
+                </li>
+        
+                <li class="moj-side-navigation__item">
+                  <a href="#3">Income</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#4">Capital</a>
+                </li>
+              </ul>
+            </nav>
+        
+          </div>
+
+          <div class="govuk-grid-column-three-quarters">
+            <div id="1" class="govuk-form-group">
+              <h3 class="govuk-heading">Applicant Details</h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Which country do you live in?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    England
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    What is your date of birth?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    1 January 1956
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Your nationality
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    British
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you have a partner?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No, I do not have a partner
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Tell us about your UK State Pension
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    I am receiving my UK State Pension
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Which bank or building society is your State Pension paid into?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Barclays
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Have you been outside the UK for a period of more than four weeks since 15 August 2024?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you want us to consider backdating your application to 15 August 2024?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes, consider my application from 15 August 2024
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    What is your National Insurance number?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    QQ112233X
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    What is your name?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Sam Hazel
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Are you registered blind or severely sight impaired?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            
+            <div id="2" class="govuk-form-group govuk-!-padding-top-6">
+              <h3 class="govuk-heading-m">Accomodation<br><span class="govuk-body-s"><a href="#details">Back to top</a></span>
+              </h3>
+              <dl class="govuk-summary-list">
+                    
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you live permanently in a care home?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>                      
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Your home address
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    70 SAMPSON ROAD NORTH<br>BIRMINGHAM<br>B11 1BG
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Are you responsible for paying the rent or Council Tax for the place where you live?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Which best describes the place where you live?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    You own it
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you pay any service charges?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you pay ground rent?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you have a mortgage or loan secured against your home?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you currently get Support for Mortgage Interest (SMI)?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you want us to send you some information about Support for Mortgage Interest (SMI)?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you have any money or income from an equity release scheme?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd> 
+                </div>
+              </dl>
+            </div>
+
+            <div id="3" class="govuk-form-group govuk-!-padding-top-6">
+              <h3 class="govuk-heading-m">Income<br><span class="govuk-body-s"><a href="#details">Back to top</a></span></h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Employment income
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>£156.23 per week</p>
+                    <details class="govuk-details">
+                      <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                          Details
+                        </span>
+                      </summary>
+                      <div class="govuk-details__text">
+                        <table class="govuk-table">
+                          <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                              <th scope="col" class="govuk-table__header">Date</th>
+                              <th scope="col" class="govuk-table__header">Frequency</th>
+                              <th scope="col" class="govuk-table__header">Net pay</th>
+                            </tr>
+                          </thead>
+                          <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                              <td class="govuk-table__cell">12/8/2024</td>
+                              <td class="govuk-table__cell">Calendar_Month</td>
+                              <td class="govuk-table__cell">£449.25</td>
+                            </tr>
+                            <tr class="govuk-table__row">
+                              <td class="govuk-table__cell">12/8/2024</td>
+                              <td class="govuk-table__cell">Calendar_Month</td>
+                              <td class="govuk-table__cell">£449.25</td>
+                            </tr><tr class="govuk-table__row">
+                              <td class="govuk-table__cell">12/8/2024</td>
+                              <td class="govuk-table__cell">Calendar_Month</td>
+                              <td class="govuk-table__cell">£449.25</td>
+                            </tr><tr class="govuk-table__row">
+                              <td class="govuk-table__cell">12/8/2024</td>
+                              <td class="govuk-table__cell">Calendar_Month</td>
+                              <td class="govuk-table__cell">£449.25</td>
+                            </tr><tr class="govuk-table__row">
+                              <td class="govuk-table__cell">12/8/2024</td>
+                              <td class="govuk-table__cell">Calendar_Month</td>
+                              <td class="govuk-table__cell">£449.25</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </details>
+                  </dd>
+                
+                </div>
+              </dl>
+            </div>
+
+
+            <div id="4" class="govuk-form-group govuk-!-padding-top-6">
+              <h3 class="govuk-heading-m">Capital</h3>
+              
+            </div>
+          </div>
+        
+        </div>
+        
+      </div>
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="feedback">
+        <h2 class="govuk-heading-m">Outcome feedback</h2>
+        
+      </div>
+      
+    </div>
+     
+  </div>
+</div>
+
+{% endblock %}

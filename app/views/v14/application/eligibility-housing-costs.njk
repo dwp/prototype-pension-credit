@@ -1,0 +1,102 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Housing costs" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+
+    <form method="post" >
+    <h1 class="govuk-heading-l govuk-!-margin-top-7">Housing costs</h1>
+            <div class="govuk-form-group govuk-body govuk-!-margin-top-7">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                  Do you pay service charges?
+                </h1>
+                </legend>
+                <p class="govuk-hint">
+                Service charges can include:
+                <ul class="govuk-list govuk-hint govuk-list--bullet">
+                  <li>warden services</li>
+                  <li>caretaker services (like gardening, maintenance and cleaning of communal areas)</li>
+                  <li>use of a laundry room</li>
+                  <li>use of communal areas like a lounge or TV area</li>
+                </ul>
+                </p>
+
+
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="serviceCharge" name="serviceCharge" type="radio" value="Yes">
+                    <label class="govuk-label govuk-radios__label" for="serviceCharge">
+                    Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="serviceCharge-2" name="serviceCharge" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="serviceCharge-2">
+                    No
+                    </label>
+                </div>
+
+                </div>
+            </fieldset>
+            </div>
+
+            <div class="govuk-form-group govuk-!-margin-top-7>
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                  Do you pay ground rent?
+                </h1>
+                </legend>
+                <p class="govuk-hint">You might pay ground rent if you are the leaseholder of your home.</p>
+
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="groundRent" name="groundRent" type="radio" value="Yes">
+                    <label class="govuk-label govuk-radios__label" for="groundRent">
+                    Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="groundRent-2" name="groundRent" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="groundRent-2">
+                    No
+                    </label>
+                </div>
+
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+
+
+  </div>
+</div>
+
+{% endblock %}
