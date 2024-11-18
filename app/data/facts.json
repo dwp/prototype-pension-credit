@@ -1,0 +1,292 @@
+{
+    "values" : {
+        "income_employment_claimant_amt" : 192.36923076153602,
+        "fact_cis_claimant_coreBio" : {
+            "dateOfBirth" : "1953-07-08T23:00:00.000+0000",
+            "sex" : "F",
+            "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.CoreBio"
+        },
+        "fact_claim_hasOtherIncome" : false,
+        "fact_claim_applicationDate" : "2024-09-22T23:00:00.000+0000",
+        "fact_claim_isSelfEmployed" : false,
+        "income_capital_deemedAmt" : 0.0,
+        "priority_score" : 0.0,
+        "credits_carersPremium_totalAmt" : 0.0,
+        "credits_housingPremium_totalAmt" : 0.0,
+        "fact_derived_assessmentPeriod" : {
+            "start" : "2024-08-12T23:00:00.000+0000",
+            "end" : "2024-11-14T00:00:00.000+0000",
+            "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Period"
+        },
+        "fact_cis_claimant_nationality" : "EEA_AND_SWITZERLAND",
+        "fact_claim_hasNonUkPensions" : false,
+        "income_benefit_claimant_grossAmt" : 27.13,
+        "fact_claim_declaredCapital" : {
+            "capitalAmount" : "5843.00",
+            "capitalBackdatedAmount" : "6016.00",
+            "secondProperty" : false,
+            "currentSavingsOrDepositAccounts" : true,
+            "investmentOrCashIsa" : true,
+            "nationalSavingsAndInvestmentProducts" : true,
+            "shares" : false,
+            "unitTrusts" : false,
+            "captialOrIncomeBonds" : false,
+            "cashAtHome" : false,
+            "moneyOverseas" : false,
+            "otherAccountsOrInvestments" : false,
+            "_class" : "uk.gov.dwp.laterlife.pc.service.model.assessment.input.claim.MoneySavingsInvestments"
+        },
+        "income_benefit_totalAmt" : 27.13,
+        "elig_claimant_hasReachedSpa" : true,
+        "income_totalAmt" : 219.499230761536,
+        "credits_dependentsPremium_totalAmt" : 0.0,
+        "income_benefit_claimant_netAmt" : 27.13,
+        "fact_derived_claimant_age" : 71,
+        "fact_claim_claimant_hasRightToWork" : true,
+        "fact_claim_claimant_isBlind" : false,
+        "income_pvtPension_claimant_averaged_ppIncomes" : [
+
+        ],
+        "income_benefit_claimant_disregardedAmt" : 0.0,
+        "fact_claim_claimant_hasPermResidency" : false,
+        "credits_disabilityPremium_unverifiedResidentCarer" : false,
+        "fact_claim_claimant_nationality" : "BRITISH",
+        "elig_residencyTest_claimant_passed" : false,
+        "priority_ageFactor" : 0,
+        "credits_totalPremiumsAmt" : 0.0,
+        "elig_residencyTest_claimant_unverifiedNationality" : true,
+        "fact_claim_isOutsideUK" : false,
+        "income_pvtPension_totalAmt" : 0.0,
+        "income_pvtPension_claimant_relevant_ppIncomes" : [
+
+        ],
+        "fact_ctznFinance_claimant_earnings" : [
+            {
+                "date" : "2024-08-29T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 1017.8,
+                "taxablePay" : 1017.8,
+                "taxDeducted" : 184.2,
+                "nicDeducted" : 0.0,
+                "netPay" : 833.6,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2024-07-30T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 537.04,
+                "taxablePay" : 537.04,
+                "taxDeducted" : 87.8,
+                "nicDeducted" : 0.0,
+                "netPay" : 449.25,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2024-06-27T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 467.0,
+                "taxablePay" : 467.0,
+                "taxDeducted" : 74.0,
+                "nicDeducted" : 0.0,
+                "netPay" : 393.0,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2024-05-30T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 537.04,
+                "taxablePay" : 537.04,
+                "taxDeducted" : 88.0,
+                "nicDeducted" : 0.0,
+                "netPay" : 449.05,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2024-04-29T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 506.35,
+                "taxablePay" : 506.35,
+                "taxDeducted" : 81.59,
+                "nicDeducted" : 0.0,
+                "netPay" : 424.75,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2024-03-29T00:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 81.84,
+                "taxablePay" : 81.84,
+                "taxDeducted" : -18.2,
+                "nicDeducted" : 0.0,
+                "netPay" : 100.04,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2024-02-29T00:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 1340.63,
+                "taxablePay" : 1340.63,
+                "taxDeducted" : 233.6,
+                "nicDeducted" : 0.0,
+                "netPay" : 1107.03,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2024-01-31T00:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 748.14,
+                "taxablePay" : 748.14,
+                "taxDeducted" : 115.2,
+                "nicDeducted" : 0.0,
+                "netPay" : 632.94,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2023-12-29T00:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 2112.5,
+                "taxablePay" : 2112.5,
+                "taxDeducted" : 388.0,
+                "nicDeducted" : 0.0,
+                "netPay" : 1724.5,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2023-11-30T00:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 1313.18,
+                "taxablePay" : 1313.18,
+                "taxDeducted" : 228.2,
+                "nicDeducted" : 0.0,
+                "netPay" : 1084.98,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2023-10-31T00:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 750.06,
+                "taxablePay" : 750.06,
+                "taxDeducted" : 115.6,
+                "nicDeducted" : 0.0,
+                "netPay" : 634.46,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2023-09-28T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 1235.0,
+                "taxablePay" : 1235.0,
+                "taxDeducted" : 212.4,
+                "nicDeducted" : 0.0,
+                "netPay" : 1022.6,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2023-08-30T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 2112.5,
+                "taxablePay" : 2112.5,
+                "taxDeducted" : 388.0,
+                "nicDeducted" : 0.0,
+                "netPay" : 1724.5,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2023-07-30T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 2112.5,
+                "taxablePay" : 2112.5,
+                "taxDeducted" : 388.0,
+                "nicDeducted" : 0.0,
+                "netPay" : 1724.5,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            },
+            {
+                "date" : "2023-06-29T23:00:00.000+0000",
+                "employer" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "grossPay" : 2112.5,
+                "taxablePay" : 2112.5,
+                "taxDeducted" : 388.0,
+                "nicDeducted" : 0.0,
+                "netPay" : 1724.5,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Earning"
+            }
+        ],
+        "fact_claim_isJointClaim" : false,
+        "elig_residencyTest_claimant_unverifiedResidency" : true,
+        "complexity_score" : 5.0,
+        "credits_transitionalPremium_totalAmt" : 0.0,
+        "fact_claim_claimDate" : "2024-06-23T23:00:00.000+0000",
+        "income_employment_totalAmt" : 192.36923076153602,
+        "award_amt" : 0.0,
+        "income_employment_claimant_averaged_earnings" : [
+            {
+                "from" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "amount" : 833.6,
+                "avgValue" : {
+                    "value" : 833.6,
+                    "stdDev" : 0.0,
+                    "sample" : 1,
+                    "outliers" : 0
+                },
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.RegularIncome"
+            }
+        ],
+        "elig_isEligible" : true,
+        "credits_totalAmt" : 218.15,
+        "fact_claim_claimant_residenceCountry" : "GBR",
+        "fact_cis_claimant_awards" : [
+            {
+                "benefitKey" : "StatePension",
+                "startDate" : "2024-04-08T23:00:00.000+0000",
+                "amount" : 27.13,
+                "claimStatus" : "Missing",
+                "paymentStatus" : "Live",
+                "isEntitled" : true,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.Award"
+            }
+        ],
+        "income_benefit_claimant_disregardedAwards" : "",
+        "credits_disabilityPremium_totalAmt" : 0.0,
+        "fact_ctznFinance_claimant_pvtPension" : [
+            {
+                "date" : "2024-04-11T23:00:00.000+0000",
+                "provider" : "SCOTTISH WIDOWS LSC",
+                "frequency" : "ONE_OFF",
+                "taxablePay" : 9358.79,
+                "taxDeducted" : 2695.6,
+                "netPay" : 6663.19,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.PvtPension"
+            }
+        ],
+        "fact_derived_claimant_spaDate" : "2017-07-05T23:00:00.000+0000",
+        "fact_cis_claimant_residenceCountry" : "FRA",
+        "income_benefit_claimant_inPaymentAwards" : "StatePension",
+        "income_employment_claimant_relevant_earnings" : [
+            {
+                "date" : "2024-08-29T23:00:00.000+0000",
+                "from" : "POSITIVE INDIVIDUAL",
+                "frequency" : "CALENDAR_MONTHLY",
+                "amount" : 833.6,
+                "_class" : "uk.gov.dwp.laterlife.pc.service.calc.model.RegularIncome"
+            }
+        ]
+    }
+    
+}
