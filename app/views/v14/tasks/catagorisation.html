@@ -19,7 +19,7 @@
       <ul class="govuk-tabs__list">
         <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
           <a class="govuk-tabs__tab" href="#outcome">
-            Expected outcome
+            Automated decision
           </a>
         </li>
         <li class="govuk-tabs__list-item">
@@ -40,25 +40,71 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-form-group">
+
+              <h2 class="govuk-heading-l">
+                Automated decision
+              </h2>
+
               <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
-                    Award likely
+                    Decision
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {% if data.json.values.award_amt > 0 %}Yes{%else%}No{%endif%}
+                    {% if data.json.values.award_amt > 0 %}Likely{%else%}Unlikely{%endif%}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
-                    Applicable amount
+                    Estimated award amount
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    £{{ data.json.values.credits_totalAmt }}
+                    £{{data.json.values.award_amt.toFixed(2)}}
                   </dd>
                 </div>
+
+            </dl>
+            <h2 class="govuk-heading-m">
+              Appropriate minimum guarantee
+            </h2>
+
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+              <div class="govuk-summary-list__row">
+
+              <dt class="govuk-summary-list__key govuk-!-width-one-half">
+Single person                  </dt>
+              <dd class="govuk-summary-list__value">
+                £{{ data.json.values.credits_totalAmt }}
+              </dd>
+            </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half">
+Extra amount for severe disability                  </dt>
+            <dd class="govuk-summary-list__value">
+              £{{ data.json.values.credits_totalAmt }}
+            </dd>
+          </div>
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
+Total              </dt>
+                  <dd class="govuk-summary-list__value">
+                  <strong>  £{{ data.json.values.credits_totalAmt }} </strong>
+                  </dd>
+                </div>
+
+              </dl>
+
+            <h2 class="govuk-heading-m">
+              Income
+            </h2>
+                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                  <div class="govuk-summary-list__row">
+
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     Employment
                   </dt>
                   <dd class="govuk-summary-list__value">
@@ -75,37 +121,38 @@
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
-                    Likely award amount
+                    Total weekly income
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    £{{data.json.values.award_amt.toFixed(2)}}
+              <strong>      £{{ data.json.values.income_benefit_claimant_netAmt.toFixed(2) }} </strong>
                   </dd>
                 </div>
+
               </dl>
             </div>
           </div>
-        </div>
+  </div>
       <!--- end of outcome tab -->
 
       <!--- claim details tab -->
       </div>
       <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="details">
-       
+
         <div class="govuk-grid-row">
 
           <div class="govuk-grid-column-one-quarter">
             <!--- Side navigation -->
             <nav class="moj-side-navigation" aria-label="Side navigation">
-              <h3 class="govukheading-s">Claimant application</h3>
+              <h3 class="govukheading-s">Claim details</h3>
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item moj-side-navigation__item--active">
                   <a href="#1" aria-current="location">Who made the claim</a>
                 </li>
-        
+
                 <li class="moj-side-navigation__item">
                   <a href="#2">About the applicant</a>
                 </li>
-        
+
                 <li class="moj-side-navigation__item">
                   <a href="#3">Verify identity</a>
                 </li>
@@ -141,16 +188,16 @@
                 </li>
               </ul>
 
-              <h3 class="govukheading-s">Derived facts</h3>
+              <h3 class="govukheading-s">Information from DWP, HMRC and the Home Office</h3>
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item">
                   <a href="#a" aria-current="location">Employment</a>
                 </li>
-        
+
                 <li class="moj-side-navigation__item">
                   <a href="#b">Pensions</a>
                 </li>
-        
+
                 <li class="moj-side-navigation__item">
                   <a href="#c">Benefits</a>
                 </li>
@@ -159,16 +206,16 @@
                 </li>
               </ul>
             </nav>
-        
+
           </div>
 
           <div class="govuk-grid-column-three-quarters">
             <!--- application sections -->
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-6">Claimant application</h3>
+            <h3 class="govuk-heading-l govuk-!-margin-bottom-6">Given in application</h3>
             <div id="1" class="govuk-form-group">
-              <h3 class="govuk-heading">Who made the claim</span></h3>
+              <h3 class="govuk-heading">Who made the claim</h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-                
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     Which of these best describes you?
@@ -183,7 +230,7 @@
             <div id="2" class="govuk-form-group govuk-!-margin-top-9">
               <h3 class="govuk-heading">About the applicant<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-                
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     First name
@@ -272,20 +319,20 @@
                     No
                   </dd>
                 </div>
-                
-                
+
+
               </dl>
             </div>
             <div id="3" class="govuk-form-group  govuk-!-margin-top-9">
               <h3 class="govuk-heading">Verify identity<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list">
-                
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     Which of these benefits do you get?
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    
+
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -364,7 +411,7 @@
             <div id="4" class="govuk-form-group govuk-!-margin-top-9">
               <h3 class="govuk-heading">Contact details<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-                
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     Do you have a contact telephone number?
@@ -431,15 +478,16 @@
                 </div>
               </dl>
             </div>
-            
-            
-            
+
+
+
 
             <!--- end of application sections -->
 
             <!--- calim fact sections -->
 
-            <h3 class="govuk-heading-m govuk-!-margin-top-9">Derived facts</h3>
+            <h3 class="govuk-heading-l govuk-!-margin-top-9">Things we know</h3>
+            <p class="govuk-body">This is information we hold about the claimant and information from HMRC and the Home Office.</p>
             <div id="a" class="govuk-form-group govuk-!-margin-top-9">
               <h3 class="govuk-heading">Employment<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list ">
@@ -469,7 +517,7 @@
                         </tr>
                       </thead>
                       <tbody class="govuk-table__body">
-                        
+
                           {% for i in range(0,6)%}
                           <tr class="govuk-table__row">
                             <td class="govuk-table__cell">{{data.json.values.fact_ctznFinance_claimant_earnings[i].employer}}</td>
@@ -477,7 +525,7 @@
                             <td class="govuk-table__cell">£{{data.json.values.fact_ctznFinance_claimant_earnings[i].netPay.toFixed(2) }}</td>
                           </tr>
                           {%endfor%}
-                      
+
                       </tbody>
                     </table>
                   </div>
@@ -487,7 +535,7 @@
             <div id="b" class="govuk-form-group govuk-!-margin-top-9">
               <h3 class="govuk-heading">Pensions<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-                
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     Occupational/private pensions
@@ -515,7 +563,7 @@
                         </tr>
                       </thead>
                       <tbody class="govuk-table__body">
-                        
+
                           {% for i in data.json.values.fact_ctznFinance_claimant_pvtPension %}
                           <tr class="govuk-table__row">
                             <td class="govuk-table__cell">{{i.provider}}</td>
@@ -524,18 +572,18 @@
                             <td class="govuk-table__cell">£{{i.netPay.toFixed(2) }}</td>
                           </tr>
                           {%endfor%}
-                      
+
                       </tbody>
                     </table>
                   </div>
                 </div>
               </details>
-              
+
             </div>
             <div id="c" class="govuk-form-group govuk-!-margin-top-9">
               <h3 class="govuk-heading">Benefits<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-                
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     Total benefits
@@ -563,7 +611,7 @@
                         </tr>
                       </thead>
                       <tbody class="govuk-table__body">
-                        
+
                           {% for i in data.json.values.fact_cis_claimant_awards%}
                           <tr class="govuk-table__row">
                             <td class="govuk-table__cell">{{i.benefitKey}}</td>
@@ -571,7 +619,7 @@
                             <td class="govuk-table__cell">£{{i.amount.toFixed(2) }}</td>
                           </tr>
                           {%endfor%}
-                      
+
                       </tbody>
                     </table>
                   </div>
@@ -581,7 +629,7 @@
             <div id="d" class="govuk-form-group govuk-!-margin-top-9">
               <h3 class="govuk-heading">Habitual residency<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-                
+
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
                     Nationality
@@ -612,9 +660,9 @@
 
             <!--- end of claim fact sections -->
           </div>
-        
+
         </div>
-        
+
       </div>
       <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="feedback">
         <div class="govuk-form-group ">
@@ -624,7 +672,7 @@
                 What type of award was issued?
               </h2>
             </legend>
-            
+
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
@@ -660,16 +708,16 @@
                   <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
                 </div>
               </div>
-             
+
             </div>
           </fieldset>
-          
+
         </div>
         <button class="govuk-button">Submit</button>
       </div>
-      
+
     </div>
-     
+
   </div>
 </div>
 
