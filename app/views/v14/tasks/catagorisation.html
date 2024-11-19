@@ -40,11 +40,9 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             <div class="govuk-form-group">
-
               <h2 class="govuk-heading-l">
                 Automated decision
               </h2>
-
               <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
@@ -62,39 +60,65 @@
                     £{{data.json.values.award_amt.toFixed(2)}}
                   </dd>
                 </div>
-
-            </dl>
-            <h2 class="govuk-heading-m">
-              Appropriate minimum guarantee
-            </h2>
-
-            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-              <div class="govuk-summary-list__row">
-
-              <dt class="govuk-summary-list__key govuk-!-width-one-half">
-Single person                  </dt>
-              <dd class="govuk-summary-list__value">
-                £{{ data.json.values.credits_totalAmt }}
-              </dd>
+              </dl>
             </div>
-
-
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half">
-Extra amount for severe disability                  </dt>
-            <dd class="govuk-summary-list__value">
-              £{{ data.json.values.credits_totalAmt }}
-            </dd>
-          </div>
-
+          
+            <div class="govuk-form-group">
+              <h2 class="govuk-heading-m">
+                Appropriate minimum guarantee
+              </h2>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                 <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
-Total              </dt>
-                  <dd class="govuk-summary-list__value">
-                  <strong>  £{{ data.json.values.credits_totalAmt }} </strong>
-                  </dd>
-                </div>
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Single person</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_totalAmt }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Disability premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_disabilityPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Carers premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_carersPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Dependents premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_dependentsPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Housing premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_housingPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Transitional premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_transitionalPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Total</dt>
+                <dd class="govuk-summary-list__value">
+                <strong>  £{{ 
+                              (data.json.values.credits_totalAmt + 
+                              data.json.values.credits_disabilityPremium_totalAmt +
+                              data.json.values.credits_carersPremium_totalAmt +
+                              data.json.values.credits_dependentsPremium_totalAmt +
+                              data.json.values.credits_housingPremium_totalAmt +
+                              data.json.values.credits_transitionalPremium_totalAmt
+                              | float
+                              ).toFixed(2)
+                }} </strong>
+                </dd>
+              </div>
 
               </dl>
 
@@ -124,7 +148,7 @@ Total              </dt>
                     Total weekly income
                   </dt>
                   <dd class="govuk-summary-list__value">
-              <strong>      £{{ data.json.values.income_benefit_claimant_netAmt.toFixed(2) }} </strong>
+              <strong>      £{{ (data.json.values.income_employment_totalAmt.toFixed(2) | float  + data.json.values.income_benefit_claimant_netAmt.toFixed(2) | float).toFixed(2) }} </strong>
                   </dd>
                 </div>
 
@@ -143,7 +167,7 @@ Total              </dt>
           <div class="govuk-grid-column-one-quarter">
             <!--- Side navigation -->
             <nav class="moj-side-navigation" aria-label="Side navigation">
-              <h3 class="govukheading-s">Claim details</h3>
+              <h3 class="govukheading-s">Given in application</h3>
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item moj-side-navigation__item--active">
                   <a href="#1" aria-current="location">Who made the claim</a>
