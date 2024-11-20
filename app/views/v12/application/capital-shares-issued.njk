@@ -18,20 +18,20 @@
 <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        
+
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
         <form method="post">
             <div class="govuk-form-group govuk-!-padding-top-7">
                 <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <span class="govuk-caption-l">Your {{ data['shareCompany'] }} shares</span>
+                    <span class="govuk-caption-l">Your shares in {{ data['shareCompany'] }}</span>
                     <h2 class="govuk-fieldset__heading">
-                        What date were the shares issued?
+                        What date were you last issued shares in {{ data['shareCompany'] }}?
                     </h2>
                     </legend>
                     <div id="passport-issued-hint" class="govuk-hint">
-                    For example, 27 3 2007
+                    For example, 27 3 2007.
                     </div>
                     <div class="govuk-date-input">
                         <div class="govuk-date-input__item">
@@ -67,7 +67,7 @@
             </button>
 
         </form>
-        
+
 
 </div>
 </div>

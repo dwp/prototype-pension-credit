@@ -20,13 +20,13 @@
       <div class="govuk-grid-column-two-thirds">
        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-        <h1 class="govuk-heading-l">Check your share details</h1>
+        <h1 class="govuk-heading-l">Check your shares in {{ data['shareCompany'] }}</h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
-         
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What is the name of the first company your hold shares in?
+              Which company do you have shares in?
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['shareCompany']}}
@@ -39,7 +39,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              How many shares do you hold?
+              How many shares do you have?
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['sharesNumber']}}
@@ -48,10 +48,10 @@
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> number of shares</span></a>
             </dd>
           </div>
-  
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Were the shares issued before <span class="no-wrap">{{data['backdateDateString']}}</span>?
+              Were all of these shares issued to you before {{data['backdateDateString']}}?
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['sharesIssuedPrebackdating']}}
@@ -61,12 +61,12 @@
             </dd>
           </div>
 
-          
+
           {% if data['sharesIssuedDate'] %}
-            
+
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  What date were the shares issued?
+                    What date were you last issued shares in {{ data['shareCompany'] }}?
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{data['sharesIssuedDate']}}
