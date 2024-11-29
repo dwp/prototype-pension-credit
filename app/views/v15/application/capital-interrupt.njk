@@ -21,28 +21,55 @@
 
         <p class="govuk-!-padding-bottom-7"><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-      <div {%if data['route']==2%}class="interruption-card"{%endif%}>
-        <h1 class="govuk-heading-l {%if data['route']==2%}interruption-card__heading{%endif%}">
+      <div {%if data['style']==2%}class="interruption-card"{%endif%}>
+        <h1 class="govuk-heading-l {%if data['style']==2%}interruption-card__heading{%endif%}">
           Your money
         </h1>
+        
         <div class="govuk-form-group">
-          <p class="govuk-body {%if data['route']==2%}interruption-card__body{%endif%}">
+        {% if data['route'] == 1 %}
+          <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}">
             So we pay you right amount of Pension Credit, we need to know how much money you have in:
           </p>
-           <ul class="govuk-list govuk-list--bullet {%if data['route']==2%}interruption-card__body{%endif%}">
+           <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
               {% for item in data['capitalTypes'] %}
               <li>{{ item }}</li>
               {% endfor %}
           </ul>
-          <p class="govuk-body {%if data['route']==2%}interruption-card__body{%endif%}">
-            We will ask you:
+        {% endif %}
+          <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}">
+            {% if data['route'] == 1 %}
+              We will ask you:
+            {% else %}
+              So we pay you right amount of Pension Credit, we need to know:
+            {% endif %}
           </p>
-           <ul class="govuk-list govuk-list--bullet {%if data['route']==2%}interruption-card__body{%endif%}">
+           <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
               <li>how much money you have today</li>
               <li>how much money you had on {{data['backdateDateString']}}</li>
           </ul>
+
+          {% if data['route'] == 2 %}
+            <h2 class="govuk-heading-m {%if data['style']==2%}interruption-card__heading{%endif%}">
+              Things you may need
+            </h2>
+            <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}">
+              To answer the next few questions you may need:
+            </p>
+            <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
+              <li>the current balance for each of your accounts</li>
+              <li>your bank statements for the last 3 months</li>
+              <li>the total amount of any cash you have at home or somewhere else</li>
+          </ul>
+
+          <div class="govuk-inset-text {%if data['style']==2%}interruption-card__inset{%endif%}">
+            If you do not enter anything for more than 1 hour, your application will time out and you will have to start again.
+          </div>
+
+          {% endif %}
+
         </div>
-        <a href="capital-total-today" class="govuk-button {%if data['route']==2%}govuk-button--secondary{%endif%}">Continue</a>
+        <a href="capital-total-today" class="govuk-button {%if data['style']==2%}govuk-button--secondary{%endif%}">Continue</a>
       </div>
     </div>
   </div>

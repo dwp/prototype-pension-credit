@@ -33,11 +33,6 @@ var date = new Date(); //get todays date
 
 var version = "v15";
 
-router.get('/', function(req, res) {
-   req.session.data['xnum'] = toWords.convert(452.32, { currency: true });
-   res.render("/index");
-});
-
 //////// SAVINGS AND INVESTMENTS
 //////// aka CAPITAL
 
@@ -68,7 +63,12 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
 router.post('/'+ version +'/application/capital-total-today', function(req, res) {
    let amount = parseFloat(req.session.data['todayTotal'].replace(/,/g, '')) // removes commas
    req.session.data['todayTotalInWords'] = toWords.convert(amount, { currency: true }) // converts to words
-   res.redirect("capital-total-today-confirm")
+   if(req.session.data['route']=='1'){
+      res.redirect("capital-total-today-confirm")
+   }
+   else if(req.session.data['route']=='2'){
+      res.redirect("capital-total-TAM")
+   }
 });
 
 router.post('/'+ version +'/application/capital-total-today-confirm', function(req, res) {
@@ -83,7 +83,13 @@ router.post('/'+ version +'/application/capital-total-today-confirm', function(r
 router.post('/'+ version +'/application/capital-total-TAM', function(req, res) {
    let amount = parseFloat(req.session.data['tamTotal'].replace(/,/g, '')) // removes commas
    req.session.data['tamTotalInWords'] = toWords.convert(amount, { currency: true }) // converts to words
-   res.redirect("capital-total-TAM-confirm")
+   if(req.session.data['route']=='1'){
+      res.redirect("capital-total-TAM-confirm")
+   }
+   else if(req.session.data['route']=='2'){
+      res.redirect("capital-check-answers")
+   }
+   
 });
 
 router.post('/'+ version +'/application/capital-total-TAM-confirm', function(req, res) {

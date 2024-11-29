@@ -24,10 +24,10 @@
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
                 <h1 class="govuk-heading-l">
-                    Total amount you had on {{data['backdateDateString']}}
+                    Check the money you had on {{data['backdateDateString']}}
                 </h1>
 
-                <h2 class="govuk-heading-m">£{{data['tamTotal']}}
+                <h2 class="govuk-heading-m">You entered £{{data['tamTotal']}}
                 <span class="govuk-caption-l">{{data['tamTotalInWords'].slice(0, -4) | capitalize }}</span></h2>
 
             </div>

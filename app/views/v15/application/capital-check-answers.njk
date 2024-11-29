@@ -26,7 +26,7 @@
           {%if data['capitalTypes']%}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Do you or your partner have money in any of these?
+              Do you have money in any of these?
             </dt>
             <dd class="govuk-summary-list__value">
               <ul class="govuk-list govuk-list--bullet">
@@ -41,42 +41,14 @@
           </div>
           {%endif%}
 
-          {%if data['tamTotal']%}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              How much money did you and your partner have on {{data['backdateDateString']}}?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              £{{data['tamTotal']}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">how much money you and your partner had on {{data['backdateDateString']}}</span></a>
-            </dd>
-          </div>
-          {%endif%}
-
-          {%if data['hasIncreasedDecreased']%}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Do you have {% if data['tamTotal'] < 10000%}more than {% else %}less than {% endif %}£{{data['tamTotal']}} today?
-
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['hasIncreasedDecreased']}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">whether you have {% if data['tamTotal'] < 10000%}more than {% else %}less than {% endif %}£{{data['tamTotal']}} today</span></a>
-            </dd>
-          </div>
-          {%endif%}
-
           {%if data['todayTotal']%}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-        How much money do you and your partner have today?
+              How much money do you have today?
             </dt>
             <dd class="govuk-summary-list__value">
-              £{{data['todayTotal']}}
+              £{{data['todayTotal']}}<br>
+              {{data['todayTotalInWords'].slice(0, -4) | capitalize}}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">how much money you and your partner have today</span></a>
@@ -84,9 +56,30 @@
           </div>
           {%endif%}
 
+         
+
+          {%if data['tamTotal']%}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              How much money did you have on <span class="no-wrap">{{data['backdateDateString']}}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              £{{data['tamTotal']}}<br>
+              {{data['tamTotalInWords'].slice(0, -4) | capitalize}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">how much money you and your partner had on {{data['backdateDateString']}}</span></a>
+            </dd>
+          </div>
+          {%endif%}
+
+          
+
+          
+
         </dl>
 
-        <form method="post" novalidate>
+        <form method="post" action="capital-other-property">
           <input type="hidden" name="answers-checked" value="true">
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
