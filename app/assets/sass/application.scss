@@ -14,6 +14,11 @@
   color: govuk-colour('white')!important;
 }
 
+.interruption-card__inset, {
+  color: govuk-colour('white')!important;
+  border-left: 10px solid govuk-colour('white')
+}
+
 @import "side-navigation";
 .no-wrap {
   white-space:nowrap;

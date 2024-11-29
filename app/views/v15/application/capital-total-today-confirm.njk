@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "You entered" %}
+{% set pageName = "Check the money you have today" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -24,10 +24,10 @@
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
                 <h1 class="govuk-heading-l">
-                    {{pageName}}
+                    Check the money you have today
                 </h1>
 
-                <h2 class="govuk-heading-m">£{{data['todayTotal']}}
+                <h2 class="govuk-heading-m">You entered £{{data['todayTotal']}}
                 <span class="govuk-caption-l">{{data['todayTotalInWords'].slice(0, -4) | capitalize }}</span></h2>
 
             </div>

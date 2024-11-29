@@ -23,13 +23,19 @@
 
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
-                <h1 class="govuk-heading-l">
-                    {{pageName}}
-                </h1>
+                {%if data['route'] == '1'%}
+                    <h1 class="govuk-heading-l">
+                        Money you have today
+                    </h1>
+                {% else %}
+                    <h1 class="govuk-heading-l">
+                        How much money do you have today?
+                    </h1>
+                {% endif %}
 
                 <div class="govuk-body">
                     <p>
-                          So we do not pay you too much Pension Credit, you must include all the money that you and your partner have in:
+                          So we do not pay you too much Pension Credit, you must include all the money that you have in:
                         <ul class="govuk-list govuk-list--bullet">
                             {% for item in data['capitalTypes'] %}
                             <li>{{ item }}</li>
@@ -37,11 +43,18 @@
                         </ul>
                     </p>
                 </div>
-                <div class="govuk-inset-text">
-          If you do not enter anything for more than 1 hour, your application will time out and you will have to start again.
-          </div>
-                <h2 class="govuk-heading-m">How much money do you and your partner have today?</h2>
+                
+                {%if data['route'] == '1'%}
+                    <div class="govuk-inset-text">
+                        If you do not enter anything for more than 1 hour, your application will time out and you will have to start again.
+                    </div>
 
+                <h2 class="govuk-heading-m">How much money do you have today?</h2>
+                {% endif %}
+
+                <p {%if data['route'] == '1'%}class="govuk-hint"{%endif%}>
+                    Enter an amount in pounds and pence, For example, 100.00
+                </p>
                 <div class="govuk-input__wrapper">
                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                     <input class="govuk-input govuk-input--width-10" id="todayTotal" name="todayTotal" spellcheck="false">
