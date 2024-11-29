@@ -55,7 +55,7 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
       res.redirect("capital-check-answers")
    }
    else{
-      if(capitalTypes.includes('shares') || capitalTypes.includes('income bonds or capital bonds') || capitalTypes.includes('Unit trusts')){
+      if(capitalTypes.includes('shares') || capitalTypes.includes('other accounts and investments') || capitalTypes.includes('outside the UK in cash, investments or accounts')){
          res.redirect("capital-other-property")
       }
       else{ 
@@ -65,46 +65,37 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
    }
 });
 
-router.post('/'+ version +'/application/capital-total-TAM', function(req, res) {
-   if (req.session.data['route'] == "2"){
-      res.redirect("capital-total-today")
-   }
-   else{
-      res.redirect("capital-total-increased-or-decreased")
-   }
-});
-
-router.post('/'+ version +'/application/capital-total-increased-or-decreased', function(req, res) {
-   
-   let tamTotal = req.session.data['tamTotal']
-   if(req.session.data['hasIncreasedDecreased'] == 'No'){
-      if(tamTotal>9999){
-         res.redirect("capital-complex")
-      }
-      else{
-         res.redirect("capital-check-answers")
-      }
-   }
-   else{
-      res.redirect("capital-total-today")
-   }
-    
-});
-
 router.post('/'+ version +'/application/capital-total-today', function(req, res) {
-   let tamTotal = parseFloat(req.session.data['tamTotal'])
-   let todayTotal = parseFloat(req.session.data['todayTotal'])
-   let averageTotal = (tamTotal + todayTotal)/2
+   let amount = parseFloat(req.session.data['todayTotal'].replace(/,/g, '')) // removes commas
+   req.session.data['todayTotalInWords'] = toWords.convert(amount, { currency: true }) // converts to words
+   res.redirect("capital-total-today-confirm")
+});
 
-   req.session.data['averageTotal'] = averageTotal
-
-   if (averageTotal < 10000){
-      res.redirect("capital-check-answers")
+router.post('/'+ version +'/application/capital-total-today-confirm', function(req, res) {
+   if(req.session.data['todayAmountCorrect']=='no'){
+      res.redirect('capital-total-today')
    }
    else{
-      res.redirect("capital-complex")
+      res.redirect('capital-total-TAM')
    }
 });
+
+router.post('/'+ version +'/application/capital-total-TAM', function(req, res) {
+   let amount = parseFloat(req.session.data['tamTotal'].replace(/,/g, '')) // removes commas
+   req.session.data['tamTotalInWords'] = toWords.convert(amount, { currency: true }) // converts to words
+   res.redirect("capital-total-TAM-confirm")
+});
+
+router.post('/'+ version +'/application/capital-total-TAM-confirm', function(req, res) {
+   if(req.session.data['todayAmountCorrect']=='no'){
+      res.redirect('capital-total-TAM')
+   }
+   else{
+      res.redirect('capital-other-property')
+   }
+});
+
+
 
 
 //HOSPITAL STAYS
