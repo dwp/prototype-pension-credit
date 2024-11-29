@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "This is a complex case" %}
+{% set pageName = "Your money" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -18,13 +18,16 @@
 <div class="govuk-width-container">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
+
+        <p class="govuk-!-padding-bottom-7"><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
       <div {%if data['route']==2%}class="interruption-card"{%endif%}>
         <h1 class="govuk-heading-l {%if data['route']==2%}interruption-card__heading{%endif%}">
           Your money
         </h1>
         <div class="govuk-form-group">
           <p class="govuk-body {%if data['route']==2%}interruption-card__body{%endif%}">
-            So we pay you right amount of Pension Credit, we need to know how much money you and your partner have in:
+            So we pay you right amount of Pension Credit, we need to know how much money you have in:
           </p>
            <ul class="govuk-list govuk-list--bullet {%if data['route']==2%}interruption-card__body{%endif%}">
               {% for item in data['capitalTypes'] %}
@@ -36,10 +39,10 @@
           </p>
            <ul class="govuk-list govuk-list--bullet {%if data['route']==2%}interruption-card__body{%endif%}">
               <li>how much money you have today</li>
-              <li>how much money you had on 28 August 2024</li>
+              <li>how much money you had on {{data['backdateDateString']}}</li>
           </ul>
         </div>
-        <a href="#" class="govuk-button {%if data['route']==2%}govuk-button--secondary{%endif%}">Continue</a>
+        <a href="capital-total-today" class="govuk-button {%if data['route']==2%}govuk-button--secondary{%endif%}">Continue</a>
       </div>
     </div>
   </div>
