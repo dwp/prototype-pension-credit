@@ -1,0 +1,748 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'task' %}
+{% include '../partials/name/eric.njk' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName="Session Data" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include '../partials/name/eric.njk' %}
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#outcome">
+            Automated decision
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#details">
+            Claim details
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#feedback">
+            Outcome feedback
+          </a>
+        </li>
+      </ul>
+
+
+      <!--- Outcome tab -->
+      <div class="govuk-tabs__panel" id="outcome">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-form-group">
+              <h2 class="govuk-heading-l">
+                Automated decision
+              </h2>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Decision
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {% if data.json.values.award_amt > 0 %}Likely{%else%}Unlikely{%endif%}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Estimated award amount
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £{{data.json.values.award_amt.toFixed(2)}}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          
+            <div class="govuk-form-group">
+              <h2 class="govuk-heading-m">
+                Appropriate minimum guarantee
+              </h2>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Single person</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_totalAmt }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Disability premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_disabilityPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Carers premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_carersPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Dependents premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_dependentsPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Housing premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_housingPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Transitional premium</dt>
+                <dd class="govuk-summary-list__value">
+                  £{{ data.json.values.credits_transitionalPremium_totalAmt.toFixed(2) }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key govuk-!-width-one-half">Total</dt>
+                <dd class="govuk-summary-list__value">
+                <strong>  £{{ 
+                              (data.json.values.credits_totalAmt + 
+                              data.json.values.credits_disabilityPremium_totalAmt +
+                              data.json.values.credits_carersPremium_totalAmt +
+                              data.json.values.credits_dependentsPremium_totalAmt +
+                              data.json.values.credits_housingPremium_totalAmt +
+                              data.json.values.credits_transitionalPremium_totalAmt
+                              | float
+                              ).toFixed(2)
+                }} </strong>
+                </dd>
+              </div>
+
+              </dl>
+
+            <h2 class="govuk-heading-m">
+              Income
+            </h2>
+                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                  <div class="govuk-summary-list__row">
+
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Employment
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £{{ data.json.values.income_employment_totalAmt.toFixed(2) }}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Benefits
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £{{ data.json.values.income_benefit_claimant_netAmt.toFixed(2) }}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Total weekly income
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+              <strong>      £{{ (data.json.values.income_employment_totalAmt.toFixed(2) | float  + data.json.values.income_benefit_claimant_netAmt.toFixed(2) | float).toFixed(2) }} </strong>
+                  </dd>
+                </div>
+
+              </dl>
+            </div>
+          </div>
+  </div>
+      <!--- end of outcome tab -->
+
+      <!--- claim details tab -->
+      </div>
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="details">
+
+        <div class="govuk-grid-row">
+
+          <div class="govuk-grid-column-one-quarter">
+            <!--- Side navigation -->
+            <nav class="moj-side-navigation" aria-label="Side navigation">
+              <h3 class="govukheading-s">Given in application</h3>
+              <ul class="moj-side-navigation__list">
+                <li class="moj-side-navigation__item moj-side-navigation__item--active">
+                  <a href="#1" aria-current="location">Who made the claim</a>
+                </li>
+
+                <li class="moj-side-navigation__item">
+                  <a href="#2">About the applicant</a>
+                </li>
+
+                <li class="moj-side-navigation__item">
+                  <a href="#3">Verify identity</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#4">Contact details</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#5">Time spent in hospital</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#6">Housing details</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#7">Housing costs</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#8">Residency in the UK</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#9">Other people that live with you</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#10">Benefits you have applied for</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#11">Disregards</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#12">Money</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#13">Employment and income</a>
+                </li>
+              </ul>
+
+              <h3 class="govukheading-s">Information from DWP, HMRC and the Home Office</h3>
+              <ul class="moj-side-navigation__list">
+                <li class="moj-side-navigation__item">
+                  <a href="#a" aria-current="location">Employment</a>
+                </li>
+
+                <li class="moj-side-navigation__item">
+                  <a href="#b">Pensions</a>
+                </li>
+
+                <li class="moj-side-navigation__item">
+                  <a href="#c">Benefits</a>
+                </li>
+                <li class="moj-side-navigation__item">
+                  <a href="#d">Habitual residency</a>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+
+          <div class="govuk-grid-column-three-quarters">
+            <!--- application sections -->
+            <h3 class="govuk-heading-l govuk-!-margin-bottom-6">Given in application</h3>
+            <div id="1" class="govuk-form-group">
+              <h3 class="govuk-heading">Who made the claim</h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Which of these best describes you?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    You are claiming Pension Credit for yourself
+                  </dd>
+                </div>
+
+              </dl>
+            </div>
+            <div id="2" class="govuk-form-group govuk-!-margin-top-9">
+              <h3 class="govuk-heading">About the applicant<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    First name
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Sam
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Last name
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Hazel
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Your National Insurance number
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    QQ 11 22 33 X
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Date claim submitted
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    22 September 2024
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Have you been outside of the UK for a period of more than four weeks since 10 October 2020?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you want us to consider backdating your application to 12 August 2024?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Language in which application was completed
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    English
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Which country do you live in?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    England
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Your date of birth
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    8 July 1953
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you have a partner?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Are you registered blind or severely sight impaired?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+
+
+              </dl>
+            </div>
+            <div id="3" class="govuk-form-group  govuk-!-margin-top-9">
+              <h3 class="govuk-heading">Verify identity<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <dl class="govuk-summary-list">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Which of these benefits do you get?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    State pension
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Attendance Allowance
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Carers Allowance
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Carers Support Payment
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Personal Independence Payment
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Disability Living Allowance
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+
+                <div class="govuk-summary-list__row govuk-!-margin-top-6">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Which account do we pay your State Pension into?
+                  </dt>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Sort code
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    01 01 01
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Account number
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    12345678
+                  </dd>
+                </div>
+
+              </dl>
+            </div>
+            <div id="4" class="govuk-form-group govuk-!-margin-top-9">
+              <h3 class="govuk-heading">Contact details<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you have a contact telephone number?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    What is your contact telephone number?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    0123 456 7890
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    What language do you want us to speak to you in?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Other
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    If Other, what language do you want us to use?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    French
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you need us to use any different formats when we contact you by letter or phone?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Do you want us to send you an email confirmation that we have received the application?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Email address
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    sam.hazel23@gmail.com
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Are you registered blind or severely sight impaired?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+
+
+
+            <!--- end of application sections -->
+
+            <!--- calim fact sections -->
+
+            <h3 class="govuk-heading-l govuk-!-margin-top-9">Things we know</h3>
+            <p class="govuk-body">This is information we hold about the claimant and information from HMRC and the Home Office.</p>
+            <div id="a" class="govuk-form-group govuk-!-margin-top-9">
+              <h3 class="govuk-heading">Employment<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <dl class="govuk-summary-list ">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    PAYE employment
+                  </dt>
+                  <dd class="govuk-summary-list__">
+                    £{{ data.json.values.income_employment_totalAmt.toFixed(2) }}
+                  </dd>
+                </div>
+              </dl>
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    RTI records
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <div class="moj-scrollable-pane">
+                    <table class="govuk-table">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th scope="col" class="govuk-table__header">Employer</th>
+                          <th scope="col" class="govuk-table__header">Date</th>
+                          <th scope="col" class="govuk-table__header">Net pay</th>
+                        </tr>
+                      </thead>
+                      <tbody class="govuk-table__body">
+
+                          {% for i in range(0,6)%}
+                          <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">{{data.json.values.fact_ctznFinance_claimant_earnings[i].employer}}</td>
+                            <td class="govuk-table__cell">{{data.json.values.fact_ctznFinance_claimant_earnings[i].date.slice(8, -18)}}{{data.json.values.fact_ctznFinance_claimant_earnings[i].date.slice(4, -20)}}{{data.json.values.fact_ctznFinance_claimant_earnings[i].date.slice(0, -24)}}</td>
+                            <td class="govuk-table__cell">£{{data.json.values.fact_ctznFinance_claimant_earnings[i].netPay.toFixed(2) }}</td>
+                          </tr>
+                          {%endfor%}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+            </div>
+            <div id="b" class="govuk-form-group govuk-!-margin-top-9">
+              <h3 class="govuk-heading">Pensions<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Occupational/private pensions
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £{{data.json.values.income_pvtPension_totalAmt}}
+                  </dd>
+                </div>
+              </dl>
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    HMRC records
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <div class="moj-scrollable-pane">
+                    <table class="govuk-table">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th scope="col" class="govuk-table__header">Provider</th>
+                          <th scope="col" class="govuk-table__header">Date</th>
+                          <th scope="col" class="govuk-table__header">Frequency</th>
+                          <th scope="col" class="govuk-table__header">Net pay</th>
+                        </tr>
+                      </thead>
+                      <tbody class="govuk-table__body">
+
+                          {% for i in data.json.values.fact_ctznFinance_claimant_pvtPension %}
+                          <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">{{i.provider}}</td>
+                            <td class="govuk-table__cell">{{i.date.slice(8,-18)}}{{i.date.slice(4,-20)}}{{i.date.slice(0,-24)}}</td>
+                            <td class="govuk-table__cell">{{i.frequency}}</td>
+                            <td class="govuk-table__cell">£{{i.netPay.toFixed(2) }}</td>
+                          </tr>
+                          {%endfor%}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+            <div id="c" class="govuk-form-group govuk-!-margin-top-9">
+              <h3 class="govuk-heading">Benefits<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Total benefits
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                   £{{data.json.values.income_benefit_claimant_grossAmt}}
+                  </dd>
+                </div>
+
+              </dl>
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    CIS records
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <div class="moj-scrollable-pane">
+                    <table class="govuk-table">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th scope="col" class="govuk-table__header">Benefit</th>
+                          <th scope="col" class="govuk-table__header">Payment date</th>
+                          <th scope="col" class="govuk-table__header">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody class="govuk-table__body">
+
+                          {% for i in data.json.values.fact_cis_claimant_awards%}
+                          <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">{{i.benefitKey}}</td>
+                            <td class="govuk-table__cell">{{i.startDate.slice(8, -18)}}{{i.startDate.slice(4, -20)}}{{i.startDate.slice(0, -24)}}</td>
+                            <td class="govuk-table__cell">£{{i.amount.toFixed(2) }}</td>
+                          </tr>
+                          {%endfor%}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+            </div>
+            <div id="d" class="govuk-form-group govuk-!-margin-top-9">
+              <h3 class="govuk-heading">Habitual residency<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Nationality
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data.json.values.fact_cis_claimant_residenceCountry}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Has the right to live and work in the UK
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    Has recourse to public funds
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Yes
+                  </dd>
+                </div>
+
+              </dl>
+            </div>
+
+            <!--- end of claim fact sections -->
+          </div>
+
+        </div>
+
+      </div>
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="feedback">
+        <div class="govuk-form-group ">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h2 class="govuk-fieldset__heading">
+                What type of award was issued?
+              </h2>
+            </legend>
+
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
+                <label class="govuk-label govuk-radios__label" for="contact">
+                  Nil award
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="contact-by-email">
+                    Indictate the reason for a nil award
+                  </label>
+                  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+                <label class="govuk-label govuk-radios__label" for="contact-2">
+                  Payment
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="contact-by-phone">
+                    Award amount
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="contact-by-phone">
+                    Date of award
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
+                </div>
+              </div>
+
+            </div>
+          </fieldset>
+
+        </div>
+        <button class="govuk-button">Submit</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

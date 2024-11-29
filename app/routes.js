@@ -1,5 +1,4 @@
 // Date tranformation functions
-
 Date.prototype.toShortFormat = function() {
 const shortMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
 const day = this.getDate();
@@ -58,6 +57,8 @@ require('./views/v12/application/_applicationroutes')
 require('./views/v13/tasks/_taskroutes')
 
 require('./views/v14/tasks/_taskroutes')
+
+require('./views/v15/application/_applicationroutes')
 
 // Older routing
 // v4 routes
