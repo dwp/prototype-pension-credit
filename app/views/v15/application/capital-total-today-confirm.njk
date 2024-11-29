@@ -24,11 +24,11 @@
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
                 <h1 class="govuk-heading-l">
-                    Check the money you have today
+                    The money you have today is:
                 </h1>
 
-                <h2 class="govuk-heading-m">You entered £{{data['todayTotal']}}
-                <span class="govuk-caption-l">{{data['todayTotalInWords'].slice(0, -4) | capitalize }}</span></h2>
+                <h2 class="govuk-heading-m">£{{data['todayTotal']}}
+                <p class="govuk-hint">{{data['todayTotalInWords'].slice(0, -4) | capitalize }}</p></h2>
 
             </div>
 
@@ -36,10 +36,10 @@
                 <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h1 class="govuk-fieldset__heading">
-                        Have you entered the right amount?
+                        Did you enter the correct amount?
                     </h1>
                     </legend>
-                    
+
                     <div class="govuk-radios" data-module="govuk-radios">
                     <div class="govuk-radios__item">
                         <input class="govuk-radios__input" id="todayAmountCorrect" name="todayAmountCorrect" type="radio" value="yes">
@@ -50,7 +50,7 @@
                     <div class="govuk-radios__item">
                         <input class="govuk-radios__input" id="todayAmountCorrect-2" name="todayAmountCorrect" type="radio" value="no">
                         <label class="govuk-label govuk-radios__label" for="todayAmountCorrect-2">
-                        No
+                        No, I want to go back and change the amount
                         </label>
                     </div>
                     </div>

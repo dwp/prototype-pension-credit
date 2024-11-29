@@ -23,13 +23,13 @@
 
       <div {%if data['style']==2%}class="interruption-card"{%endif%}>
         <h1 class="govuk-heading-l {%if data['style']==2%}interruption-card__heading{%endif%}">
-          Your money
+        About your money
         </h1>
-        
+
         <div class="govuk-form-group">
         {% if data['route'] == 1 %}
           <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}">
-            So we pay you right amount of Pension Credit, we need to know how much money you have in:
+            So we pay you correct amount of Pension Credit, we need to know how much money you have in:
           </p>
            <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
               {% for item in data['capitalTypes'] %}
@@ -41,7 +41,7 @@
             {% if data['route'] == 1 %}
               We will ask you:
             {% else %}
-              So we pay you right amount of Pension Credit, we need to know:
+              So we pay you correct amount of Pension Credit, we need to know:
             {% endif %}
           </p>
            <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
