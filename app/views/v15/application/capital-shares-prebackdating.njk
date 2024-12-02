@@ -1,0 +1,61 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Do you have" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <form method="post" >
+            <div class="govuk-form-group govuk-!-padding-top-7">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <span class="govuk-caption-l">Your shares in {{ data['shareCompany'] }}</span>
+                <h1 class="govuk-fieldset__heading">
+                  Were all of these shares issued to you before {{data['backdateDateString']}}?
+                </h1>
+                </legend>
+
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="sharesIssuedPrebackdating" name="sharesIssuedPrebackdating" type="radio" value="Yes">
+                    <label class="govuk-label govuk-radios__label" for="sharesIssuedPrebackdating">
+                    Yes, before {{data['backdateDateString']}}
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="sharesIssuedPrebackdating-2" name="sharesIssuedPrebackdating" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="sharesIssuedPrebackdating-2">
+No, some shares were issued on {{data['backdateDateString']}} or after
+                    </label>
+                </div>
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+
+</div>
+</div>
+
+{% endblock %}
