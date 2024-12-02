@@ -48,7 +48,12 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
    let capitalTypes = req.session.data['capitalTypes']
    if(capitalTypes == 'none'){
       if(req.session.data['route']==1){
-         res.redirect("capital-other-property")
+         if(req.session.data['additional']=='yes'){
+            res.redirect("capital-shares-yes-no")
+         }
+         else{
+            res.redirect("capital-other-property")
+         }
       }
       else{
          res.redirect("capital-check-answers")
@@ -99,15 +104,79 @@ router.post('/'+ version +'/application/capital-total-TAM', function(req, res) {
 });
 
 router.post('/'+ version +'/application/capital-total-TAM-confirm', function(req, res) {
-   if(req.session.data['todayAmountCorrect']=='no'){
+   if(req.session.data['tamAmountCorrect']=='no'){
       res.redirect('capital-total-TAM')
+   }
+   else{
+      if(req.session.data['additional']=='yes'){
+         res.redirect('capital-shares-yes-no')
+      }
+      else{
+         res.redirect('capital-other-property')
+      }
+   }
+});
+router.post('/'+ version +'/application/capital-check-answers', function(req, res) {
+   if(req.session.data['additional']=='yes'){
+      res.redirect('capital-shares-yes-no')
    }
    else{
       res.redirect('capital-other-property')
    }
 });
 
+////////////// SHARES ///////////////////
 
+router.post('/'+ version +'/application/capital-shares-yes-no', function(req, res) {
+   if(req.session.data['shares']=="yes"){
+      req.session.data['shareCount'] = '1';
+      req.session.data['currentshare'] = '1';
+      req.session.data['actualshareCount'] = '1';
+      res.redirect("capital-shares-company")
+   }
+   else{
+      res.redirect("capital-other-property")
+   }
+});
+router.post('/'+ version +'/application/capital-shares-company', function(req, res) {
+   req.session.data['shareCompany' + String(req.session.data['currentshare'])] = req.session.data['shareCompany'];
+   res.redirect("capital-shares-number")
+});
+router.post('/'+ version +'/application/capital-shares-number', function(req, res) {
+   req.session.data['sharesNumber' + String(req.session.data['currentshare'])] = req.session.data['sharesNumber'];
+   res.redirect("capital-shares-prebackdating")
+});
+router.post('/'+ version +'/application/capital-shares-prebackdating', function(req, res) {
+   req.session.data['sharesIssuedPrebackdating' + String(req.session.data['currentshare'])] = req.session.data['sharesIssuedPrebackdating'];
+   if(req.session.data['sharesIssuedPrebackdating']=="No"){
+      res.redirect("capital-shares-issued")
+   }
+   else{
+      res.redirect("capital-shares-check-answers")
+   }
+});
+router.post('/'+ version +'/application/capital-shares-issued', function(req, res) {
+   req.session.data['sharesIssuedDate'] = req.session.data['sharesIssued-day'] + ' ' + months[req.session.data['sharesIssued-month']-1] + ' ' + req.session.data['sharesIssued-year'];
+   req.session.data['sharesIssuedDate' + String(req.session.data['currentshare'])] = req.session.data['sharesIssuedDate'];
+   
+   res.redirect("capital-shares-check-answers")
+});
+router.post('/'+ version +'/application/capital-shares-check-answers', function(req, res) {
+   res.redirect("capital-shares-add-another")
+});
+router.post('/'+ version +'/application/capital-shares-add-another', function(req, res) {
+   if(req.session.data['addanother']=='yes'){   
+      req.session.data['shareCount'] ++;
+      req.session.data['currentshare'] = req.session.data['shareCount'];
+      req.session.data['actualshareCount'] ++;
+      res.redirect("capital-shares-company") 
+   }
+   else{
+      req.session.data['sharesComplete'] = 'true'
+      res.redirect("capital-other-property")
+   }
+   
+});
 
 
 //HOSPITAL STAYS

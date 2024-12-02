@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Total amount you had on " %}
+{% set pageName = "Total amount you and your partner have on " %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -21,37 +21,27 @@
 
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-        <form method="post" >
+        <form method="post">
+
             <div class="govuk-form-group govuk-!-padding-top-7">
-                <h1 class="govuk-heading-l">
-                    The money you had on {{data['backdateDateString']}} is:
-                </h1>
-
-                <h2 class="govuk-heading-m">£{{data['tamTotal']}}
-                <p class="govuk-hint">{{data['tamTotalInWords'].slice(0, -4) | capitalize }}</p></h2>
-
-            </div>
-
-            <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                     <h1 class="govuk-fieldset__heading">
-                        Did you enter the correct amount?
+                        Do you own any shares?
                     </h1>
                     </legend>
-
+                    
                     <div class="govuk-radios" data-module="govuk-radios">
                     <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="tamAmountCorrect" name="tamAmountCorrect" type="radio" value="yes">
-                        <label class="govuk-label govuk-radios__label" for="tamAmountCorrect">
+                        <input class="govuk-radios__input" id="shares" name="shares" type="radio" value="yes">
+                        <label class="govuk-label govuk-radios__label" for="shares">
                         Yes
                         </label>
                     </div>
                     <div class="govuk-radios__item">
-
-                        <input class="govuk-radios__input" id="todayAmountCorrect-2" name="todayAmountCorrect" type="radio" value="no">
-                        <label class="govuk-label govuk-radios__label" for="todayAmountCorrect-2">
-                        No, I want to go back and change the amount
+                        <input class="govuk-radios__input" id="shares-2" name="shares" type="radio" value="no">
+                        <label class="govuk-label govuk-radios__label" for="shares-2">
+                        No
                         </label>
                     </div>
                     </div>
