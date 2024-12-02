@@ -47,7 +47,13 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
    // Routing
    let capitalTypes = req.session.data['capitalTypes']
    if(capitalTypes == 'none'){
-      res.redirect("capital-check-answers")
+      if(req.session.data['route']==1){
+         res.redirect("capital-other-property")
+      }
+      else{
+         res.redirect("capital-check-answers")
+      }
+      
    }
    else{
       if(capitalTypes.includes('shares') || capitalTypes.includes('other accounts and investments') || capitalTypes.includes('outside the UK in cash, investments or accounts')){
