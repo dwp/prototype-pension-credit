@@ -25,9 +25,8 @@
             <div class="govuk-form-group govuk-!-padding-top-7">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <span class="govuk-caption-l">Your shares in {{ data['shareCompany'] }}</span>
                 <h1 class="govuk-fieldset__heading">
-                  Were all of these shares issued to you before {{data['backdateDateString']}}?
+                  When were your shares in {{ data['shareCompany'] }} issued to you?
                 </h1>
                 </legend>
 
@@ -35,13 +34,13 @@
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="sharesIssuedPrebackdating" name="sharesIssuedPrebackdating" type="radio" value="Yes">
                     <label class="govuk-label govuk-radios__label" for="sharesIssuedPrebackdating">
-                    Yes, before {{data['backdateDateString']}}
+                    Before {{data['backdateDateString']}}
                     </label>
                 </div>
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="sharesIssuedPrebackdating-2" name="sharesIssuedPrebackdating" type="radio" value="No">
                     <label class="govuk-label govuk-radios__label" for="sharesIssuedPrebackdating-2">
-                      No, some shares were issued on {{data['backdateDateString']}} or after
+                      On {{data['backdateDateString']}} or after
                     </label>
                 </div>
                 
