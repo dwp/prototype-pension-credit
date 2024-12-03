@@ -3,7 +3,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Check your overnight stay in hospital" %}
+{% set pageName = "Check your shares in {{ data['shareCompany'] }}" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -26,7 +26,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Which company do you have shares in?
+              Which company you have shares in
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['shareCompany']}}
@@ -39,7 +39,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              How many shares do you have?
+              How many shares you have
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['sharesNumber']}}
@@ -51,7 +51,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Were all of these shares issued to you before {{data['backdateDateString']}}?
+              When you were last issued shares in {{ data['shareCompany'] }}
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['sharesIssuedPrebackdating']}}

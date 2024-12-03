@@ -26,13 +26,13 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  When were your shares in {{ data['shareCompany'] }} issued to you?
-                </h1>
+                <span class="govuk-caption-l">Your shares in {{ data['shareCompany'] }}</span>
+When were you last issued shares in {{ data['shareCompany'] }}?                </h1>
                 </legend>
 
                 <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="sharesIssuedPrebackdating" name="sharesIssuedPrebackdating" type="radio" value="Yes">
+                    <input class="govuk-radios__input" id="sharesIssuedPrebackdating" name="sharesIssuedPrebackdating" type="radio" value="Before {{data['backdateDateString']}}">
                     <label class="govuk-label govuk-radios__label" for="sharesIssuedPrebackdating">
                     Before {{data['backdateDateString']}}
                     </label>
@@ -43,14 +43,14 @@
                       On {{data['backdateDateString']}} or after
                     </label>
                 </div>
-                
+
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="sharesIssuedPrebackdating-3" name="sharesIssuedPrebackdating" type="radio" value="Not sure">
                     <label class="govuk-label govuk-radios__label" for="sharesIssuedPrebackdating-3">
                       I'm not sure
                     </label>
                 </div>
-              
+
             </fieldset>
             </div>
 
