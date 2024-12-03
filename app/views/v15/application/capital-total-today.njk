@@ -38,7 +38,9 @@
                           You must include all the money that you have in:
                         <ul class="govuk-list govuk-list--bullet">
                             {% for item in data['capitalTypes'] %}
-                            <li>{{ item }}</li>
+                                {%if item != 'shares' %}
+                                    <li>{{ item }}</li>
+                                {%endif%}
                             {% endfor %}
                         </ul>
                     </p>
