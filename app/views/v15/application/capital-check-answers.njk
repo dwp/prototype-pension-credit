@@ -73,6 +73,26 @@
           </div>
           {%endif%}
 
+          {%if data['shareCount']%}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Companies you have share in
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            {% for i in range(1, data['shareCount']+1) -%}
+              {% if data['shareCompany'+i] != null%}
+                {{data['shareCompany'+(i)] }},</td> 
+              {% endif %}
+            {% endfor %}
+              
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">Money you and your partner had on {{data['backdateDateString']}}</span></a>
+            </dd>
+          </div>
+          {%endif%}
+
 
 
 

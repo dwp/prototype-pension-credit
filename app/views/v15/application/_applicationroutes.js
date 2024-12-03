@@ -61,12 +61,23 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
       
    }
    else{
-      if(capitalTypes.includes('shares') || capitalTypes.includes('other accounts and investments') || capitalTypes.includes('outside the UK in cash, investments or accounts')){
+      
+      if(capitalTypes.includes('other accounts and investments') || capitalTypes.includes('outside the UK in cash, investments or accounts')){
          res.redirect("capital-other-property")
+      }
+      else if(capitalTypes.includes('shares')){
+         if(req.session.data['additional']=='yes'){
+            req.session.data['shareCount'] = '1';
+            req.session.data['currentshare'] = '1';
+            req.session.data['actualshareCount'] = '1';
+            res.redirect("capital-shares-company")
+         }
+         else{
+            res.redirect("capital-other-property")
+         }
       }
       else{ 
          res.redirect("capital-interrupt")
-         //res.redirect("capital-total-TAM") 
       }
    }
 });
@@ -117,12 +128,9 @@ router.post('/'+ version +'/application/capital-total-TAM-confirm', function(req
    }
 });
 router.post('/'+ version +'/application/capital-check-answers', function(req, res) {
-   if(req.session.data['additional']=='yes'){
-      res.redirect('capital-shares-yes-no')
-   }
-   else{
+   
       res.redirect('capital-other-property')
-   }
+   
 });
 
 ////////////// SHARES ///////////////////
@@ -172,8 +180,14 @@ router.post('/'+ version +'/application/capital-shares-add-another', function(re
       res.redirect("capital-shares-company") 
    }
    else{
-      req.session.data['sharesComplete'] = 'true'
-      res.redirect("capital-other-property")
+      if(req.session.data['capitalTypes'] == 'shares'){
+         res.redirect("capital-other-property")
+      }
+      else{
+         res.redirect("capital-interrupt")
+      }
+      
+      
    }
    
 });
