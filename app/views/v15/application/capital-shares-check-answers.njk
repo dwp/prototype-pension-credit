@@ -49,6 +49,9 @@
             </dd>
           </div>
 
+          {% if data['sharesIssuedDate']+currentshare %}
+
+          {% else %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               When you were last issued shares in {{ data['shareCompany'] }}
@@ -60,6 +63,7 @@
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> something</span></a>
             </dd>
           </div>
+          {% endif %}
 
 
           {% if data['sharesIssuedDate'] %}
