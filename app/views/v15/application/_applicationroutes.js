@@ -177,6 +177,7 @@ router.post('/'+ version +'/application/capital-shares-add-another', function(re
       req.session.data['shareCount'] ++;
       req.session.data['currentshare'] = req.session.data['shareCount'];
       req.session.data['actualshareCount'] ++;
+      req.session.data['sharesIssuedDate'] = null
       res.redirect("capital-shares-company") 
    }
    else{
