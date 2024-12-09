@@ -20,13 +20,13 @@
       <div class="govuk-grid-column-two-thirds">
        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-        <h1 class="govuk-heading-l">Check your savings and investments</h1>
+        <h1 class="govuk-heading-l">Check your money and investments</h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
           {%if data['capitalTypes']%}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Do you have money in any of these?
+              Where you have money
             </dt>
             <dd class="govuk-summary-list__value">
               <ul class="govuk-list govuk-list--bullet">
@@ -36,7 +36,7 @@
               </ul>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">whether you or your partner have money in any of these</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">where you or your partner keep your money</span></a>
             </dd>
           </div>
           {%endif%}
@@ -68,7 +68,7 @@
               {{data['tamTotalInWords'].slice(0, -4) | capitalize}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">Money you and your partner had on {{data['backdateDateString']}}</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">how much money you and your partner had on {{data['backdateDateString']}}</span></a>
             </dd>
           </div>
           {%endif%}
@@ -76,19 +76,19 @@
           {%if data['shareCount']%}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Companies you have share in
+              Companies you have shares in
             </dt>
             <dd class="govuk-summary-list__value">
 
             {% for i in range(1, data['shareCount']+1) -%}
               {% if data['shareCompany'+i] != null%}
-                {{data['shareCompany'+(i)] }},</td> 
+                {{data['shareCompany'+(i)] }},</td>
               {% endif %}
             {% endfor %}
-              
+
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">Money you and your partner had on {{data['backdateDateString']}}</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">the companies you and your partner have shares</span></a>
             </dd>
           </div>
           {%endif%}
