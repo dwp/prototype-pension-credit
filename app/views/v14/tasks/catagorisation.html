@@ -153,6 +153,7 @@
                 </div>
 
               </dl>
+              <p><a href="">Remove from ???</a></p>
             </div>
           </div>
   </div>
@@ -688,58 +689,91 @@
         </div>
 
       </div>
+
       <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="feedback">
-        <div class="govuk-form-group ">
-          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <div class="govuk-form-group">
+          <h1>Outcome feedback</h1>
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                What type of award was issued?
+                Were you able to successfully process the claim in CAM?
               </h2>
-            </legend>
+              </legend>
 
-            <div class="govuk-radios" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
-                <label class="govuk-label govuk-radios__label" for="contact">
-                  Nil award
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="contact-by-email">
-                    Indictate the reason for a nil award
-                  </label>
-                  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+              <div class="govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
+                    <label class="govuk-label govuk-radios__label" for="contact">
+                      Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+                    <label class="govuk-label govuk-radios__label" for="contact-2">
+                      No
+                    </label>
                 </div>
               </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
-                <label class="govuk-label govuk-radios__label" for="contact-2">
-                  Payment
-                </label>
-              </div>
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="contact-by-phone">
-                    Award amount
-                  </label>
-                  <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
-                </div>
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="contact-by-phone">
-                    Date of award
-                  </label>
-                  <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
-                </div>
-              </div>
+            </fieldset>
+          </div>
 
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-phone">
+                Award amount
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
             </div>
-          </fieldset>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-phone">
+                Date of award
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
+            </div>
+          </div>
 
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">
+                  Remove this claim from XXX ?
+                </h2>
+                </legend>
+                <div class="govuk-grid-row">
+                  <div class="govuk-grid-column-two-thirds">
+                    <p>If this claim requires further clarification from the citizen, you should only remove it once you have entered all the details you can into CAM.</p>
+                    <div class="govuk-warning-text">
+                      <span class="govuk-warning-text__icon " aria-hidden="true">!</span>
+                      <strong class="govuk-warning-text__text">
+                        <span class="govuk-visually-hidden">Warning</span>
+                        Warning: This action cannot be undone
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="govuk-radios--inline" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="remove" name="remove" type="radio" value="yes">
+                      <label class="govuk-label govuk-radios__label" for="remove">
+                        Yes
+                      </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="remove-2" name="remove" type="radio" value="no" >
+                      <label class="govuk-label govuk-radios__label" for="remove-2">
+                        No
+                      </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
         </div>
-        <button class="govuk-button">Submit</button>
+        <div class="govuk-form-group">
+          <button class="govuk-button">Submit</button>
+        </div>
       </div>
-
     </div>
 
   </div>
