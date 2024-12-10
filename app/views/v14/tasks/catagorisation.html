@@ -1,6 +1,6 @@
 {# Set which global nav link to highlight #}
 {% set globalNavSection = 'task' %}
-{% set serviceName = 'View Pension Credit claims' %}
+{% set serviceName = 'Process a Pension Credit application' %}
 {% include '../partials/name/eric.njk' %}
 
 {% extends "../layout.njk" %}
@@ -544,11 +544,11 @@
 
             <div id="a" class="govuk-form-group govuk-!-margin-bottom-6">
 
-              <h3 class="govuk-heading">Employment income from HMRC<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <h3 class="govuk-heading">Earnings from HMRC<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list ">
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
-                Total weekly employment
+                Total weekly earnings
                   </dt>
                   <dd class="govuk-summary-list__">
                     £{{ data.json.values.income_employment_totalAmt.toFixed(2) }}
@@ -558,7 +558,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    RTI information
+                    More detail about their earnings
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -603,7 +603,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    HMRC records
+                    More detail about their pensions
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -652,7 +652,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    CIS records
+                      More detail about their benefits
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -805,7 +805,7 @@
                   <div class="govuk-grid-column-two-thirds">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                 <h2 class="govuk-fieldset__heading">
-                  Copy the application details and information we hold into CAM
+                  Copy the application details and information we hold into CAM before ending this task
                 </h2>
 
                 </legend>
@@ -814,7 +814,7 @@
                         <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
                           <label class="govuk-label govuk-checkboxes__label" for="waste">
-                            I have copied all the required information into CAM
+                            I have copied the information I need into CAM
                           </label>
                         </div>
                       </div>
