@@ -233,7 +233,7 @@
         "credits_transitionalPremium_totalAmt" : 0.0,
         "fact_claim_claimDate" : "2024-06-23T23:00:00.000+0000",
         "income_employment_totalAmt" : 192.36923076153602,
-        "award_amt" : 0.0,
+        "award_amt" : 67.41,
         "income_employment_claimant_averaged_earnings" : [
             {
                 "from" : "POSITIVE INDIVIDUAL",
