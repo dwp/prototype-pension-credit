@@ -64,10 +64,10 @@
                   </dt>
                   <dd class="govuk-summary-list__value">
                     {% if data.json.values.award_amt > 0 %}
-                    Between 
-                    £{{ ((data.json.values.award_amt.toFixed(2)|float)-10) | round5down}} 
-                    and 
-                    £{{ ((data.json.values.award_amt.toFixed(2)|float)+10) | round5up}}   
+                    Between
+                    £{{ ((data.json.values.award_amt.toFixed(2)|float)-10) | round5down}}
+                    and
+                    £{{ ((data.json.values.award_amt.toFixed(2)|float)+10) | round5up}}
                     {% else %}
                     £0
                     {% endif %}
@@ -180,7 +180,7 @@
             <!--- Side navigation -->
             <nav class="moj-side-navigation" aria-label="Side navigation">
 
-              
+
 
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item moj-side-navigation__item--active">
@@ -235,7 +235,7 @@
 
             <div id="1" class="govuk-form-group">
 
-              
+
 
 
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -516,7 +516,7 @@
           <div class="govuk-grid-column-one-quarter">
             <!--- Side navigation -->
             <nav class="moj-side-navigation" aria-label="Side navigation">
-              
+
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item">
                   <a href="#a" aria-current="location">Employment income from HMRC</a>
@@ -540,7 +540,7 @@
               <!--- application sections -->
 
           <div class="govuk-grid-column-three-quarters">
-            
+
             <div id="a" class="govuk-form-group govuk-!-margin-bottom-6">
 
               <h3 class="govuk-heading">Employment income from HMRC<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
@@ -722,7 +722,7 @@
         <h3 class="govuk-heading-l">4. Record your decision</h3>
         <div class="govuk-form-group">
 
-      
+
 
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
@@ -799,12 +799,12 @@
           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset">
-                
+
                 <div class="govuk-grid-row">
                   <div class="govuk-grid-column-two-thirds">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                 <h2 class="govuk-fieldset__heading">
-                  Confirm you have entered all the information from this task into CAM?
+                  Copy the application details and information we hold into CAM
                 </h2>
 
                 </legend>
@@ -813,7 +813,7 @@
                         <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
                           <label class="govuk-label govuk-checkboxes__label" for="waste">
-                            I have recorded all the information from this claim in CAM
+                            I have copied all the required information into CAM
                           </label>
                         </div>
                       </div>
@@ -827,7 +827,7 @@
                     </div>
                   </div>
                 </div>
-                
+
               </fieldset>
             </div>
         </div>
