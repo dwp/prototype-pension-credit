@@ -56,7 +56,7 @@
                     Entitlement
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {% if data.json.values.award_amt > 0 %}Likely{%else%}Unlikely{%endif%}
+                    {% if data.json.values.award_amt > 0 %}Likely{%else%}Not likely{%endif%}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -520,18 +520,18 @@
 
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item">
-                  <a href="#a" aria-current="location">Employment income from HMRC</a>
+                  <a href="#a" aria-current="location">Earnings</a>
                 </li>
 
                 <li class="moj-side-navigation__item">
-                  <a href="#b">Pensions from HMRC</a>
+                  <a href="#b">Pensions</a>
                 </li>
 
                 <li class="moj-side-navigation__item">
-                  <a href="#c">Benefits from DWP</a>
+                  <a href="#c">Benefits</a>
                 </li>
                 <li class="moj-side-navigation__item">
-                  <a href="#d">Habitual residency from Home Office</a>
+                  <a href="#d">Immigration status</a>
                 </li>
               </ul>
             </nav>
@@ -558,7 +558,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    More detail about their earnings
+                    More detail about earnings
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -603,7 +603,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    More detail about their pensions
+                      More detail about pensions
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -611,7 +611,7 @@
                     <table class="govuk-table">
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
-                          <th scope="col" class="govuk-table__header">Provider</th>
+                          <th scope="col" class="govuk-table__header">Pension provider</th>
                           <th scope="col" class="govuk-table__header">Date</th>
                           <th scope="col" class="govuk-table__header">Frequency</th>
                           <th scope="col" class="govuk-table__header">Net pay</th>
@@ -652,7 +652,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                      More detail about their benefits
+                        More detail about benefits
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -682,7 +682,7 @@
               </details>
             </div>
             <div id="d" class="govuk-form-group govuk-!-margin-top-9">
-              <h3 class="govuk-heading">Habitual residency from the Home Office<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <h3 class="govuk-heading">Immigration status from the Home Office<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
 
                 <div class="govuk-summary-list__row">
@@ -726,6 +726,9 @@
 
 
           <div class="govuk-form-group">
+
+
+
             <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
@@ -795,6 +798,8 @@
                 </div>
               </div>
             </div>
+
+
           </div>
 
           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
@@ -805,7 +810,7 @@
                   <div class="govuk-grid-column-two-thirds">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                 <h2 class="govuk-fieldset__heading">
-                  Copy the application details and information we hold into CAM before ending this task
+                  Copy the application details and information we hold into CAM
                 </h2>
 
                 </legend>
@@ -814,7 +819,7 @@
                         <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
                           <label class="govuk-label govuk-checkboxes__label" for="waste">
-                            I have copied the information I need into CAM
+                            I have copied this information into CAM
                           </label>
                         </div>
                       </div>
@@ -823,7 +828,7 @@
                       <span class="govuk-warning-text__icon " aria-hidden="true">!</span>
                       <strong class="govuk-warning-text__text">
                         <span class="govuk-visually-hidden">Warning</span>
-                        Warning: This action cannot be undone.
+                        Warning: This case will be removed from this system.
                       </strong>
                     </div>
                   </div>
@@ -834,6 +839,7 @@
         </div>
         <div class="govuk-form-group">
           <button class="govuk-button">End task</button>
+
         </div>
       </div>
       </div>
