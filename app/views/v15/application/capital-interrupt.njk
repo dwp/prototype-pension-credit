@@ -23,7 +23,7 @@
 
       <div {%if data['style']==2%}class="interruption-card"{%endif%}>
         <h1 class="govuk-heading-l {%if data['style']==2%}interruption-card__heading{%endif%}">
-        About your money
+      Tell us more about your money
         </h1>
 
         <div class="govuk-form-group">
@@ -51,30 +51,26 @@
 
           {% if data['route'] == 2 %}
             <h2 class="govuk-heading-m {%if data['style']==2%}interruption-card__heading{%endif%}">
-              Things you might need
+              Things you may need
             </h2>
             <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}">
-              To answer the next few questions you will need the balance and statements of your:
+              You will need statements and the current balance for your:
             </p>
             <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
 
               <li>bank and building society accounts</li>
               <li>credit union and Post Office accounts</li>
-              <li>ISAs</li> </ul>
+              <li>ISAs</li>
+            <li>NS&I products</li> </ul>
 
               <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}">
-                You might also need:
+                You may also need:
               </p>
                 <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
                 <li>to know how much money you have in cash</li>
-<li>the balance and statements of your NS&I products</li>
-  <li>your bond records since {{data['backdateDateString']}}</li></ul>
+  <li>your bond records since {{data['backdateDateString']}}</li>
+</ul>
 
-
-
-
-
-           </ul>
 
 
 
