@@ -62,7 +62,7 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
    }
    else{
       
-      if(capitalTypes.includes('other accounts and investments') || capitalTypes.includes('outside the UK in cash, investments or accounts')){
+      if(capitalTypes.includes('other accounts and investments') || capitalTypes.includes('outside the UK in cash, investments or accounts') || capitalTypes.includes('unit trusts')){
          res.redirect("capital-other-property")
       }
       else if(capitalTypes.includes('shares')){
