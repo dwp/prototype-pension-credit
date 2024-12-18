@@ -70,7 +70,7 @@ router.post('/'+ version +'/application/capital-select-capital', function(req, r
             req.session.data['shareCount'] = '1';
             req.session.data['currentshare'] = '1';
             req.session.data['actualshareCount'] = '1';
-            res.redirect("capital-shares-company")
+            res.redirect("capital-interrupt")
          }
          else{
             res.redirect("capital-other-property")
@@ -133,6 +133,16 @@ router.post('/'+ version +'/application/capital-check-answers', function(req, re
    
 });
 
+router.post('/'+ version +'/application/capital-interrupt', function(req, res) {
+   if(req.session.data['capitalTypes'].includes('shares')){
+      res.redirect("capital-shares-company")
+   }
+   else{
+      res.redirect("capital-total-today")
+   }
+
+});
+
 ////////////// SHARES ///////////////////
 
 router.post('/'+ version +'/application/capital-shares-yes-no', function(req, res) {
@@ -185,7 +195,7 @@ router.post('/'+ version +'/application/capital-shares-add-another', function(re
          res.redirect("capital-other-property")
       }
       else{
-         res.redirect("capital-interrupt")
+         res.redirect("capital-total-today")
       }
       
       
