@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "About your money" %}
+{% set pageName = "We need to know more about your money and investments" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -23,7 +23,7 @@
 
       <div {%if data['style']==2%}class="interruption-card"{%endif%}>
         <h1 class="govuk-heading-l {%if data['style']==2%}interruption-card__heading{%endif%}">
-          We need to know more about your money
+          We need more information about your money and investments
         </h1>
 
         <div class="govuk-form-group">
@@ -70,20 +70,20 @@
                     your bond records since {{data['backdateDateString']}}.
                 {%endif%}
                 {%if data['capitalTypes'] == 'shares'%}
-                    <li>SHARE LINE HERE</li>
+                your share certificates.
                 {%endif%}
-              </p> 
-            {%  elseif 
-                data['capitalTypes'].length == 2 and  
+              </p>
+            {%  elseif
+                data['capitalTypes'].length == 2 and
                 (data['capitalTypes'][1] == 'credit union and Post Office accounts' or data['capitalTypes'][1] == 'ISAs')
             %}
               <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}"> To answer the next few questions you may need the current balance and statements for all of your accounts.</p>
-            {%  elseif 
-                data['capitalTypes'].length == 3 and  
+            {%  elseif
+                data['capitalTypes'].length == 3 and
                 (data['capitalTypes'][2] == 'ISAs')
             %}
               <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}"> To answer the next few questions you may need the current balance and statements for all of your accounts.</p>
-              
+
             {% else %}
               <p class="govuk-body {%if data['style']==2%}interruption-card__body{%endif%}">
                 To answer the next few questions you may need:
@@ -116,7 +116,7 @@
                         <li>your bond records since {{data['backdateDateString']}}</li>
                     {%endif%}
                     {%if item == 'shares'%}
-                        <li>SHARE LINE HERE</li>
+                    <li>your share certificates</li>
                     {%endif%}
                 {% endfor %}
                 </ul>
