@@ -70,7 +70,7 @@
                     your bond records since {{data['backdateDateString']}}.
                 {%endif%}
                 {%if data['capitalTypes'] == 'shares'%}
-                your share certificates.
+                your share certificates or annual dividend report.
                 {%endif%}
               </p>
             {%  elseif
@@ -116,7 +116,7 @@
                         <li>your bond records since {{data['backdateDateString']}}</li>
                     {%endif%}
                     {%if item == 'shares'%}
-                    <li>your share certificates</li>
+                    <li>your share certificates or annual dividend report</li>
                     {%endif%}
                 {% endfor %}
                 </ul>
