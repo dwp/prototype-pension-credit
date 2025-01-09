@@ -31,7 +31,7 @@ Company you have shares in            </dt>
               {{data['shareCompany']}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> share company</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">the company you have shares in</span></a>
             </dd>
           </div>
 
@@ -44,7 +44,7 @@ Company you have shares in            </dt>
               {{data['sharesNumber']}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> number of shares</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> how many shares you have in this company</span></a>
             </dd>
           </div>
 
@@ -53,13 +53,13 @@ Company you have shares in            </dt>
           {% else %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              When you were last issued shares in {{ data['shareCompany'] }}
+            Date you were last issued shares in {{ data['shareCompany'] }}
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['sharesIssuedPrebackdating']}}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> something</span></a>
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> the date you were last issued shares in this company</span></a>
             </dd>
           </div>
           {% endif %}
@@ -69,13 +69,13 @@ Company you have shares in            </dt>
 
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                    What date were you last issued shares in {{ data['shareCompany'] }}?
+                Date you were last issued shares in {{ data['shareCompany'] }}
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{data['sharesIssuedDate']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> issue date</span></a>
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> the date you were last issued shares in this company</span></a>
                 </dd>
               </div>
             {% endif %}
