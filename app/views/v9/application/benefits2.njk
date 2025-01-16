@@ -1,0 +1,102 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Which of these benefits or payments do you get from DWP?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <form method="post">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-heading-l">
+                      <span class="govuk-caption-l">Protecting your identity</span>
+                      Which of these benefits do you get?
+                    </h1>
+                          <p class="govuk-hint">Select all benefits that you are getting.</p>
+                </legend>
+
+                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting" name="benefitsGetting" type="checkbox" value="State Pension (SP)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting">
+                      State Pension (SP)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-2" name="benefitsGetting" type="checkbox" value="Attendance Allowance (AA)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-2">
+                      Attendance Allowance (AA)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-3" name="benefitsGetting" type="checkbox" value="Carer's Allowance (CA)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-3">
+                      Carer's Allowance (CA)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-4" name="benefitsGetting" type="checkbox" value="Carer Support Payment (CSP)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-4">
+                      Carer Support Payment (CSP)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-5" name="benefitsGetting" type="checkbox" value="Personal Independence Payment (PIP)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-5">
+                      Personal Independence Payment (PIP)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-6" name="benefitsGetting" type="checkbox" value="Disability Living Allowance (DLA)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-6">
+                      Disability Living Allowance (DLA)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-7" name="benefitsGetting" type="checkbox" value="Disability Living Allowance (Scottish Adult Disability Living Allowance (SADLA)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-7">
+                      Scottish Adult Disability Living Allowance (SADLA)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-8" name="benefitsGetting" type="checkbox" value="Pension Age Disability Payment (PADP)">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-8">
+                      Pension Age Disability Payment (PADP)
+                    </label>
+                  </div>
+                  <div class="govuk-checkboxes__divider">or</div>
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="benefitsGetting-none" name="benefitsGetting" type="checkbox" value="none" data-behaviour="exclusive">
+                    <label class="govuk-label govuk-checkboxes__label" for="benefitsGetting-none">
+                    None of these
+                    </label>
+                  </div>
+                  
+                </div>
+            </fieldset>
+          </div>
+          <div class="govuk-form-group">
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                  Continue
+              </button>
+          </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
