@@ -41,12 +41,12 @@
             {% if data['route'] == 1 %}
               We will ask you:
             {% else %}
-              So we pay you the correct amount of Pension Credit, you will need to tell us:
+              To pay you the correct amount of Pension Credit, we need to know:
             {% endif %}
           </p>
            <ul class="govuk-list govuk-list--bullet {%if data['style']==2%}interruption-card__body{%endif%}">
-              <li>how much money you have today</li>
-              <li>how much money you had on {{data['backdateDateString']}}</li>
+              <li>how much money you and your partner have today</li>
+              <li>how much money you both had on {{data['backdateDateString']}}</li>
           </ul>
 
           {% if data['route'] == 2 %}

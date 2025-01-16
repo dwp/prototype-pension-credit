@@ -28,11 +28,10 @@
             </h1>
             </legend>
             <div id="countries-hint" class="govuk-hint">
-                Select each benefit you have applied for and are waiting to find out if you are eligible.
-            </div>
+Select each benefit that your partner has applied for and is waiting to find out if they are eligible.           </div>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
 
-            {% 
+            {%
             if data['PartnerBenefitsEntitled'].includes('AA')
             or data['PartnerBenefitsEntitled'].includes('DLA')
             or data['PartnerBenefitsEntitled'].includes('PIP')
@@ -86,7 +85,7 @@
             </div>
             {% endif %}
 
-            {% 
+            {%
             if data['PartnerBenefitsEntitled'].includes('CSP')
             or data['PartnerBenefitsEntitled'].includes('CA')
             %}
