@@ -22,10 +22,14 @@
 
           <h1 class="govuk-heading-l">
             <span class="govuk-caption-l">Protecting your identity</span>
-            {% if data['benefitsGetting'].length == '1'%}
-            Which account do we pay your {{ data['benefitsGetting'][0] }} into?
+            
+            {% if data['benefitsGetting'].includes('State Pension (SP)')%}
+              Which account do we pay your State Pension into?
+            
+            {% elseif data['benefitsGetting'].length == '1'%}
+              Which account do we pay your {{ data['benefitsGetting'][0] }} into?
             {% else %}
-            Please give us the details of a bank account your benefits are paid into
+              Which account do we pay one your benefits into?
             {% endif %}
           </h1>    
 
