@@ -69,7 +69,7 @@ router.post('/'+ version +'/application/benefits-bank', function(req, res) {
       formattedSortcode += sortcode.slice(4,6);
       req.session.data['SP-sortcode'] = formattedSortcode;
    }
-   res.redirect("bank-confirm")
+   res.redirect("bank-confirm2")
 });
 
 router.post('/'+ version +'/application/SP-bank', function(req, res) { 
