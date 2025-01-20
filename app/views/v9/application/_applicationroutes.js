@@ -70,7 +70,7 @@ router.post('/'+ version +'/application/benefits-bank', function(req, res) {
       req.session.data['SP-sortcode'] = formattedSortcode;
    }
 
-   if(req.session.data['benefitsGetting'].includes('State Pension (SP)') || req.session.data['benefitsGetting'].length == '1'){
+   if(req.session.data['benefitsGetting'].includes('State Pension') || req.session.data['benefitsGetting'].length == '1'){
       res.redirect("bank-confirm2")
    }
    else{
