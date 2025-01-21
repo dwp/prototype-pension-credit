@@ -22,16 +22,19 @@
 
           <h1 class="govuk-heading-l">
             <span class="govuk-caption-l">Protecting your identity</span>
-            
+
             {% if data['benefitsGetting'].includes('State Pension')%}
               Which account do we pay your State Pension into?
-            
+
             {% elseif data['benefitsGetting'].length == '1'%}
-              Which account do we pay your {{ data['benefitsGetting'][0] }} into?
+              Which account do we pay your {{ data['benefitsGetting'][0] }} into?  </h1>
             {% else %}
-              Which account do we pay one your benefits into?
+              Which account do we pay your benefits into?</h1>
+              <div id="sort-code-hint" class="govuk-body">
+                  If we pay your benefits into different accounts you can pick which account to tell us about.
+              </div>
             {% endif %}
-          </h1>    
+
 
           <div class="govuk-form-group">
               <label class="govuk-label" for="sort-code">
