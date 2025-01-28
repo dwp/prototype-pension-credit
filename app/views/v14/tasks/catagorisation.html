@@ -662,6 +662,7 @@
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                           <th scope="col" class="govuk-table__header">Benefit</th>
+                          <th scope="col" class="govuk-table__header">Award date</th>
                           <th scope="col" class="govuk-table__header">Payment date</th>
                           <th scope="col" class="govuk-table__header">Amount</th>
                         </tr>
@@ -671,6 +672,7 @@
                           {% for i in data.json.values.fact_cis_claimant_awards%}
                           <tr class="govuk-table__row">
                             <td class="govuk-table__cell">{{i.benefitKey}}</td>
+                            <td class="govuk-table__cell">{{data.json.values.fact_derived_claimant_spaDate.slice(8, -18)}}{{i.startDate.slice(4, -20)}}{{i.startDate.slice(0, -24)}}</td>
                             <td class="govuk-table__cell">{{i.startDate.slice(8, -18)}}{{i.startDate.slice(4, -20)}}{{i.startDate.slice(0, -24)}}</td>
                             <td class="govuk-table__cell">£{{i.amount.toFixed(2) }}</td>
                           </tr>
