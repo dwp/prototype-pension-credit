@@ -64,6 +64,11 @@ require('./views/v15/application/_applicationroutes')
 // v4 routes
 // not used seperate routs yet as there isn't a need to
 
+router.get('/clearData', function(req, res) {
+    req.session.destroy();
+    res.redirect("./index");
+});
+
 
 router.post('*/security-check', function(req, res) {
     var SecurityConfirm = req.session.data['SecurityCheck'];
