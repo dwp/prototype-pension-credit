@@ -78,6 +78,15 @@ router.post('/'+ version +'/application/benefits-bank', function(req, res) {
    }
 });
 
+router.post('/'+ version +'/application/claimed-state-pension', function(req, res) { 
+   if(req.session.data['pension'] == "no-SP"){
+      res.redirect("SP-dropout")
+   }
+   else{
+      res.redirect("MVP-sp-bank-details")
+   }
+});
+
 router.post('/'+ version +'/application/SP-bank', function(req, res) { 
    let sortcode = req.session.data['SP-sortcode'];
    if(sortcode.length === 6){
