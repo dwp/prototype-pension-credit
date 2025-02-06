@@ -16,6 +16,7 @@ var version = "v16";
 
 router.post('/'+ version +'/application/eligibility-service-start', function(req, res) { 
    if(req.session.data["hasEverything"]=='Yes'){
+      req.session.data['canPerformEligibility'] = 'true';
       res.redirect("eligibility-country-you-live-in")
    }
    else{
@@ -61,7 +62,8 @@ router.post('/'+ version +'/application/eligibility-start-dob', function(req, re
          res.redirect("eligibility-claimant-sex")
       }
       else if(DoB<SPa_Boundry_Start){
-         res.redirect("aboutyou-nationality");
+         req.session.data['canPerformEligibility'] == 'false';
+         res.redirect("eligibility-has-children");
       }
       else{
          res.redirect("eligibility-has-children")
@@ -79,20 +81,16 @@ router.post('/'+ version +'/application/eligibility-claimant-sex', function(req,
    if(req.session.data['claimantSex'] == 'Male'){
       let SC_SPaDate = new Date(Date.parse('05 May 1951 00:00:00 GMT'));
       if(dob < SC_SPaDate){
-         res.redirect("aboutyou-nationality");
+         req.session.data['canPerformEligibility']='false'
       }
-      else{
-         res.redirect("eligibility-has-children")
-      }
+      res.redirect("eligibility-has-children")
    }
    else{
       let SC_SPaDate = new Date(Date.parse('05 May 1956 00:00:00 GMT'));
       if(dob < SC_SPaDate){
-         res.redirect("aboutyou-nationality");
+         req.session.data['canPerformEligibility']='false'
       }
-      else{
-         res.redirect("eligibility-has-children")
-      }
+      res.redirect("eligibility-has-children")
    }
 });
 
@@ -102,7 +100,6 @@ router.post('/'+ version +'/application/eligibility-has-children', function(req,
       res.redirect("eligibility-housing-costs");
    }
    else{
-      req.session.data['canPerformEligibility'] = 'true';
       res.redirect("eligibility-housing-costs")
    }
 });
@@ -189,8 +186,23 @@ router.post('/'+ version +'/application/eligibility-partner-dob', function(req, 
    partnerDoB.setYear(req.session.data["dateOfBirthyy"])
    req.session.data['partnerDoB'] = partnerDoB
 
+   let PartnerSPa = partnerDoB
+   PartnerSPa.setFullYear(PartnerSPa. getFullYear() + 66);
+   let today = new Date()
+   today.setMonth(today. getMonth() + 4);
+
    if(partnerDoB > SPa_Boundry_Start && partnerDoB < SPa_Boundry_End){
       res.redirect("eligibility-partner-sex")
+   }
+   else if(PartnerSPa>today){
+      let claimantDoB = new Date(req.session.data['claimantDoB']);
+      let setDate = new Date("1954-01-05")
+      if(claimantDoB < setDate){
+         res.redirect("eligibility-housing-benefit")
+      }
+      else{
+         res.redirect("eligibility-both-too-young")
+      }
    }
    else{
       res.redirect("eligibility-benefits-partner")
@@ -215,11 +227,9 @@ router.post('/'+ version +'/application/eligibility-partner-sex', function(req, 
             res.redirect("eligibility-dropout");
          }
          else if(dob < SC_SPaDate){
-            res.redirect("aboutyou-nationality");
+            req.session.data['canPerformEligibility'] = 'false'
          }
-         else{
-            res.redirect("eligibility-benefits-partner")
-         }  
+         res.redirect("eligibility-benefits-partner")
       
    }
    else{
@@ -234,11 +244,9 @@ router.post('/'+ version +'/application/eligibility-partner-sex', function(req, 
             res.redirect("eligibility-dropout");
          }
          else if(dob < SC_SPaDate){
-            res.redirect("aboutyou-nationality");
+            req.session.data['canPerformEligibility'] = 'false'
          }
-         else{
-            res.redirect("eligibility-benefits-partner")
-         }  
+         res.redirect("eligibility-benefits-partner")
      
    }
 });
@@ -376,6 +384,15 @@ router.post('/'+ version +'/application/eligibility-CYA', function(req, res) {
    }
    else{
       res.redirect("eligibility-not-enough-data")
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-housing-benefit', function(req, res) { 
+   if(req.session.data['hasHousingBenefit'] == 'Yes'){
+      res.redirect("eligibility-benefits-partner")
+   }
+   else{
+      res.redirect("eligibility-both-too-young")
    }
 });
 
