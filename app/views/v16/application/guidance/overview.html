@@ -1,0 +1,180 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Pension Credit: Overview
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for this page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Working, jobs and pensions",
+        href: "#"
+      },
+      {
+        text: "State Pension"
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Pension Credit
+      </h1>
+
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+                Overview
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="eligibility.html">
+                Eligibility
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="what-you-will-get.html">
+                What you'll get
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="how-to-claim.html">
+                How to claim
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="report-a-change.html">
+                Report a change of circumstances
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+      
+      <h2 class="govuk-heading-l">
+        Overview
+      </h2>
+      
+      <p class="govuk-body">Pension Credit gives you extra money to help with your living costs if you’re over State Pension age and on a low income. Pension Credit can also help with housing costs such as ground rent or service charges.</p>
+      <p class="govuk-inset-text">This guide is also available in <a href="#">Welsh (Cymraeg)</a> and <a href="#">easy read format</a>.</p>
+      <p>You might get extra help if you’re a carer, severely disabled, or responsible for a child or young person.</p>
+      <p>Pension Credit is separate from your State Pension.</p>
+      <p>You can get Pension Credit even if you have other income, savings or own your own home.</p>
+      <p class="govuk-inset-text">This guide covers Pension Credit in England, Scotland and Wales. <a rel="external" href="#">Find out about Pension Credit in Northern Ireland</a>.</p>
+      <h2 class="govuk-heading-m">Other help if you get Pension Credit</h2>
+      
+      <p>If you get Pension Credit you can also get other help, such as:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+      <a href="#">Housing Benefit</a> if you rent the property you live in</li>
+        <li><a href="#">Winter Fuel Payment</a></li>
+        <li>
+      <a href="#">Support for Mortgage Interest</a> if you own the property you live in</li>
+        <li>a <a href="#">Council Tax discount</a>
+      </li>
+        <li>a <a href="#">free TV licence</a> if you’re aged 75 or over</li>
+        <li>help with <a href="#">NHS dental treatment, glasses and transport costs</a> for hospital appointments, if you get a certain type of Pension Credit</li>
+        <li>help with your heating costs through the <a href="#">Warm Home Discount Scheme</a>
+      </li>
+        <li>a discount on the <a rel="external" href="#ß">Royal Mail redirection service</a> if you’re moving house</li>
+      </ul>
+      
+      
+      
+      
+      <nav class="govuk-prototype-kit-common-templates-pagination" role="navigation" aria-label="Pagination">
+
+      <!-- {{ govukPagination({
+        previous: {
+          labelText: "Page 1 title",
+          href: "#"
+        },
+        next: {
+          labelText: "Page 3 title",
+          href: "#"
+        }
+      }) }} -->
+
+      {{ govukPagination({
+        
+        next: {
+          labelText: "Eligibility",
+          href: "eligbility.html"
+        }
+      }) }}
+
+      <p>
+        <a href="#">
+          View a printable version of the whole guide
+        </a>
+      </p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                The basic State Pension
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Get help with benefits and pensions if you have accessibility needs
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Going into a care home if you get benefits
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+
+  </main>
+</div>
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
