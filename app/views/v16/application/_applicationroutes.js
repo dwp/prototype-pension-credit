@@ -51,12 +51,6 @@ router.post('/'+ version +'/application/eligibility-start-dob', function(req, re
    let today = new Date()
    today.setMonth(today. getMonth() + 4);
 
-   console.log("SPa: "+SPa)
-   console.log("DoB: "+DoB)
-   console.log("SPa boundry start: "+SPa_Boundry_Start)
-   console.log("SPa boundry end: "+SPa_Boundry_End)
-   console.log("Today: "+today)
-
    if(SPa<today){
       if(DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End){
          res.redirect("eligibility-claimant-sex")
@@ -118,6 +112,7 @@ router.post('/'+ version +'/application/eligibility-benefits-claimant', function
    let benefits = req.session.data['ClaimantBenefitsEntitled'];
 
    if(   benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') || 
+         benefits.includes('Scottish Adult Disability Living Allowance') ||
          benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
          benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
          benefits.includes('Constant Attendance Allowance')
@@ -142,6 +137,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
    let benefits = req.session.data['ClaimantBenefitsAwaiting'];
 
    if(   benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') || 
+         benefits.includes('Scottish Adult Disability Living Allowance') ||
          benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
          benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
          benefits.includes('Constant Attendance Allowance')){
@@ -184,29 +180,41 @@ router.post('/'+ version +'/application/eligibility-partner-dob', function(req, 
    partnerDoB.setDate(req.session.data["dateOfBirthdd"])
    partnerDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
    partnerDoB.setYear(req.session.data["dateOfBirthyy"])
-   req.session.data['partnerDoB'] = partnerDoB
+   console.log(partnerDoB);
+   req.session.data['partnerDoB'] = partnerDoB;
+  
 
-   let PartnerSPa = partnerDoB
-   PartnerSPa.setFullYear(PartnerSPa. getFullYear() + 66);
+   let SPa = new Date(Date.parse(partnerDoB))
+   let DoB = new Date(Date.parse(partnerDoB))
+   SPa.setFullYear(SPa. getFullYear() + 66);
    let today = new Date()
    today.setMonth(today. getMonth() + 4);
 
-   if(partnerDoB > SPa_Boundry_Start && partnerDoB < SPa_Boundry_End){
-      res.redirect("eligibility-partner-sex")
+   if(SPa<today){
+      if(DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End){
+         res.redirect("eligibility-partner-sex")
+      }
+      else if(DoB<SPa_Boundry_Start){
+         req.session.data['canPerformEligibility'] == 'false';
+         res.redirect("eligibility-benefits-partner");
+      }
+      else{
+         res.redirect("eligibility-benefits-partner")
+      }
    }
-   else if(PartnerSPa>today){
+   else{
       let claimantDoB = new Date(req.session.data['claimantDoB']);
-      let setDate = new Date("1954-01-05")
-      if(claimantDoB < setDate){
+      let triggerDate = new Date("1954-01-06T00:00:00.000Z")
+      if(claimantDoB < triggerDate){
          res.redirect("eligibility-housing-benefit")
       }
       else{
          res.redirect("eligibility-both-too-young")
       }
+      
    }
-   else{
-      res.redirect("eligibility-benefits-partner")
-   }
+
+
 });
 
 router.post('/'+ version +'/application/eligibility-partner-sex', function(req, res) { 
@@ -256,6 +264,7 @@ router.post('/'+ version +'/application/eligibility-benefits-partner', function(
 
    if(   
       benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') || 
+      benefits.includes('Scottish Adult Disability Living Allowance') || 
       benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
       benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
       benefits.includes('Constant Attendance Allowance')
@@ -282,7 +291,8 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
    let benefits = req.session.data['PartnerBenefitsAwaiting'];
 
    if(   
-      benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') || 
+      benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') ||  
+      benefits.includes('Scottish Adult Disability Living Allowance') ||
       benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
       benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
       benefits.includes('Constant Attendance Allowance')

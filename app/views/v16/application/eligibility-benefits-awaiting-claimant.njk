@@ -36,6 +36,7 @@
             {% 
             if data['ClaimantBenefitsEntitled'].includes('Attendance Allowance')
             or data['ClaimantBenefitsEntitled'].includes('Disability Living Allowance')
+            or data['ClaimantBenefitsEntitled'].includes('Scottish Adult Disability Living Allowance')
             or data['ClaimantBenefitsEntitled'].includes('Personal Independence Payment')
             or data['ClaimantBenefitsEntitled'].includes('Adult Disability Payment')
             or data['ClaimantBenefitsEntitled'].includes('Armed Forces Independence Payment')
@@ -50,17 +51,24 @@
                 </label>
             </div>
             <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-7" name="ClaimantBenefitsAwaiting" type="checkbox" value="Pension Age Disability Payment">
+                <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-7">
+                Pension Age Disability Payment
+                </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-1" name="ClaimantBenefitsAwaiting" type="checkbox" value="Disability Living Allowance">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-1">
                 The middle or highest rate from the care component of Disability Living Allowance (DLA)
                 </label>
             </div>
             <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-7" name="ClaimantBenefitsAwaiting" type="checkbox" value="Pension Age Disability Payment">
-                <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-7">
-                Pension Age Disability Payment
+                <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-8" name="ClaimantBenefitsAwaiting" type="checkbox" value="Scottish Adult Disability Living Allowance">
+                <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-8">
+                The middle or highest rate from the care component of Scottish Adult Disability Living Allowance
                 </label>
-            </div>
+            </div> 
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="ClaimantBenefitsAwaiting-2" name="ClaimantBenefitsAwaiting" type="checkbox" value="Personal Independence Payment">
                 <label class="govuk-label govuk-checkboxes__label" for="ClaimantBenefitsAwaiting-2">

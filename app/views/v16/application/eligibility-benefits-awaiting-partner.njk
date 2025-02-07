@@ -34,6 +34,7 @@ Select each benefit that your partner has applied for and is waiting to find out
             {%
             if data['PartnerBenefitsEntitled'].includes('Attendance Allowance')
             or data['PartnerBenefitsEntitled'].includes('Disability Living Allowance')
+            or data['PartnerBenefitsEntitled'].includes('Scottish Adult Disability Living Allowance')
             or data['PartnerBenefitsEntitled'].includes('Personal Independence Payment')
             or data['PartnerBenefitsEntitled'].includes('Adult Disability Payment')
             or data['PartnerBenefitsEntitled'].includes('Armed Forces Independence Payment')
@@ -59,6 +60,13 @@ Select each benefit that your partner has applied for and is waiting to find out
                 The middle or highest rate from the care component of Disability Living Allowance (DLA)
                 </label>
             </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-8" name="PartnerBenefitsAwaiting" type="checkbox" value="Scottish Adult Disability Living Allowance">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-8">
+                The middle or highest rate from the care component of Scottish Adult Disability Living Allowance
+                </label>
+            </div>
+            
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-2" name="PartnerBenefitsAwaiting" type="checkbox" value="Personal Independence Payment">
                 <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-2">
