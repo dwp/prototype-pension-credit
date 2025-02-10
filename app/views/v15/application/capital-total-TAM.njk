@@ -23,20 +23,16 @@
 
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
-                {% if data['route'] == 1%}
+
                     <h1 class="govuk-heading-l">
-                        Money you had on <span class="no-wrap">{{data['backdateDateString']}}</span>
+                        Money on <span class="no-wrap">{{data['backdateDateString']}}</span>
                     </h1>
-                {% else %}
-                    <h1 class="govuk-heading-l">
-                        How much money did you have on <span class="no-wrap">{{data['backdateDateString']}}</span>?
-                    </h1>
-                {% endif %}
+
 
 
                 <div class="govuk-body">
                     <p>
-                        You must include all the money you had in:  </p>
+                        You must include all the money you both had in:  </p>
                         <ul class="govuk-list govuk-list--bullet">
                             {% for item in data['capitalTypes'] %}
                                 {%if item != 'shares' %}
@@ -51,10 +47,10 @@
                     <div class="govuk-inset-text">
                         If you do not enter anything for more than 1 hour, your application will time out and you will have to start again.
                     </div>
+    {% endif %}
 
+                <h2 class="govuk-heading-m">How much money did you and your partner have on <span class="no-wrap">{{data['backdateDateString']}}</span>?</h2>
 
-                <h2 class="govuk-heading-m">How much money did you have on <span class="no-wrap">{{data['backdateDateString']}}</span>?</h2>
-                {% endif %}
                 <p {%if data['route'] == '1'%}class="govuk-hint"{%endif%}>
                     Enter an amount in pounds and pence, for example, 100.00
                 </p>

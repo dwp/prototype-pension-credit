@@ -59,10 +59,17 @@ require('./views/v13/tasks/_taskroutes')
 require('./views/v14/tasks/_taskroutes')
 
 require('./views/v15/application/_applicationroutes')
+require('./views/v16/application/_applicationroutes')
+
 
 // Older routing
 // v4 routes
 // not used seperate routs yet as there isn't a need to
+
+router.get('/clearData', function(req, res) {
+    req.session.destroy();
+    res.redirect("./index");
+});
 
 
 router.post('*/security-check', function(req, res) {

@@ -1,0 +1,43 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Check your eligibility" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+        <form method="post" action="date-of-birth">
+            <div class="govuk-form-group">
+
+                <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+                Check your eligibility</h1>
+
+
+                <p class="govuk-body">Before you complete the full Pension Credit application, we will check that you are eligible.</p>
+<p class="govuk-body">We will use the questions in this first section to tell you either:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>to complete the full application</li>
+  <li>that you are unlikely to get any Pension Credit</li></ul>
+
+
+
+
+                <p class="govuk-!-padding-top-4"><a href="eligibility-start-dob" class="govuk-button">Continue</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
