@@ -1,6 +1,6 @@
 {# Set which global nav link to highlight #}
 {% set globalNavSection = 'task' %}
-{% set serviceName = 'View Pension Credit claims' %}
+{% set serviceName = 'Process a Pension Credit application' %}
 {% include '../partials/name/eric.njk' %}
 
 {% extends "../layout.njk" %}
@@ -36,7 +36,11 @@
         </li>
         <li class="govuk-tabs__list-item">
           <a class="govuk-tabs__tab" href="#feedback">
+            {% if data['v'] == '2'%}
+            4. Complete the task
+            {% else %}
             4. Record your decision
+            {% endif %}
           </a>
         </li>
       </ul>
@@ -56,7 +60,7 @@
                     Entitlement
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {% if data.json.values.award_amt > 0 %}Likely{%else%}Unlikely{%endif%}
+                    {% if data.json.values.award_amt > 0 %}Likely{%else%}Not likely{%endif%}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -65,10 +69,10 @@
                   </dt>
                   <dd class="govuk-summary-list__value">
                     {% if data.json.values.award_amt > 0 %}
-                    Between 
-                    £{{ ((data.json.values.award_amt.toFixed(2)|float)-10) | round5down}} 
-                    and 
-                    £{{ ((data.json.values.award_amt.toFixed(2)|float)+10) | round5up}}   
+                    Between
+                    £{{ ((data.json.values.award_amt.toFixed(2)|float)-10) | round5down}}
+                    and
+                    £{{ ((data.json.values.award_amt.toFixed(2)|float)+10) | round5up}}
                     {% else %}
                     £0
                     {% endif %}
@@ -181,7 +185,7 @@
             <!--- Side navigation -->
             <nav class="moj-side-navigation" aria-label="Side navigation">
 
-              
+
 
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item moj-side-navigation__item--active">
@@ -236,7 +240,7 @@
 
             <div id="1" class="govuk-form-group">
 
-              
+
 
 
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -517,21 +521,21 @@
           <div class="govuk-grid-column-one-quarter">
             <!--- Side navigation -->
             <nav class="moj-side-navigation" aria-label="Side navigation">
-              
+
               <ul class="moj-side-navigation__list">
                 <li class="moj-side-navigation__item">
-                  <a href="#a" aria-current="location">Employment income from HMRC</a>
+                  <a href="#a" aria-current="location">Earnings</a>
                 </li>
 
                 <li class="moj-side-navigation__item">
-                  <a href="#b">Pensions from HMRC</a>
+                  <a href="#b">Pensions</a>
                 </li>
 
                 <li class="moj-side-navigation__item">
-                  <a href="#c">Benefits from DWP</a>
+                  <a href="#c">Benefits</a>
                 </li>
                 <li class="moj-side-navigation__item">
-                  <a href="#d">Habitual residency from Home Office</a>
+                  <a href="#d">Immigration status</a>
                 </li>
               </ul>
             </nav>
@@ -541,14 +545,14 @@
               <!--- application sections -->
 
           <div class="govuk-grid-column-three-quarters">
-            
+
             <div id="a" class="govuk-form-group govuk-!-margin-bottom-6">
 
-              <h3 class="govuk-heading">Employment income from HMRC<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <h3 class="govuk-heading">Earnings from HMRC<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list ">
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key govuk-!-width-one-half">
-                Total weekly employment
+                Total weekly earnings
                   </dt>
                   <dd class="govuk-summary-list__">
                     £{{ data.json.values.income_employment_totalAmt.toFixed(2) }}
@@ -558,11 +562,12 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    RTI information
+                    More detail about earnings
                   </span>
                 </summary>
                 <div class="govuk-details__text">
                   <div class="moj-scrollable-pane">
+                    <h3>{{data.json.values.fact_ctznFinance_claimant_earnings[i].employer}}</h3>
                     <table class="govuk-table">
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
@@ -603,7 +608,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    HMRC records
+                      More detail about pensions
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -611,7 +616,7 @@
                     <table class="govuk-table">
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
-                          <th scope="col" class="govuk-table__header">Provider</th>
+                          <th scope="col" class="govuk-table__header">Pension provider</th>
                           <th scope="col" class="govuk-table__header">Date</th>
                           <th scope="col" class="govuk-table__header">Frequency</th>
                           <th scope="col" class="govuk-table__header">Net pay</th>
@@ -652,7 +657,7 @@
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    CIS records
+                        More detail about benefits
                   </span>
                 </summary>
                 <div class="govuk-details__text">
@@ -661,6 +666,7 @@
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                           <th scope="col" class="govuk-table__header">Benefit</th>
+                          <th scope="col" class="govuk-table__header">Award date</th>
                           <th scope="col" class="govuk-table__header">Payment date</th>
                           <th scope="col" class="govuk-table__header">Amount</th>
                         </tr>
@@ -670,6 +676,7 @@
                           {% for i in data.json.values.fact_cis_claimant_awards%}
                           <tr class="govuk-table__row">
                             <td class="govuk-table__cell">{{i.benefitKey}}</td>
+                            <td class="govuk-table__cell">{{data.json.values.fact_derived_claimant_spaDate.slice(8, -18)}}{{i.startDate.slice(4, -20)}}{{i.startDate.slice(0, -24)}}</td>
                             <td class="govuk-table__cell">{{i.startDate.slice(8, -18)}}{{i.startDate.slice(4, -20)}}{{i.startDate.slice(0, -24)}}</td>
                             <td class="govuk-table__cell">£{{i.amount.toFixed(2) }}</td>
                           </tr>
@@ -682,7 +689,7 @@
               </details>
             </div>
             <div id="d" class="govuk-form-group govuk-!-margin-top-9">
-              <h3 class="govuk-heading">Habitual residency from the Home Office<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
+              <h3 class="govuk-heading">Immigration status from the Home Office<br><span class="govuk-body-s"><a href="#details">Back to top</a></h3>
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
 
                 <div class="govuk-summary-list__row">
@@ -720,11 +727,73 @@
 
       </div>
       <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="feedback">
+        {% if data['v'] == '2'%}
+        
+
+        <form method="post">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2>
+                  4. Complete the task
+                </h2>
+              </legend>
+
+              {% if data['error'] == 'true' %}
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                  <div class="govuk-error-summary" data-module="govuk-error-summary">
+                    <div role="alert">
+                      <h2 class="govuk-error-summary__title">
+                        There is a problem
+                      </h2>
+                      <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                          <li>
+                            <a href="#error">Confirm you have copied the information into CAM</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {%endif%}
+              <div {% if data['error'] == 'true' %}class="govuk-form-group--error"{%endif%}>
+                {% if data['error'] == 'true' %}
+                <p id="passport-issued-error" id='error' class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Confirm you have copied the information into CAM
+                </p>
+                {%endif%}
+                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="checked">
+                    <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                      I have copied the information from this task to CAM
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>  
+          <div class="govuk-form-group">
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                Warning: This task will be removed from this system.
+              </strong>
+            </div>
+          </div>
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+
+        
+
+        {% else %}
         <h3 class="govuk-heading-l">4. Record your decision</h3>
         <div class="govuk-form-group">
-
-      
-
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -732,7 +801,6 @@
                 Have you made a decision about this claimant's award?
               </h2>
               </legend>
-
               <div class="govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
@@ -749,7 +817,6 @@
               </div>
             </fieldset>
           </div>
-
           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
             <div class="govuk-form-group">
               <label class="govuk-label" for="awardAmount">
@@ -795,17 +862,19 @@
                 </div>
               </div>
             </div>
+
+
           </div>
 
           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset">
-                
+
                 <div class="govuk-grid-row">
                   <div class="govuk-grid-column-two-thirds">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                 <h2 class="govuk-fieldset__heading">
-                  Confirm you have entered all the information from this task into CAM?
+                  Copy the application details and information we hold into CAM
                 </h2>
 
                 </legend>
@@ -814,7 +883,7 @@
                         <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
                           <label class="govuk-label govuk-checkboxes__label" for="waste">
-                            I have recorded all the information from this claim in CAM
+                            I have copied this information into CAM
                           </label>
                         </div>
                       </div>
@@ -823,18 +892,20 @@
                       <span class="govuk-warning-text__icon " aria-hidden="true">!</span>
                       <strong class="govuk-warning-text__text">
                         <span class="govuk-visually-hidden">Warning</span>
-                        Warning: This action cannot be undone.
+                        Warning: This case will be removed from this system.
                       </strong>
                     </div>
                   </div>
                 </div>
-                
+
               </fieldset>
             </div>
         </div>
         <div class="govuk-form-group">
           <button class="govuk-button">End task</button>
+
         </div>
+        {% endif %}
       </div>
       </div>
 
