@@ -366,3 +366,22 @@ router.post('/' + version + '/tasks/tasklist', function(req, res) {
     res.redirect("../tasks");
 });
 
+router.post('/' + version + '/tasks/catagorisation', function(req, res) {
+    if(req.session.data['confirm'] != 'checked'){
+        req.session.data['error'] = 'true';
+        res.redirect('catagorisation#feedback');
+    }
+    else{
+        req.session.data['error'] = 'false';
+        res.redirect('catagorisation-award-type');
+    }
+});
+
+router.post('/' + version + '/tasks/catagorisation-award-type', function(req, res) {
+    if(req.session.data['decisionType'] == 'award'){
+        res.redirect('catagorisation-record-award');
+    }
+    else{
+        res.redirect('/v14/tasks?version=v14');
+    }
+});
