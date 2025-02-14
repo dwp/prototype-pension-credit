@@ -45,7 +45,6 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
     //     }
         
     // }
-    req.session.data['taskType'] = 'pay'
 
     // array to switch month from an integer to a real name
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
