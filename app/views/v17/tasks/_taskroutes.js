@@ -1,11 +1,14 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-var version = "v14";
+var version = "v17";
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 
 router.get('/'+version+'/tasks/randomise', function(req, res) {
     //clears the data for the tasklist to ensure a fresh task each time
-    req.session.data['BankDetails'] = '';
+    req.session.data['bankSort'] = '';
+    req.session.data['bankAccount'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
     req.session.data['Benefits'] = '';
@@ -19,25 +22,17 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
     req.session.data['pension1Complete'] = '';
     req.session.data['pension2Complete'] = '';
     req.session.data['pension3Complete'] = '';
-    req.session.data['pensionType'] = '';
     req.session.data['TaskSuccess'] = 'yes';
-    
-    if(req.session.data['TaskAmount'] <= 1){
-        req.session.data['TaskAmount'] = 6
-    }
-    else{
-        req.session.data['TaskAmount'] = req.session.data['TaskAmount'] - 1;
-    }
     
     
     //this randomises whether we display nil or pay award first
     // whichever displays first, the opposite will display second and then they keep alternating
-    if(req.session.data['taskType']){
-        // if(req.session.data['taskType']=='pay'){
-        //     req.session.data['taskType'] = 'nil'
-        // }
-        // else{
-            req.session.data['taskType'] = 'pay'
+    // if(req.session.data['taskType']){
+    //     if(req.session.data['taskType']=='pay'){
+    //         req.session.data['taskType'] = 'nil'
+    //     }
+    //     else{
+    //         req.session.data['taskType'] = 'pay'
     //     }
     // }
     // else{
@@ -49,7 +44,7 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
     //         req.session.data['taskType'] = 'pay'
     //     }
         
-    }
+    // }
 
     // array to switch month from an integer to a real name
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -82,19 +77,20 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
     req.session.data['SuspendClaim'] = '';
 
     //this creates the data for pension3
-    req.session.data['scenario3-pension1-net'] = "274.04";
+    req.session.data['scenario3-pension1-net'] = "350";
     req.session.data['scenario3-pension1-selected'] = "Yes";
-    req.session.data['scenario3-pension2-net'] = "1206.49";
+    req.session.data['scenario3-pension2-net'] = "320";
     req.session.data['scenario3-pension2-selected'] = "Yes";
-    req.session.data['scenario3-pension3-net'] = "274.04";
+    req.session.data['scenario3-pension3-net'] = "300";
     req.session.data['scenario3-pension3-selected'] = "No";
-    req.session.data['scenario3-pension4-net'] = "274.04";
+    req.session.data['scenario3-pension4-net'] = "300";
     req.session.data['scenario3-pension4-selected'] = "No";
-    req.session.data['scenario3-pension5-net']= "275.77";
+    req.session.data['scenario3-pension5-net']= "300";
     req.session.data['scenario3-pension5-selected'] = "No";
-    req.session.data['scenario3-pension6-net'] = "274.04";
+    req.session.data['scenario3-pension6-net'] = "300";
     req.session.data['scenario3-pension6-selected'] = "No";
-    req.session.data['scenario3-pension-average'] = "877.28";
+    req.session.data['scenario3-pension-average'] = "335";
+
     res.redirect("/"+version+"/tasks/tasklist")
 });
 
@@ -105,7 +101,7 @@ router.get('/'+ version + '/tasks/tasklist', function(req, res) {
 
 
 router.post('/' + version + '/tasks/bank-name', function(req, res) {
-    if(req.session.data['BankDetails'] == 'yes') {
+    if(req.session.data['bankSort'] == 'yes' && req.session.data['bankAccount'] == 'yes'  ) {
         // KEEP THIS IS AS ITS BOUND TO CHANGE AGAIN!
         // if(req.session.data['taskType'] == "pay"){
         //     res.redirect("bank-encashed")
@@ -174,74 +170,108 @@ router.post('/' + version + '/tasks/benefits', function(req, res) {
 });
 
 router.post('/' + version + '/tasks/non-dependents', function(req, res) {
-    if(req.session.data['NonDependents'] == 'yes') {
+    if(req.session.data['NonDependents'] == 'no') {
+        res.redirect("nationality")
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
+router.post('/' + version + '/tasks/nationality', function(req, res) {
+    //get six month date
+    var immigrationDate = new Date()
+    immigrationDate.setMonth(immigrationDate.getMonth() - 6)
+   var immigrationDateString = immigrationDate.getDate() + " " + months[immigrationDate.getDay()-1] + " " + immigrationDate.getFullYear()
+   req.session.data['immigrationDateString'] = immigrationDateString
+
+    if(req.session.data['nationalityCheck'] == 'Something else') {
+        res.redirect("confirm-nationality")
+    } 
+    else{
+        res.redirect("past-presence")
+    }
+});
+
+router.post('/' + version + '/tasks/confirm-nationality', function(req, res) {
+    if(req.session.data['confirmNationality'] == 'yes') {
+        res.redirect("immigration-status")
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
+router.post('/' + version + '/tasks/immigration-status', function(req, res) {
+    if(req.session.data['recourseToPublicFunds'] == 'yes' && req.session.data['leaveToRemain'] == 'yes') {
+        res.redirect("past-presence")
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
+router.post('/' + version + '/tasks/past-presence', function(req, res) {
+    if(req.session.data['pastPresence'] == 'no' ){
+        req.session.data['NationalityTask'] = 'yes';
         res.redirect("tasklist")
     } 
     else{
         res.redirect("dropout")
     }
+});
+
+router.post('/' + version + '/tasks/nationality-auto', function(req, res) {
+    
+    req.session.data['NationalityTask'] = 'yes'
+    res.redirect("tasklist")
+    
 });
 
 router.post('/' + version + '/tasks/cold-weather-payments', function(req, res) {
-    if(req.session.data['ColdWeather'] == 'no') {
-        res.redirect("tasklist")
+    res.redirect("tasklist")
+});
+
+router.post('/' + version + '/tasks/pension1', function(req, res) {
+    if(req.session.data['pension1Complete'] == 'yes') {
+        if(req.session.data['pension3Complete'] == 'yes' && req.session.data['pension2Complete']){
+            res.redirect("tasklist")
+        }
+        else if(req.session.data['pension2Complete']){
+            res.redirect("pension3")
+        }
+        else{
+            res.redirect("pension2")
+        }
     } 
     else{
         res.redirect("dropout")
     }
 });
 
-// router.post('/' + version + '/tasks/pension1', function(req, res) {
-//     if(req.session.data['pension1Complete'] == 'yes') {
-//         if(req.session.data['pension3Complete'] == 'yes' && req.session.data['pension2Complete']){
-//             res.redirect("tasklist")
-//         }
-//         else if(req.session.data['pension2Complete']){
-//             res.redirect("pension3")
-//         }
-//         else{
-//             res.redirect("pension2")
-//         }
-//     } 
-//     else{
-//         res.redirect("dropout")
-//     }
-// });
-
-// router.post('/' + version + '/tasks/pension2', function(req, res) {
-//     if(req.session.data['pension1Complete'] == 'yes' && req.session.data['pension3Complete'] == 'yes'){
-//         res.redirect("tasklist")
-//     }
-//     else if(req.session.data['pension1Complete'] == 'yes'){
-//         res.redirect("pension3")
-//     }
-//     else{
-//         res.redirect("pension1")
-//     }
-// });
+router.post('/' + version + '/tasks/pension2', function(req, res) {
+    if(req.session.data['pension1Complete'] == 'yes' && req.session.data['pension3Complete'] == 'yes'){
+        res.redirect("tasklist")
+    }
+    else if(req.session.data['pension1Complete'] == 'yes'){
+        res.redirect("pension3")
+    }
+    else{
+        res.redirect("pension1")
+    }
+});
 
 router.post('/' + version + '/tasks/pension3', function(req, res) {
     if(req.session.data['pension3Complete'] == 'yes') {
-        // if(req.session.data['pension1Complete'] == 'yes' && req.session.data['pension2Complete']){   
-        let averageAmount = parseFloat(req.session.data['scenario3-pension-average'])
-        averageAmount = (averageAmount * 12)/52
-        req.session.data['scenario3-pension-weekly'] = averageAmount.toFixed(2)
-        req.session.data['scenario3-pension-total'] = (parseFloat(averageAmount.toFixed(2)) + 146.38)
-        req.session.data['scenario3-applicable-amount'] = (218.15 - parseFloat(req.session.data['scenario3-pension-total'])).toFixed(2)
-        if(req.session.data['scenario3-pension-average'] <= 311){
-            req.session.data['taskType'] = "pay"
+        if(req.session.data['pension1Complete'] == 'yes' && req.session.data['pension2Complete']){
+            res.redirect("tasklist")
+        }
+        else if(req.session.data['pension2Complete']){
+            res.redirect("pension1")
         }
         else{
-            req.session.data['taskType'] = "nil"
+            res.redirect("pension2")
         }
-        res.redirect("tasklist")
-        // }
-        // else if(req.session.data['pension2Complete']){
-        //     res.redirect("pension1")
-        // }
-        // else{
-        //     res.redirect("pension2")
-        // }
     } 
     else{
         res.redirect("pension3-choose-amounts")
@@ -250,12 +280,11 @@ router.post('/' + version + '/tasks/pension3', function(req, res) {
 
 router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     var count = 0;
-    var average = 0.0;
+    var average = 0;
   
     if(req.session.data['scenario3-pension1-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension1-net']);
       count++
-      
     }
     else{
       req.session.data['scenario3-pension1-selected'] = 'No'
@@ -264,7 +293,6 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension2-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension2-net']);
       count++
-      
     }
     else{
       req.session.data['scenario3-pension2-selected'] = 'No'
@@ -273,7 +301,6 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension3-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension3-net']);
       count++
-      
     }
     else{
       req.session.data['scenario3-pension3-selected'] = 'No'
@@ -282,7 +309,6 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension4-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension4-net']);
       count++
-      
     }
     else{
       req.session.data['scenario3-pension4-selected'] = 'No'
@@ -291,7 +317,6 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension5-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension5-net']);
       count++
-      
     }
     else{
       req.session.data['scenario3-pension5-selected'] = 'No'
@@ -300,7 +325,6 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     if(req.session.data['scenario3-pension6-selected'] == 'Yes'){
       average += parseFloat(req.session.data['scenario3-pension6-net']);
       count++
-      
     }
     else{
       req.session.data['scenario3-pension6-selected'] = 'No'
@@ -309,7 +333,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
   if(count > 1){
     req.session.data['scenario3-selection-error']= 'false'
     req.session.data['pension3Complete']= ''
-    req.session.data['scenario3-pension-average'] = (average / count).toFixed(2);
+    req.session.data['scenario3-pension-average'] = Math.round(average / count);
     res.redirect(`pension3`);
   }
   else{
@@ -317,12 +341,13 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     res.redirect(`pension3-choose-amounts`);
   }
   
-})
+  })
 
 
 router.post('/' + version + '/tasks/dropout', function(req, res) {
     // Reset all sessions
-    req.session.data['BankDetails'] = '';
+    req.session.data['bankSort'] = '';
+    req.session.data['bankAccount'] = '';
     req.session.data['BankEncashed'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
@@ -338,14 +363,16 @@ router.post('/' + version + '/tasks/dropout', function(req, res) {
     req.session.data['pension1Complete'] = '';
     req.session.data['pension2Complete'] = '';
     req.session.data['pension3Complete'] = '';
-    req.session.data['pensionType'] = '';
+    req.session.data['NationalityTask'] = '';
+    req.session.data['pastPresence'] = '';
     req.session.data['TaskSuccess'] = 'yes';
     res.redirect("../tasks");
 });
 
 router.post('/' + version + '/tasks/tasklist', function(req, res) {
     // Reset all sessions
-    req.session.data['BankDetails'] = '';
+    req.session.data['bankSort'] = '';
+    req.session.data['bankAccount'] = '';
     req.session.data['BankEncashed'] = '';
     req.session.data['OtherApplications'] = '';
     req.session.data['PersonalDetails'] = '';
@@ -361,27 +388,9 @@ router.post('/' + version + '/tasks/tasklist', function(req, res) {
     req.session.data['pension1Complete'] = '';
     req.session.data['pension2Complete'] = '';
     req.session.data['pension3Complete'] = '';
-    req.session.data['pensionType'] = '';
+    req.session.data['NationalityTask'] = '';
+    req.session.data['pastPresence'] = '';
     req.session.data['TaskSuccess'] = 'yes';
     res.redirect("../tasks");
 });
 
-router.post('/' + version + '/tasks/catagorisation', function(req, res) {
-    if(req.session.data['confirm'] != 'checked'){
-        req.session.data['error'] = 'true';
-        res.redirect('catagorisation#feedback');
-    }
-    else{
-        req.session.data['error'] = 'false';
-        res.redirect('catagorisation-award-type');
-    }
-});
-
-router.post('/' + version + '/tasks/catagorisation-award-type', function(req, res) {
-    if(req.session.data['decisionType'] == 'award'){
-        res.redirect('catagorisation-record-award');
-    }
-    else{
-        res.redirect('/v14/tasks?version=v14');
-    }
-});
