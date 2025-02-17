@@ -36,7 +36,11 @@
         </li>
         <li class="govuk-tabs__list-item">
           <a class="govuk-tabs__tab" href="#feedback">
+            {% if data['v'] == '2'%}
+            4. Complete the task
+            {% else %}
             4. Record your decision
+            {% endif %}
           </a>
         </li>
       </ul>
@@ -723,11 +727,71 @@
 
       </div>
       <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="feedback">
+        {% if data['v'] == '2'%}
+        
+
+        <form method="post">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2>
+                  4. Complete the task
+                </h2>
+              </legend>
+
+              {% if data['error'] == 'true' %}
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                  <div class="govuk-error-summary" data-module="govuk-error-summary">
+                    <div role="alert">
+                      <h2 class="govuk-error-summary__title">
+                        There is a problem
+                      </h2>
+                      <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                          <li>
+                            <a href="#error">Confirm you have copied the information into CAM</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {%endif%}
+              <div {% if data['error'] == 'true' %}class="govuk-form-group--error"{%endif%}>
+                {% if data['error'] == 'true' %}
+                <p id="passport-issued-error" id='error' class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Confirm you have copied the information into CAM
+                </p>
+                {%endif%}
+                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox" value="checked">
+                    <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                      I have copied the information from this task to CAM
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>  
+          <div class="govuk-form-group">
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                Warning: This task will be removed from this system.
+              </strong>
+            </div>
+          </div>
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+
+        {% else %}
         <h3 class="govuk-heading-l">4. Record your decision</h3>
         <div class="govuk-form-group">
-
-
-
           <div class="govuk-form-group">
 
 
@@ -738,7 +802,6 @@
                 Have you made a decision about this claimant's award?
               </h2>
               </legend>
-
               <div class="govuk-radios--inline" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
@@ -755,7 +818,6 @@
               </div>
             </fieldset>
           </div>
-
           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
             <div class="govuk-form-group">
               <label class="govuk-label" for="awardAmount">
@@ -844,6 +906,7 @@
           <button class="govuk-button">End task</button>
 
         </div>
+        {% endif %}
       </div>
       </div>
 
