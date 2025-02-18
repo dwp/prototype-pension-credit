@@ -3,7 +3,7 @@
 
 {% extends "../layout.njk" %}
 
-{% set pageName = "Living together" %}
+{% set pageName = "Living with other people" %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -12,10 +12,10 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
-        <h2 class="govuk-heading-l">Living together</h2>
+        <h2 class="govuk-heading-l">Living with other people</h2>
 
         <div class="govuk-body">
-            Check Searchlight to see if anyone else is living at the claimant's address.
+            Check the claimant's address in Searchlight to see who else might be living there.
         </div>
 
         <div class="govuk-group">
@@ -33,11 +33,12 @@
 
 
     <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-table__caption--m">People we know about</caption>
+          <caption class="govuk-table__caption govuk-table__caption--m">People they told us about when they applied</caption>
+
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Name of person</th>
-              <th scope="col" class="govuk-table__header">Relationship to claimant</th>
+              <th scope="col" class="govuk-table__header">Name</th>
+              <th scope="col" class="govuk-table__header">Relationship</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
@@ -70,11 +71,13 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h2 class="govuk-fieldset__heading">
-                    Is anyone else living at the claimant's address?
+                Does anyone else live at the claimant's address?
+
                 </h2>
+
                 </legend>
 
-                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="NonDependents" name="NonDependents" type="radio" value="yes">
                     <label class="govuk-label govuk-radios__label" for="NonDependents">
@@ -84,7 +87,7 @@
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="NonDependents-2" name="NonDependents" type="radio" value="no">
                     <label class="govuk-label govuk-radios__label" for="NonDependents-2">
-                    No
+                    No, only the claimant and the people they told us about
                     </label>
                 </div>
                 </div>
