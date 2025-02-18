@@ -87,7 +87,9 @@
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="NonDependents-2" name="NonDependents" type="radio" value="no">
                     <label class="govuk-label govuk-radios__label" for="NonDependents-2">
-                    No, only the claimant and the people they told us about
+
+                    No, only the claimant{% if data['numberofpeople'] > 0%} and the people they told us about{% endif %}
+
                     </label>
                 </div>
                 </div>
