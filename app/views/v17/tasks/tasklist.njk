@@ -104,7 +104,7 @@
 
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         <div class="govuk-task-list__name-and-hint">
-          <a class="govuk-link govuk-task-list__link" href="non-dependents" aria-describedby="prepare-application-3-status">Living together</a>
+          <a class="govuk-link govuk-task-list__link" href="non-dependents" aria-describedby="prepare-application-3-status">Living with other people</a>
         </div>
         {% if data['NonDependents'] == 'no'%}
         <div class="govuk-task-list__status" id="before-you-start-1-status">
@@ -243,11 +243,11 @@
     {% endif %}
 
   <!-- Payment success -->
-  {% if 
-  data['ColdWeather'] and 
-  data['taskType'] == 'pay' and 
-  data['OtherApplications'] == 'no' and 
-  data['PersonalDetails'] == 'yes' and 
+  {% if
+  data['ColdWeather'] and
+  data['taskType'] == 'pay' and
+  data['OtherApplications'] == 'no' and
+  data['PersonalDetails'] == 'yes' and
   data['NonDependents'] == 'no'
   %}
 
