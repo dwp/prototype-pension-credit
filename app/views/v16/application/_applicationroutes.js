@@ -382,7 +382,7 @@ router.get('/'+ version +'/application/eligibility-calculate', function(req, res
 });
 
 router.post('/'+ version +'/application/eligibility-income', function(req, res) { 
-   res.redirect("eligibility-CYA")
+   res.redirect("eligibility-cya")
 });
 
 router.post('/'+ version +'/application/eligibility-CYA', function(req, res) { 
