@@ -6,7 +6,7 @@ var version = "v10";
 
 router.get('/'+ version +'/tasks', function(req, res) {
     req.session.data['scenario'] = 'T21';
-    if(req.session.data['TaskAmount'] > '2'){
+    if(req.session.data['TaskAmount'] > '0'){
         req.session.data['TaskAmount'] = req.session.data['TaskAmount'] - 1;
         req.session.data['TaskAmountReady'] = req.session.data['TaskAmount'] - 1;
 
