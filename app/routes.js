@@ -62,6 +62,8 @@ require('./views/v15/application/_applicationroutes')
 require('./views/v16/application/_applicationroutes')
 require('./views/v17/tasks/_taskroutes')
 
+require('./views/v18/application/_applicationroutes')
+
 // Older routing
 // v4 routes
 // not used seperate routs yet as there isn't a need to
