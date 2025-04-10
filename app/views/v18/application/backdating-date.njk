@@ -16,20 +16,19 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds"> 
+    <div class="govuk-grid-column-two-thirds">
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
         <form method="post">
            <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" role="group">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-fieldset__heading">
-                            What date do you want us to consider your application from?
-                        </h1>  
+                            What date do you want us to assess your application from?
+                        </h1>
                     </legend>
-    
+
                     <div class="govuk-hint">
-                        For example, 31 8 2020
-                    </div>
+The earliest date you can enter is <span class="no-wrap">{{data.backdateDateString | govukDate}}</span>. We'll backdate your application to the date you enter or the earliest possible date after.</div>
                     <div class="govuk-date-input">
                         <div class="govuk-date-input__item">
                             <div class="govuk-form-group">

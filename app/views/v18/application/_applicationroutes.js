@@ -9,7 +9,7 @@ var date = new Date(); //get todays date
 
 function createBackdatingDate() {
    var backdateDate = new Date()
-   backdateDate.setMonth(backdateDate.getMonth() - 6)
+   backdateDate.setMonth(backdateDate.getMonth() - 3)
    return backdateDate
  }
 
@@ -44,6 +44,3 @@ router.post('/'+ version +'/application/backdating-date-select', function(req, r
  router.post('/'+ version +'/application/backdating-date', function(req, res) {
    res.redirect("national-insurance-number")
  });
- 
-
-
