@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Start" %}
+{% set pageName = "Your application date" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -23,13 +23,20 @@
                 <fieldset class="govuk-fieldset" role="group">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-fieldset__heading">
-                            What date do you want us to assess your application from?
+                            Your application date
                         </h1>
                     </legend>
 
-                    <div class="govuk-hint">
-The earliest date you can enter is <span class="no-wrap">{{data.backdateDateString | govukDate}}</span>. We'll backdate your application to the date you enter or the earliest possible date after.</div>
-                    <div class="govuk-date-input">
+
+<p class="govuk-body">The earliest date you can enter is <strong><span class="no-wrap">{{data.backdateDateString | govukDate}}</span></strong>.</p>
+<p class="govuk-body">If you know you were not entitled to Pension Credit then, you can enter a later date.</p>
+<p class="govuk-body">
+We'll try backdate your application to the date you enter, if we can't we'll choose the earliest possible date after that.</p>
+<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    <h1 class="govuk-fieldset__heading">
+        What date do you want us to assess your application from?
+    </h1>
+</legend><div class="govuk-date-input">
                         <div class="govuk-date-input__item">
                             <div class="govuk-form-group">
                                 <label class="govuk-label govuk-date-input__label" for="dateOfBirthdd">
