@@ -55,8 +55,8 @@ router.post('/'+ version +'/application/eligibility-start-dob', function(req, re
       if(DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End){
          res.redirect("eligibility-claimant-sex")
       }
-      else if(DoB<SPa_Boundry_Start){
-         req.session.data['canPerformEligibility'] == 'false';
+      else if(DoB < SPa_Boundry_Start){
+         req.session.data['canPerformEligibility'] = 'false';
          res.redirect("eligibility-has-children");
       }
       else{
