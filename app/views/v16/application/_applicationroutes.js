@@ -335,7 +335,7 @@ router.get('/'+ version +'/application/eligibility-calculate', function(req, res
 
    // calculate standard amount
    if(req.session.data['hasPartner'] == 'Yes, we live together'){
-      req.session.data['standardamount'] = '332.95'
+      req.session.data['standardamount'] = '346.60'
       if(
          (req.session.data['claimantCarers'] == 'true'|| req.session.data['partnerCarers'] == 'true') 
          && (req.session.data['hasEmploymentIncome'] == 'Yes' || req.session.data['partnerHasEmploymentIncome'] == 'Yes'))
@@ -347,25 +347,25 @@ router.get('/'+ version +'/application/eligibility-calculate', function(req, res
          }
    }
    else{
-      req.session.data['standardamount'] = '218.15'
+      req.session.data['standardamount'] = '227.10'
       req.session.data['disregard'] = 5;
    }
 
    // add any EASD
    if(req.session.data['claimantEASD'] == 'true'){
-      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
+      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 82.90;
    }
    if(req.session.data['partnerEASD'] == 'true'){
-      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 81.50;
+      req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 82.90;
    }
 
    // add any Carers Premium
    if(req.session.data['claimantCarers'] == 'true'){
-      req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 45.60;
+      req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 46.40;
    }
 
    if(req.session.data['partnerCarers'] == 'true'){
-      req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 45.60;
+      req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 46.40;
    }
 
    // calculate applicable amount
