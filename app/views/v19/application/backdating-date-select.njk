@@ -1,0 +1,72 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Backdate your application" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+    <form method="post" >
+ <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+          Backdate your application
+      </h1>
+        </legend>
+
+<p class="govuk-body">We will assess your circumstances and try to backdate your application to the date you choose.</p>
+<p class="govuk-body">If you were not entitled to Pension Credit on that date, we will find the earliest possible date after.</p>
+<p class="govuk-body">The earliest date that we can try to backdate your application to is <span class="no-wrap">{{data.backdateDateString | govukDate}}</span>.</p>
+<p class="govuk-body">If your circumstances or income have changed since <span class="no-wrap">{{data.backdateDateString | govukDate}}</span>, you may want to choose a later date.</p>
+
+          <div class="govuk-form-group">
+                  <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+  Do you want us to assess your application from <span class="no-wrap">{{data.backdateDateString | govukDate}}</span>?                    </legend>
+
+
+
+          <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="standardBackdating" name="standardBackdating" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="standardBackdating">
+              Yes, backdate my application to the earliest possible date
+                </label>
+            </div>
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="standardBackdating-2" name="standardBackdating" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="standardBackdating-2">
+              No, I want to choose a later date
+                </label>
+
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+      </button>
+
+    </form>
+    {% include '../partials/gethelp.html' %}
+  </div>
+</div>
+
+{% endblock %}
