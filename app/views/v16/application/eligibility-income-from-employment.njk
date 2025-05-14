@@ -26,7 +26,11 @@
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                    Do you get any money from working?  
+                {% if data['hasPartner']%}
+                    Does your partner get any money from working?
+                {% else %}
+                    Do you get any money from working?
+                {% endif %}
                 </h1>
                 </legend>
                 <div id="signIn-hint" class="govuk-hint">
