@@ -1,3 +1,6 @@
+var NotifyClient = require('notifications-node-client').NotifyClient,
+    notify = new NotifyClient(process.env.NOTIFYAPIKEY);
+
 // Date tranformation functions
 Date.prototype.toShortFormat = function() {
 const shortMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
@@ -16,6 +19,8 @@ const monthName = monthNames[monthIndex];
 const year = this.getFullYear();
 return `${day} ${monthName} ${year}`;  
 }
+
+
 
 
 // For guidance on how to create routes see:
