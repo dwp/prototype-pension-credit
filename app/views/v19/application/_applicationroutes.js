@@ -5,6 +5,9 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 const SPa_Boundry_Start = new Date(Date.parse('06 April 1951 00:00:00 GMT'))
 const SPa_Boundry_End = new Date(Date.parse('06 April 1953 00:00:00 GMT'))
 
+let NotifyClient = require("notifications-node-client").NotifyClient;
+let notifyClient = new NotifyClient('pc_ucd-4bf2eebb-85ba-46ff-b08e-7b90ee911770-d6716bb0-ccc0-4c8e-952e-31eaa228cf1d');
+
 var date = new Date(); //get todays date
 
 function createBackdatingDate() {
@@ -22,19 +25,86 @@ router.get('/', function(req, res) {
 
 
 
-////////////////////
-////////////////////    ELIGIBILITY
-////////////////////
-
-router.post('/'+ version +'/application/eligibility-service-start', function(req, res) { 
-   if(req.session.data["hasEverything"]=='Yes'){
+router.post('/'+ version +'/application/service-start', function(req, res) { 
+   if(req.session.data['hasEverything']=='Yes'){
       req.session.data['canPerformEligibility'] = 'true';
-      res.redirect("eligibility-country-you-live-in")
+      if(req.session.data['saveRoute'] == '1'){
+         res.redirect("save-start-2FA")
+      }
+      
    }
    else{
       res.redirect("eligibility-need-information")
    }
 });
+
+// This send a random 
+
+function send2faChallenge(code, email, telephone) {
+   let phoneNumber = telephone;
+   let emailAddress = email;
+   let smstemplateId = "c44d4603-e94e-4ced-ba73-3b7cf595ad56";
+   let emailrtemplateId = "e5a617c9-f5b7-4fb6-b585-0a8e0053c16f";
+   if(typeof telephone != "undefinded"){
+      let personalisation = {code: code};
+      notifyClient
+        .sendSms(smstemplateId, phoneNumber, {
+       personalisation: personalisation })
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+    }
+    if(typeof email != "undefinded"){
+      let options = {personalisation: {code: code}};
+      notifyClient
+      .sendEmail(emailrtemplateId, emailAddress, options) // Pass options as the third argument (optional)
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
+   
+      
+    }
+   return;
+ }
+
+router.post('/'+ version +'/application/save-start-2FA', function(req, res) { 
+   let challengeCode = Math.floor(100000 + Math.random() * 900000);
+   req.session.data["2faChallenge"] = challengeCode;
+
+   let phoneNumber = req.session.data['mobile'];
+   let emailAddress = req.session.data['email'];
+
+   send2faChallenge(challengeCode, emailAddress, phoneNumber)
+ 
+ 
+ res.redirect("save-2FA-challenge")
+ 
+//  
+
+});
+
+router.post('/'+ version +'/application/save-2FA-challenge', function(req, res) { 
+
+   if(req.session.data['2faChallenge'] == req.session.data['access']){
+      req.session.error = null;
+      if(req.session.data['countryLiveIn']){
+         res.redirect("application-tasklist")
+      }
+      else{
+         res.redirect("eligibility-country-you-live-in")
+      }
+   }
+   else{
+      res.redirect("save-2FA-challenge?error=true")
+   }
+
+});
+
+
+
+////////////////////
+////////////////////    ELIGIBILITY
+////////////////////
+
+
 
 router.post('/'+ version +'/application/eligibility-country-you-live-in', function(req, res) { 
    if(req.session.data["countryLiveIn"]=='Somewhere else'){

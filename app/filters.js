@@ -9,3 +9,8 @@ addFilter('round5down', function (x) {
 return Math.floor(x / 5) * 5
 })
 
+addFilter('last', function (x, y) {
+  x = String(x);
+  y = -y;
+  return x.slice(y)
+  })
