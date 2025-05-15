@@ -34,7 +34,9 @@ router.post('/'+ version +'/application/service-start', function(req, res) {
       else if(req.session.data['saveRoute'] == '2'){
          res.redirect("save-applicationNumber-start")
       }
-      
+      else if(req.session.data['saveRoute'] == '3'){
+         res.redirect("save-application-NiNo")
+      }
    }
    else{
       res.redirect("eligibility-need-information")
@@ -151,6 +153,16 @@ router.post('/'+ version +'/application/save-applicationNumber-issue', function(
     res.redirect('save-applicationNumber-confirm')
 });
 
+router.post('/'+ version +'/application/save-application-NiNo', function(req, res) { 
+   if(req.session.data['countryLiveIn']){
+      res.redirect("application-tasklist")
+   }
+   else{
+      res.redirect("eligibility-country-you-live-in")
+   }
+
+});
+  
 
 
 
