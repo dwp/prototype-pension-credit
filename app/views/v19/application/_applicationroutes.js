@@ -31,6 +31,9 @@ router.post('/'+ version +'/application/service-start', function(req, res) {
       if(req.session.data['saveRoute'] == '1'){
          res.redirect("save-start-2FA")
       }
+      else if(req.session.data['saveRoute'] == '2'){
+         res.redirect("save-applicationNumber-start")
+      }
       
    }
    else{
@@ -38,7 +41,8 @@ router.post('/'+ version +'/application/service-start', function(req, res) {
    }
 });
 
-// This send a random 
+
+
 
 function send2faChallenge(code, email, telephone) {
    let phoneNumber = telephone;
@@ -77,8 +81,6 @@ router.post('/'+ version +'/application/save-start-2FA', function(req, res) {
  
  res.redirect("save-2FA-challenge")
  
-//  
-
 });
 
 router.post('/'+ version +'/application/save-2FA-challenge', function(req, res) { 
@@ -97,6 +99,58 @@ router.post('/'+ version +'/application/save-2FA-challenge', function(req, res) 
    }
 
 });
+
+router.post('/'+ version +'/application/save-applicationNumber-start', function(req, res) {    
+   if(req.session.data['hasApplicationNumber']=='Yes'){
+      res.redirect("save-applicationNumber-capture")
+   }
+   else{
+      res.redirect("save-applicationNumber-issue")
+   }
+});
+
+router.post('/'+ version +'/application/save-applicationNumber-capture', function(req, res) { 
+   
+   // removes any whitespace on the input
+   let accessReference = req.session.data['applicationReference'].replace(/ /g,'');
+   // convert to uppercase
+   accessReference = accessReference.toUpperCase();
+
+   if(accessReference == "AMXZTESUTH"){
+      req.session.error = null;
+      if(req.session.data['countryLiveIn']){
+         res.redirect("application-tasklist")
+      }
+      else{
+         res.redirect("eligibility-country-you-live-in")
+      }
+   }
+   else{
+      res.redirect("save-applicationNumber-capture?error=true")
+   }
+});
+
+router.post('/'+ version +'/application/save-applicationNumber-issue', function(req, res) { 
+   let phoneNumber = req.session.data['mobile'];
+   let emailAddress = req.session.data['email'];
+   let smstemplateId = "79082520-6f40-47be-a209-abc5272f41cb";
+   let emailrtemplateId = "b143ca40-cb22-4b70-8c6c-80705d91b598";
+  
+   if(typeof phoneNumber != "undefinded"){
+      notifyClient
+        .sendSms(smstemplateId, phoneNumber)
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+    }
+    if(typeof emailAddress != "undefinded"){
+      notifyClient
+      .sendEmail(emailrtemplateId, emailAddress) // Pass options as the third argument (optional)
+      .then(response => console.log(response))
+      .catch(err => console.error(err));   
+    }
+    res.redirect('save-applicationNumber-confirm')
+});
+
 
 
 
@@ -262,7 +316,6 @@ router.post('/'+ version +'/application/eligibility-partner-dob', function(req, 
    partnerDoB.setDate(req.session.data["dateOfBirthdd"])
    partnerDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
    partnerDoB.setYear(req.session.data["dateOfBirthyy"])
-   console.log(partnerDoB);
    req.session.data['partnerDoB'] = partnerDoB;
   
 
