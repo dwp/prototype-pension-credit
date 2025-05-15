@@ -1,0 +1,70 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Save your progress as you go" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds"> 
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+        
+            {%if data.error  == 'true' %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+            <div role="alert">
+                <h2 class="govuk-error-summary__title">
+                There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    <li>
+                    <a href="#applicationReference">Confirm your application number</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+            {%endif%}
+
+            
+
+            <form method="post">
+                <div class="govuk-form-group {%if data.error  == 'true' %}govuk-form-group--error"{%endif%}>
+                    <h1 class="govuk-label-wrapper">
+                        <label class="govuk-label govuk-label--l" for="applicationReference">
+                        Enter your application reference
+                        </label>
+                        <p class="govuk-hint">This is the 10 digit reference number we sent to you when you first started your application</p>
+                        {%if data.error == 'true' %}
+                        <p id="passport-issued-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> Confirm your application number
+                        </p>
+                        {%endif%}
+                    </h1>
+                    <input class="govuk-input govuk-input--width-10" id="applicationReference" name="applicationReference" type="text">
+                </div>
+                
+                <div class="govuk-form-group">
+                    <button type="submit" class="govuk-button" data-module="govuk-button">
+                        Continue
+                    </button>
+                    <p><a href="save-start-2FA">Request another code</a></p>
+                </div>
+            </form>
+        {% include '../partials/gethelp.html' %}
+    </div>
+</div>
+
+
+
+{% endblock %}
