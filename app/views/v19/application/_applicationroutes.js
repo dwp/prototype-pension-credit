@@ -533,6 +533,7 @@ router.post('/'+ version +'/application/eligibility-income', function(req, res) 
 });
 
 router.post('/'+ version +'/application/eligibility-CYA', function(req, res) { 
+   req.session.data['eligibility'] = 'complete';
    if(req.session.data['incomeAmount']=='less than'){
       res.redirect("eligibility-successful")
    }
