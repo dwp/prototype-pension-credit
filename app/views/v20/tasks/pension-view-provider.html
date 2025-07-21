@@ -1,0 +1,93 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Review the payments from" %}
+{% set providers = data.realpensions.data.citizen.pensionAccounts[data.pensionCount] %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+
+        <span class="govuk-caption-l">Workplace and private pensions</span>
+        <h1 class="govuk-heading-l">Pension from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}</h1>
+
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Date</th>
+                      <th scope="col" class="govuk-table__header">Payment frequency</th>
+                      <th scope="col" class="govuk-table__header">Net amount</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody class="govuk-table__body">
+                    {% for payments in providers.pensionIncome %}
+                      {% if loop.index0 < 6 %}
+                        <tr class="govuk-table__row">
+                          <th scope="row" class="govuk-table__header">{{payments.paymentDate | govukDate }}</th>
+                          <td class="govuk-table__cell">{{payments.payFrequency | paymentFrequency}}</td>
+                          <td class="govuk-table__cell">{{(payments.taxablePayInPeriod - payments.taxDeductedOrRefunded) | currency }}</td>
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+                <form method="post">
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        <h1 class="govuk-fieldset__heading">
+                          Do you want to use these payments as an income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}?
+                        </h1>
+                      </legend>
+                      <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="pensionSplit" name="pensionSplit" type="radio" value="1">
+                          <label class="govuk-label govuk-radios__label" for="pensionSplit">
+                            Yes, for one pension
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="pensionSplit-2" name="pensionSplit" type="radio" value="more">
+                          <label class="govuk-label govuk-radios__label" for="pensionSplit-2">
+                            Yes, for two or more pensions
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="pensionSplit-3" name="pensionSplit" type="radio" value="no">
+                          <label class="govuk-label govuk-radios__label" for="pensionSplit-3">
+                            No, do not use these payments
+                          </label>
+                        </div>
+                        <div class="govuk-radios__divider">or</div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="pensionSplit-4" name="pensionSplit" type="radio" value="investigation">
+                          <label class="govuk-label govuk-radios__label" for="pensionSplit-4">
+                            Investigation needed
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Confirm
+                  </button>
+                </form>
+
+
+
+          </div>
+        </div>
+        
+
+        
+          
+
+{% endblock %}

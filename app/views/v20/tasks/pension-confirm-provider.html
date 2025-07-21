@@ -1,0 +1,154 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Confirm the calculated amount" %}
+
+{% set providers = data.realpensions.data.citizen.pensionAccounts[data.pensionCount] %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        <span class="govuk-caption-l">Workplace and private pensions</span>
+        <h1 class="govuk-heading-l">Check the calculated amount</h1>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            {% if data.pensionsUsed == 5 %}
+              <dt class="govuk-summary-list__key">
+                Payments used
+              </dt>
+            {% else %}
+              <dt class="govuk-summary-list__key">
+                Remaining payment
+              </dt>
+            {% endif %}
+              <dd class="govuk-summary-list__value">
+                {% for pensions in data['pension']%}
+                  {{pensions.slice(10, -3) | currency}} 
+                  on
+                  {{pensions | truncate(10, true, "") | govukDate}}
+                  <br>
+                {% endfor %}
+              </dd>
+          </div>
+
+          {% if data.currentFrequency == 'IR' or data.currentFrequency == 'IO' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Frequency
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data.currentFrequency | paymentFrequency2}} payment
+            </dd>
+          </div>
+          {% endif %}
+          
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Calculated amount
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data.currentFrequency == 'IR' or data.currentFrequency == 'IO' %}
+                  Not available
+              {% else %}
+                {{data.currentPensionAverage  | currency}} per {{ data.currentFrequency | paymentFrequency2 | lower}} 
+              {% endif %}
+            </dd>
+          </div>
+        </dl>
+
+        <form method="post">
+          <div class="govuk-form-group">
+
+            {% if data.pensionsUsed == null or data.pensionsUsed < 5 %}
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h3 class="govuk-fieldset__heading">
+                  Does {{data.currentPensionAverage  | currency}} a {{ data.currentFrequency | paymentFrequency2 | lower}} represent the claimant's income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}  on {{data.claimSubmittedDate}}?
+
+                  </h3>
+              </legend>
+             
+              <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="currentValue" name="currentValue" type="radio" value="yes">
+                  <label class="govuk-label govuk-radios__label" for="currentValue">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="currentValue-2" name="currentValue" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="currentValue-2">
+                    No{% if data.pensionsUsed.length == 5 %}, do not consider this payment
+                    {% else %}, select different payments
+                    {% endif %}
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            {% else %}
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h3 class="govuk-fieldset__heading">
+                  Do you want to use this payment as an income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}?
+
+                  </h3>
+              </legend>
+             
+              <div class="govuk-radios" data-module="govuk-radios">
+                {% if data.currentFrequency != 'IR' and data.currentFrequency != 'IO' %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="currentValue" name="currentValue" type="radio" value="yes">
+                  <label class="govuk-label govuk-radios__label" for="currentValue">
+                    Yes, use the calculated amount
+                  </label>
+                </div>
+                {% else %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="currentValue-1" name="currentValue" type="radio" value="manual">
+                  <label class="govuk-label govuk-radios__label" for="currentValue-1">
+                    Yes, enter an amount manually 
+                  </label>
+                </div>
+                {% endif %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="currentValue-2" name="currentValue" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="currentValue-2">
+                    No{% if data.pensionsUsed.length == 5 %}, do not use this payment
+                    {% else %}, select different payments
+                    {% endif %}
+                  </label>
+                </div>
+              </div>
+              
+              {% if data.pension.length == '1' %}
+              <div class="govuk-radios__divider">or</div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="currentValue-3" name="currentValue" type="radio" value="investigation">
+                  <label class="govuk-label govuk-radios__label" for="currentValue-3">
+                    Investigation needed
+                  </label>
+                </div>
+              {% endif %}
+              
+            </fieldset>
+            {% endif %}
+          </div>
+        
+         
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+         
+        </form>
+    </div>      
+</div>
+{% endblock %}

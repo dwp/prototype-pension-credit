@@ -4,15 +4,20 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 #}
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
-
+{% set govukRebrand = true %}
 {% block header %}
   {{ 
-      govukHeader({
-          homepageUrl: "/",
-          serviceName: serviceName,
-          serviceUrl: "/",
-          containerClasses: "govuk-width-container",
-          useTudorCrown: true
-      })
-}}
+    govukHeader({
+        homepageUrl: "/"
+    })
+  }}
+  {{ govukServiceNavigation({
+    serviceName: serviceName
+    }) 
+  }}
+
+
 {% endblock %} 
+
+
+

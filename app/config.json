@@ -1,3 +1,9 @@
 {
-  "serviceName": "Pension Credit"
+  "serviceName": "Pension Credit",
+
+  "plugins" : {
+    "govuk-frontend" : {
+      "rebrand": true
+    }
+  }
 }

@@ -1,14 +1,18 @@
 {% from "timeline/macro.njk" import dwpTimeline %}
 
-{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% extends "govuk-prototype-kit/layouts/govuk-unbranded.njk" %}
+
+{% set govukRebrand = false %}
 
 {% block header %}
+
+
   <header class="govuk-header agent-header" role="banner" data-module="govuk-header">
     <div class="govuk-header__container govuk-width-container">
       <div class="govuk-header__content">
-        <span class="govuk-header__link--service-name govuk-heading-v6">
-          {{ serviceName }}
-        </span>
+        <div class="dwp-header__service-name">
+          <a href="/" class="dwp-header__link">{{ serviceName }}</a>
+        </div>
         <nav aria-label="Menu" class="govuk-header__navigation ">
           <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu" hidden>Menu</button>
           <ul id="navigation" class="govuk-header__navigation-list">
@@ -42,3 +46,5 @@
   </header>
   
 {% endblock %}
+
+
