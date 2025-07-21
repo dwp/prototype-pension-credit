@@ -1,0 +1,25 @@
+{% from "timeline/macro.njk" import dwpTimeline %}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% block header %}
+  <header class="govuk-header agent-header" role="banner" data-module="govuk-header">
+    <div class="govuk-header__container govuk-width-container">
+      <div class="govuk-header__content">
+        <span class="govuk-header__link--service-name govuk-heading-v6">
+          {{ serviceName }}
+        </span>
+
+        <nav aria-label="Menu" class="govuk-header__navigation ">
+
+            <li class="govuk-header__navigation-item{{ ' govuk-header__navigation-item--active' if globalNavSection == 'statistics' }}">
+             &nbsp;
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+{% endblock %}

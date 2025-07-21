@@ -1,0 +1,44 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout_blank.njk" %}
+
+{% set pageName = "Nationality" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-9"><strong style="color: #005a30; background-color: #cce2d8; padding:10px !important;" class="govuk-!-font-size-49 govuk-!-font-weight-bold">AUTOMATED CHECKS</strong></h1>
+
+
+        <div class="govuk-form-group ">
+          {% if data['nationalityCheck']=='British' or
+                data['nationalityCheck']=='Irish'
+          %}
+            <h2 class="govuk-heading-m">Different nationality</h2>
+            <p>If the nationality held in CIS is different to the one claimed on the application</p>
+            <p class="govuk-!-font-weight-bold">Return to BAU</p>
+          {% endif %}
+        </div>
+
+       <div class="govuk-form-group ">
+          {% if data['nationalityCheck']=='No nationality'%}
+            <h2 class="govuk-heading-m">No nationality held in CIS</h2>
+            <p class="govuk-body">The system should confirm that the claimant has declared to be British or Irish in their application.</p>
+            <p class="govuk-!-font-weight-bold">If not, it should be returned to BAU</p>
+          {% endif %}
+        </div>
+
+
+        <form method="post">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+              Continue
+          </button>
+        </form>
+
+</div>
+</div>
+
+{% endblock %}

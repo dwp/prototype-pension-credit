@@ -1,0 +1,26 @@
+{
+    "income" : {
+        "Benefits": [
+            {
+                "benefit": "PIP",
+                "lastDate": "2025-05-08",
+                "frequency": "Monthly",
+                "netPay": 12.78
+            },
+            {
+                "benefit": "State Pension",
+                "lastDate": "2025-05-08",
+                "frequency": "Four weekly",
+                "netPay": 198.82
+            }
+        ],
+        "HMRC_PAYE" : [
+            {
+                "date" : "2025-01-01",
+                "frequency" : "Annually",
+                "provider": "AVIVA PENSIONS UK",
+                "netPay" : 456.00
+            }
+        ]
+    }
+}

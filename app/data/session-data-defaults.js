@@ -1,5 +1,5 @@
 module.exports = {
-
-    json: require('./facts.json')
-
+    income: require('./example.json'),
+    json: require('./facts.json'),
+    realpensions: require('./realPensionData.json')
 }

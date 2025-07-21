@@ -1,0 +1,45 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "You may be entitled to some Pension Credit" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+    <h1 class="govuk-heading-l govuk-!-padding-top-7">Continue with your application</h1>
+    <p class="govuk-body">Based on your answers and your estimated monthly income you might be entitled to some Pension Credit.</p>
+    <p class="govuk-body">Complete the rest of this form to apply for Pension Credit.</p>
+
+    <h2 class="govuk-heading-m">How we will use your information</h2>
+    <p class="govuk-body">To assess your application, we will use information:
+      <ul class="govuk-list govuk-list--bullet">
+        <li>that you give us in this application</li>
+        <li>that we already have about you{% if data['hasPartner'] == 'Yes' %} and your partner{% endif %}</li>
+        <li>from HMRC about your income and earnings</li>
+      </ul>
+    </p>
+    <p class="govuk-body">To find out more about how we use information and your information rights, read our <a href="#">Personal Information Charter (opens in a new tab)</a>.</p>
+
+    <p class="govuk-body govuk-!-padding-top-4">
+      <a href="application-tasklist" class="govuk-button" data-module="govuk-button">
+        Continue
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

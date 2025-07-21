@@ -1,0 +1,98 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Save your progress as you go" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+            {%if data.error  == 'true' %}
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+            <div role="alert">
+                <h2 class="govuk-error-summary__title">
+                There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    <li>
+                    <a href="#access">Enter the access code we sent</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+            {%endif%}
+
+            <div class="govuk-form-group">
+                <h1 class="govuk-heading-l">
+                    Enter the access code
+                </h1>
+                <p class="govuk-body">
+                    We have sent a 6-digit code to
+                    {% if data['mobile'] %}your number ending in <strong>{{data['mobile'] | last(4)}}{% endif %}</strong>
+                    {% if data['mobile'] and data['email']%} and {%endif%}
+                    {% if data['email'] %}your email address {{data['email']}}{%endif%}.
+                </p>
+                <p class="govuk-body">It may take a few minutes to arrive.</p>
+                <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                    If your code has not arrived
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <p>
+                        Please make sure that your device:
+                        <ul class="govuk-list govuk-list--bullet">
+                            <li>is turned on, not in flight mode and has a strong signal</li>
+                            <li>can receive text messages from other senders</li>
+                        </ul>
+                    </p>
+                    <p>If you have made these checks and are still not receiving text messages from us then restart your phone</p>
+                </div>
+                </details>
+
+            </div>
+
+        <form method="post">
+            <div class="govuk-form-group {%if data.error  == 'true' %}govuk-form-group--error"{%endif%}>
+                <h2 class="govuk-label-wrapper">
+                    <label class="govuk-label" for="mobile">
+                    Access code
+                    </label>
+                    {%if data.error == 'true' %}
+                    <p id="passport-issued-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> Enter the access code we sent
+                    </p>
+                    {%endif%}
+                </h2>
+                <input class="govuk-input govuk-input--width-5"" id="access" name="access" type="number">
+            </div>
+
+            <div class="govuk-form-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+                <p><a href="save-start-2FA">Request another code</a></p>
+            </div>
+        </form>
+        {% include '../partials/gethelp.html' %}
+    </div>
+</div>
+
+
+
+{% endblock %}

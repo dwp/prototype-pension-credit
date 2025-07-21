@@ -1,0 +1,34 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Send application to CAM" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        <h2 class="govuk-heading-l">Send application to CAM</h2>
+
+        <div class="govuk-body">
+            This application does not meet the criteria for this system.
+        </div>
+
+        <form method="post">
+
+
+            <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+              Send to CAM
+            </button>
+
+        </form>
+
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,254 @@
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "citizen": {
+            "dwpGuid": {
+                "value": "xxx",
+                "metadata": {
+                    "isPersonalIdentifier": false
+                }
+            },
+            "pensionAccounts": [
+                {
+                    "pensionProviderPayeScheme": {
+                        "pensionProviderName1": "AVIVA HOME FINANCE"
+                    },
+                    "pensionIncome": [
+                        {
+                            "paymentDate": "2025-06-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 12.24,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-05-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 12.24,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-04-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 12.24,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-03-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 12.24,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-02-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 12.24,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-01-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 12.24,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        }
+
+                    ]
+                },
+                {
+                    "pensionProviderPayeScheme": {
+                        "pensionProviderName1": "PRUDENTIAL"
+                    },
+                    "pensionIncome": [
+                        {
+                            "paymentDate": "2025-06-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 93.43,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-06-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 16.23,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-05-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 93.41,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-05-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 16.23,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-04-28",
+                            "payFrequency": "M1",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 89.97,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
+                            "paymentDate": "2025-04-28",
+                            "payFrequency": "IR",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 1023.34,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        }
+
+                    ]
+                }
+            ],
+            "metadata": {
+                "isPersonalData": true
+            }
+        },
+        "observations": [
+            {
+                "code": "11",
+                "description": "Payment 5200569417 removed as it is irrelevant to income calculations",
+                "identifier": "5200569417"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5274407428 removed as it is irrelevant to income calculations",
+                "identifier": "5274407428"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5404195326 removed as it is irrelevant to income calculations",
+                "identifier": "5404195326"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5408107219 removed as it is irrelevant to income calculations",
+                "identifier": "5408107219"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5474601179 removed as it is irrelevant to income calculations",
+                "identifier": "5474601179"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5548607094 removed as it is irrelevant to income calculations",
+                "identifier": "5548607094"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5617275499 removed as it is irrelevant to income calculations",
+                "identifier": "5617275499"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5685362549 removed as it is irrelevant to income calculations",
+                "identifier": "5685362549"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5756643573 removed as it is irrelevant to income calculations",
+                "identifier": "5756643573"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5819962216 removed as it is irrelevant to income calculations",
+                "identifier": "5819962216"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5889186357 removed as it is irrelevant to income calculations",
+                "identifier": "5889186357"
+            },
+            {
+                "code": "11",
+                "description": "Payment 5964517988 removed as it is irrelevant to income calculations",
+                "identifier": "5964517988"
+            },
+            {
+                "code": "11",
+                "description": "Payment 6031828831 removed as it is irrelevant to income calculations",
+                "identifier": "6031828831"
+            },
+            {
+                "code": "11",
+                "description": "Payment 6101109369 removed as it is irrelevant to income calculations",
+                "identifier": "6101109369"
+            },
+            {
+                "code": "11",
+                "description": "Payment 6170905258 removed as it is irrelevant to income calculations",
+                "identifier": "6170905258"
+            },
+            {
+                "code": "11",
+                "description": "Payment 6236358984 removed as it is irrelevant to income calculations",
+                "identifier": "6236358984"
+            },
+            {
+                "code": "11",
+                "description": "Payment 6307660356 removed as it is irrelevant to income calculations",
+                "identifier": "6307660356"
+            },
+            {
+                "code": "11",
+                "description": "Payment 6373753155 removed as it is irrelevant to income calculations",
+                "identifier": "6373753155"
+            },
+            {
+                "code": "11",
+                "description": "Payment 6464244293 removed as it is irrelevant to income calculations",
+                "identifier": "6464244293"
+            },
+            {
+                "code": "9",
+                "description": "Superseded record removed relating to Payment : 9598715417",
+                "identifier": "9598715417"
+            }
+        ],
+        "metadata": {
+            "description": "Provides Pay As You Earn (PAYE) pension income, one record for each Full Payment Submission.",
+            "channel": "Third-party",
+            "veracityLevel": "Level 4 - Very High confidence",
+            "veracityReason": "Authoritative source",
+            "veracitySource": "National government",
+            "identityLevelOfConfidence": "very high confidence"
+        }
+    }
+}

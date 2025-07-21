@@ -1,0 +1,79 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Confirm the calculated amount" %}
+
+{% set providers = data.realpensions.data.citizen.pensionAccounts[data.pensionCount] %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        <span class="govuk-caption-l">Workplace and private pensions</span>
+        <h1 class="govuk-heading-l">Add a pension provider</h1>
+
+        <form method="post">
+
+          <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="tempProviderName">
+                What is the pension providers name?
+              </label>
+            </h2>
+            <input class="govuk-input" id="tempProviderName" name="tempProviderName" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--m" for="currentFrequency">
+              What is the payment frequency?
+            </label>
+            <select class="govuk-select" id="currentFrequency" name="currentFrequency">
+
+
+
+              <option value="W1">Weekly</option>
+              <option value="W2">Fortnightly</option>
+              <option value="W4">4 Weekly</option>
+              <option value="M1" selected>Monthly</option>
+              <option value="M3">Quarterly</option>
+              <option value="M6">Bi-annually</option>
+              <option value="MA">Annually</option>
+              <option value="IO">One off</option>
+              <option value="IR">Irregular</option>
+            </select>
+          </div>
+
+
+
+          <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="currentPensionAverage">
+                What is the pension amount?
+              </label>
+            </h2>
+            <div class="govuk-input__wrapper">
+              <div class="govuk-input__prefix" aria-hidden="true">£</div>
+              <input class="govuk-input govuk-input--width-5" id="currentPensionAverage" name="currentPensionAverage" type="text">
+            </div>
+          </div>
+
+
+          <div class="govuk-button-group">
+            <button type="submit" name="button" value="add" class="govuk-button" data-module="govuk-button">
+              Add pension
+            </button>
+            <button type="submit" name="button" value="investigation" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Investigation needed
+            </button>
+          </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

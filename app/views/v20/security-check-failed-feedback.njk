@@ -1,0 +1,43 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'personal' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="find-someone">
+
+      <h2 class="govuk-heading-l">Security not passed</h2>
+
+      <p class="govuk-body-l">
+        Tell the claimant you are ending the call and to ring back when they have the correct information.
+      </p>
+
+      <p class="govuk-body-l">
+        If they do not want to call back, they can write to:
+      </p>
+     <p class="govuk-body-l">
+        Freepost RTEY-GLCE-EGYE <br>
+        The Pension Service 4 <br>
+        Mail Handling Site A <br>
+        Wolverhampton <br>
+        WV98 1AG
+      </p>
+
+
+      {{ govukButton({
+        text: "Finish"
+      }) }}
+  </div>
+</div>
+
+
+
+
+{% endblock %}

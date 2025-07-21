@@ -1,0 +1,115 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Representing DWP Income API data" %}
+{% set providers = data.realpensions.data.citizen.pensionAccounts[data.pensionCount] %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+
+        <span class="govuk-caption-l">Workplace and private pensions</span>
+        <h1 class="govuk-heading-l">Confirm the pension values</h1>
+
+        {% for providers in data.realpensions.data.citizen.pensionAccounts %}
+
+        <div class="govuk-summary-card govuk-!-margin-bottom-5">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              {{providers.pensionProviderPayeScheme.pensionProviderName1}}
+              {{providers.pensionProviderPayeScheme.pensionProviderName2}}
+            </h2>
+          </div>
+
+          {% set pension1 = providers.pensionIncome[0].taxablePayInPeriod - providers.pensionIncome[0].taxDeductedOrRefunded  %}
+          {% set pension2 = providers.pensionIncome[1].taxablePayInPeriod - providers.pensionIncome[1].taxDeductedOrRefunded %}
+          {% set pension3 = providers.pensionIncome[2].taxablePayInPeriod - providers.pensionIncome[2].taxDeductedOrRefunded %}
+
+
+          {% if pension2 %}
+            {% if pension1 != pension2 and pension1 != pension3 and  pension2 != pension3 %}
+            <!-- If all three values are different -->
+              {% set automaticAssessment = (pension1+pension2)/2 %}
+
+              {% elseif pension1 == pension2 and pension2 == pension3 %}
+              <!-- If all three values are the same -->
+                {% set automaticAssessment = pension1 %}
+
+              {% else %}
+              <!-- If two values are the same -->
+                {% if pension2 == pension3 %}
+                  {% set automaticAssessment = pension2 %}
+                {% else %}
+                  {% set automaticAssessment = pension1 %}
+                {% endif %}
+            {% endif %}
+          {% else %}
+            {% set automaticAssessment = pension1 %}
+          {% endif %}
+
+
+
+          <div class="govuk-summary-card__content">
+
+            <dl class="govuk-summary-list ">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  {% if data.manualAssessment %}Manually{% else %}Automatically{% endif %} assessed figure
+                </dt>
+                <dd class="govuk-summary-value">
+                  {% if data.manualAssessment %}{{data.manualAssessment | currency}}{% else %}{{automaticAssessment | currency}}{% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a href="pension-change?index={{loop.index0}}">Change</a>
+                </dd>
+              </div>
+            </dl>
+
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  View pension data
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Date</th>
+                      <th scope="col" class="govuk-table__header">Net amount</th>
+                      <th scope="col" class="govuk-table__header">Payment frequency</th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="govuk-table__body">
+                    {% for payments in providers.pensionIncome %}
+                      {% if loop.index <= 6 %}
+                        <tr class="govuk-table__row">
+                          <th scope="row" class="govuk-table__header">{{payments.paymentDate | govukDate }}</th>
+                          <td class="govuk-table__cell">{{(payments.taxablePayInPeriod - payments.taxDeductedOrRefunded) | currency }}</td>
+                          <td class="govuk-table__cell">{{payments.payFrequency | paymentFrequency}}</td>
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+        {% endfor %}
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm
+        </button>
+
+
+{% endblock %}

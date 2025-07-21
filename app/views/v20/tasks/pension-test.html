@@ -1,0 +1,39 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Representing DWP Income API data" %}
+{% set providers = data.realpensions.data.citizen.pensionAccounts[data.pensionCount] %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        {{data.pension}}
+        <span class="govuk-caption-l">Workplace and private pensions</span>
+        <h1 class="govuk-heading-l">Pension providers</h1>
+          {% for pensions in data.confirmedPensions %}
+            {{pensions.provider}}<br>
+            {{pensions.amount}}<br>
+            {{pensions.frequency}}<br>
+          {% endfor %}
+          <br>
+          {% for pensions in data.investigationArray %}
+            {{pensions.provider}}<br>
+            {{pensions.amount}}<br>
+            {{pensions.date}}<br>
+            {{pensions.frequency}}<br>
+          {% endfor %}
+
+          </div>
+        </div>
+
+
+
+
+
+{% endblock %}

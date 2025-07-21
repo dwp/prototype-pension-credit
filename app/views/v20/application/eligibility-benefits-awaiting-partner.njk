@@ -1,0 +1,135 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Is your partner waiting for a decision about any of these benefits?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <form method="post" >
+
+        <div class="govuk-form-group govuk-!-padding-top-7">
+        <fieldset class="govuk-fieldset" aria-describedby="countries-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+                Is your partner waiting for a decision about any of these benefits?
+            </h1>
+            </legend>
+            <div id="countries-hint" class="govuk-hint">
+Select each benefit that your partner has applied for and is waiting to find out if they are eligible.           </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+            {%
+            if data['PartnerBenefitsEntitled'].includes('Attendance Allowance')
+            or data['PartnerBenefitsEntitled'].includes('Disability Living Allowance')
+            or data['PartnerBenefitsEntitled'].includes('Scottish Adult Disability Living Allowance')
+            or data['PartnerBenefitsEntitled'].includes('Personal Independence Payment')
+            or data['PartnerBenefitsEntitled'].includes('Adult Disability Payment')
+            or data['PartnerBenefitsEntitled'].includes('Armed Forces Independence Payment')
+            or data['PartnerBenefitsEntitled'].includes('Pension Age Disability Payment')
+            or data['PartnerBenefitsEntitled'].includes('Constant Attendance Allowance')
+            %}
+            {% else %}
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting" name="PartnerBenefitsAwaiting" type="checkbox" value="Attendance Allowance">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting">
+                Attendance Allowance
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-7" name="PartnerBenefitsAwaiting" type="checkbox" value="Pension Age Disability Payment">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-7">
+                Pension Age Disability Payment
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-1" name="PartnerBenefitsAwaiting" type="checkbox" value="Disability Living Allowance">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-1">
+                The middle or highest rate from the care component of Disability Living Allowance (DLA)
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-8" name="PartnerBenefitsAwaiting" type="checkbox" value="Scottish Adult Disability Living Allowance">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-8">
+                The middle or highest rate from the care component of Scottish Adult Disability Living Allowance
+                </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-2" name="PartnerBenefitsAwaiting" type="checkbox" value="Personal Independence Payment">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-2">
+                The daily living component of Personal Independence Payment (PIP)
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-3" name="PartnerBenefitsAwaiting" type="checkbox" value="Adult Disability Payment">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-3">
+                The daily living component of Adult Disability Payment (ADP)
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-4" name="PartnerBenefitsAwaiting" type="checkbox" value="Armed Forces Independence Payment">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-4">
+                Armed Forces Independence Payment
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-8" name="PartnerBenefitsAwaiting" type="checkbox" value="Constant Attendance Allowance">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-8">
+                Constant Attendance Allowance
+                </label>
+            </div>
+            {% endif %}
+
+            {%
+            if data['PartnerBenefitsEntitled'].includes('CSP')
+            or data['PartnerBenefitsEntitled'].includes('Carer\'s allowance')
+            %}
+            {% else %}
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-5" name="PartnerBenefitsAwaiting" type="checkbox" value="Carer's allowance">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-5">
+                Carer's allowance
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-6" name="PartnerBenefitsAwaiting" type="checkbox" value="Carer support payment">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-6">
+                Carer support payment
+                </label>
+            </div>
+            {% endif %}
+
+            <div class="govuk-checkboxes__divider">or</div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="PartnerBenefitsAwaiting-none" name="PartnerBenefitsAwaiting" type="checkbox" value="None" data-behaviour="exclusive">
+                <label class="govuk-label govuk-checkboxes__label" for="PartnerBenefitsAwaiting-none">
+                None of these
+                </label>
+            </div>
+            </div>
+        </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
