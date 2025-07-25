@@ -1,7 +1,8 @@
-var NotifyClient = require('notifications-node-client').NotifyClient,
-    notify = new NotifyClient(process.env.NOTIFYAPIKEY);
+// var NotifyClient = require('notifications-node-client').NotifyClient,
+//     notify = new NotifyClient(process.env.NOTIFYAPIKEY);
+ç
+    // Date tranformation functions
 
-// Date tranformation functions
 Date.prototype.toShortFormat = function() {
 const shortMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
 const day = this.getDate();
@@ -71,6 +72,7 @@ require('./views/v18/application/_applicationroutes')
 require('./views/v19/application/_applicationroutes')
 
 require('./views/v20/tasks/_taskroutes')
+require('./views/v21/application/_applicationroutes')
 
 // Older routing
 // v4 routes
