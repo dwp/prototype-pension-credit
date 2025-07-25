@@ -23,7 +23,3 @@ heroku-site-publish:
     - main
   variables:
     HEROKU_APP_NAME: new-pc-prototype
-
-  commitlint:
-    rules:
-    when: never
