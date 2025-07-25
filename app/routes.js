@@ -1,6 +1,5 @@
-// var NotifyClient = require('notifications-node-client').NotifyClient,
-//     notify = new NotifyClient(process.env.NOTIFYAPIKEY);
-ç
+
+
     // Date tranformation functions
 
 Date.prototype.toShortFormat = function() {
