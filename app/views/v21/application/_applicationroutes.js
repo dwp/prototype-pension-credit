@@ -15,13 +15,13 @@ var version = "v21";
 ////////////////////
 
 router.post('/'+ version +'/application/eligibility-service-start', function(req, res) { 
-   if(req.session.data["hasEverything"]=='Yes'){
-      req.session.data['canPerformEligibility'] = 'true';
+   // if(req.session.data["hasEverything"]=='Yes'){
+   //    req.session.data['canPerformEligibility'] = 'true';
       res.redirect("eligibility-country-you-live-in")
-   }
-   else{
-      res.redirect("eligibility-need-information")
-   }
+   // }
+   // else{
+   //    res.redirect("eligibility-need-information")
+   // }
 });
 
 router.post('/'+ version +'/application/eligibility-country-you-live-in', function(req, res) { 
@@ -29,7 +29,7 @@ router.post('/'+ version +'/application/eligibility-country-you-live-in', functi
       res.redirect("eligibility-do-not-live-uk")
    }
    else{
-      res.redirect("eligibility-check-your-eligibility")
+      res.redirect("eligibility-start-dob")
    }
 });
 
@@ -148,10 +148,20 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
       req.session.data['claimantCarers'] = 'true';
    }
    
-   
-   res.redirect("eligibility-income-from-employment");
+   if(req.session.data['claimantCarers'] == 'true'){
+      res.redirect("eligibility-income-from-employment");
+   }
+   else{
+      res.redirect("eligibility-underlying-carers");
+   }
+});
 
-   
+router.post('/'+ version +'/application/eligibility-underlying-carers', function(req, res) {
+
+   if(req.session.data['hasCarersUnderlyingEntitlement'] == 'Yes'){
+      req.session.data['canPerformEligibility'] = 'false'
+   }
+   res.redirect("eligibility-income-from-employment");
 });
 
 router.post('/'+ version +'/application/eligibility-income-from-employment', function(req, res) {
@@ -304,8 +314,22 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
       req.session.data['partnerCarers'] = 'true';
    }
 
-   res.redirect("eligibility-partner-income-from-employment");
+   if(req.session.data['partnerCarers'] == 'true'){
+      res.redirect("eligibility-partner-income-from-employment");
+   }
+   else{
+      res.redirect("eligibility-underlying-carers-partner");
+   }
+   
 
+});
+
+router.post('/'+ version +'/application/eligibility-underlying-carers-partner', function(req, res) {
+
+   if(req.session.data['hasCarersUnderlyingEntitlementPartner'] == 'Yes'){
+      req.session.data['canPerformEligibility'] = 'false'
+   }
+   res.redirect("eligibility-partner-income-from-employment");
 });
 
 router.post('/'+ version +'/application/eligibility-partner-income-from-employment', function(req, res) {
