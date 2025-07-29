@@ -1,0 +1,47 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Check if you should apply for Pension Credit" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-heading-l">Check if you should apply for Pension Credit</h1>
+          <p class="govuk-body">Before you apply, answer these questions to check if you are likely to get any Pension Credit.</p>
+          <p class="govuk-body">At the end of these questions we'll tell you either:</p>
+
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>to apply for Pension Credit</li>
+            <li>that you are unlikely to get any Pension Credit</li>
+          </ul>
+        </div>
+        
+        <form method="post" >
+          <div class="govuk-form-group">
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                  Continue
+              </button>
+              <p><a href="save-and-return-challenge">Return to a saved application</a></p>
+          </div>
+        </form>
+    {% include "../partials/getHelp.njk" %}
+
+</div>
+</div>
+
+{% endblock %}

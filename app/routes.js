@@ -72,6 +72,7 @@ require('./views/v19/application/_applicationroutes')
 
 require('./views/v20/tasks/_taskroutes')
 require('./views/v21/application/_applicationroutes')
+require('./views/v22/application/_applicationroutes')
 
 // Older routing
 // v4 routes

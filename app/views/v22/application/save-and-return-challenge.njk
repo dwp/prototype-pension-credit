@@ -1,0 +1,51 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "What is your access code?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+    <form method="post">   
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="accessCode">
+            What is your access code?
+          </label>
+        </h1>
+        <p class="govuk-hint">This is the code we gave you when you first applied.</p>
+        <input class="govuk-input govuk-input--width-10" id="accessCode" name="accessCode" type="text">
+      </div>
+     
+      <div class="govuk-form-group">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+              Continue
+          </button>
+      </div>
+
+    </form>
+
+    <div class="govuk-form-group ">
+        <span class="govuk-caption-m">
+          Prototype only: AMX ZTES UTH
+        </span>
+    </div>
+
+
+</div>
+</div>
+
+{% endblock %}
