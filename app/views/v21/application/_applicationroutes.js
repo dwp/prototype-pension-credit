@@ -372,7 +372,7 @@ router.get('/'+ version +'/application/eligibility-calculate', function(req, res
    }
    else{
       req.session.data['standardamount'] = '227.10'
-      req.session.data['disregard'] = 5;
+      
    }
 
    // add any EASD
