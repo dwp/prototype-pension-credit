@@ -1,0 +1,80 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Information you will need to apply online" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <h1 class="govuk-heading-l">Information you will need to apply online</h1>
+    <p class="govuk-body">Before you apply, you should gather all the information you will need.</p>
+  <p class="govuk-body">You cannot save your application and come back later.</p>
+
+<p class="govuk-body">If you do not enter anything for more than 30 minutes, your application will time out and you’ll need to start again.</p>
+
+  <h2 class="govuk-heading-m">Things to get before you apply</h2>
+<p class="govuk-body">
+  You will need:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>your National Insurance number</li>
+  <li>your bank and building society statements for the last 3 months and the balances for today</li>
+  <li>the total amount of any money you have in cash</li>
+  <li>the details of your income and pensions</li>
+  <li>the name and date of birth of any over 18s who live with you</li>
+
+
+</ul>
+<p class="govuk-body">If you live with a partner, you will need this same information for them too.</p>
+        <form method="post" >
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">
+Do you have everything you need to apply?                </h2>
+                </legend>
+
+
+                <div class="govuk-radios govuk-radios govuk-form-group" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="hasEverything" name="hasEverything" type="radio" value="Yes">
+                        <label class="govuk-label govuk-radios__label" for="hasEverything">
+                        Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="hasEverything-1" name="hasEverything" type="radio" value="No">
+                        <label class="govuk-label govuk-radios__label" for="hasEverything-1">
+                        No
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="govuk-form-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+
+
+            </div>
+
+        </form>
+
+
+</div>
+</div>
+
+{% endblock %}
