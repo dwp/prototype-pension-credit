@@ -24,12 +24,18 @@ router.post('/'+ version +'/application/eligibility-service-start', function(req
    // }
 });
 
+router.get('/'+ version +'/application/eligibility-country-you-live-in', function(req, res) {
+   req.session.data.accessCode = 'null'
+   res.render(version +'/application/eligibility-country-you-live-in')
+});
+
+
 router.post('/'+ version +'/application/eligibility-country-you-live-in', function(req, res) { 
    if(req.session.data["countryLiveIn"]=='Somewhere else'){
-      res.redirect("eligibility-do-not-live-uk")
+      res.redirect('/'+ version +'/application/eligibility-do-not-live-uk')
    }
    else{
-      res.redirect("eligibility-start-dob")
+      res.redirect('/'+ version +"/application/eligibility-start-dob")
    }
 });
 
@@ -410,6 +416,7 @@ router.post('/'+ version +'/application/eligibility-income', function(req, res) 
 });
 
 router.post('/'+ version +'/application/eligibility-CYA', function(req, res) { 
+   req.session.data['eligibility'] = 'complete'
    if(req.session.data['incomeAmount']=='less than'){
       res.redirect("eligibility-successful")
    }
@@ -439,7 +446,7 @@ router.post('/'+ version +'/application/save-and-return-challenge', function(req
    accessCode = accessCode.replace(/ /g,'')
    
    if(accessCode == "AMXZTESUTH"){
-      res.redirect("application-tasklist")
+      res.redirect("save-and-return-information")
    }
    else{
       res.redirect("save-and-return-error")
