@@ -74,6 +74,18 @@ require('./views/v20/tasks/_taskroutes')
 require('./views/v21/application/_applicationroutes')
 require('./views/v22/application/_applicationroutes')
 
+// One Login journeys
+router.post('/authentication/create-account/account-created', function(req, res) {
+    console.log(req.session.data['redirectURL'])
+    res.redirect(req.session.data['redirectURL']);
+});
+
+router.post('/authentication/sign-in/check-phone', function(req, res) {
+    console.log(req.session.data['redirectURL'])
+    res.redirect(req.session.data['redirectURL']);
+});
+
+
 // Older routing
 // v4 routes
 // not used seperate routs yet as there isn't a need to

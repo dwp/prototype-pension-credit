@@ -76,6 +76,20 @@
       </div>
       {% endif %}
 
+      {% if data['hasCarersUnderlyingEntitlement'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Have you ever applied for Carer's Allowance in the past?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['hasCarersUnderlyingEntitlement']}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half">
           Do you get any money from working?
@@ -138,6 +152,20 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {{data['PartnerBenefitsAwaiting']}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data['hasCarersUnderlyingEntitlementPartner'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Has your partner ever applied for Carer's Allowance in the past?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['hasCarersUnderlyingEntitlementPartner']}}
         </dd>
         <dd class="govuk-summary-list__actions">
             <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>

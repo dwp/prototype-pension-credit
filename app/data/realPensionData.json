@@ -97,6 +97,15 @@
                             "totalTaxToDate": 0
                         },
                         {
+                            "paymentDate": "2025-06-12",
+                            "payFrequency": "IR",
+                            "paymentConfidenceStatus": "4",
+                            "taxablePayInPeriod": 1023.34,
+                            "taxablePayToDate": 0,
+                            "taxDeductedOrRefunded": 0,
+                            "totalTaxToDate": 0
+                        },
+                        {
                             "paymentDate": "2025-05-28",
                             "payFrequency": "M1",
                             "paymentConfidenceStatus": "4",
@@ -122,16 +131,8 @@
                             "taxablePayToDate": 0,
                             "taxDeductedOrRefunded": 0,
                             "totalTaxToDate": 0
-                        },
-                        {
-                            "paymentDate": "2025-04-28",
-                            "payFrequency": "IR",
-                            "paymentConfidenceStatus": "4",
-                            "taxablePayInPeriod": 1023.34,
-                            "taxablePayToDate": 0,
-                            "taxDeductedOrRefunded": 0,
-                            "totalTaxToDate": 0
                         }
+                        
                         
                     ]
                 }
