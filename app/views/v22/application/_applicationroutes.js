@@ -437,6 +437,25 @@ router.post('/'+ version +'/application/eligibility-housing-benefit', function(r
    }
 });
 
+router.post('/'+ version +'/application/eligibility-not-enough-data', function(req, res) { 
+   req.session.data['return'] = 'false'
+   if(req.session.data['phase'] == '1'){
+      res.redirect("save-and-return")
+   }
+   else{
+      res.redirect("save-and-return-choice")
+   }
+});
+router.post('/'+ version +'/application/eligibility-successful', function(req, res) { 
+   req.session.data['return'] = 'false'
+   if(req.session.data['phase'] == '1'){
+      res.redirect("save-and-return")
+   }
+   else{
+      res.redirect("save-and-return-choice")
+   }
+});
+
 router.post('/'+ version +'/application/save-and-return', function(req, res) { 
       res.redirect("save-and-return-information")
 });
@@ -453,4 +472,30 @@ router.post('/'+ version +'/application/save-and-return-challenge', function(req
    }
 
    // res.redirect("save-and-return-information")
+});
+
+router.get('/'+ version +'/application/save-and-return-choice', function(req, res) { 
+   if(req.session.data['phase'] == '1'){
+      res.redirect("save-and-return-challenge")
+   }
+   else{
+      res.render(version +"/application/save-and-return-choice")
+   }
+
+});
+
+router.post('/'+ version +'/application/save-and-return-choice', function(req, res) { 
+   if(req.session.data['signInOption'] == 'OneLogin'){
+      res.redirect("../../authentication/create-account?redirectURL=/"+version+"/application/save-and-return-information")
+   }
+   else{
+      if(req.session.data['return'] == 'true'){
+         res.redirect("save-and-return-challenge")
+      }
+      else{
+         req.session.data['return'] = 'false'
+         res.redirect("save-and-return")
+      }
+   }
+
 });

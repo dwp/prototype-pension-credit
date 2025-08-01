@@ -1,0 +1,101 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Choose how to get security codes - GOV.UK One Login
+{% endblock %}
+
+
+{% set serviceName = ""%}
+
+{% block beforeContent %}
+{% include "/_includes/phase-banner.njk" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" method="post">
+        {% if showErrorSummary %}
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+                {
+                    text: "Select how to get security codes",
+                    href: "#choose-security-codes"
+                }
+            ]
+        }) }}
+        {{ govukRadios({
+          name: "choose-security-codes",
+          fieldset: {
+            legend: {
+              text: "Choose how to get security codes",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "To finish creating your GOV.UK One Login, choose a way to prove it’s you when you sign in."
+          },
+          items: [
+            {
+              value: "Text message",
+              text: "Text message"
+            },
+            {
+              value: "Authenticator app for smartphone, tablet or computer",
+              text: "Authenticator app for smartphone, tablet or computer"
+            }
+            ],
+            errorMessage: {
+                text: "Select how to get security codes"
+            }
+        }) }}
+        {% else %}
+        {{ govukRadios({
+          name: "choose-security-codes",
+          fieldset: {
+            legend: {
+              text: "Choose how to get security codes",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "To finish creating your GOV.UK One Login, choose a way to prove it’s you when you sign in."
+          },
+          items: [
+            {
+              value: "Text message",
+              text: "Text message"
+            },
+            {
+              value: "Authenticator app for smartphone, tablet or computer",
+              text: "Authenticator app for smartphone, tablet or computer"
+                    }
+                ]
+            }) }}
+        {% endif %}
+        
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              What is an authenticator app?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">An authenticator app creates a security code that helps confirm it’s you when you sign in.</p>
+            <p class="govuk-body">You can use an authenticator app on your smartphone, tablet or desktop computer. Download an authenticator app for your smartphone or tablet from your app store or search online for an authenticator app for your computer.</p>
+          </div>
+        </details>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

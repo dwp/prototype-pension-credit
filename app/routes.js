@@ -75,15 +75,52 @@ require('./views/v21/application/_applicationroutes')
 require('./views/v22/application/_applicationroutes')
 
 // One Login journeys
+router.post('/authentication/create-account/enter-email', function(req, res) {
+    res.redirect("check-email");
+});
+router.post('/authentication/create-account/check-email', function(req, res) {
+    res.redirect("create-password");
+});
+router.post('/authentication/create-account/create-password', function(req, res) {
+    res.redirect("get-security-code");
+});
+
+router.post('/authentication/sign-in/enter-email', function(req, res) {
+    res.redirect("check-email");
+});
+router.post('/authentication/sign-in/check-email', function(req, res) {
+    res.redirect("create-password");
+});
+router.post('/authentication/sign-in/create-password', function(req, res) {
+    res.redirect("../create-account/check-phone");
+});
+
+
+
+router.post('/authentication/create-account/get-security-code', function(req, res) {
+    if(req.session.data['choose-security-codes']=="Text message"){
+        res.redirect("enter-phone-number");
+    }
+    else{ res.redirect("auth-app"); }
+    
+});
+router.post('/authentication/create-account/enter-phone-number', function(req, res) {
+    res.redirect("check-phone");
+});
+
+router.post('/authentication/create-account/check-phone', function(req, res) {
+    res.redirect(req.session.data['redirectURL']);
+});
+router.post('/authentication/create-account/auth-app', function(req, res) {
+    res.redirect(req.session.data['redirectURL']);
+});
+
 router.post('/authentication/create-account/account-created', function(req, res) {
     console.log(req.session.data['redirectURL'])
     res.redirect(req.session.data['redirectURL']);
 });
 
-router.post('/authentication/sign-in/check-phone', function(req, res) {
-    console.log(req.session.data['redirectURL'])
-    res.redirect(req.session.data['redirectURL']);
-});
+
 
 
 // Older routing
