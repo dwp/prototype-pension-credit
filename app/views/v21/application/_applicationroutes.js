@@ -158,7 +158,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
 
 router.post('/'+ version +'/application/eligibility-underlying-carers', function(req, res) {
 
-   if(req.session.data['hasCarersUnderlyingEntitlement'] == 'Yes'){
+   if(req.session.data['hasCarersUnderlyingEntitlement'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlement'] == "I'm not sure"){
       req.session.data['canPerformEligibility'] = 'false'
    }
    res.redirect("eligibility-income-from-employment");
@@ -326,7 +326,7 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', 
 
 router.post('/'+ version +'/application/eligibility-underlying-carers-partner', function(req, res) {
 
-   if(req.session.data['hasCarersUnderlyingEntitlementPartner'] == 'Yes'){
+   if(req.session.data['hasCarersUnderlyingEntitlementPartner'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlementPartner'] == "I'm not sure"){
       req.session.data['canPerformEligibility'] = 'false'
    }
    res.redirect("eligibility-partner-income-from-employment");
