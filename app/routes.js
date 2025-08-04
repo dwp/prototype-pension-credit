@@ -85,16 +85,26 @@ router.post('/authentication/create-account/create-password', function(req, res)
     res.redirect("get-security-code");
 });
 
+
+//sign in
 router.post('/authentication/sign-in/enter-email', function(req, res) {
-    res.redirect("check-email");
-});
-router.post('/authentication/sign-in/check-email', function(req, res) {
     res.redirect("create-password");
 });
 router.post('/authentication/sign-in/create-password', function(req, res) {
     res.redirect("../create-account/check-phone");
 });
-
+router.get('/authentication/sign-in/code-email', function(req, res) {
+    res.render("./authentication/create-account/check-email")
+});
+router.post('/authentication/sign-in/code-email', function(req, res) {
+    res.redirect("create-pword");
+});
+router.get('/authentication/sign-in/create-pword', function(req, res) {
+    res.render("./authentication/create-account/create-password")
+});
+router.post('/authentication/sign-in/create-pword', function(req, res) {
+    res.redirect("../create-account/check-phone");
+});
 
 
 router.post('/authentication/create-account/get-security-code', function(req, res) {
