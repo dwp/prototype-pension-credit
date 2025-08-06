@@ -16,15 +16,15 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds"> 
+    <div class="govuk-grid-column-two-thirds">
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
-     
 
-            <div class="govuk-form-group"> 
+
+            <div class="govuk-form-group">
                 <h1 class="govuk-heading-l">
                     Your Pension Credit application
-                </h1>                
-            </div>  
+                </h1>
+            </div>
 
             <ul class="govuk-task-list">
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -44,47 +44,31 @@
                     </strong>
                     </div>
                     {% endif %}
-                </li>  
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
+                        Backdate your application
+                    </a>
+                    </div>
+                    {% if data.accessCode != 'null'%}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                        Completed
+                        </div>
+                        {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            To do
+                        </strong>
+                        </div>
+                    {% endif %}
+                </li>
             </ul>
 
-            <h2 class="govuk-heading-m">About you and your claim</h2>
+            <h2 class="govuk-heading-m">About you</h2>
             <ul class="govuk-task-list">
-                <li class="govuk-task-list__item govuk-task-list__item--with-link">
-                    <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Your bank details
-                    </a>
-                    </div>
-                    {% if data.accessCode != 'null'%}
-                        <div class="govuk-task-list__status" id="company-details-1-status">
-                        Completed
-                        </div>
-                        {% else %}
-                        <div class="govuk-task-list__status" id="company-details-5-status">
-                        <strong class="govuk-tag govuk-tag--blue">
-                            To do
-                        </strong>
-                        </div>
-                    {% endif %}
-                </li> 
-                <li class="govuk-task-list__item govuk-task-list__item--with-link">
-                    <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Application date
-                    </a>
-                    </div>
-                    {% if data.accessCode != 'null'%}
-                        <div class="govuk-task-list__status" id="company-details-1-status">
-                        Completed
-                        </div>
-                        {% else %}
-                        <div class="govuk-task-list__status" id="company-details-5-status">
-                        <strong class="govuk-tag govuk-tag--blue">
-                            To do
-                        </strong>
-                        </div>
-                    {% endif %}
-                </li> 
+
+
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
@@ -102,7 +86,7 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li> 
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
@@ -120,11 +104,11 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li> 
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Time outside of the UK
+                        Time you have spent outside of the UK
                     </a>
                     </div>
                     {% if data.accessCode != 'null'%}
@@ -138,11 +122,11 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li> 
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
-                        Hospital stays
+                        Time you have spent in hospital
                     </a>
                     </div>
                     {% if data.accessCode != 'null'%}
@@ -156,7 +140,7 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li> 
+                </li>
             </ul>
             {% if data.hasPartner == 'Yes, we live together'%}
             <h2 class="govuk-heading-m">About your partner</h2>
@@ -178,7 +162,7 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li>  
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
@@ -196,11 +180,11 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li>  
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Hospital stays
+                        Time they have spent in hospital
                     </a>
                     </div>
                     {% if data.accessCode != 'null'%}
@@ -214,16 +198,16 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li>  
+                </li>
             </ul>
             {% endif %}
 
-            <h2 class="govuk-heading-m">About your household</h2>
+            <h2 class="govuk-heading-m">Your home and household</h2>
             <ul class="govuk-task-list">
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Where do you live
+                        Your address
                     </a>
                     </div>
                     {% if data.accessCode != 'null'%}
@@ -237,11 +221,11 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li>  
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        About your home
+                        About the place you live
                     </a>
                     </div>
                     {% if data.accessCode != 'null'%}
@@ -255,11 +239,11 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li>  
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        About any other property or land 
+                        Other property or land you own
                     </a>
                     </div>
                     {% if data.accessCode != 'null'%}
@@ -273,7 +257,7 @@
                         </strong>
                         </div>
                     {% endif %}
-                </li>  
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
@@ -285,15 +269,15 @@
                         To do
                     </strong>
                     </div>
-                </li>  
+                </li>
             </ul>
 
-            <h2 class="govuk-heading-m">About your money</h2>
+            <h2 class="govuk-heading-m">Your income, money and investments</h2>
             <ul class="govuk-task-list">
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Benefits
+                        Income from benefits
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
@@ -301,12 +285,12 @@
                         To do
                     </strong>
                     </div>
-                </li>  
+                </li>
                 {% if data.hasEmploymentIncome == 'Yes' or data.partnerHasEmploymentIncome == 'Yes'%}
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Employment
+                        Income from working
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
@@ -319,7 +303,7 @@
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Pensions
+                        Income from pensions
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
@@ -343,7 +327,7 @@
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Savings and investments
+                        Money and investments
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
@@ -355,7 +339,7 @@
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Disregards (not sure what to call this)
+                        Other payments and payouts
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
@@ -367,7 +351,25 @@
             </ul>
 
             <h2 class="govuk-heading-m">How we contact you</h2>
-            <ul class="govuk-task-list"> 
+            <ul class="govuk-task-list">
+              <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                  <div class="govuk-task-list__name-and-hint">
+                  <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
+                      Applying for yourself or someone else
+                  </a>
+                  </div>
+                  {% if data.accessCode != 'null'%}
+                      <div class="govuk-task-list__status" id="company-details-1-status">
+                      Completed
+                      </div>
+                      {% else %}
+                      <div class="govuk-task-list__status" id="company-details-5-status">
+                      <strong class="govuk-tag govuk-tag--blue">
+                          To do
+                      </strong>
+                      </div>
+                  {% endif %}
+              </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
@@ -379,11 +381,11 @@
                         To do
                     </strong>
                     </div>
-                </li> 
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Alternative formats
+                        How we will contact you
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
@@ -391,11 +393,11 @@
                         To do
                     </strong>
                     </div>
-                </li> 
+                </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Correspondence address
+                        Address we send letters to
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
@@ -403,27 +405,20 @@
                         To do
                     </strong>
                     </div>
-                </li> 
+                </li>
             </ul>
 
             <h2 class="govuk-heading-m">Finalise your application</h2>
             <ul class="govuk-task-list govuk-!-padding-bottom-9">
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
-                       Who is submitting the application
+                       Security questions
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
                         Cannot start yet
                     </div>
-                </li> 
-                <li class="govuk-task-list__item govuk-task-list__item--with-link">
-                    <div class="govuk-task-list__name-and-hint">
-                        Your declaration
-                    </div>
-                    <div class="govuk-task-list__status" id="company-details-5-status">
-                        Cannot start yet
-                    </div>
-                </li> 
+                </li>
+
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                         Submit your application
@@ -431,12 +426,12 @@
                     <div class="govuk-task-list__status" id="company-details-5-status">
                         Cannot start yet
                     </div>
-                </li>  
+                </li>
             </ul>
 
-            
 
-{% include '../partials/getHelp.html' %} 
+
+{% include '../partials/getHelp.html' %}
     </div>
 </div>
 
