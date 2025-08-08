@@ -436,6 +436,13 @@ router.post('/' + version + '/tasks/pension-view-provider', function(req, res) {
             res.redirect('pension-add-another')
         }
     }
+    else if(req.session.data['pensionSplit'] == 'cam'){
+        res.redirect('dropout')
+    }
+    else if(req.session.data['pensionSplit'] == 'no'){
+        req.session.data['pensionCount'] = parseInt(req.session.data.pensionCount)+1
+        res.redirect('pension-view-provider')
+    }
     else{
         res.redirect('pension-select-provider')
     }

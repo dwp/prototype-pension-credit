@@ -128,8 +128,8 @@
                   </label>
                 </div>
               </div>
-              
-              {% if data.pension.length == '1' %}
+              {% endif %}
+
               <div class="govuk-radios__divider">or</div>
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="currentValue-3" name="currentValue" type="radio" value="investigation">
@@ -137,10 +137,9 @@
                     Investigation needed
                   </label>
                 </div>
-              {% endif %}
-              
+
             </fieldset>
-            {% endif %}
+           
           </div>
         
          
