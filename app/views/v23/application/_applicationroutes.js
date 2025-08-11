@@ -160,21 +160,27 @@ router.post('/'+ version +'/application/capital-shares-number-backdating', funct
 });
 
 router.post('/'+ version +'/application/capital-shares-check-answers', function(req, res) {
-   let tempArray = []
-   let tempObject = {}
 
-   if(req.session.data['sharesList']){
-      tempArray = req.session.data['sharesList']
+   if(req.session.data['sharesChange'] == 'yes'){
+      req.session.data.sharesChange = null
+      req.session.data.record = null
    }
+   else{
+      let tempArray = []
+      let tempObject = {}
 
-   tempObject = {
-      'sharesCompany': req.session.data['shareCompany'], 
-      'sharesToday': req.session.data['sharesNumberToday'], 
-      'sharesBackdating': req.session.data['sharesNumberBackdating'] 
+      if(req.session.data['sharesList']){
+         tempArray = req.session.data['sharesList']
+      }
+
+      tempObject = {
+         'sharesCompany': req.session.data['shareCompany'], 
+         'sharesToday': req.session.data['sharesNumberToday'], 
+         'sharesBackdating': req.session.data['sharesNumberBackdating'] 
+      }
+      tempArray.push(tempObject)
+      req.session.data['sharesList'] = tempArray
    }
-   tempArray.push(tempObject)
-   req.session.data['sharesList'] = tempArray
-   console.log(tempArray)
    res.redirect("capital-shares-add-another")
 });
 
@@ -182,6 +188,15 @@ router.post('/'+ version +'/application/capital-shares-add-another', function(re
    if(req.session.data['addanother'] == 'yes'){
       req.session.data['addanother'] == ''
       res.redirect("capital-shares-company")
+   }
+   else if(req.session.data['addanother'] == 'no'){
+      if(req.session.data['capitalChange'] == 'yes'){
+         req.session.data['capitalChange'] = 'no';
+         res.redirect('capital-check-answers')
+      }
+      else{
+         res.redirect('capital-total-today')
+      } 
    }
 });
 

@@ -48,15 +48,17 @@
             </dt>
             <dd class="govuk-summary-list__value">
 
-            {% for i in range(1, data['shareCount']+1) -%}
-              {% if data['shareCompany'+i] != null%}
-                {{data['shareCompany'+(i)] }},</td>
-              {% endif %}
-            {% endfor %}
+            {% for shares in data['sharesList'] %}
+           
+            {{ shares.sharesCompany }}{% if loop.index != data['sharesList'].length%}, {% endif %}
+            
+            
+           
+            {%- endfor %}
 
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">the companies you and your partner have shares</span></a>
+              <a class="govuk-link" href="capital-shares-add-another?capitalChange=yes">Change<span class="govuk-visually-hidden">the companies you and your partner have shares</span></a>
             </dd>
           </div>
           {%endif%}
@@ -81,7 +83,7 @@
           {%if data['tamTotal']%}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              How much money you had on <span class="no-wrap">{{data['backdateDateString']}}
+              How much money you had on <span class="no-wrap">{{data['backdateDateString'] | govukDate }}
             </dt>
             <dd class="govuk-summary-list__value">
               £{{data['tamTotal']}}<br>

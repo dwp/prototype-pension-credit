@@ -28,7 +28,11 @@
             <dt class="govuk-summary-list__key">
 Company you have shares in            </dt>
             <dd class="govuk-summary-list__value">
+            {% if data.sharesChange == 'yes'%}
+              {{ data.sharesList[data.record].sharesCompany }}
+            {% else %}
               {{data['shareCompany']}}
+            {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">the company you have shares in</span></a>
@@ -40,9 +44,13 @@ Company you have shares in            </dt>
             <dt class="govuk-summary-list__key">
               How many shares you have today
             </dt>
+            {% if data.sharesChange == 'yes'%}
+              {{ data.sharesList[data.record].sharesToday }}
+            {% else %}
             <dd class="govuk-summary-list__value">
               {{data['sharesNumberToday']}}
             </dd>
+            {% endif %}
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> how many shares you have in this company</span></a>
             </dd>
@@ -53,9 +61,13 @@ Company you have shares in            </dt>
             <dt class="govuk-summary-list__key">
             How many shares you had on {{ data['backdateDateString'] }}
             </dt>
+            {% if data.sharesChange == 'yes'%}
+              {{ data.sharesList[data.record].sharesBackdating }}
+            {% else %}
             <dd class="govuk-summary-list__value">
               {{data['sharesNumberBackdating']}}
             </dd>
+            {% endif %}
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> the date you were last issued shares in this company</span></a>
             </dd>
