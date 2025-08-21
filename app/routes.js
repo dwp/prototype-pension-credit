@@ -133,6 +133,12 @@ router.post('/authentication/create-account/account-created', function(req, res)
 
 
 
+router.get('/start', function(req, res) {
+    req.session.data['version'] = 'v22'
+    req.session.data['phase'] = '2'
+    req.session.data['today'] = new Date();
+    res.redirect("v22/application/guidance/how-to-claim")
+});
 
 // Older routing
 // v4 routes

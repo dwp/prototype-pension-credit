@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "You have X days left to complete your application" %}
+{% set pageName = "You have 29 days left to complete your application" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -19,9 +19,9 @@
   <div class="govuk-grid-column-two-thirds">
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-    <h1 class="govuk-heading-l">You have X days left to complete your application</h1>
+    <h1 class="govuk-heading-l">You have 29 days left to complete your application</h1>
 
-    <p class="govuk-body">If you do not complete and submit your application by [EXPIRY DATE], you will need to start a new application.</p>
+    <p class="govuk-body">If you do not complete and submit your application by {{ data.today | duration(29) | govukDate }}, you will need to start a new application.</p>
     <p class="govuk-body">You will not be able to see your answers once you have saved them, but you can complete a section again.</p>
 
     <a href="application-tasklist" class="govuk-button">Continue</a>
