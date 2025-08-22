@@ -274,6 +274,20 @@
 
             <h2 class="govuk-heading-m">Your income, money and investments</h2>
             <ul class="govuk-task-list">
+              {% if data.hasEmploymentIncome == 'Yes' or data.partnerHasEmploymentIncome == 'Yes'%}
+              <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                  <div class="govuk-task-list__name-and-hint">
+                  <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                      Income from working
+                  </a>
+                  </div>
+                  <div class="govuk-task-list__status" id="company-details-5-status">
+                  <strong class="govuk-tag govuk-tag--blue">
+                      To do
+                  </strong>
+                  </div>
+              </li>
+              {% endif %}
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
@@ -286,20 +300,7 @@
                     </strong>
                     </div>
                 </li>
-                {% if data.hasEmploymentIncome == 'Yes' or data.partnerHasEmploymentIncome == 'Yes'%}
-                <li class="govuk-task-list__item govuk-task-list__item--with-link">
-                    <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Income from working
-                    </a>
-                    </div>
-                    <div class="govuk-task-list__status" id="company-details-5-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        To do
-                    </strong>
-                    </div>
-                </li>
-                {% endif %}
+
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
@@ -386,18 +387,6 @@
                     <div class="govuk-task-list__name-and-hint">
                     <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
                         How we will contact you
-                    </a>
-                    </div>
-                    <div class="govuk-task-list__status" id="company-details-5-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        To do
-                    </strong>
-                    </div>
-                </li>
-                <li class="govuk-task-list__item govuk-task-list__item--with-link">
-                    <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
-                        Address we send letters to
                     </a>
                     </div>
                     <div class="govuk-task-list__status" id="company-details-5-status">
