@@ -1,6 +1,6 @@
 
 {% set serviceName = 'Apply for Pension Credit' %}
-{% extends "/layouts/main.html" %}
+{% extends "/layouts/testing-v22.html" %}
 
 {% set pageName = "Your Pension Credit application" %}
 
@@ -33,17 +33,10 @@
                         Check your eligibility
                     </a>
                     </div>
-                    {% if data.eligibility == 'complete'%}
                     <div class="govuk-task-list__status" id="company-details-1-status">
                     Completed
                     </div>
-                    {% else %}
-                    <div class="govuk-task-list__status" id="company-details-5-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                        To do
-                    </strong>
-                    </div>
-                    {% endif %}
+                    
                 </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">

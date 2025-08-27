@@ -1,0 +1,41 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% set govukRebrand = true %}
+{% block header %}
+  {{ 
+    govukHeader({
+        homepageUrl: "/"
+    })
+  }}
+  {{ govukServiceNavigation({
+    serviceName: serviceName
+    }) 
+  }}
+
+
+{% endblock %} 
+
+
+
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+
+       {
+        href: "save-and-return-choice?return=true",
+        text: "Sign in"
+        }
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
+{% endblock %}
+
+
+
+
