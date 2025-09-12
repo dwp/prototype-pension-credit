@@ -25,7 +25,7 @@
               <h1 class="govuk-heading-l">Which pension payments from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}} do you want to use?  </h1>
             </legend>
             <p class="govuk-body">
-              The payments you select will be used to calculate the claimant's  income on 16 July 2025.
+              The payments you select will be used to calculate the claimant's  income on {{data.claimSubmittedDate}}.
             </p>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               {% for payments in providers.pensionIncome %}
