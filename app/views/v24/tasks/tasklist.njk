@@ -169,6 +169,28 @@
         {% endif %}
       </li>
 
+      
+
+
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="non-dependents" aria-describedby="prepare-application-3-status">Living with other people</a>
+        </div>
+        {% if data['NonDependents'] == 'no'%}
+        <div class="govuk-task-list__status" id="before-you-start-1-status">
+          Done
+            </div>
+        {% else %}
+        <div class="govuk-task-list__status" id="prepare-application-2-status">
+          <strong class="govuk-tag govuk-tag--blue">
+            To do
+          </strong>
+        </div>
+        {% endif %}
+      </li>
+
+     
+
      {% endif %}
 
     </ul>
