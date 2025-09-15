@@ -15,13 +15,14 @@ var version = "v21";
 ////////////////////
 
 router.post('/'+ version +'/application/eligibility-service-start', function(req, res) { 
-   // if(req.session.data["hasEverything"]=='Yes'){
-   //    req.session.data['canPerformEligibility'] = 'true';
+   if(req.session.data["checkApply"]=='no'){
+      req.session.data['canPerformEligibility'] = 'false';
+      res.redirect("eligibility-successful")
+   }
+   else(
       res.redirect("eligibility-country-you-live-in")
-   // }
-   // else{
-   //    res.redirect("eligibility-need-information")
-   // }
+   )
+   
 });
 
 router.post('/'+ version +'/application/eligibility-country-you-live-in', function(req, res) { 
@@ -101,12 +102,47 @@ router.post('/'+ version +'/application/eligibility-has-children', function(req,
 router.post('/'+ version +'/application/eligibility-housing-costs', function(req, res) { 
    if(req.session.data['serviceCharge'] == 'Yes' || req.session.data['groundRent'] == 'I own my home and pay ground rent' ){
       req.session.data['canPerformEligibility'] = 'false';
-      res.redirect("eligibility-benefits-claimant");
+   }
+   res.redirect("eligibility-income-from-employment");
+  
+});
+
+router.post('/'+ version +'/application/eligibility-income-from-employment', function(req, res) {
+
+   if( req.session.data['hasPartner'] == 'Yes, we live together'){
+      // this is the partner flow
+      if(req.session.data['checkApply'] == 'no'){
+         res.redirect("eligibility-route");
+      }
+      else{
+         res.redirect("eligibility-income-from-war-pension");
+      }
+   }
+   else{
+      //this is the claimant flow
+      if(req.session.data['checkApply'] == 'no'){
+         res.redirect("eligibility-has-partner");
+      }
+      else{
+         res.redirect("eligibility-income-from-war-pension");
+      }
+   }
+});
+
+router.post('/'+ version +'/application/eligibility-income-from-war-pension', function(req, res) {
+   req.session.data['claimantHasWarPension'] = req.session.data['hasWarPension'] 
+   if(req.session.data['hasWarPension'] == 'Yes'){
+      req.session.data['canPerformEligibility'] = 'false'
+   }
+   
+   if( req.session.data['hasPartner'] == 'Yes, we live together'){
+      res.redirect("eligibility-benefits-partner");
    }
    else{
       res.redirect("eligibility-benefits-claimant");
    }
 });
+
 
 router.post('/'+ version +'/application/eligibility-benefits-claimant', function(req, res) {
    let benefits = req.session.data['ClaimantBenefitsEntitled'];
@@ -148,12 +184,8 @@ router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant',
       req.session.data['claimantCarers'] = 'true';
    }
    
-   if(req.session.data['claimantCarers'] == 'true'){
-      res.redirect("eligibility-income-from-employment");
-   }
-   else{
-      res.redirect("eligibility-underlying-carers");
-   }
+   res.redirect("eligibility-underlying-carers");
+
 });
 
 router.post('/'+ version +'/application/eligibility-underlying-carers', function(req, res) {
@@ -161,13 +193,8 @@ router.post('/'+ version +'/application/eligibility-underlying-carers', function
    if(req.session.data['hasCarersUnderlyingEntitlement'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlement'] == "I'm not sure"){
       req.session.data['canPerformEligibility'] = 'false'
    }
-   res.redirect("eligibility-income-from-employment");
-});
-
-router.post('/'+ version +'/application/eligibility-income-from-employment', function(req, res) {
-   
    if( req.session.data['hasPartner'] == 'Yes, we live together'){
-      res.redirect("eligibility-calculate");
+      res.redirect("eligibility-route");
    }
    else{
       res.redirect("eligibility-has-partner");
@@ -175,7 +202,10 @@ router.post('/'+ version +'/application/eligibility-income-from-employment', fun
 });
 
 
+
+
 router.post('/'+ version +'/application/eligibility-has-partner', function(req, res) { 
+   
    if( req.session.data['hasPartner'] == 'Yes, we live together'){
       res.redirect("eligibility-partner-dob")
    }
@@ -185,12 +215,19 @@ router.post('/'+ version +'/application/eligibility-has-partner', function(req, 
 });
 
 router.post('/'+ version +'/application/eligibility-partner-dob', function(req, res) { 
+
+   // create a date variable
    var partnerDoB = new Date()
+
+   // set the time to 0:00
    partnerDoB.setTime(0)
+
+   // set the day, month and year based on input 
    partnerDoB.setDate(req.session.data["dateOfBirthdd"])
    partnerDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
    partnerDoB.setYear(req.session.data["dateOfBirthyy"])
-   console.log(partnerDoB);
+
+   // save the created date/time as a session
    req.session.data['partnerDoB'] = partnerDoB;
   
 
@@ -209,7 +246,7 @@ router.post('/'+ version +'/application/eligibility-partner-dob', function(req, 
          res.redirect("eligibility-benefits-partner");
       }
       else{
-         res.redirect("eligibility-benefits-partner")
+         res.redirect("eligibility-income-from-employment")
       }
    }
    else{
@@ -247,7 +284,7 @@ router.post('/'+ version +'/application/eligibility-partner-sex', function(req, 
          else if(dob < SC_SPaDate){
             req.session.data['canPerformEligibility'] = 'false'
          }
-         res.redirect("eligibility-benefits-partner")
+         
       
    }
    else{
@@ -263,10 +300,9 @@ router.post('/'+ version +'/application/eligibility-partner-sex', function(req, 
          }
          else if(dob < SC_SPaDate){
             req.session.data['canPerformEligibility'] = 'false'
-         }
-         res.redirect("eligibility-benefits-partner")
-     
+         }     
    }
+   res.redirect("eligibility-income-from-employment")
 });
 
 router.post('/'+ version +'/application/eligibility-benefits-partner', function(req, res) {
@@ -329,18 +365,26 @@ router.post('/'+ version +'/application/eligibility-underlying-carers-partner', 
    if(req.session.data['hasCarersUnderlyingEntitlementPartner'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlementPartner'] == "I'm not sure"){
       req.session.data['canPerformEligibility'] = 'false'
    }
-   res.redirect("eligibility-partner-income-from-employment");
-});
-
-router.post('/'+ version +'/application/eligibility-partner-income-from-employment', function(req, res) {
    res.redirect("eligibility-route");
 });
 
 
 
+
 router.get('/'+ version +'/application/eligibility-route', function(req, res) {
    // this is used to logically determine if its a complex case
-   if(req.session.data['canPerformEligibility'] == 'false'){
+   if(
+      req.session.data['hasPartner'] == 'Yes, we live together' 
+      &&
+      (req.session.data['ClaimantBenefitsEntitled'] && (req.session.data['ClaimantBenefitsEntitled'].includes("Attendance Allowance")  || req.session.data['ClaimantBenefitsAwaiting'].includes("Attendance Allowance") ))
+      &&
+      (req.session.data['PartnerBenefitsEntitled'] && (req.session.data['PartnerBenefitsEntitled'].includes("Attendance Allowance") || req.session.data['PartnerBenefitsAwaiting'].includes("Attendance Allowance") ))
+   ){
+      console.log('Couples AA dropout')
+      res.redirect("eligibility-cya");
+   }
+   else if(req.session.data['canPerformEligibility'] == 'false'){
+      console.log('Couples AA dropout')
       res.redirect("eligibility-cya");
    }
    else{
@@ -410,7 +454,10 @@ router.post('/'+ version +'/application/eligibility-income', function(req, res) 
 });
 
 router.post('/'+ version +'/application/eligibility-CYA', function(req, res) { 
-   if(req.session.data['incomeAmount']=='less than'){
+   if(req.session.data['checkApply']=='no'){
+      res.redirect("application-tasklist")
+   }
+   else if(req.session.data['incomeAmount']=='less than'){
       res.redirect("eligibility-successful")
    }
    else if(req.session.data['incomeAmount']=='more than'){
@@ -423,7 +470,8 @@ router.post('/'+ version +'/application/eligibility-CYA', function(req, res) {
 
 router.post('/'+ version +'/application/eligibility-housing-benefit', function(req, res) { 
    if(req.session.data['hasHousingBenefit'] == 'Yes'){
-      res.redirect("eligibility-benefits-partner")
+      res.redirect("eligibility-income-from-employment")
+      //res.redirect("eligibility-benefits-partner")
    }
    else{
       res.redirect("eligibility-both-too-young")

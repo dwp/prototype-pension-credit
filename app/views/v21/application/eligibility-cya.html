@@ -20,7 +20,11 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-<h1 class="govuk-heading-l"> <span class="govuk-caption-l">Check if you should apply for Pension Credit</span>
+<h1 class="govuk-heading-l">
+   {% if data['checkApply'] == 'no' %}
+   {% else %}
+    <span class="govuk-caption-l">Check if you should apply for Pension Credit</span>
+  {% endif %}
      Check your answers</h1>
     <h2 class="govuk-heading-m">Your personal details</h2>
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -50,6 +54,35 @@
       </div>
       {% endif %}
 
+      {% if data['hasEmploymentIncome'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Do you get any money from working?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['hasEmploymentIncome']}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data['claimantHasWarPension'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Do you get any money from a war Pension?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['claimantHasWarPension']}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data['ClaimantBenefitsEntitled'] %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half">
           Benefits you get
@@ -61,6 +94,7 @@
             <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
         </dd>
       </div>
+      {% endif %}
 
       {% if data['ClaimantBenefitsAwaiting'] %}
       <div class="govuk-summary-list__row">
@@ -90,17 +124,7 @@
       </div>
       {% endif %}
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-!-width-one-half">
-          Do you get any money from working?
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data['hasEmploymentIncome']}}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
-        </dd>
-      </div>
+      
     </dl>
 
 
@@ -133,6 +157,35 @@
       </div>
       {% endif %}
 
+      {% if data['hasEmploymentIncome'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Does your partner get any money from working?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['hasEmploymentIncome']}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data['hasEmploymentIncome'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Does your partner get any money from a war Pension?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['hasWarPension']}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data['PartnerBenefitsEntitled'] %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half">
           Benefits they get
@@ -144,6 +197,7 @@
             <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
         </dd>
       </div>
+      {% endif %}
 
       {% if data['PartnerBenefitsAwaiting'] %}
       <div class="govuk-summary-list__row">
@@ -173,17 +227,7 @@
       </div>
       {% endif %}
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-!-width-one-half">
-          Does your partner get any money from working?
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data['hasEmploymentIncome']}}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
-        </dd>
-      </div>
+      
     </dl>
     {% endif %}
 
