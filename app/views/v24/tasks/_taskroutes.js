@@ -207,6 +207,15 @@ router.post('/' + version + '/tasks/benefits', function(req, res) {
     }
 });
 
+router.post('/v24/tasks/non-dependents', function(req, res) {
+    if(req.session.data['NonDependents'] == 'no') {
+        res.redirect("tasklist")
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
 router.post('/' + version + '/tasks/non-dependents', function(req, res) {
     if(req.session.data['NonDependents'] == 'no') {
         res.redirect("nationality")
