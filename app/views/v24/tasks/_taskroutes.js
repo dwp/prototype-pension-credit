@@ -251,7 +251,8 @@ router.post('/' + version + '/tasks/nationality-partner', function(req, res) {
         res.redirect("confirm-nationality-partner")
     } 
     else{
-        res.redirect("past-presence-partner")
+        req.session.data['PartnerNationalityTask'] = 'yes';
+        res.redirect("tasklist")
     }
 });
 
@@ -284,7 +285,8 @@ router.post('/' + version + '/tasks/immigration-status', function(req, res) {
 
 router.post('/' + version + '/tasks/immigration-status-partner', function(req, res) {
     if(req.session.data['recourseToPublicFundsPartner'] == 'yes' && req.session.data['leaveToRemainPartner'] == 'yes') {
-        res.redirect("past-presence-partner")
+        req.session.data['PartnerNationalityTask'] = 'yes';
+        res.redirect("tasklist")
     } 
     else{
         res.redirect("dropout")
