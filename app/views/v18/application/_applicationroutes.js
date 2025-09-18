@@ -24,8 +24,8 @@ router.get('/', function(req, res) {
 
 // Identifying backdating date
 router.post('/'+ version +'/application/backdating-date-select', function(req, res) {
-   if(req.session.data['HospitalStays']=="Yes"){
-      res.redirect("hospital-still")
+   if(req.session.data['standardBackdating']=="yes"){
+      res.redirect("national-insurance-number")
    }
    else{
       res.redirect("backdating-date")
