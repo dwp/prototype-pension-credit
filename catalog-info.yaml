@@ -35,8 +35,8 @@ metadata:
 spec:
   owner: group:default/backstage.group.user-centred-design
   system: system:default/unallocated
-  type: prototype
-  lifecycle: service
+  type: service
+  lifecycle: experimental
 
   dependsOn:
     - component:default/pipeline-solutions.gitlab.functions.base-mr
