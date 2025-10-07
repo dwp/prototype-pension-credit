@@ -760,3 +760,22 @@ router.post('/'+version+'/tasks/pension-manual-entry', function(req, res) {
     }
     res.redirect('pension-add-another')
 });
+
+router.post('/'+version+'/tasks/pension-confirm-restart', function(req, res) {
+    if(req.session.data['restartTask'] == 'yes'){
+        req.session.data['numberOfPensionProviders'] = 2
+        req.session.data['pensionCount'] = 0
+        req.session.data['pension'] = null
+        req.session.data['compareArray'] = null
+        req.session.data['currentPensionAverage'] = null
+        req.session.data['currentFrequency'] = null
+        req.session.data['currentValue'] = null
+        req.session.data['confirmedPensions'] = null
+        req.session.data['pensionsUsedLength'] = null
+        req.session.data['investigationArray'] = null
+        res.redirect('pension-view-provider')
+    }
+    else{
+        res.redirect('pension-add-another')
+    }
+});

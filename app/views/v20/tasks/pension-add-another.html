@@ -17,14 +17,13 @@
         <span class="govuk-caption-l">Workplace and private pensions</span>
         <h1 class="govuk-heading-l">Pension providers</h1>
           {% if data.confirmedPensions %}
-          <h2 class="govuk-heading-m">Pensions that are confirmed</h2>
+          <h2 class="govuk-heading-m">Already determined</h2>
                 <table class="govuk-table govuk-!-margin-bottom-5">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                       <th scope="col" class="govuk-table__header">Provider</th>
                       <th scope="col" class="govuk-table__header">Payment frequency</th>
                       <th scope="col" class="govuk-table__header">Net amount</th>
-                      <th scope="col" class="govuk-table__header "><span class="govuk-visually-hidden">Actions</span></th>
                     </tr>
                   </thead>
                   
@@ -34,7 +33,6 @@
                           <th scope="row" class="govuk-table__header">{{payments.provider }}</th>
                           <td class="govuk-table__cell">{{payments.frequency | paymentFrequency}}</td>
                           <td class="govuk-table__cell">{{payments.amount  | currency }}</td>
-                          <td class="govuk-table__cell"><a href="">Change</a> | <a href="">Delete</a> </td>
                         </tr>
                     {% endfor %}
                   </tbody>
@@ -42,7 +40,7 @@
         {% endif %}
 
         {% if data.investigationArray.length > 0 %}
-          <h2 class="govuk-heading-m">Pensions that are unconfirmed</h2>
+          <h2 class="govuk-heading-m">More information needed</h2>
 
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -93,6 +91,7 @@
                   <button type="submit" class="govuk-button" data-module="govuk-button">
                     Continue
                   </button>
+                  <p><a href="pension-confirm-restart">Restart task</a></p>
                   
                 </form>
 

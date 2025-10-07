@@ -22,7 +22,16 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
               <span class="govuk-caption-l">Workplace and private pensions</span>
-              <h1 class="govuk-heading-l">Which pension payments from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}} do you want to use?  </h1>
+              <h1 class="govuk-heading-l">
+                Which pension payments from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}} do you want to use
+                {% if data['pensionSplit'] == 'more'%}
+                  {% if data['pensionsUsedLength'] > 1 %}
+                    for the next pension
+                  {% else %}
+                    for the first pension
+                  {% endif %}
+                {% endif %}?
+              </h1>
             </legend>
             <p class="govuk-body">
               The payments you select will be used to calculate the claimant's  income on 16 July 2025.
