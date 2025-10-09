@@ -1,0 +1,58 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Send the applicant a text message" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        <h1 class="govuk-heading-l">
+          {{ data.timelineArray[data.index].title }}
+        </h1>
+
+        <h2 class="govuk-heading-m">Details</h2>
+
+        <div class="govuk-form-group">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data.timelineArray[data.index].date | govukDateTime }}
+              </dd>
+            </div>
+
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Reason
+              </dt>
+              <dd class="govuk-summary-list__value">
+                
+                  {{ data.timelineArray[data.index].reason | safe }}
+
+              </dd>
+            </div>
+            
+          </dl>
+        </div>
+           
+          
+
+
+
+  </div>
+</div>
+        
+
+        
+          
+
+{% endblock %}

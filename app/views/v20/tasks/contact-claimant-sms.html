@@ -1,0 +1,46 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Send the applicant a text message" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        <form method="post">  
+          <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+            <h1 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--l" for="with-hint">
+                Send the applicant a text message
+              </label>
+            </h1>
+            <div id="with-hint-hint" class="govuk-hint">
+              Do not include personal or financial information.
+            </div>
+            <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="textMessage" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+            <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+              You can enter up to 200 characters
+            </div>
+          </div>
+          
+          
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+              Confirm
+          </button>
+        </form>
+
+
+
+  </div>
+</div>
+        
+
+        
+          
+
+{% endblock %}

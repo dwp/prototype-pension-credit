@@ -14,67 +14,64 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Process a Pension Credit application </h1>
     <div class="govuk-body">
-    Complete these checks to see if the claimant meets the criteria for this system.</div>
+      Complete these checks to see if the claimant meets the criteria for this system.
+    </div>
 
-  {% if data['taskType'] == 'nil'%}
+    {% if data['taskType'] == 'nil'%}
+      <h2 class="govuk-heading-m">Verify identity</h2>
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="bank-name" aria-describedby="before-you-start-1-status">Bank details</a>
+          </div>
 
-    <h2 class="govuk-heading-m">Verify identity</h2>
-    <ul class="govuk-task-list">
-      <li class="govuk-task-list__item govuk-task-list__item--with-link">
-        <div class="govuk-task-list__name-and-hint">
-          <a class="govuk-link govuk-task-list__link" href="bank-name" aria-describedby="before-you-start-1-status">Bank details</a>
-        </div>
-
-        {% if data['bankAccount'] == 'yes' and data['bankSort'] == 'yes' %}
-        <div class="govuk-task-list__status" id="before-you-start-1-status">
-          Done
-        </div>
-
-        {% else %}
-        <div class="govuk-task-list__status" id="prepare-application-2-status">
-          <strong class="govuk-tag govuk-tag--blue">
-          To do
-          </strong>
-        </div>
-        {% endif %}
-      </li>
-    </ul>
-
-    <h2 class="govuk-heading-m govuk-!-margin-top-5">Assess their income</h2>
-    <ul class="govuk-task-list">
-      <li class="govuk-task-list__item govuk-task-list__item--with-link">
-        <div class="govuk-task-list__name-and-hint">
-          <a class="govuk-link govuk-task-list__link" 
-          {% if data['pensionComplete'] == 'incomplete'%}
-            href="pension-add-another" 
+          {% if data['bankAccount'] == 'yes' and data['bankSort'] == 'yes' %}
+            <div class="govuk-task-list__status" id="before-you-start-1-status">
+              Done
+            </div>
           {% else %}
-            href="pension-view-provider" 
+            <div class="govuk-task-list__status" id="prepare-application-2-status">
+              <strong class="govuk-tag govuk-tag--blue">
+              To do
+              </strong>
+            </div>
           {% endif %}
-          aria-describedby="prepare-application-1-status">Workplace and private pensions</a>
-        </div>
-        {% if data['pensionComplete'] == 'yes'%}
-        <div class="govuk-task-list__status" id="before-you-start-1-status">
-          Done
-        </div>
-        {% elseif data['pensionComplete'] == 'incomplete'%}
-        <div class="govuk-task-list__status" id="prepare-application-2-status">
-          <strong class="govuk-tag govuk-tag--blue">
-            Incomplete
-          </strong>
-        </div>
-        {% else %}
-        <div class="govuk-task-list__status" id="prepare-application-2-status">
-          <strong class="govuk-tag govuk-tag--blue">
-            To do
-          </strong>
-        </div>
-        {% endif %}
-      </li>
-    </ul>
+        </li>
+      </ul>
 
 
-
-  {% endif %}
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">Assess their income</h2>
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" 
+            {% if data['pensionComplete'] == 'incomplete' or data['pensionComplete'] == 'yes'%}
+              href="pension-add-another" 
+            {% else %}
+              href="pension-view-provider" 
+            {% endif %}
+            aria-describedby="prepare-application-1-status">Workplace and private pensions</a>
+          </div>
+          {% if data['pensionComplete'] == 'yes'%}
+          <div class="govuk-task-list__status" id="before-you-start-1-status">
+            Done
+          </div>
+          {% elseif data['pensionComplete'] == 'incomplete'%}
+          <div class="govuk-task-list__status" id="prepare-application-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Incomplete
+            </strong>
+          </div>
+          {% else %}
+          <div class="govuk-task-list__status" id="prepare-application-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              To do
+            </strong>
+          </div>
+          {% endif %}
+        </li>
+      </ul>
+    {% endif %}
 
     <h2 class="govuk-heading-m">Check CAM</h2>
     <ul class="govuk-task-list">
@@ -220,111 +217,67 @@
     {% endif %}
    <!--- end of cold weather payments --->
 
-   
+    <!-- Nil award -->
+    {% if data['taskType'] == 'nil'
+    and data['bankAccount'] == 'yes' 
+    and data['bankSort'] == 'yes'
+    and data['OtherApplications'] == 'no'
+    and data['PersonalDetails'] == 'yes'
+    and data['Benefits'] == 'no'
+    and data.pensionComplete == 'yes'
+    
+    %}
+      <form method="post">
+        <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Checks complete</h3>
+        <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
+          A letter will be automatically sent. It will tell the the applicant why they are not entitled to Pension Credit.
+        </p>
 
-  <!-- Payment success -->
-  {% if
-  data['ColdWeather'] and
-  data['taskType'] == 'pay' and
-  data['OtherApplications'] == 'no' and
-  data['PersonalDetails'] == 'yes' and
-  data['NonDependents'] == 'no'
-  %}
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            End task and send letter
+        </button>
 
-  <form method="post">
-
-    {% if data['BankEncashed'] == 'no' %}
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h1 class="govuk-fieldset__heading">
-                  How do you want to continue?
-              </h1>
-            </legend>
-
-            <div class="govuk-hint">
-              You need to wait for a State Pension payment to be 'Encashed'. <br>
-              This claim has already been suspended for a total of [NoOfDays] days.
-            </div>
-
-            <div class="govuk-radios govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="BankDetails" name="SuspendClaim" type="radio" value="yes"}>
-                <label class="govuk-label govuk-radios__label" for="BankDetails">
-                Postpone this task for 5 days
-                </label>
-            </div>
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="BankDetails-2" name="SuspendClaim" type="radio" value="no">
-                <label class="govuk-label govuk-radios__label" for="BankDetails-2">
-                Send application to CAM
-                </label>
-            </div>
-            </div>
-        </fieldset>
-      </div>
-
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-          Continue
-      </button>
-
-    {% else %}
-      <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Checks complete</h3>
-      <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
-        A letter will be automatically sent. It will tell the applicant how much Pension Credit they will get.
-      </p>
-
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        End task and send letter
-      </button>
+      </form>
     {% endif %}
 
-  </form>
-  {% endif %}
+    {% if data.pensionComplete == 'incomplete'%}
+      <h3 class="govuk-heading-m govuk-!-padding-top-5 govuk-!-margin-bottom-2">More information needed</h3>
+      <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
+        Call the applicant to get more information, or postpone the task if you can get it from somewhere else.
+      </p>
 
-  <!-- Nil award -->
-  {%
-  if data['taskType'] == 'nil'
-  and data['BankDetails'] == 'yes'
-  and data['OtherApplications'] == 'no'
-  and data['PersonalDetails'] == 'yes'
-  and data['Benefits'] == 'no'
-  and data['pension1Complete'] == 'yes'
-  and data['pension2Complete']
-  and data['pension3Complete'] == 'yes'
-  %}
-  <form method="post">
-    <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Checks complete</h3>
-    <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
-      A letter will be automatically sent. It will tell the the applicant why they are not entitled to Pension Credit.
-    </p>
+      <div class="govuk-button-group">
+        <a href="contact-claimant" class="govuk-button" data-module="govuk-button">
+          Call the applicant
+        </a>
+        <a href="postpone-task" class="govuk-button  govuk-button--secondary" data-module="govuk-button">
+          Postpone task
+        </a>
+      </div>
 
-    <button type="submit" class="govuk-button" data-module="govuk-button">
-        End task and send letter
-    </button>
-
-  </form>
-  {% endif %}
-
-  {% if data.pensionComplete == 'incomplete'%}
-    <h3 class="govuk-heading-m govuk-!-padding-top-5 govuk-!-margin-bottom-2">What you need to do next</h3>
-    <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
-      Some information needs further investigation before this application can be processed.
-    </p>
-
-    <div class="govuk-button-group">
-      <a href="contact-claimant" class="govuk-button" data-module="govuk-button">
-        Contact the claimant
-      </a>
-      <a href="#" class="govuk-button  govuk-button--secondary" data-module="govuk-button">
-        Suspend task
-      </a>
-    </div>
-
-  {% endif %}
-
-    </div>
+    {% endif %}
   </div>
+
+  {% if data['timelineArray'] %}
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">Application history</h2>
+      <div class="dwp-timeline">
+        <ol class="dwp-timeline__items">
+          {% for event in data['timelineArray'] %}
+              <li class="dwp-timeline__item">
+              <p class="dwp-timeline__datetime">{{event.date | govukDateTime}}</p>
+              <h2 class="dwp-timeline__heading">{{event.title}}</h2>
+              <p class="dwp-timeline__by-line">by {{event.person}}</p>
+              {% if event.reason %}
+              <a href="contact-timeline-detail?index={{loop.index0}}" class="dwp-timeline__link">View details<span class="govuk-visually-hidden"> of the event on </span></a>
+              {% endif %}
+              </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  {% endif %}
+
 </div>
 
 

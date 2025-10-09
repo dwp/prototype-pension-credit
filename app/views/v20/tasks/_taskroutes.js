@@ -679,8 +679,14 @@ router.post('/'+version+'/tasks/pension-add-another', function(req, res) {
         res.redirect('pension-manual-entry')
     }
     else if(req.session.data['addAnotherPension'] == 'no'){
-        req.session.data['addAnotherPension'] = null
-        req.session.data['pensionComplete'] = 'incomplete'
+        
+        if(req.session.data['investigationArray'].length>0){
+            req.session.data['pensionComplete'] = 'incomplete'
+        }
+        else{
+            req.session.data['pensionComplete'] = 'yes'
+        }
+        
         res.redirect('tasklist')
     }
     
@@ -719,7 +725,7 @@ router.post('/'+version+'/tasks/pension-revisit-manual-entry', function(req, res
     let tempArray = req.session.data.confirmedPensions
     let tempObject = req.session.data.investigationArray[req.session.data.tempIndex]
    
-    let tempObject2 = {'provider': tempObject.provider, 'amount': data.currentPensionAverage, 'frequency': data.currentFrequency} 
+    let tempObject2 = {'provider': tempObject.provider, 'amount': req.session.data['currentPensionAverage'], 'frequency': req.session.data['currentFrequency']} 
     tempArray.push(tempObject2)
     req.session.data.confirmedPensions = tempArray
     
@@ -727,6 +733,13 @@ router.post('/'+version+'/tasks/pension-revisit-manual-entry', function(req, res
     tempArray = req.session.data.investigationArray
     tempArray.splice(index, index+1)
     req.session.data.investigationArray = tempArray
+
+    if(req.session.data['investigationArray']){
+        req.session.data['pensionComplete'] == 'incomplete'
+    }
+    else{
+        req.session.data['pensionComplete'] == 'yes'
+    }
 
     res.redirect('pension-add-another')
 
@@ -779,4 +792,103 @@ router.post('/'+version+'/tasks/pension-confirm-restart', function(req, res) {
     else{
         res.redirect('pension-add-another')
     }
+});
+
+router.post('/'+version+'/tasks/contact-claimant', function(req, res) {
+    if(req.session.data['telephoneIDV'] == 'no'){
+        res.redirect('contact-security-failed')
+    }
+    else if(req.session.data['telephoneIDV'] == 'yes'){
+        res.redirect('contact-claimant-information-needed')
+    }   
+    else if(req.session.data['telephoneIDV'] == 'no-answer'){
+        res.redirect('contact-claimant-sms')
+    } 
+});
+
+router.post('/'+version+'/tasks/contact-security-failed', function(req, res) {
+    let temporaryArray = []; // creates a temporary array
+    if(req.session.data['timelineArray']){
+      temporaryArray = req.session.data['timelineArray'] //checks to see if we already have objects in the timelineArray
+    }
+    let personArray = ["John Jones", "Alice Webb", "Sandra Dean", "Stuart Rith"]; // This creates an array of names to use later
+    let random = Math.floor(Math.random() * personArray.length); // This is a random number generatot. It will create a random number between 1 and the number of names in the above array
+    
+    // just setting up some variables to use in the object
+    let title = "Call to the applicant security failed"
+    let date = new Date(); //this gets the current timestamp
+    let reason = "<p><strong>First failed question</strong><br>" + req.session.data['security-question-1'] + "</p><p><strong>Second failed question</strong><br>" + req.session.data['security-question-2'] + "</p>";
+
+    // now we create the obkect
+    let temporaryObject = {date: date, title: title, person: personArray[random], reason: reason}
+    
+    // add the object to the array
+    temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
+    req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
+
+    res.redirect('tasklist')
+});
+
+router.post('/'+version+'/tasks/contact-claimant-sms', function(req, res) {
+    let temporaryArray = []; // creates a temporary array
+    if(req.session.data['timelineArray']){
+      temporaryArray = req.session.data['timelineArray'] //checks to see if we already have objects in the timelineArray
+    }
+    
+    // just setting up some variables to use in the object
+    let title = "The applicant was sent a contact text"
+    let date = new Date(); //this gets the current timestamp
+    let reason = req.session.data['textMessage'];
+
+    // now we create the obkect
+    let temporaryObject = {date: date, title: title, person: "John Jones", reason: reason}
+    
+    // add the object to the array
+    temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
+    req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
+
+    res.redirect('tasklist')
+});
+
+router.post('/'+version+'/tasks/postpone-task', function(req, res) {
+    let temporaryArray = []; // creates a temporary array
+    if(req.session.data['timelineArray']){
+      temporaryArray = req.session.data['timelineArray'] //checks to see if we already have objects in the timelineArray
+    }
+    
+    // just setting up some variables to use in the object
+    let title = "Task postponed"
+    let date = new Date(); //this gets the current timestamp
+    let reason;
+
+    // now we create the obkect
+    let temporaryObject = {date: date, title: title, person: "John Jones", reason: reason}
+    
+    // add the object to the array
+    temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
+    req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
+
+    req.session.data['taskPostponed'] = 'yes'
+    res.redirect('../tasks')
+});
+
+router.post('/timeline', function(req, res) {
+    let temporaryArray = []; // creates a temporary array
+    if(req.session.data['timelineArray']){
+      temporaryArray = req.session.data['timelineArray'] //checks to see if we already have objects in the timelineArray
+    }
+    // just setting up some variables to use in the object
+    let title;
+    let date = new Date(); //this gets the current timestamp
+    let reason;
+
+    // now we create the obkect
+    let temporaryObject = {date: date, title: title, person: "John Jones", reason: reason}
+    
+    // add the object to the array
+    temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
+    req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
+
+    req.session.data['successBanner'] = 'true';
+    res.redirect("payment")
 });

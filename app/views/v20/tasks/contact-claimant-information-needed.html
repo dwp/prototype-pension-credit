@@ -1,0 +1,54 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "More information needed" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        <h1 class="govuk-heading-l">More information needed</h1>
+
+         <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__value">
+              <a href="pension-add-another">Workplace and private pensions</a>
+            </dt>
+            <dd class="govuk-summary-list__actions">
+              {% if data['pensionComplete'] == 'yes'%}
+          <div class="govuk-task-list__status" id="before-you-start-1-status">
+            Done
+          </div>
+          {% elseif data['pensionComplete'] == 'incomplete'%}
+          <div class="govuk-task-list__status" id="prepare-application-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Incomplete
+            </strong>
+          </div>
+          {% else %}
+          <div class="govuk-task-list__status" id="prepare-application-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              To do
+            </strong>
+          </div>
+          {% endif %}
+            </dd>
+          </div>
+         
+        </dl>
+
+
+
+  </div>
+</div>
+        
+
+        
+          
+
+{% endblock %}
