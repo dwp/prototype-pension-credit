@@ -16,20 +16,23 @@
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
         <span class="govuk-caption-l">Workplace and private pensions</span>
-        <h1 class="govuk-heading-l">Check the calculated amount</h1>
+        {% if data['pensionsUsedLength'] == '5'%}
+          <h1 class="govuk-heading-l">Check the remaining payment</h1>
+        {% else %}
+          <h1 class="govuk-heading-l">Check the calculated amount</h1>
+        {% endif %}
 
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
 
-            {% if data.pensionsUsed == 5 %}
+          
               <dt class="govuk-summary-list__key">
-                Payments used
+                {% if data['pensionsUsedLength'] == 5 %}
+                  Remaining payment
+                {% else %}
+                  Payments used
+                {% endif %}
               </dt>
-            {% else %}
-              <dt class="govuk-summary-list__key">
-                Remaining payment
-              </dt>
-            {% endif %}
               <dd class="govuk-summary-list__value">
                 {% for pensions in data['pension']%}
                   {{pensions.slice(10, -3) | currency}} 

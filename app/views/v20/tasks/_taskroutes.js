@@ -364,6 +364,7 @@ router.post('/' + version + '/tasks/tasklist', function(req, res) {
 router.get('/'+version+'/tasks/pension-view-provider', function(req, res) {
     let tempArray = req.session.data.realpensions.data.citizen.pensionAccounts[req.session.data.pensionCount]
     req.session.data['numberOfPensionProviders'] = req.session.data.realpensions.data.citizen.pensionAccounts.length
+    req.session.data['pensionsUsedLength'] = 0;
     res.render(version + "/tasks/pension-view-provider");
 });
 
