@@ -15,17 +15,17 @@
 
 
         <span class="govuk-caption-l">Workplace and private pensions</span>
-        <h1 class="govuk-heading-l">Pension from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}</h1>
-        <p class="govuk-body">Decide whether to use these payments to work out the applicant's income on 16 July 2025.</p>
+        <h1 class="govuk-heading-l">Payments from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}</h1>
+        <p class="govuk-body">Decide whether to use these payments to work out this person's income on 16 July 2025.</p>
                 <table class="govuk-table">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                       <th scope="col" class="govuk-table__header">Date</th>
-                      <th scope="col" class="govuk-table__header">Payment frequency</th>
+                      <th scope="col" class="govuk-table__header">Frequency</th>
                       <th scope="col" class="govuk-table__header">Net amount</th>
                     </tr>
                   </thead>
-                  
+
                   <tbody class="govuk-table__body">
                     {% for payments in providers.pensionIncome %}
                       {% if loop.index0 < 6 %}
@@ -44,20 +44,20 @@
                     <fieldset class="govuk-fieldset">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                         <h1 class="govuk-fieldset__heading">
-                          Do you want to use these payments as an income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}?
+                          Do you want to use these payments?
                         </h1>
                       </legend>
                       <div class="govuk-radios" data-module="govuk-radios">
                         <div class="govuk-radios__item">
                           <input class="govuk-radios__input" id="pensionSplit" name="pensionSplit" type="radio" value="1">
                           <label class="govuk-label govuk-radios__label" for="pensionSplit">
-                            Yes, for one pension
+                            Yes, for 1 pension
                           </label>
                         </div>
                         <div class="govuk-radios__item">
                           <input class="govuk-radios__input" id="pensionSplit-2" name="pensionSplit" type="radio" value="more">
                           <label class="govuk-label govuk-radios__label" for="pensionSplit-2">
-                            Yes, for two or more pensions
+                            Yes, for 2 or more pensions
                           </label>
                         </div>
                         <div class="govuk-radios__item">
@@ -66,13 +66,13 @@
                             No, do not use these payments
                           </label>
                         </div>
-                       
+
                         <div class="govuk-radios__divider">or</div>
-                        
+
                         <div class="govuk-radios__item">
                           <input class="govuk-radios__input" id="pensionSplit-5" name="pensionSplit" type="radio" value="cam">
                           <label class="govuk-label govuk-radios__label" for="pensionSplit-5">
-                            Send application to CAM
+                            Send this application to CAM
                           </label>
                         </div>
                       </div>
@@ -87,9 +87,9 @@
 
           </div>
         </div>
-        
 
-        
-          
+
+
+
 
 {% endblock %}

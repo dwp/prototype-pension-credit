@@ -16,14 +16,14 @@
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
         <span class="govuk-caption-l">Workplace and private pensions</span>
-        <h1 class="govuk-heading-l">Add a pension provider</h1>
+        <h1 class="govuk-heading-l">Add a pension manually</h1>
 
         <form method="post">
-          
+
           <div class="govuk-form-group">
             <h2 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="tempProviderName">
-                What is the pension providers name?
+                What is the pension provider's name?
               </label>
             </h2>
             <input class="govuk-input" id="tempProviderName" name="tempProviderName" type="text">
@@ -36,7 +36,7 @@
             <select class="govuk-select" id="currentFrequency" name="currentFrequency">
 
 
-             
+
               <option value="W1">Weekly</option>
               <option value="W2">Fortnightly</option>
               <option value="W4">4 Weekly</option>
@@ -54,7 +54,7 @@
           <div class="govuk-form-group">
             <h2 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="currentPensionAverage">
-                What is the pension amount?
+                What is the net payment amount?
               </label>
             </h2>
             <div class="govuk-input__wrapper">
@@ -62,18 +62,18 @@
               <input class="govuk-input govuk-input--width-5" id="currentPensionAverage" name="currentPensionAverage" type="text">
             </div>
           </div>
-         
+
 
           <div class="govuk-button-group">
             <button type="submit" name="button" value="add" class="govuk-button" data-module="govuk-button">
               Add pension
             </button>
             <button type="submit" name="button" value="investigation" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-              Investigation needed
+              More information needed
             </button>
           </div>
-          
+
         </form>
-    </div>      
+    </div>
 </div>
 {% endblock %}

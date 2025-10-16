@@ -21,23 +21,23 @@
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
 
-            
+
               <dt class="govuk-summary-list__key">
                 Remaining payment
               </dt>
               <dd class="govuk-summary-list__value">
-                
-                  {{providers.amount | currency}} 
+
+                  {{providers.amount | currency}}
                   {% if providers.date != null  %}
                   on
                   {{providers.date | govukDate}}
                   <br>
                   {% endif %}
-               
+
               </dd>
           </div>
 
-          
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Frequency
@@ -46,16 +46,16 @@
               {{providers.frequency | paymentFrequency2}} payment
             </dd>
           </div>
-          
-          
+
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Calculated amount
             </dt>
             <dd class="govuk-summary-list__value">
-              
+
                   Not available
-             
+
             </dd>
           </div>
         </dl>
@@ -67,11 +67,11 @@
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h3 class="govuk-fieldset__heading">
-                  Do you want to use this payment as an income from {{providers.provider}}?
+                  Do you want to use this payment as an income from {{providers.provider}} on 16 July 2025?
 
                   </h3>
               </legend>
-             
+
               <div class="govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="revisit" name="revisit" type="radio" value="yes">
@@ -79,27 +79,27 @@
                     Yes, enter an amount manually
                   </label>
                 </div>
-                
+
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="revisit-2" name="revisit" type="radio" value="no">
                   <label class="govuk-label govuk-radios__label" for="revisit-2">
                     No, do not use this payment
-                    
+
                   </label>
                 </div>
               </div>
-              
-              
+
+
             </fieldset>
-           
+
           </div>
-        
-         
+
+
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
           </button>
-         
+
         </form>
-    </div>      
+    </div>
 </div>
 {% endblock %}

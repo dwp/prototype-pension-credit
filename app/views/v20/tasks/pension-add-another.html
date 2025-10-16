@@ -22,11 +22,11 @@
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
                       <th scope="col" class="govuk-table__header">Provider</th>
-                      <th scope="col" class="govuk-table__header">Payment frequency</th>
+                      <th scope="col" class="govuk-table__header">Frequency</th>
                       <th scope="col" class="govuk-table__header">Net amount</th>
                     </tr>
                   </thead>
-                  
+
                   <tbody class="govuk-table__body">
                     {% for payments in data.confirmedPensions %}
                         <tr class="govuk-table__row">
@@ -53,23 +53,22 @@
               {% for payments in data.investigationArray %}
                   <tr class="govuk-table__row">
                     <th scope="row" class="govuk-table__header">{{payments.provider }}</th>
-                    <td class="govuk-table__cell"><a href="pension-revisit-provider?tempIndex={{loop.index0}}">View <span class="govuk-visually-hidden">{{payments.provider}} pension</span> </a></td>
+                    <td class="govuk-table__cell"><a href="pension-revisit-provider?tempIndex={{loop.index0}}">View<span class="govuk-visually-hidden">{{payments.provider}} pension</span> details</a></td>
                   </tr>
               {% endfor %}
             </tbody>
           </table>
-        
+
         {% endif %}
 
                 <form method="post">
-                  
+
                   <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                         <h1 class="govuk-fieldset__heading">
-                          Add another pension?
+                          Do you want add a pension manually?
                         </h1>
-                        <p class="govuk-hint">There may be pensions not yet in payment</p>
                       </legend>
                       <div class="govuk-radios--inline" data-module="govuk-radios">
                         <div class="govuk-radios__item">
@@ -87,21 +86,21 @@
                       </div>
                     </fieldset>
                   </div>
-                
+
                   <button type="submit" class="govuk-button" data-module="govuk-button">
                     Continue
                   </button>
                   <p><a href="pension-confirm-restart">Restart task</a></p>
-                  
+
                 </form>
 
 
 
           </div>
         </div>
-        
 
-        
-          
+
+
+
 
 {% endblock %}

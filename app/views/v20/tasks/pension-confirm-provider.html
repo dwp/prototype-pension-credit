@@ -25,7 +25,7 @@
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
 
-          
+
               <dt class="govuk-summary-list__key">
                 {% if data['pensionsUsedLength'] == 5 %}
                   Remaining payment
@@ -35,7 +35,7 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 {% for pensions in data['pension']%}
-                  {{pensions.slice(10, -3) | currency}} 
+                  {{pensions.slice(10, -3) | currency}}
                   on
                   {{pensions | truncate(10, true, "") | govukDate}}
                   <br>
@@ -53,7 +53,7 @@
             </dd>
           </div>
           {% endif %}
-          
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Calculated amount
@@ -62,7 +62,7 @@
               {% if data.currentFrequency == 'IR' or data.currentFrequency == 'IO' %}
                   Not available
               {% else %}
-                {{data.currentPensionAverage  | currency}} per {{ data.currentFrequency | paymentFrequency2 | lower}} 
+                {{data.currentPensionAverage  | currency}} per {{ data.currentFrequency | paymentFrequency2 | lower}}
               {% endif %}
             </dd>
           </div>
@@ -75,11 +75,11 @@
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h3 class="govuk-fieldset__heading">
-                  Does {{data.currentPensionAverage  | currency}} a {{ data.currentFrequency | paymentFrequency2 | lower}} represent the claimant's income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}  on 16 July 2025?
+                  Does {{data.currentPensionAverage  | currency}} a {{ data.currentFrequency | paymentFrequency2 | lower}} represent this person's income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}  on 16 July 2025?
 
                   </h3>
               </legend>
-             
+
               <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="currentValue" name="currentValue" type="radio" value="yes">
@@ -101,11 +101,11 @@
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h3 class="govuk-fieldset__heading">
-                  Do you want to use this payment as an income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}}?
+                  Do you want to use this payment as an income from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}} on 16 July 2025?
 
                   </h3>
               </legend>
-             
+
               <div class="govuk-radios" data-module="govuk-radios">
                 {% if data.currentFrequency != 'IR' and data.currentFrequency != 'IO' %}
                 <div class="govuk-radios__item">
@@ -118,7 +118,7 @@
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="currentValue-1" name="currentValue" type="radio" value="manual">
                   <label class="govuk-label govuk-radios__label" for="currentValue-1">
-                    Yes, enter an amount manually 
+                    Yes, enter an amount manually
                   </label>
                 </div>
                 {% endif %}
@@ -142,15 +142,15 @@
                 </div>
 
             </fieldset>
-           
+
           </div>
-        
-         
+
+
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
           </button>
-         
+
         </form>
-    </div>      
+    </div>
 </div>
 {% endblock %}

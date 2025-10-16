@@ -15,38 +15,38 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
-        
-        
+
+
         <form method="post">
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
               <span class="govuk-caption-l">Workplace and private pensions</span>
               <h1 class="govuk-heading-l">
-                Which pension payments from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}} do you want to use
+                Which payments from {{providers.pensionProviderPayeScheme.pensionProviderName1}} {{providers.pensionProviderPayeScheme.pensionProviderName2}} do you want to use
                 {% if data['pensionSplit'] == 'more'%}
                   {% if data['pensionsUsedLength'] > 1 %}
-                    for the next pension
-                  {% else %}
-                    for the first pension
+                    for the next pension?
+                                      {% else %}
+                    for the first pension?
                   {% endif %}
-                {% endif %}?
+                {% endif %}
               </h1>
             </legend>
             <p class="govuk-body">
-              The payments you select will be used to calculate the claimant's  income on 16 July 2025.
+              The payments you select will be used to calculate this person's income on 16 July 2025.
             </p>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               {% for payments in providers.pensionIncome %}
-              
+
                 {% if loop.index <= 6 %}
                   {% set currentRow = payments.paymentDate + " " + (payments.taxablePayInPeriod - payments.taxDeductedOrRefunded) + " " + payments.payFrequency %}
                   {%  if data.pensionsUsed %}
                     {% set testArray = data.pensionsUsed | string %}
                   {% endif %}
-   
+
                     {% if data.pensionsUsed and currentRow in testArray %}
-                
+
                     {% else %}
                       <div class="govuk-checkboxes__item">
                         <input class="govuk-checkboxes__input" id="pension{{loop.index0}}" name="pension" type="checkbox" value="{{payments.paymentDate}} {{(payments.taxablePayInPeriod - payments.taxDeductedOrRefunded)}} {{payments.payFrequency}}">
@@ -56,13 +56,13 @@
                       </div>
                     {% endif %}
                   {% endif %}
-          
+
               {% endfor %}
             </div>
         </div>
 
-        
-         
+
+
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
           </button>
@@ -70,6 +70,6 @@
           <a href="#" class="govuk-button govuk-button--secondary">Do not consider these payments</a>
           {% endif %}
         </form>
-    </div>      
+    </div>
 </div>
 {% endblock %}
