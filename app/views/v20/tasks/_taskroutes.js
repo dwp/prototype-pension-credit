@@ -674,22 +674,14 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
 });
 
 
-router.post('/'+version+'/tasks/pension-add-another', function(req, res) {
-    if(req.session.data['addAnotherPension'] == 'yes'){
-        res.redirect('pension-manual-entry')
+router.post('/'+version+'/tasks/pension-add-another', function(req, res) { 
+    if(req.session.data['investigationArray'].length>0){
+        req.session.data['pensionComplete'] = 'incomplete'
     }
-    else if(req.session.data['addAnotherPension'] == 'no'){
-        
-        if(req.session.data['investigationArray'].length>0){
-            req.session.data['pensionComplete'] = 'incomplete'
-        }
-        else{
-            req.session.data['pensionComplete'] = 'yes'
-        }
-        
-        res.redirect('tasklist')
+    else{
+        req.session.data['pensionComplete'] = 'yes'
     }
-    
+    res.redirect('tasklist')
 });
 
 router.post('/'+version+'/tasks/pension-confirm-complete', function(req, res) {

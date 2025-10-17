@@ -38,27 +38,28 @@
           {% if data.pensionComplete == 'incomplete'%}<li>Workplace and private pensions</li>{% endif %}
         </ul> -->
 
-        <p class="govuk-body">Use Searchlight to ask security questions.</p>
+       
 
         <form method="post">  
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                  Did they pass security?
+                  What was the outcome of the security checks?
                 </h1>
+                 <p class="govuk-body">Use Searchlight to ask up to 3 security questions.</p>
               </legend>
               <div class="govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="telephoneIDV" name="telephoneIDV" type="radio" value="yes">
                   <label class="govuk-label govuk-radios__label" for="telephoneIDV">
-                    Yes
+                    Passed
                   </label>
                 </div>
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="telephoneIDV-2" name="telephoneIDV" type="radio" value="no">
                   <label class="govuk-label govuk-radios__label" for="telephoneIDV-2">
-                    No
+                    Failed
                   </label>
                 </div>
                 <div class="govuk-radios__divider">or</div>

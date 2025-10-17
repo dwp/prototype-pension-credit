@@ -13,24 +13,25 @@
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
         <form method="post">  
-          <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
-            <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--l" for="with-hint">
-                Send the applicant a text message
-              </label>
-            </h1>
-            <div id="with-hint-hint" class="govuk-hint">
-              Do not include personal or financial information.
-            </div>
-            <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="textMessage" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
-            <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
-              You can enter up to 200 characters
-            </div>
+          <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Mobile phone
+            </dt>
+            <dd class="govuk-summary-list__value">
+              07123 456789
+            </dd>
           </div>
+        </dl>
+
+        <p class="govuk-body"><strong>Message:</strong></p>
+        <p class="govuk-body">
+          DWP: Hello [NAME], we tried to call you about your Pension Credit application. Please call us on 0800 99 1234 or textphone 0800 169 0133. We will try to call you again on [date].
+        </p>
           
           
           <button type="submit" class="govuk-button" data-module="govuk-button">
-              Confirm
+              Send text message
           </button>
         </form>
 

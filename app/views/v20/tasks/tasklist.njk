@@ -240,7 +240,15 @@
       </form>
     {% endif %}
 
-    {% if data.pensionComplete == 'incomplete'%}
+    {% if 
+    data.pensionComplete == 'incomplete'
+    and data.bankSort == 'yes'
+    and data.bankAccount == 'yes'
+    and data.OtherApplications == 'no'
+    and data.PersonalDetails == 'yes'
+    and data.Benefits == 'no'
+    and data.BenefitInterests == 'no'
+    %}
       <h3 class="govuk-heading-m govuk-!-padding-top-5 govuk-!-margin-bottom-2">More information needed</h3>
       <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
         Call the applicant to get more information, or postpone the task if you can get it from somewhere else.

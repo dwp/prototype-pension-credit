@@ -15,7 +15,7 @@
 
 
         <span class="govuk-caption-l">Workplace and private pensions</span>
-        <h1 class="govuk-heading-l">You have added 4 pensions</h1>
+        <h1 class="govuk-heading-l">You have added {{ (data.investigationArray.length + data.confirmedPensions.length)}} {{ (data.investigationArray.length + data.confirmedPensions.length) | plural("pension", showNumber=false) }}</h1>
           {% if data.confirmedPensions %}
           <h2 class="govuk-heading-m">Already determined</h2>
                 <table class="govuk-table govuk-!-margin-bottom-5">
@@ -61,38 +61,18 @@
 
         {% endif %}
 
-                <form method="post">
-
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                        <h1 class="govuk-fieldset__heading">
-                          Do you want add a pension manually?
-                        </h1>
-                      </legend>
-                      <div class="govuk-radios--inline" data-module="govuk-radios">
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="addAnotherPension" name="addAnotherPension" type="radio" value="yes">
-                          <label class="govuk-label govuk-radios__label" for="addAnotherPension">
-                            Yes
-                          </label>
-                        </div>
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="addAnotherPension-3" name="addAnotherPension" type="radio" value="no">
-                          <label class="govuk-label govuk-radios__label" for="addAnotherPension-3">
-                            No
-                          </label>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-
-                  <button type="submit" class="govuk-button" data-module="govuk-button">
-                    Continue
-                  </button>
-                  <p><a href="pension-confirm-restart">Restart task</a></p>
-
-                </form>
+        <div class="govuk-form-group govuk-!-padding-top-4 ">
+          <p><a href="pension-manual-entry">Add another pension manually</a></p>
+        </div>
+        
+        <form method="post">
+          <div class="govuk-button-group">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+              Continue
+            </button>
+            <a class="govuk-button govuk-button--warning" href="pension-confirm-restart">Restart task</a>
+          </div>
+        </form>
 
 
 
