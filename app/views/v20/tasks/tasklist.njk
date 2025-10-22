@@ -14,8 +14,7 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Process a Pension Credit application </h1>
     <div class="govuk-body">
-      Complete these checks to see if the claimant meets the criteria for this system.
-    </div>
+Complete these tasks to confirm whether [name] is entitled to Pension Credit.    </div>
 
     {% if data['taskType'] == 'nil'%}
       <h2 class="govuk-heading-m">Verify identity</h2>
@@ -44,11 +43,11 @@
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" 
+            <a class="govuk-link govuk-task-list__link"
             {% if data['pensionComplete'] == 'incomplete' or data['pensionComplete'] == 'yes'%}
-              href="pension-add-another" 
+              href="pension-add-another"
             {% else %}
-              href="pension-view-provider" 
+              href="pension-view-provider"
             {% endif %}
             aria-describedby="prepare-application-1-status">Workplace and private pensions</a>
           </div>
@@ -59,7 +58,7 @@
           {% elseif data['pensionComplete'] == 'incomplete'%}
           <div class="govuk-task-list__status" id="prepare-application-2-status">
             <strong class="govuk-tag govuk-tag--blue">
-              Incomplete
+              In progress
             </strong>
           </div>
           {% else %}
@@ -219,13 +218,13 @@
 
     <!-- Nil award -->
     {% if data['taskType'] == 'nil'
-    and data['bankAccount'] == 'yes' 
+    and data['bankAccount'] == 'yes'
     and data['bankSort'] == 'yes'
     and data['OtherApplications'] == 'no'
     and data['PersonalDetails'] == 'yes'
     and data['Benefits'] == 'no'
     and data.pensionComplete == 'yes'
-    
+
     %}
       <form method="post">
         <h3 class="govuk-heading-l govuk-!-padding-top-5 govuk-!-margin-bottom-2">Checks complete</h3>
@@ -240,7 +239,7 @@
       </form>
     {% endif %}
 
-    {% if 
+    {% if
     data.pensionComplete == 'incomplete'
     and data.bankSort == 'yes'
     and data.bankAccount == 'yes'
@@ -249,14 +248,14 @@
     and data.Benefits == 'no'
     and data.BenefitInterests == 'no'
     %}
-      <h3 class="govuk-heading-m govuk-!-padding-top-5 govuk-!-margin-bottom-2">More information needed</h3>
+      <h3 class="govuk-heading-m govuk-!-padding-top-5 govuk-!-margin-bottom-2">What to do next</h3>
       <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-6">
-        Call the applicant to get more information, or postpone the task if you can get it from somewhere else.
+        Call [name] to get more information, or postpone the task if you cannot get the information you need right now.
       </p>
 
       <div class="govuk-button-group">
         <a href="contact-claimant" class="govuk-button" data-module="govuk-button">
-          Call the applicant
+          Call [name]
         </a>
         <a href="postpone-task" class="govuk-button  govuk-button--secondary" data-module="govuk-button">
           Postpone task

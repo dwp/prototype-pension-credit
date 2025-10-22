@@ -12,7 +12,7 @@
         {% include '../partials/name/eric.njk' %}
         <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
 
-        <h1 class="govuk-heading-l">Call the applicant</h1>
+        <h1 class="govuk-heading-l">Call [name]</h1>
 
          <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
@@ -32,15 +32,15 @@
             </dd>
           </div>
         </dl>
-        
-        
+
+
         <!-- <ul class="govuk-list govuk-list--bullet">
           {% if data.pensionComplete == 'incomplete'%}<li>Workplace and private pensions</li>{% endif %}
         </ul> -->
 
-       
 
-        <form method="post">  
+
+        <form method="post">
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -63,7 +63,7 @@
                   </label>
                 </div>
                 <div class="govuk-radios__divider">or</div>
-      
+
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="telephoneIDV-4" name="telephoneIDV" type="radio" value="no-answer">
                   <label class="govuk-label govuk-radios__label" for="telephoneIDV-4">
@@ -72,8 +72,8 @@
                 </div>
               </div>
             </fieldset>
-          </div>      
-          
+          </div>
+
           <button type="submit" class="govuk-button" data-module="govuk-button">
               Confirm
           </button>
@@ -83,9 +83,9 @@
 
   </div>
 </div>
-        
 
-        
-          
+
+
+
 
 {% endblock %}

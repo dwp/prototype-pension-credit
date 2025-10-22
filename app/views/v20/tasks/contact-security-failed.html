@@ -13,16 +13,14 @@
     <form method="post">
 
       <h2 class="govuk-heading-l">Enter the questions they answered incorrectly</h2>
-      
+
       {{ govukInput({
         label: {
           text: "Enter the first failed question",
           classes: "govuk-label--m",
           isPageHeading: true
         },
-        hint: {
-          text: "For example, what is the name of your bank?"
-        },
+
         id: "security-question-1",
         name: "security-question-1"
       }) }}
@@ -33,13 +31,11 @@
           classes: "govuk-label--m",
           isPageHeading: true
         },
-        hint: {
-          text: "For example, what was your previous address?"
-        },
+        
         id: "security-question-2",
         name: "security-question-2"
       }) }}
-     
+
 
 
       {{ govukButton({

@@ -23,8 +23,8 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
     req.session.data['pension2Complete'] = '';
     req.session.data['pension3Complete'] = '';
     req.session.data['TaskSuccess'] = 'yes';
-    
-    
+
+
     //this randomises whether we display nil or pay award first
     // whichever displays first, the opposite will display second and then they keep alternating
     // if(req.session.data['taskType']){
@@ -43,7 +43,7 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
     //     else{
     //         req.session.data['taskType'] = 'pay'
     //     }
-        
+
     // }
 
     // array to switch month from an integer to a real name
@@ -76,7 +76,7 @@ router.post('/' + version + '/tasks/bank-name', function(req, res) {
         // else{
          res.redirect("tasklist")
         // }
-    } 
+    }
     else{
         res.redirect("dropout")
     }
@@ -91,7 +91,7 @@ router.post('/' + version + '/tasks/other-applications', function(req, res) {
     //     req.session.data['OtherApplicationError'] = 'false';
         if(req.session.data['OtherApplications'] == 'yes') {
             res.redirect("dropout")
-        } 
+        }
         else{
             res.redirect("tasklist")
         }
@@ -106,14 +106,14 @@ router.post('/' + version + '/tasks/personal-details', function(req, res) {
     if(req.session.data['taskType']=='pay')
         if(req.session.data['PersonalDetails'] == 'yes') {
             res.redirect("non-dependents")
-        } 
+        }
         else{
             res.redirect("dropout")
         }
     else{
         if(req.session.data['PersonalDetails'] == 'yes') {
             res.redirect("benefits")
-        } 
+        }
         else{
             res.redirect("dropout")
         }
@@ -129,8 +129,8 @@ router.post('/' + version + '/tasks/benefits', function(req, res) {
         else{
             res.redirect("non-dependents")
         }
-        
-    } 
+
+    }
     else{
         res.redirect("dropout")
     }
@@ -139,7 +139,7 @@ router.post('/' + version + '/tasks/benefits', function(req, res) {
 router.post('/' + version + '/tasks/non-dependents', function(req, res) {
     if(req.session.data['NonDependents'] == 'no') {
         res.redirect("nationality")
-    } 
+    }
     else{
         res.redirect("dropout")
     }
@@ -154,7 +154,7 @@ router.post('/' + version + '/tasks/nationality', function(req, res) {
 
     if(req.session.data['nationalityCheck'] == 'Something else') {
         res.redirect("confirm-nationality")
-    } 
+    }
     else{
         res.redirect("past-presence")
     }
@@ -163,7 +163,7 @@ router.post('/' + version + '/tasks/nationality', function(req, res) {
 router.post('/' + version + '/tasks/confirm-nationality', function(req, res) {
     if(req.session.data['confirmNationality'] == 'yes') {
         res.redirect("immigration-status")
-    } 
+    }
     else{
         res.redirect("dropout")
     }
@@ -172,7 +172,7 @@ router.post('/' + version + '/tasks/confirm-nationality', function(req, res) {
 router.post('/' + version + '/tasks/immigration-status', function(req, res) {
     if(req.session.data['recourseToPublicFunds'] == 'yes' && req.session.data['leaveToRemain'] == 'yes') {
         res.redirect("past-presence")
-    } 
+    }
     else{
         res.redirect("dropout")
     }
@@ -182,17 +182,17 @@ router.post('/' + version + '/tasks/past-presence', function(req, res) {
     if(req.session.data['pastPresence'] == 'no' ){
         req.session.data['NationalityTask'] = 'yes';
         res.redirect("tasklist")
-    } 
+    }
     else{
         res.redirect("dropout")
     }
 });
 
 router.post('/' + version + '/tasks/nationality-auto', function(req, res) {
-    
+
     req.session.data['NationalityTask'] = 'yes'
     res.redirect("tasklist")
-    
+
 });
 
 router.post('/' + version + '/tasks/cold-weather-payments', function(req, res) {
@@ -210,7 +210,7 @@ router.post('/' + version + '/tasks/pension1', function(req, res) {
         else{
             res.redirect("pension2")
         }
-    } 
+    }
     else{
         res.redirect("dropout")
     }
@@ -239,7 +239,7 @@ router.post('/' + version + '/tasks/pension3', function(req, res) {
         else{
             res.redirect("pension2")
         }
-    } 
+    }
     else{
         res.redirect("pension3-choose-amounts")
     }
@@ -248,7 +248,7 @@ router.post('/' + version + '/tasks/pension3', function(req, res) {
 router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     var count = 0;
     var average = 0;
-  
+
     if(req.session.data['scenario3-pension1-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension1-net']);
       count++
@@ -256,7 +256,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     else{
       req.session.data['scenario3-pension1-selected'] = 'No'
     }
-  
+
     if(req.session.data['scenario3-pension2-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension2-net']);
       count++
@@ -264,7 +264,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     else{
       req.session.data['scenario3-pension2-selected'] = 'No'
     }
-  
+
     if(req.session.data['scenario3-pension3-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension3-net']);
       count++
@@ -272,15 +272,15 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     else{
       req.session.data['scenario3-pension3-selected'] = 'No'
     }
-  
+
     if(req.session.data['scenario3-pension4-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension4-net']);
       count++
     }
     else{
       req.session.data['scenario3-pension4-selected'] = 'No'
-    } 
-  
+    }
+
     if(req.session.data['scenario3-pension5-selected'] == 'Yes'){
       average +=  parseFloat(req.session.data['scenario3-pension5-net']);
       count++
@@ -288,7 +288,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     else{
       req.session.data['scenario3-pension5-selected'] = 'No'
     }
-  
+
     if(req.session.data['scenario3-pension6-selected'] == 'Yes'){
       average += parseFloat(req.session.data['scenario3-pension6-net']);
       count++
@@ -296,7 +296,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     else{
       req.session.data['scenario3-pension6-selected'] = 'No'
     }
-  
+
   if(count > 1){
     req.session.data['scenario3-selection-error']= 'false'
     req.session.data['pension3Complete']= ''
@@ -307,7 +307,7 @@ router.post('/' + version + '/tasks/pension3-choose-amounts', (req, res) => {
     req.session.data['scenario3-selection-error']= 'true'
     res.redirect(`pension3-choose-amounts`);
   }
-  
+
   })
 
 
@@ -409,7 +409,7 @@ router.post('/' + version + '/tasks/pension-view-provider', function(req, res) {
             res.redirect('pension-view-provider')
         }
         else{
-            res.redirect('pension-confirm-provider')  
+            res.redirect('pension-confirm-provider')
         }
     }
     // INVESTIGATION NEEDED
@@ -429,7 +429,7 @@ router.post('/' + version + '/tasks/pension-view-provider', function(req, res) {
 
         let tempCount = parseInt(req.session.data.pensionCount)
         req.session.data.pensionCount = tempCount + 1
-        
+
         if(req.session.data.pensionCount < req.session.data.numberOfPensionProviders){
             res.redirect('pension-view-provider')
         }
@@ -447,13 +447,13 @@ router.post('/' + version + '/tasks/pension-view-provider', function(req, res) {
     else{
         res.redirect('pension-select-provider')
     }
-    
+
 });
 
 router.post('/' + version + '/tasks/pension-select-provider', function(req, res) {
 
     let pensionSplitCount;
-    
+
 
     if(req.session.data.pensionSplitCount){
         pensionSplitCount =  req.session.data.pensionSplitCount + 1
@@ -471,8 +471,8 @@ router.post('/' + version + '/tasks/pension-select-provider', function(req, res)
         tempArray.push(req.session.data.pension[i]);
     }
     req.session.data['pensionSplit'+pensionSplitCount] = tempArray
-   
-   
+
+
     let compareArray= []
 
     for (let i = 0; i < 6; i++) {
@@ -487,7 +487,7 @@ router.post('/' + version + '/tasks/pension-select-provider', function(req, res)
     }
     req.session.data['compareArray'] = compareArray
 
-    
+
     tempArray = req.session.data['pensionSplit'+req.session.data.pensionSplitCount]
     let tempArray2 = []
     let tempAverage = 0
@@ -509,17 +509,17 @@ router.post('/' + version + '/tasks/pension-select-provider', function(req, res)
 
 router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
     if(req.session.data.currentValue == 'yes'){
-        
+
         //create the array of objects
         let tempArray = []
         let tempObject = {}
-        
+
         if(req.session.data['confirmedPensions']){
             tempArray = req.session.data['confirmedPensions']
         }
 
         let tempProviderName = req.session.data.realpensions.data.citizen.pensionAccounts[req.session.data['pensionCount']].pensionProviderPayeScheme.pensionProviderName1
-        
+
         if(req.session.data.realpensions.data.citizen.pensionAccounts[req.session.data['pensionCount']].pensionProviderPayeScheme.pensionProviderName2){
             tempProviderName += " "+req.session.data.realpensions.data.citizen.pensionAccounts[req.session.data['pensionCount']].pensionProviderPayeScheme.pensionProviderName2
         }
@@ -529,12 +529,12 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
 
         req.session.data['confirmedPensions'] = tempArray
 
-        //check if we need to loop back 
-            //this involves 
+        //check if we need to loop back
+            //this involves
             // checking to see if defined more than 1
             // checking to see count of data pesions used is more less than 5
                 //if its 5 then only dispay confirm screen
-        
+
         if(req.session.data['pensionSplit'] == 1){
             if(req.session.data.numberOfPensionProviders != (parseInt(req.session.data['pensionCount'])+1)){
                 req.session.data.pensionCount =  (parseInt(req.session.data['pensionCount'])+1)
@@ -547,13 +547,13 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
             }
         }
         else if(req.session.data.pensionSplit == 'more'){
-            
+
             let usedArray = [];
 
             if(req.session.data['pensionsUsed']){
                 usedArray = req.session.data['pensionsUsed']
             }
-             
+
             let tempArray2 = req.session.data['pensionSplit'+ req.session.data.pensionSplitCount]
 
             for (let i = 0; i < tempArray2.length; i++) {
@@ -562,7 +562,7 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
 
             req.session.data['pensionsUsed'] = usedArray
             req.session.data['pensionsUsedLength'] = req.session.data['pensionsUsed'].length
-            
+
 
             if(usedArray.length == 5){
                 let differentialArray = req.session.data['compareArray'].filter((e) => !req.session.data['pensionsUsed'].includes(e));
@@ -574,7 +574,7 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
                 req.session.data['currentPensionAverage'] = b[1]
                 req.session.data['currentFrequency'] = b[2]
                 res.redirect('pension-confirm-provider')
-            } 
+            }
             else if(usedArray.length > 5){
                 if(req.session.data['numberOfPensionProviders'] != (parseInt(req.session.data['pensionCount'])+1)){
                     req.session.data.pensionCount =  (parseInt(req.session.data['pensionCount'])+1)
@@ -603,7 +603,7 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
             }
             else{
                 res.redirect('pension-select-provider')
-            }         
+            }
         }
 
     }
@@ -614,7 +614,7 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
         if(req.session.data['pensionsUsed']){
             usedArray = req.session.data['pensionsUsed']
         }
-            
+
         let tempArray2 = req.session.data['pensionSplit'+ req.session.data.pensionSplitCount]
 
         for (let i = 0; i < tempArray2.length; i++) {
@@ -623,7 +623,7 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
 
         req.session.data['pensionsUsed'] = usedArray
         req.session.data['pensionsUsedLength'] = req.session.data['pensionsUsed'].length
-        
+
 
         let tempArray = []
         if(req.session.data['investigationArray']){
@@ -638,7 +638,7 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
         let tempObject = {'provider': pensionName, 'date': tempString, 'amount': req.session.data.currentPensionAverage, 'frequency': req.session.data.currentFrequency}
         tempArray.push(tempObject)
         req.session.data['investigationArray'] = tempArray
-        
+
         if(req.session.data.pensionsUsedLength < 5 ){
             res.redirect('pension-select-provider')
         }
@@ -669,12 +669,12 @@ router.post('/'+version+'/tasks/pension-confirm-provider', function(req, res) {
             }
 
         }
-        
+
     }
 });
 
 
-router.post('/'+version+'/tasks/pension-add-another', function(req, res) { 
+router.post('/'+version+'/tasks/pension-add-another', function(req, res) {
     if(req.session.data['investigationArray'].length>0){
         req.session.data['pensionComplete'] = 'incomplete'
     }
@@ -716,11 +716,11 @@ router.post('/'+version+'/tasks/pension-revisit-provider', function(req, res) {
 router.post('/'+version+'/tasks/pension-revisit-manual-entry', function(req, res) {
     let tempArray = req.session.data.confirmedPensions
     let tempObject = req.session.data.investigationArray[req.session.data.tempIndex]
-   
-    let tempObject2 = {'provider': tempObject.provider, 'amount': req.session.data['currentPensionAverage'], 'frequency': req.session.data['currentFrequency']} 
+
+    let tempObject2 = {'provider': tempObject.provider, 'amount': req.session.data['currentPensionAverage'], 'frequency': req.session.data['currentFrequency']}
     tempArray.push(tempObject2)
     req.session.data.confirmedPensions = tempArray
-    
+
     let index = parseInt(req.session.data.tempIndex)
     tempArray = req.session.data.investigationArray
     tempArray.splice(index, index+1)
@@ -754,7 +754,7 @@ router.post('/'+version+'/tasks/pension-manual-entry', function(req, res) {
         //create the array of objects
         let tempArray = []
         let tempObject = {}
-        
+
         if(req.session.data['confirmedPensions']){
             tempArray = req.session.data['confirmedPensions']
         }
@@ -792,10 +792,10 @@ router.post('/'+version+'/tasks/contact-claimant', function(req, res) {
     }
     else if(req.session.data['telephoneIDV'] == 'yes'){
         res.redirect('contact-claimant-information-needed')
-    }   
+    }
     else if(req.session.data['telephoneIDV'] == 'no-answer'){
         res.redirect('contact-claimant-sms')
-    } 
+    }
 });
 
 router.post('/'+version+'/tasks/contact-security-failed', function(req, res) {
@@ -805,7 +805,7 @@ router.post('/'+version+'/tasks/contact-security-failed', function(req, res) {
     }
     let personArray = ["John Jones", "Alice Webb", "Sandra Dean", "Stuart Rith"]; // This creates an array of names to use later
     let random = Math.floor(Math.random() * personArray.length); // This is a random number generatot. It will create a random number between 1 and the number of names in the above array
-    
+
     // just setting up some variables to use in the object
     let title = "Call to the applicant security failed"
     let date = new Date(); //this gets the current timestamp
@@ -813,7 +813,7 @@ router.post('/'+version+'/tasks/contact-security-failed', function(req, res) {
 
     // now we create the obkect
     let temporaryObject = {date: date, title: title, person: personArray[random], reason: reason}
-    
+
     // add the object to the array
     temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
     req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
@@ -826,7 +826,7 @@ router.post('/'+version+'/tasks/contact-claimant-sms', function(req, res) {
     if(req.session.data['timelineArray']){
       temporaryArray = req.session.data['timelineArray'] //checks to see if we already have objects in the timelineArray
     }
-    
+
     // just setting up some variables to use in the object
     let title = "The applicant was sent a contact text"
     let date = new Date(); //this gets the current timestamp
@@ -834,7 +834,7 @@ router.post('/'+version+'/tasks/contact-claimant-sms', function(req, res) {
 
     // now we create the obkect
     let temporaryObject = {date: date, title: title, person: "John Jones", reason: reason}
-    
+
     // add the object to the array
     temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
     req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
@@ -847,7 +847,7 @@ router.post('/'+version+'/tasks/postpone-task', function(req, res) {
     if(req.session.data['timelineArray']){
       temporaryArray = req.session.data['timelineArray'] //checks to see if we already have objects in the timelineArray
     }
-    
+
     // just setting up some variables to use in the object
     let title = "Task postponed"
     let date = new Date(); //this gets the current timestamp
@@ -855,7 +855,7 @@ router.post('/'+version+'/tasks/postpone-task', function(req, res) {
 
     // now we create the obkect
     let temporaryObject = {date: date, title: title, person: "John Jones", reason: reason}
-    
+
     // add the object to the array
     temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
     req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
@@ -876,7 +876,7 @@ router.post('/timeline', function(req, res) {
 
     // now we create the obkect
     let temporaryObject = {date: date, title: title, person: "John Jones", reason: reason}
-    
+
     // add the object to the array
     temporaryArray.unshift(temporaryObject); // unshift add it to the beginning of the array so we keep this in reverse chronilogical order
     req.session.data['timelineArray'] =  temporaryArray; // next we store the array of objects into a session to use in the timeline
