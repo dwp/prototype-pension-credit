@@ -16,6 +16,7 @@ router.get('/'+version+'/tasks/randomise', function(req, res) {
     req.session.data['NationalityTask'] = '';
     req.session.data['PartnerNationalityTask'] = '';
     req.session.data['Benefits'] = '';
+    req.session.data['PartnerBenefits'] = '';
     req.session.data['BenefitInterests'] = '';
     req.session.data['ReceivingBenefits'] = '';
     req.session.data['NonDependents'] = '';
@@ -158,7 +159,7 @@ router.post('/' + version + '/tasks/other-applications-partner', function(req, r
 router.post('/' + version + '/tasks/personal-details', function(req, res) {
     if(req.session.data['taskType']=='pay')
         if(req.session.data['PersonalDetails'] == 'yes') {
-            res.redirect("non-dependents")
+            res.redirect("nationality")
         } 
         else{
             res.redirect("dropout")
@@ -201,6 +202,28 @@ router.post('/' + version + '/tasks/benefits', function(req, res) {
             res.redirect("non-dependents")
         }
         
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
+router.post('/' + version + '/tasks/benefits-claimant', function(req, res) {
+    if(req.session.data['ClaimantBenefitInterests'] == 'no' ){
+        req.session.data['ClaimantBenefits'] = 'no'
+        res.redirect("tasklist")
+       
+    } 
+    else{
+        res.redirect("dropout")
+    }
+});
+
+router.post('/' + version + '/tasks/benefits-partner', function(req, res) {
+    if(req.session.data['PartnerBenefitInterests'] == 'no' ){
+        req.session.data['PartnerBenefits'] = 'no'
+        res.redirect("tasklist")
+       
     } 
     else{
         res.redirect("dropout")
@@ -252,7 +275,7 @@ router.post('/' + version + '/tasks/nationality-partner', function(req, res) {
     } 
     else{
         req.session.data['PartnerNationalityTask'] = 'yes';
-        res.redirect("tasklist")
+        res.redirect("benefits-partner")
     }
 });
 
@@ -286,7 +309,7 @@ router.post('/' + version + '/tasks/immigration-status', function(req, res) {
 router.post('/' + version + '/tasks/immigration-status-partner', function(req, res) {
     if(req.session.data['recourseToPublicFundsPartner'] == 'yes' && req.session.data['leaveToRemainPartner'] == 'yes') {
         req.session.data['PartnerNationalityTask'] = 'yes';
-        res.redirect("tasklist")
+        res.redirect("benefits-partner")
     } 
     else{
         res.redirect("dropout")
@@ -296,7 +319,7 @@ router.post('/' + version + '/tasks/immigration-status-partner', function(req, r
 router.post('/' + version + '/tasks/past-presence', function(req, res) {
     if(req.session.data['pastPresence'] == 'no' ){
         req.session.data['NationalityTask'] = 'yes';
-        res.redirect("tasklist")
+        res.redirect("benefits-claimant")
     } 
     else{
         res.redirect("dropout")
@@ -306,7 +329,7 @@ router.post('/' + version + '/tasks/past-presence', function(req, res) {
 router.post('/' + version + '/tasks/past-presence-partner', function(req, res) {
     if(req.session.data['PartnerPastPresence'] == 'no' ){
         req.session.data['PartnerNationalityTask'] = 'yes';
-        res.redirect("tasklist")
+        res.redirect("benefits-claimant")
     } 
     else{
         res.redirect("dropout")
