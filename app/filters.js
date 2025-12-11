@@ -9,6 +9,20 @@ addFilter('round5down', function (x) {
 return Math.floor(x / 5) * 5
 })
 
+addFilter('daysuntil', function (x) {
+  let date1 = new Date(x);
+  let today = new Date();
+  let diffTime = Math.abs(today - date1);
+  let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  return(diffDays);
+})
+
+
+
+addFilter('formatCode', function (x) {
+  return x.slice(0, 3) + " " + x.slice(3, 7)   + " " + x.slice(7)
+});
+
 addFilter('last', function (x, y) {
   x = String(x);
   y = -y;

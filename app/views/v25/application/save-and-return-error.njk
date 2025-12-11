@@ -1,0 +1,40 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Application not found" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+    <h1 class="govuk-heading-l">Application not found</h1>
+
+    <p class="govuk-body">This may be because your:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>reference was entered incorrectly</li>
+      <li>reference has expired</li>
+      <li>application has already been submitted</li>
+    </ul>
+    <p class="govuk-body">You can <a href="eligibility-service-start">start a new application</a> or call us.</p>
+
+    {% include "../partials/getHelp.njk" %}
+
+
+
+
+</div>
+</div>
+
+{% endblock %}
