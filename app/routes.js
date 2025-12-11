@@ -126,14 +126,7 @@ router.post('/authentication/create-account/check-phone', function(req, res) {
     res.redirect(req.session.data['redirectURL']);
 });
 
-// router.post('/authentication/create-account/auth-app', function(req, res) {
-//     res.redirect(req.session.data['redirectURL']);
-// });
 
-// router.post('/authentication/create-account/account-created', function(req, res) {
-//     console.log(req.session.data['redirectURL'])
-//     res.redirect(req.session.data['redirectURL']);
-// });
 
 
 
