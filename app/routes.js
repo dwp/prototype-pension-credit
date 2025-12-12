@@ -122,9 +122,6 @@ router.post('/authentication/create-account/enter-phone-number', function(req, r
     res.redirect("check-phone");
 });
 
-router.post('/authentication/create-account/check-phone', function(req, res) {
-    res.redirect(req.session.data['redirectURL']);
-});
 
 
 
