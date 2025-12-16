@@ -534,19 +534,43 @@ router.post('/'+ version +'/application/backdate-cya', function(req, res) {
 
 ////// PERSONAL DETAILS //////
 router.post('/'+ version +'/application/personaldetails-name', function(req, res) { 
+
+   // clear down previous data
+   req.session.data['regBlindDate'] = null
+   req.session.data['blindDD'] = null
+   req.session.data['blindMM'] = null
+   req.session.data['blindYY'] = null
+   req.session.data['registeredBlindAtBackdate'] = null
+   req.session.data['nino'] = null
+
    res.redirect("personaldetails-NI")
 });
 router.post('/'+ version +'/application/personaldetails-NI', function(req, res) { 
    res.redirect("personaldetails-registered-blind")
 });
-router.post('/'+ version +'/application/registered-blind', function(req, res) { 
+router.post('/'+ version +'/application/personaldetails-registered-blind', function(req, res) { 
    if(req.session.data['registeredBlind']=="Yes"){
-      res.redirect("personaldetails-registered-blind")
+      res.redirect("personaldetails-registered-blind-date")
    }
    else if(req.session.data['registeredBlind']=="No"){
-      res.redirect("personaldetails-registered-blind")
+      res.redirect("personaldetails-cya")
+   } 
+});
+router.post('/'+ version +'/application/personaldetails-registered-blind-date', function(req, res) { 
+   if(req.session.data['registeredBlindAtBackdate']=="No"){
+      res.redirect("personaldetails-registered-blind-date-entry")
    }
-   
+   else if(req.session.data['registeredBlindAtBackdate']=="Yes"){
+      res.redirect("personaldetails-cya")
+   } 
+});
+router.post('/'+ version +'/application/personaldetails-registered-blind-date-entry', function(req, res) { 
+   req.session.data['regBlindDate'] = new Date(req.session.data['blindYY']+"-"+req.session.data['blindMM']+"-"+req.session.data['blindDD'])
+   res.redirect("personaldetails-cya") 
+});
+router.post('/'+ version +'/application/personaldetails-cya', function(req, res) { 
+   req.session.data['personaldetailsStatus'] = 'completed'
+   res.redirect("application-tasklist") 
 });
 
 

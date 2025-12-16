@@ -39,7 +39,7 @@
                     </div>
                     {% if data.eligibilityStatus == 'completed' %}
                         <div class="govuk-task-list__status" id="company-details-1-status">
-                            Completed
+                            Done
                         </div>
                     {% elif data.eligibilityStatus == 'inprogress'%}
                         <div class="govuk-task-list__status" id="company-details-5-status">
@@ -64,7 +64,7 @@
                     </div>
                     {% if data.backdateStatus == 'completed' %}
                         <div class="govuk-task-list__status" id="company-details-1-status">
-                            Completed
+                            Done
                         </div>
                     {% elif data.backdateStatus == 'inprogress'%}
                         <div class="govuk-task-list__status" id="company-details-5-status">
@@ -92,11 +92,23 @@
                         Your personal details
                     </a>
                     </div>
-                   <div class="govuk-task-list__status" id="company-details-5-status">
-                        <strong class="govuk-tag govuk-tag--blue">
-                            To do
-                        </strong>
-                    </div>
+                   {% if data.personaldetailsStatus == 'completed' %}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                            Done
+                        </div>
+                    {% elif data.personaldetailsStatus == 'inprogress'%}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                In progress
+                            </strong>
+                        </div>
+                    {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                To do
+                            </strong>
+                        </div>
+                    {%endif%}
                 </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">

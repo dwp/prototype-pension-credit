@@ -24,18 +24,18 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
         <span class="govuk-caption-l">About your personal details</span>
-        Are you registered blind or severely sight impaired?
+        Were you registered blind or severely sight impaired on or before {{data.backdateDateString | govukDate}}?
       </h1>
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="registeredBlind" name="registeredBlind" type="radio" value="Yes">
+        <input class="govuk-radios__input" id="registeredBlind" name="registeredBlindAtBackdate" type="radio" value="Yes">
         <label class="govuk-label govuk-radios__label" for="registeredBlind">
           Yes
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="registeredBlind-2" name="registeredBlind" type="radio" value="No">
+        <input class="govuk-radios__input" id="registeredBlind-2" name="registeredBlindAtBackdate" type="radio" value="No">
         <label class="govuk-label govuk-radios__label" for="registeredBlind-2">
           No
         </label>
