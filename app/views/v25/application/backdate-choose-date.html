@@ -1,0 +1,81 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Choose a later date" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+        <h1 class="govuk-heading-l">
+            Choose a later date
+        </h1>
+        <p>
+            If you are not entitled to Pension Credit from the date you enter, we will try to backdate your application to the earliest possible date after.
+        </p>
+        <p>
+            The earliest date that you can enter is <strong>{{data.backdateDateString | govukDate}}</strong>.
+        </p>
+        <form method="post">
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" role="group">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        <h2 class="govuk-fieldset__heading">
+                            What date do you want to backdate your application to?
+                        </h2>
+                    </legend>
+                    <div class="govuk-hint">
+                        For example, 31 3 1948.
+                    </div>
+                    <div class="govuk-date-input">
+                        <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label" for="backdateDatedd">
+                                    Day
+                                </label>
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                    id="backdateDatedd" name="backdateDatedd" type="numeric" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label" for="backdateDatemm">
+                                    Month
+                                </label>
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                    id="backdateDatemm" name="backdateDatemm" type="numeric" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label" for="backdateDateyy">
+                                    Year
+                                </label>
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                    id="f-backdateDateyy" name="backdateDateyy" type="numeric" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="govuk-form-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

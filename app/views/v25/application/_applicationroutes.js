@@ -506,6 +506,55 @@ router.post('/'+ version +'/application/eligibility-successful', function(req, r
    
 });
 
+////// BACKDATE SECTION //////
+
+router.post('/'+ version +'/application/backdate-offered-date', function(req, res) { 
+   let result = req.session.data['chooseBackdateOfferedDate'];
+   if(result.includes("Yes")){
+      req.session.data['backdateDatedd']=null
+      res.redirect("backdate-cya")
+   }
+   else if(result.includes("No")){
+      res.redirect("backdate-choose-date")
+   }
+});
+
+router.post('/'+ version +'/application/backdate-choose-date', function(req, res) { 
+   if(req.session.data['backdateDatemm']<10){
+      req.session.data['backdateDatemm'] = "0"+req.session.data['backdateDatemm']
+   }
+   req.session.data['backdateDateString']= req.session.data['backdateDateyy']+"-"+req.session.data['backdateDatemm']+"-"+req.session.data['backdateDatedd']+"T00:00:00.000"
+   res.redirect("backdate-cya")
+});
+router.post('/'+ version +'/application/backdate-cya', function(req, res) { 
+   req.session.data['backdateStatus']="completed"
+   res.redirect("application-tasklist")
+});
+
+
+////// PERSONAL DETAILS //////
+router.post('/'+ version +'/application/personaldetails-name', function(req, res) { 
+   res.redirect("personaldetails-NI")
+});
+router.post('/'+ version +'/application/personaldetails-NI', function(req, res) { 
+   res.redirect("personaldetails-registered-blind")
+});
+router.post('/'+ version +'/application/registered-blind', function(req, res) { 
+   if(req.session.data['registeredBlind']=="Yes"){
+      res.redirect("personaldetails-registered-blind")
+   }
+   else if(req.session.data['registeredBlind']=="No"){
+      res.redirect("personaldetails-registered-blind")
+   }
+   
+});
+
+
+
+
+
+////// SAVE AND RETURN //////
+
 router.post('/'+ version +'/application/save-and-return', function(req, res) { 
       res.redirect("save-and-return-information")
 });

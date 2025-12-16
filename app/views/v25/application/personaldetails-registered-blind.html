@@ -1,0 +1,53 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Are you registered bling or severely sight impaired?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    
+    <form method="post">
+      <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Are you registered blind or severely sight impaired?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="registeredBlind" name="registeredBlind" type="radio" value="Yes">
+        <label class="govuk-label govuk-radios__label" for="registeredBlind">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="registeredBlind-2" name="registeredBlind" type="radio" value="No">
+        <label class="govuk-label govuk-radios__label" for="registeredBlind-2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Are they registered blind or severely sight impaired?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <h1 class="govuk-heading-l">Backdate your application</h1>
+    <p class="govuk-body">We can try to backdate your application to <strong>{{data.backdateDateString | govukDate}}</strong>.</p>
+    <p class="govuk-body">If you were not entitled to Pension Credit on that date, we will backdate your application to the earliest possible date.</p>
+    <p class="govuk-body">f you think you became entitled to Pension Credit more recently, you may want to choose a later date.</p>
+    <form method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Do you want us to try to backdate your application to {{data.backdateDateString | govukDate}}?
+            </h2>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="chooseBackdateOfferedDate" name="chooseBackdateOfferedDate" type="radio" value="Yes, I want to apply from the earliest possible date">
+              <label class="govuk-label govuk-radios__label" for="chooseBackdateOfferedDate">
+                Yes, I want to apply from the earliest possible date
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="chooseBackdateOfferedDate-2" name="chooseBackdateOfferedDate" type="radio" value="No, I want to choose a different date between {{data.backdateDateString | govukDate}} and today">
+              <label class="govuk-label govuk-radios__label" for="chooseBackdateOfferedDate-2">
+                No, I want to choose a different date between {{data.backdateDateString | govukDate}} and today
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
