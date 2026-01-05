@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Have you had any overnight stays in hospital since data['backdateDateString']?" %}
+{% set pageName = "Was the period you spent " %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -21,30 +21,31 @@
 
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-
-
-
-
-
         <form method="post" >
             <div class="govuk-form-group govuk-!-padding-top-7">
             <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                
                 <h1 class="govuk-fieldset__heading">
-                    Have you had any overnight stays in hospital since <span class="no-wrap">{{data['backdateDateString']}}</span>?
+                    <span class="govuk-caption-l">Your time outside the UK</span>
+                    {% if data['periodsOutUK'] == 'One'%}
+                    Was the period you spent 
+                    {% else %}
+                    Were any of the periods you spent 
+                    {% endif %}
+                    outside the UK connected to medical treatment or the death of a partner or child?
                 </h1>
                 </legend>
-
                 <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="HospitalStays" name="HospitalStays" type="radio" value="Yes">
-                    <label class="govuk-label govuk-radios__label" for="HospitalStays">
+                    <input class="govuk-radios__input" id="medicalOutUK" name="medicalOutUK" type="radio" value="Yes">
+                    <label class="govuk-label govuk-radios__label" for="medicalOutUK">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="HospitalStays-2" name="HospitalStays" type="radio" value="No">
-                    <label class="govuk-label govuk-radios__label" for="HospitalStays-2">
+                    <input class="govuk-radios__input" id="medicalOutUK-2" name="medicalOutUK" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="medicalOutUK-2">
                     No
                     </label>
                 </div>

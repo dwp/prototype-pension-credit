@@ -573,8 +573,169 @@ router.post('/'+ version +'/application/personaldetails-cya', function(req, res)
    res.redirect("application-tasklist") 
 });
 
+////// TIME OUT OF THE UK //////
+router.post('/'+ version +'/application/outofUK', function(req, res) {
+   if(req.session.data['timeoutUK']=="Yes"){
+      res.redirect("outofUK-periods")
+   }
+   else{
+      res.redirect("outofUK-check-answers")
+   }
+ });
+router.post('/'+ version +'/application/outofUK-periods', function(req, res) {
+   res.redirect("outofUK-medical-treatment")
+ });
+ router.post('/'+ version +'/application/outofUK-medical-treatment', function(req, res) {
+   if(req.session.data['medicalOutUK']=='No'){
+      res.redirect("outofUK-dates")
+   }
+   else{
+      res.redirect("outofUK-check-answers")
+   }
+ });
+ router.post('/'+ version +'/application/outofUK-dates', function(req, res) {
+   req.session.data['outofUK-date'] = new Date(req.session.data['outofUK-yy'] + "-" + req.session.data['outofUK-mm'] + "-" + req.session.data['outofUK-dd'])
+   req.session.data['returnedtoUK-date'] = new Date(req.session.data['returnedtoUK-yy'] + "-" + req.session.data['returnedtoUK-mm'] + "-" + req.session.data['returnedtoUK-dd'])
+   res.redirect("outofUK-check-answers")
+ });
+ router.post('/'+ version +'/application/outofUK-check-answers', function(req, res) {
+   req.session.data['outofUKStatus'] =  'completed'
+   res.redirect("application-tasklist")
+ });
 
 
+////// HOSPITAL STAYS //////
+router.post('/'+ version +'/application/hospital-stays', function(req, res) {
+   if(req.session.data['HospitalStill']=="Yes"){
+      res.redirect("hospital-you-are-in")
+   }
+   else{
+      res.redirect("hospital-now-check-answers")
+   }
+ });
+
+router.post('/'+ version +'/application/hospital-still', function(req, res) {
+   req.session.data['HospitalStill' + String(req.session.data['CurrentHospital'])] = req.session.data['HospitalStill'];
+   if(req.session.data['HospitalStill']=="Yes"){
+      res.redirect("hospital-you-are-in")
+   }
+   else{
+      res.redirect("hospital-previous-stays")
+   }
+});
+
+
+router.post('/'+ version +'/application/hospital-you-are-in', function(req, res) {
+     res.redirect("hospital-in") 
+});
+
+router.post('/'+ version +'/application/hospital-in', function(req, res) {
+   req.session.data['hospitalIn'] = new Date(req.session.data['hospitalIn-year'] + "-" + req.session.data['hospitalIn-month'] + "-" + req.session.data['hospitalIn-day'])
+   res.redirect("hospital-expected-discharge") 
+});
+
+router.post('/'+ version +'/application/hospital-expected-discharge', function(req, res) {
+   if(req.session.data['HospitalExpectedDischarge']=="Yes"){
+      res.redirect("hospital-discharge-date") 
+   }
+   else{
+      res.redirect("hospital-now-check-answers") 
+   }
+});
+
+router.post('/'+ version +'/application/hospital-discharge-date', function(req, res) {
+   req.session.data['hospitalOut'] = new Date(req.session.data['hospitalOut-year'] + "-" + req.session.data['hospitalOut-month'] + "-" + req.session.data['hospitalOut-day'])
+   res.redirect("hospital-now-check-answers") 
+});
+
+router.post('/'+ version +'/application/hospital-now-check-answers', function(req, res) {
+   res.redirect("hospital-previous-stays")
+});
+
+router.post('/'+ version +'/application/hospital-previous-stays', function(req, res) {
+   if(req.session.data['otherHospitalStays']=="Yes"){
+      req.session.data['hospitalLocation'] = null;
+      req.session.data['hospitalNHS'] = null;
+      req.session.data['hospitalIn-day'] = null;
+      req.session.data['hospitalIn-month'] = null;
+      req.session.data['hospitalIn-year'] = null;
+      req.session.data['hospitalIn'] = null;
+      req.session.data['hospitalOut-day'] = null;
+      req.session.data['hospitalOut-month'] = null;
+      req.session.data['hospitalOut-year'] = null;
+      req.session.data['hospitalOut'] = null;
+      
+      res.redirect("hospital-dates") 
+   }
+   else{
+      res.redirect("hospital-other-check-answers") 
+   }
+});
+
+router.post('/'+ version +'/application/hospital-dates', function(req, res) {
+   req.session.data['hospitalIn'] = new Date(req.session.data['hospitalIn-year'] + '-' + req.session.data['hospitalIn-month'] + '-' + req.session.data['hospitalIn-day']);
+   req.session.data['hospitalOut'] = new Date(req.session.data['hospitalOut-year'] + '-' + req.session.data['hospitalOut-month'] + '-' + req.session.data['hospitalOut-day']);
+   res.redirect("hospital-other-check-answers")
+});
+
+
+
+router.post('/'+ version +'/application/hospital-add-another', function(req, res) {
+   if(req.session.data['Hospitaladdanother'] == "No"){
+      res.redirect("application-tasklist?hospitalstaysStatus=completed")
+   }
+   else{
+      req.session.data['hospitalLocation'] = null;
+      req.session.data['hospitalNHS'] = null;
+      req.session.data['hospitalIn-day'] = null;
+      req.session.data['hospitalIn-month'] = null;
+      req.session.data['hospitalIn-year'] = null;
+      req.session.data['hospitalIn'] = null;
+      req.session.data['hospitalOut-day'] = null;
+      req.session.data['hospitalOut-month'] = null;
+      req.session.data['hospitalOut-year'] = null;
+      req.session.data['hospitalOut'] = null;
+      res.redirect("hospital-dates")
+   }
+
+});
+
+router.post('/'+ version +'/application/hospital-other-check-answers', function(req, res) {
+   let tempArray = []
+
+   if(req.session.data['hospitalStaysArray']){
+      tempArray = req.session.data['hospitalStaysArray']
+   }
+
+   let tempObject = {
+      hospitalName: req.session.data['hospitalName'],
+      hospitalLocation: req.session.data['hospitalLocation'],
+      dateIn: req.session.data['hospitalIn'],
+      dateOut: req.session.data['hospitalOut'],
+      nhsTreatment: req.session.data['hospitalNHS']
+   }
+
+   tempArray.push(tempObject)
+   req.session.data['hospitalStaysArray'] = tempArray
+   res.redirect("hospital-add-another")
+});
+
+router.get('/'+ version + '/application/hospital-delete', function(req, res) {
+   var i = req.query.hospital;
+   req.session.data['hospitalIn'+i] = null;
+   req.session.data['hospitalOut'+i] = null;
+   req.session.data['ActualHospitalCount'] = req.session.data['ActualHospitalCount'] - 1;
+   res.redirect("hospital-add-another")
+});
+
+
+
+
+router.get('/'+ version + '/application/hospital-change', function(req, res) {
+  var i = req.query.hospital;
+  req.session.data['CurrentHospital'] = i;
+  res.redirect("hospital-check-answers")
+});
 
 
 ////// SAVE AND RETURN //////

@@ -4,6 +4,11 @@
 //
 
 // Add extra styles here
+.sign-out a:hover{
+   padding-bottom: 10px;
+  border-bottom: solid;
+  border-bottom-color: white;
+}
 
 .interruption-card {
   background-color: govuk-colour('blue');

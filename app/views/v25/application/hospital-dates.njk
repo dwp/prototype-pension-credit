@@ -21,7 +21,7 @@
 
         <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-        <h1 class="govuk-heading-l">Overnight stays in hospital since <span class="no-wrap">{{data['backdateDateString']}}</span></h1>
+        <h1 class="govuk-heading-l">Overnight stays in hospital since <span class="no-wrap">{{data['backdateDateString']|govukDate}}</span></h1>
         <p class="govuk-body govuk-!-margin-bottom-7">If you were in hospital for more than one overnight stay tell us about them one at a time.</p>
 
         <form method="post">

@@ -22,37 +22,28 @@
 
     <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
     <h1 class="govuk-heading-l govuk-!-padding-top-7">
-      You have added {{data['ActualHospitalCount']}} overnight
-      {% if data['ActualHospitalCount'] == '1'%} stay {%else%} stays {% endif %} in hospital
+      You have added {{ data['hospitalStaysArray'].length | plural("overnight stay") }} in hospital
 
     </h1>
 
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Date you went into hospital</th>
-          <th scope="col" class="govuk-table__header">Discharge date</th>
+          <th scope="col" class="govuk-table__header"><div class="govuk-visually-hidden">Hospital stays</div></th>
           <th scope="col" class="govuk-table__header"><div class="govuk-visually-hidden">Actions</div></th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        {% for i in range(1, data['HospitalCount']+1) -%}
-          {% if data['hospitalIn'+i] != null%}
-          <tr class="govuk-table__row">
+        {% for stays in data['hospitalStaysArray'] %}
+         <tr class="govuk-table__row">
             <td class="govuk-table__cell">
-              {{data['hospitalIn'+(i)] }}
-            </td>
-            <td class="govuk-table__cell">
-              {% if data['HospitalExpectedDischarge'+i] == "No" %}
-                Not known
-              {% else %}
-                {{data['hospitalOut'+(i)]}}
-              {% endif %}
+              {{stays.dateIn | govukDate}} to {{stays.dateOut|govukDate}}
             </td>
             <td class="govuk-table__cell govuk-table__cell--numeric"><a href="hospital-change?hospital={{i}}">Change</a>  |  <a href="hospital-delete?hospital={{i}}">Delete</a></td>
           </tr>
-          {% endif %}
-        {%- endfor %}
+        {% endfor %}
+
+        
       </tbody>
     </table>
 
@@ -63,20 +54,20 @@
                 <h1 class="govuk-fieldset__heading">
                     Add another overnight stay in hospital?
                 </h1>
-                <p class="govuk-hint">We only need to know about hospital stays since {{data['backdateDateString']}}.</p>
+                <p class="govuk-hint">We only need to know about hospital stays since {{data['backdateDateString']|govukDate}}.</p>
 
                 </legend>
 
 
-                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="Hospitaladdanother" name="Hospitaladdanother" type="radio" value="yes">
+                    <input class="govuk-radios__input" id="Hospitaladdanother" name="Hospitaladdanother" type="radio" value="Yes">
                     <label class="govuk-label govuk-radios__label" for="Hospitaladdanother">
                     Yes
                     </label>
                 </div>
                 <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="Hospitaladdanother-2" name="Hospitaladdanother" type="radio" value="no">
+                    <input class="govuk-radios__input" id="Hospitaladdanother-2" name="Hospitaladdanother" type="radio" value="No">
                     <label class="govuk-label govuk-radios__label" for="Hospitaladdanother-2">
                     No
                     </label>
