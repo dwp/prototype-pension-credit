@@ -13,214 +13,214 @@ var version = "v25";
 ////////////////////
 ////////////////////    ELIGIBILITY
 ////////////////////
-router.post('/'+ version +'/application/eligibility-before-service-start', function(req, res) { 
-   if(req.session.data["checkPrevious"]=="Yes, I have an application reference"){
+router.post('/' + version + '/application/eligibility-before-service-start', function (req, res) {
+   if (req.session.data["checkPrevious"] == "Yes, I have an application reference") {
       res.redirect("save-and-return-challenge")
    }
-   else if(req.session.data["checkPrevious"]=="Yes, but I do not have an application reference"){
+   else if (req.session.data["checkPrevious"] == "Yes, but I do not have an application reference") {
       res.redirect("eligibility-service-restart")
    }
-   else if(req.session.data["checkPrevious"]=="No"){
+   else if (req.session.data["checkPrevious"] == "No") {
       res.redirect("eligibility-service-start")
    }
-   else{}
-   
-   
+   else { }
+
+
 });
 
-router.post('/'+ version +'/application/eligibility-service-start', function(req, res) { 
-   if(req.session.data["checkApply"]=='no'){
+router.post('/' + version + '/application/eligibility-service-start', function (req, res) {
+   if (req.session.data["checkApply"] == 'no') {
       req.session.data['canPerformEligibility'] = 'false';
       res.redirect("eligibility-successful")
    }
-   else(
+   else (
       res.redirect("eligibility-country-you-live-in")
    )
-   
+
 });
 
-router.post('/'+ version +'/application/eligibility-country-you-live-in', function(req, res) { 
+router.post('/' + version + '/application/eligibility-country-you-live-in', function (req, res) {
    //create application reference
-   let result           = '';
-   let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+   let result = '';
+   let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
    let charactersLength = characters.length;
-   for ( let i = 0; i < 6; i++ ) {
+   for (let i = 0; i < 6; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
    }
-   req.session.data['accessCode']=result
+   req.session.data['accessCode'] = result
    req.session.data['accessDate'] = new Date()
 
-   if(req.session.data["countryLiveIn"]=='Somewhere else'){
+   if (req.session.data["countryLiveIn"] == 'Somewhere else') {
       res.redirect("eligibility-do-not-live-uk")
    }
-   else{
+   else {
       res.redirect("eligibility-start-dob")
    }
 });
 
 
-router.post('/'+ version +'/application/eligibility-start-dob', function(req, res) { 
+router.post('/' + version + '/application/eligibility-start-dob', function (req, res) {
    req.session.data['Carersamount'] = '0'
    req.session.data['EASDamount'] = '0'
-   
+
    var claimantDoB = new Date()
    claimantDoB.setTime(0)
    claimantDoB.setDate(req.session.data["dateOfBirthdd"])
-   claimantDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
+   claimantDoB.setMonth(req.session.data["dateOfBirthmm"] - 1)
    claimantDoB.setYear(req.session.data["dateOfBirthyy"])
    req.session.data['claimantDoB'] = claimantDoB
 
    let SPa = new Date(Date.parse(req.session.data['claimantDoB']))
    let DoB = new Date(Date.parse(req.session.data['claimantDoB']))
-   SPa.setFullYear(SPa. getFullYear() + 66);
+   SPa.setFullYear(SPa.getFullYear() + 66);
    let today = new Date()
-   today.setMonth(today. getMonth() + 4);
+   today.setMonth(today.getMonth() + 4);
 
-   if(SPa<today){
-      if(DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End){
+   if (SPa < today) {
+      if (DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End) {
          res.redirect("eligibility-claimant-sex")
       }
-      else if(DoB < SPa_Boundry_Start){
+      else if (DoB < SPa_Boundry_Start) {
          req.session.data['canPerformEligibility'] = 'false';
          res.redirect("eligibility-has-children");
       }
-      else{
+      else {
          res.redirect("eligibility-has-children")
       }
    }
-   else{
+   else {
       res.redirect("eligibility-too-young")
    }
 
 });
 
-router.post('/'+ version +'/application/eligibility-claimant-sex', function(req, res) { 
+router.post('/' + version + '/application/eligibility-claimant-sex', function (req, res) {
    let dob = new Date(Date.parse(req.session.data['claimantDoB']));
-   
-   if(req.session.data['claimantSex'] == 'Male'){
+
+   if (req.session.data['claimantSex'] == 'Male') {
       let SC_SPaDate = new Date(Date.parse('05 May 1951 00:00:00 GMT'));
-      if(dob < SC_SPaDate){
-         req.session.data['canPerformEligibility']='false'
+      if (dob < SC_SPaDate) {
+         req.session.data['canPerformEligibility'] = 'false'
       }
       res.redirect("eligibility-has-children")
    }
-   else{
+   else {
       let SC_SPaDate = new Date(Date.parse('05 May 1956 00:00:00 GMT'));
-      if(dob < SC_SPaDate){
-         req.session.data['canPerformEligibility']='false'
+      if (dob < SC_SPaDate) {
+         req.session.data['canPerformEligibility'] = 'false'
       }
       res.redirect("eligibility-has-children")
    }
 });
 
-router.post('/'+ version +'/application/eligibility-has-children', function(req, res) { 
-   if(req.session.data['hasChildren']=="Yes"){
+router.post('/' + version + '/application/eligibility-has-children', function (req, res) {
+   if (req.session.data['hasChildren'] == "Yes") {
       req.session.data['canPerformEligibility'] = 'false';
       res.redirect("eligibility-housing-costs");
    }
-   else{
+   else {
       res.redirect("eligibility-housing-costs")
    }
 });
 
-router.post('/'+ version +'/application/eligibility-housing-costs', function(req, res) { 
-   if(req.session.data['serviceCharge'] == 'Yes' || req.session.data['groundRent'] == 'I own my home and pay ground rent' ){
+router.post('/' + version + '/application/eligibility-housing-costs', function (req, res) {
+   if (req.session.data['serviceCharge'] == 'Yes' || req.session.data['groundRent'] == 'I own my home and pay ground rent') {
       req.session.data['canPerformEligibility'] = 'false';
    }
    res.redirect("eligibility-income-from-employment");
-  
+
 });
 
-router.post('/'+ version +'/application/eligibility-income-from-employment', function(req, res) {
+router.post('/' + version + '/application/eligibility-income-from-employment', function (req, res) {
 
-   if( req.session.data['hasPartner'] == 'Yes, we live together'){
+   if (req.session.data['hasPartner'] == 'Yes, we live together') {
       // this is the partner flow
-      if(req.session.data['checkApply'] == 'no'){
+      if (req.session.data['checkApply'] == 'no') {
          res.redirect("eligibility-route");
       }
-      else{
+      else {
          res.redirect("eligibility-income-from-war-pension");
       }
    }
-   else{
+   else {
       //this is the claimant flow
-      if(req.session.data['checkApply'] == 'no'){
+      if (req.session.data['checkApply'] == 'no') {
          res.redirect("eligibility-has-partner");
       }
-      else{
+      else {
          res.redirect("eligibility-income-from-war-pension");
       }
    }
 });
 
-router.post('/'+ version +'/application/eligibility-income-from-war-pension', function(req, res) {
-   req.session.data['claimantHasWarPension'] = req.session.data['hasWarPension'] 
-   if(req.session.data['hasWarPension'] == 'Yes'){
+router.post('/' + version + '/application/eligibility-income-from-war-pension', function (req, res) {
+   req.session.data['claimantHasWarPension'] = req.session.data['hasWarPension']
+   if (req.session.data['hasWarPension'] == 'Yes') {
       req.session.data['canPerformEligibility'] = 'false'
    }
-   
-   if( req.session.data['hasPartner'] == 'Yes, we live together'){
+
+   if (req.session.data['hasPartner'] == 'Yes, we live together') {
       res.redirect("eligibility-benefits-partner");
    }
-   else{
+   else {
       res.redirect("eligibility-benefits-claimant");
    }
 });
 
 
-router.post('/'+ version +'/application/eligibility-benefits-claimant', function(req, res) {
+router.post('/' + version + '/application/eligibility-benefits-claimant', function (req, res) {
    let benefits = req.session.data['ClaimantBenefitsEntitled'];
 
-   if(   benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') || 
-         benefits.includes('Scottish Adult Disability Living Allowance') ||
-         benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
-         benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
-         benefits.includes('Constant Attendance Allowance')
-      ){
+   if (benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') ||
+      benefits.includes('Scottish Adult Disability Living Allowance') ||
+      benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') ||
+      benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
+      benefits.includes('Constant Attendance Allowance')
+   ) {
       req.session.data['claimantEASD'] = 'true';
    }
 
-   if(benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')){
+   if (benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')) {
       req.session.data['claimantCarers'] = 'true';
    }
 
-   if( req.session.data['claimantCarers'] == 'true' && req.session.data['claimantEASD'] == 'true'){
+   if (req.session.data['claimantCarers'] == 'true' && req.session.data['claimantEASD'] == 'true') {
       res.redirect("eligibility-income-from-employment");
    }
-   else{
+   else {
       res.redirect("eligibility-benefits-awaiting-claimant");
    }
 });
 
 
-router.post('/'+ version +'/application/eligibility-benefits-awaiting-claimant', function(req, res) {
+router.post('/' + version + '/application/eligibility-benefits-awaiting-claimant', function (req, res) {
    let benefits = req.session.data['ClaimantBenefitsAwaiting'];
 
-   if(   benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') || 
-         benefits.includes('Scottish Adult Disability Living Allowance') ||
-         benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
-         benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
-         benefits.includes('Constant Attendance Allowance')){
+   if (benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') ||
+      benefits.includes('Scottish Adult Disability Living Allowance') ||
+      benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') ||
+      benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
+      benefits.includes('Constant Attendance Allowance')) {
       req.session.data['claimantEASD'] = 'true';
    }
 
-   if(benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')){
+   if (benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')) {
       req.session.data['claimantCarers'] = 'true';
    }
-   
+
    res.redirect("eligibility-underlying-carers");
 
 });
 
-router.post('/'+ version +'/application/eligibility-underlying-carers', function(req, res) {
+router.post('/' + version + '/application/eligibility-underlying-carers', function (req, res) {
 
-   if(req.session.data['hasCarersUnderlyingEntitlement'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlement'] == "I'm not sure"){
+   if (req.session.data['hasCarersUnderlyingEntitlement'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlement'] == "I'm not sure") {
       req.session.data['canPerformEligibility'] = 'false'
    }
-   if( req.session.data['hasPartner'] == 'Yes, we live together'){
+   if (req.session.data['hasPartner'] == 'Yes, we live together') {
       res.redirect("eligibility-route");
    }
-   else{
+   else {
       res.redirect("eligibility-has-partner");
    }
 });
@@ -228,17 +228,17 @@ router.post('/'+ version +'/application/eligibility-underlying-carers', function
 
 
 
-router.post('/'+ version +'/application/eligibility-has-partner', function(req, res) { 
-   
-   if( req.session.data['hasPartner'] == 'Yes, we live together'){
+router.post('/' + version + '/application/eligibility-has-partner', function (req, res) {
+
+   if (req.session.data['hasPartner'] == 'Yes, we live together') {
       res.redirect("eligibility-partner-dob")
    }
-   else{
+   else {
       res.redirect("eligibility-route");
    }
 });
 
-router.post('/'+ version +'/application/eligibility-partner-dob', function(req, res) { 
+router.post('/' + version + '/application/eligibility-partner-dob', function (req, res) {
 
    // create a date variable
    var partnerDoB = new Date()
@@ -248,145 +248,145 @@ router.post('/'+ version +'/application/eligibility-partner-dob', function(req, 
 
    // set the day, month and year based on input 
    partnerDoB.setDate(req.session.data["dateOfBirthdd"])
-   partnerDoB.setMonth(req.session.data["dateOfBirthmm"]-1)
+   partnerDoB.setMonth(req.session.data["dateOfBirthmm"] - 1)
    partnerDoB.setYear(req.session.data["dateOfBirthyy"])
 
    // save the created date/time as a session
    req.session.data['partnerDoB'] = partnerDoB;
-  
+
 
    let SPa = new Date(Date.parse(partnerDoB))
    let DoB = new Date(Date.parse(partnerDoB))
-   SPa.setFullYear(SPa. getFullYear() + 66);
+   SPa.setFullYear(SPa.getFullYear() + 66);
    let today = new Date()
-   today.setMonth(today. getMonth() + 4);
+   today.setMonth(today.getMonth() + 4);
 
-   if(SPa<today){
-      if(DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End){
+   if (SPa < today) {
+      if (DoB > SPa_Boundry_Start && DoB < SPa_Boundry_End) {
          res.redirect("eligibility-partner-sex")
       }
-      else if(DoB<SPa_Boundry_Start){
+      else if (DoB < SPa_Boundry_Start) {
          req.session.data['canPerformEligibility'] == 'false';
          res.redirect("eligibility-benefits-partner");
       }
-      else{
+      else {
          res.redirect("eligibility-income-from-employment")
       }
    }
-   else{
+   else {
       let claimantDoB = new Date(req.session.data['claimantDoB']);
       let triggerDate = new Date("1954-01-06T00:00:00.000Z")
-      if(claimantDoB < triggerDate){
+      if (claimantDoB < triggerDate) {
          res.redirect("eligibility-housing-benefit")
       }
-      else{
+      else {
          res.redirect("eligibility-both-too-young")
       }
-      
+
    }
 
 
 });
 
-router.post('/'+ version +'/application/eligibility-partner-sex', function(req, res) { 
+router.post('/' + version + '/application/eligibility-partner-sex', function (req, res) {
    let dob = new Date(Date.parse(req.session.data['partnerDoB']));
    let today = new Date();
    let SPadate = today.setFullYear(today.getFullYear() - 66);
    let claimantdob = new Date(Date.parse(req.session.data['claimantDoB']))
-   
-   if(req.session.data['partnerSex'] == 'Male'){
+
+   if (req.session.data['partnerSex'] == 'Male') {
       let SC_SPaDate = new Date(Date.parse('05 May 1951 00:00:00 GMT'));
-      
-         if(claimantdob > SPadate && dob > SPadate){
-            req.session.data['dropout'] = "spa";
-            res.redirect("eligibility-dropout");
-         }
-         else if(claimantdob > SPadate || dob > SPadate){
-            req.session.data['dropout'] = "mixed";
-            res.redirect("eligibility-dropout");
-         }
-         else if(dob < SC_SPaDate){
-            req.session.data['canPerformEligibility'] = 'false'
-         }
-         
-      
+
+      if (claimantdob > SPadate && dob > SPadate) {
+         req.session.data['dropout'] = "spa";
+         res.redirect("eligibility-dropout");
+      }
+      else if (claimantdob > SPadate || dob > SPadate) {
+         req.session.data['dropout'] = "mixed";
+         res.redirect("eligibility-dropout");
+      }
+      else if (dob < SC_SPaDate) {
+         req.session.data['canPerformEligibility'] = 'false'
+      }
+
+
    }
-   else{
+   else {
       let SC_SPaDate = new Date(Date.parse('05 May 1956 00:00:00 GMT'));
-      
-         if(claimantdob > SPadate && dob > SPadate){
-            req.session.data['dropout'] = "spa";
-            res.redirect("eligibility-dropout");
-         }
-         else if(claimantdob > SPadate || dob > SPadate){
-            req.session.data['dropout'] = "mixed";
-            res.redirect("eligibility-dropout");
-         }
-         else if(dob < SC_SPaDate){
-            req.session.data['canPerformEligibility'] = 'false'
-         }     
+
+      if (claimantdob > SPadate && dob > SPadate) {
+         req.session.data['dropout'] = "spa";
+         res.redirect("eligibility-dropout");
+      }
+      else if (claimantdob > SPadate || dob > SPadate) {
+         req.session.data['dropout'] = "mixed";
+         res.redirect("eligibility-dropout");
+      }
+      else if (dob < SC_SPaDate) {
+         req.session.data['canPerformEligibility'] = 'false'
+      }
    }
    res.redirect("eligibility-income-from-employment")
 });
 
-router.post('/'+ version +'/application/eligibility-benefits-partner', function(req, res) {
+router.post('/' + version + '/application/eligibility-benefits-partner', function (req, res) {
    let benefits = req.session.data['PartnerBenefitsEntitled'];
 
-   if(   
-      benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') || 
-      benefits.includes('Scottish Adult Disability Living Allowance') || 
-      benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
+   if (
+      benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') ||
+      benefits.includes('Scottish Adult Disability Living Allowance') ||
+      benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') ||
       benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
       benefits.includes('Constant Attendance Allowance')
-      ){
+   ) {
       req.session.data['partnerEASD'] = 'true';
    }
 
-   if(benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')){
+   if (benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')) {
       req.session.data['partnerCarers'] = 'true';
    }
 
-   if(req.session.data['partnerCarers'] == 'true' && req.session.data['partnerEASD'] == 'true'){
+   if (req.session.data['partnerCarers'] == 'true' && req.session.data['partnerEASD'] == 'true') {
       res.redirect("eligibility-income-from-employment");
    }
-   else{
+   else {
       res.redirect("eligibility-benefits-awaiting-partner");
    }
 
-   
+
 
 });
 
-router.post('/'+ version +'/application/eligibility-benefits-awaiting-partner', function(req, res) {
+router.post('/' + version + '/application/eligibility-benefits-awaiting-partner', function (req, res) {
    let benefits = req.session.data['PartnerBenefitsAwaiting'];
 
-   if(   
-      benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') ||  
+   if (
+      benefits.includes('Attendance Allowance') || benefits.includes('Disability Living Allowance') ||
       benefits.includes('Scottish Adult Disability Living Allowance') ||
-      benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') || 
+      benefits.includes('Personal Independence Payment') || benefits.includes('Adult Disability Payment') ||
       benefits.includes('Armed Forces Independence Payment') || benefits.includes('Pension Age Disability Payment') ||
       benefits.includes('Constant Attendance Allowance')
-   ){
+   ) {
       req.session.data['partnerEASD'] = 'true';
    }
 
-   if(benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')){
+   if (benefits.includes('Carer\'s allowance') || benefits.includes('Carer support payment')) {
       req.session.data['partnerCarers'] = 'true';
    }
 
-   if(req.session.data['partnerCarers'] == 'true'){
+   if (req.session.data['partnerCarers'] == 'true') {
       res.redirect("eligibility-partner-income-from-employment");
    }
-   else{
+   else {
       res.redirect("eligibility-underlying-carers-partner");
    }
-   
+
 
 });
 
-router.post('/'+ version +'/application/eligibility-underlying-carers-partner', function(req, res) {
+router.post('/' + version + '/application/eligibility-underlying-carers-partner', function (req, res) {
 
-   if(req.session.data['hasCarersUnderlyingEntitlementPartner'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlementPartner'] == "I'm not sure"){
+   if (req.session.data['hasCarersUnderlyingEntitlementPartner'] == 'Yes' || req.session.data['hasCarersUnderlyingEntitlementPartner'] == "I'm not sure") {
       req.session.data['canPerformEligibility'] = 'false'
    }
    res.redirect("eligibility-route");
@@ -395,68 +395,67 @@ router.post('/'+ version +'/application/eligibility-underlying-carers-partner', 
 
 
 
-router.get('/'+ version +'/application/eligibility-route', function(req, res) {
+router.get('/' + version + '/application/eligibility-route', function (req, res) {
    // this is used to logically determine if its a complex case
-   if(
-      req.session.data['hasPartner'] == 'Yes, we live together' 
+   if (
+      req.session.data['hasPartner'] == 'Yes, we live together'
       &&
-      (req.session.data['ClaimantBenefitsEntitled'] && (req.session.data['ClaimantBenefitsEntitled'].includes("Attendance Allowance")  || req.session.data['ClaimantBenefitsAwaiting'].includes("Attendance Allowance") ))
+      (req.session.data['ClaimantBenefitsEntitled'] && (req.session.data['ClaimantBenefitsEntitled'].includes("Attendance Allowance") || req.session.data['ClaimantBenefitsAwaiting'].includes("Attendance Allowance")))
       &&
-      (req.session.data['PartnerBenefitsEntitled'] && (req.session.data['PartnerBenefitsEntitled'].includes("Attendance Allowance") || req.session.data['PartnerBenefitsAwaiting'].includes("Attendance Allowance") ))
-   ){
+      (req.session.data['PartnerBenefitsEntitled'] && (req.session.data['PartnerBenefitsEntitled'].includes("Attendance Allowance") || req.session.data['PartnerBenefitsAwaiting'].includes("Attendance Allowance")))
+   ) {
       console.log('Couples AA dropout')
       res.redirect("eligibility-cya");
    }
-   else if(req.session.data['canPerformEligibility'] == 'false'){
+   else if (req.session.data['canPerformEligibility'] == 'false') {
       console.log('Couples AA dropout')
       res.redirect("eligibility-cya");
    }
-   else{
+   else {
       res.redirect("eligibility-calculate");
    }
 });
 
 
-router.get('/'+ version +'/application/eligibility-calculate', function(req, res) {
+router.get('/' + version + '/application/eligibility-calculate', function (req, res) {
    // clear sessioon data
    req.session.data['standardamount'] = 0
    req.session.data['disregard'] = 0
    req.session.data['EASDamount'] = 0
    req.session.data['Carersamount'] = 0
-   req.session.data['applicableamount'] = 0 
+   req.session.data['applicableamount'] = 0
 
    // calculate standard amount
-   if(req.session.data['hasPartner'] == 'Yes, we live together'){
+   if (req.session.data['hasPartner'] == 'Yes, we live together') {
       req.session.data['standardamount'] = '346.60'
-      if(
-         (req.session.data['claimantCarers'] == 'true'|| req.session.data['partnerCarers'] == 'true') 
-         && (req.session.data['hasEmploymentIncome'] == 'Yes' || req.session.data['partnerHasEmploymentIncome'] == 'Yes'))
-         {
-            req.session.data['disregard'] = 20;
-         }
-         else{
-            req.session.data['disregard'] = 10;
-         }
+      if (
+         (req.session.data['claimantCarers'] == 'true' || req.session.data['partnerCarers'] == 'true')
+         && (req.session.data['hasEmploymentIncome'] == 'Yes' || req.session.data['partnerHasEmploymentIncome'] == 'Yes')) {
+         req.session.data['disregard'] = 20;
+      }
+      else {
+         req.session.data['disregard'] = 10;
+      }
    }
-   else{
+   else {
       req.session.data['standardamount'] = '227.10'
-      
+
    }
 
    // add any EASD
-   if(req.session.data['claimantEASD'] == 'true'){
+   if (req.session.data['claimantEASD'] == 'true') {
       req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 82.90;
    }
-   if(req.session.data['partnerEASD'] == 'true'){
+   if (req.session.data['partnerEASD'] == 'true') {
       req.session.data['EASDamount'] = parseFloat(req.session.data['EASDamount']) + 82.90;
    }
 
    // add any Carers Premium
-   if(req.session.data['claimantCarers'] == 'true'){
+   if (req.session.data['claimantCarers'] == 'true') {
       req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 46.40;
    }
 
-   if(req.session.data['partnerCarers'] == 'true'){
+   if (req.session.data['partnerCarers'] == 'true') {
       req.session.data['Carersamount'] = parseFloat(req.session.data['Carersamount']) + 46.40;
    }
 
@@ -465,7 +464,7 @@ router.get('/'+ version +'/application/eligibility-calculate', function(req, res
    req.session.data['applicableamount'] = applicable.toFixed(2)
 
    // Perform weekly to monthly convertion
-   let monthlyapplicable = ((req.session.data['disregard']+applicable) * 52)/12;
+   let monthlyapplicable = ((req.session.data['disregard'] + applicable) * 52) / 12;
 
    // Round up to nearest pound
    req.session.data['monthlyapplicableamount'] = Math.ceil(monthlyapplicable)
@@ -473,67 +472,67 @@ router.get('/'+ version +'/application/eligibility-calculate', function(req, res
    res.redirect("eligibility-income")
 });
 
-router.post('/'+ version +'/application/eligibility-income', function(req, res) { 
+router.post('/' + version + '/application/eligibility-income', function (req, res) {
    res.redirect("eligibility-cya")
 });
 
-router.post('/'+ version +'/application/eligibility-CYA', function(req, res) { 
-   if(req.session.data['checkApply']=='no'){
+router.post('/' + version + '/application/eligibility-CYA', function (req, res) {
+   if (req.session.data['checkApply'] == 'no') {
       res.redirect("save-and-return")
    }
-   else if(req.session.data['incomeAmount']=='less than'){
+   else if (req.session.data['incomeAmount'] == 'less than') {
       res.redirect("eligibility-successful")
    }
-   else if(req.session.data['incomeAmount']=='more than'){
+   else if (req.session.data['incomeAmount'] == 'more than') {
       res.redirect("eligibility-unsuccessful")
    }
-   else{
+   else {
       res.redirect("eligibility-not-enough-data")
    }
 });
 
-router.post('/'+ version +'/application/eligibility-housing-benefit', function(req, res) { 
-   if(req.session.data['hasHousingBenefit'] == 'Yes'){
+router.post('/' + version + '/application/eligibility-housing-benefit', function (req, res) {
+   if (req.session.data['hasHousingBenefit'] == 'Yes') {
       res.redirect("eligibility-income-from-employment")
       //res.redirect("eligibility-benefits-partner")
    }
-   else{
+   else {
       res.redirect("eligibility-both-too-young")
    }
 });
 
-router.post('/'+ version +'/application/eligibility-successful', function(req, res) { 
-   
+router.post('/' + version + '/application/eligibility-successful', function (req, res) {
+
 });
 
 ////// BACKDATE SECTION //////
 
-router.post('/'+ version +'/application/backdate-offered-date', function(req, res) { 
+router.post('/' + version + '/application/backdate-offered-date', function (req, res) {
    let result = req.session.data['chooseBackdateOfferedDate'];
-   if(result.includes("Yes")){
-      req.session.data['backdateDatedd']=null
+   if (result.includes("Yes")) {
+      req.session.data['backdateDatedd'] = null
       res.redirect("backdate-cya")
    }
-   else if(result.includes("No")){
+   else if (result.includes("No")) {
       res.redirect("backdate-choose-date")
    }
 });
 
-router.post('/'+ version +'/application/backdate-choose-date', function(req, res) { 
-   if(req.session.data['backdateDatemm']<10){
-      req.session.data['backdateDatemm'] = "0"+req.session.data['backdateDatemm']
+router.post('/' + version + '/application/backdate-choose-date', function (req, res) {
+   if (req.session.data['backdateDatemm'] < 10) {
+      req.session.data['backdateDatemm'] = "0" + req.session.data['backdateDatemm']
    }
-   req.session.data['backdateDateString']= req.session.data['backdateDateyy']+"-"+req.session.data['backdateDatemm']+"-"+req.session.data['backdateDatedd']+"T00:00:00.000"
+   req.session.data['backdateDateString'] = req.session.data['backdateDateyy'] + "-" + req.session.data['backdateDatemm'] + "-" + req.session.data['backdateDatedd'] + "T00:00:00.000"
    res.redirect("backdate-cya")
 });
-router.post('/'+ version +'/application/backdate-cya', function(req, res) { 
-   req.session.data['backdateStatus']="completed"
+router.post('/' + version + '/application/backdate-cya', function (req, res) {
+   req.session.data['backdateStatus'] = "completed"
    res.redirect("application-tasklist")
 });
 
 
 ////// PERSONAL DETAILS //////
-router.post('/'+ version +'/application/personaldetails-name', function(req, res) { 
+router.post('/' + version + '/application/personaldetails-name', function (req, res) {
 
    // clear down previous data
    req.session.data['regBlindDate'] = null
@@ -545,115 +544,163 @@ router.post('/'+ version +'/application/personaldetails-name', function(req, res
 
    res.redirect("personaldetails-NI")
 });
-router.post('/'+ version +'/application/personaldetails-NI', function(req, res) { 
+router.post('/' + version + '/application/personaldetails-NI', function (req, res) {
    res.redirect("personaldetails-registered-blind")
 });
-router.post('/'+ version +'/application/personaldetails-registered-blind', function(req, res) { 
-   if(req.session.data['registeredBlind']=="Yes"){
+router.post('/' + version + '/application/personaldetails-registered-blind', function (req, res) {
+   if (req.session.data['registeredBlind'] == "Yes") {
       res.redirect("personaldetails-registered-blind-date")
    }
-   else if(req.session.data['registeredBlind']=="No"){
+   else if (req.session.data['registeredBlind'] == "No") {
       res.redirect("personaldetails-cya")
-   } 
+   }
 });
-router.post('/'+ version +'/application/personaldetails-registered-blind-date', function(req, res) { 
-   if(req.session.data['registeredBlindAtBackdate']=="No"){
+router.post('/' + version + '/application/personaldetails-registered-blind-date', function (req, res) {
+   if (req.session.data['registeredBlindAtBackdate'] == "No") {
       res.redirect("personaldetails-registered-blind-date-entry")
    }
-   else if(req.session.data['registeredBlindAtBackdate']=="Yes"){
+   else if (req.session.data['registeredBlindAtBackdate'] == "Yes") {
       res.redirect("personaldetails-cya")
-   } 
+   }
 });
-router.post('/'+ version +'/application/personaldetails-registered-blind-date-entry', function(req, res) { 
-   req.session.data['regBlindDate'] = new Date(req.session.data['blindYY']+"-"+req.session.data['blindMM']+"-"+req.session.data['blindDD'])
-   res.redirect("personaldetails-cya") 
+router.post('/' + version + '/application/personaldetails-registered-blind-date-entry', function (req, res) {
+   req.session.data['regBlindDate'] = new Date(req.session.data['blindYY'] + "-" + req.session.data['blindMM'] + "-" + req.session.data['blindDD'])
+   res.redirect("personaldetails-cya")
 });
-router.post('/'+ version +'/application/personaldetails-cya', function(req, res) { 
+router.post('/' + version + '/application/personaldetails-cya', function (req, res) {
    req.session.data['personaldetailsStatus'] = 'completed'
-   res.redirect("application-tasklist") 
+   res.redirect("application-tasklist")
 });
 
+////// NATIONALITY AND IMMIGRATION //////
+router.post('/' + version + '/application/nationality', function (req, res) {
+   if (req.session.data['nationality-option'] == "British" || req.session.data['nationality-option'] == "Irish") {
+      req.session.data['nationality'] = req.session.data['nationality-option']
+      res.redirect("nationality-immigration")
+   }
+   else {
+      res.redirect("nationality-select")
+   }
+});
+
+router.post('/' + version + '/application/nationality-select', function (req, res) {
+   if (req.session.data['nationality-option'] == "European Economic area (EEA) or Swiss national") {
+      res.redirect("nationality-settled-status")
+   }
+   else {
+      res.redirect("nationality-immigration")
+   }
+});
+
+router.post('/' + version + '/application/nationality-settled-status', function (req, res) {
+   if (req.session.data['settledStatus'] == "Something else" || req.session.data['settledStatus'] == "I do not know") {
+      res.redirect("nationality-pre73")
+   }
+   else {
+      res.redirect("nationality-check-answers")
+   }
+});
+
+router.post('/' + version + '/application/nationality-pre73', function (req, res) {
+   if (req.session.data['settledPre73'] == "Yes") {
+      res.redirect("nationality-immigration")
+   }
+   else {
+      res.redirect("nationality-dropout")
+   }
+});
+
+router.post('/' + version + '/application/nationality-immigration', function (req, res) {
+   if (req.session.data['rightToReside'] == "No" || req.session.data['lived6months'] == "No") {
+      res.redirect("nationality-immigration")
+   }
+   else {
+      res.redirect("nationality-check-answers")
+   }
+});
+
+
 ////// TIME OUT OF THE UK //////
-router.post('/'+ version +'/application/outofUK', function(req, res) {
-   if(req.session.data['timeoutUK']=="Yes"){
+router.post('/' + version + '/application/outofUK', function (req, res) {
+   if (req.session.data['timeoutUK'] == "Yes") {
       res.redirect("outofUK-periods")
    }
-   else{
+   else {
       res.redirect("outofUK-check-answers")
    }
- });
-router.post('/'+ version +'/application/outofUK-periods', function(req, res) {
+});
+router.post('/' + version + '/application/outofUK-periods', function (req, res) {
    res.redirect("outofUK-medical-treatment")
- });
- router.post('/'+ version +'/application/outofUK-medical-treatment', function(req, res) {
-   if(req.session.data['medicalOutUK']=='No'){
+});
+router.post('/' + version + '/application/outofUK-medical-treatment', function (req, res) {
+   if (req.session.data['medicalOutUK'] == 'No') {
       res.redirect("outofUK-dates")
    }
-   else{
+   else {
       res.redirect("outofUK-check-answers")
    }
- });
- router.post('/'+ version +'/application/outofUK-dates', function(req, res) {
+});
+router.post('/' + version + '/application/outofUK-dates', function (req, res) {
    req.session.data['outofUK-date'] = new Date(req.session.data['outofUK-yy'] + "-" + req.session.data['outofUK-mm'] + "-" + req.session.data['outofUK-dd'])
    req.session.data['returnedtoUK-date'] = new Date(req.session.data['returnedtoUK-yy'] + "-" + req.session.data['returnedtoUK-mm'] + "-" + req.session.data['returnedtoUK-dd'])
    res.redirect("outofUK-check-answers")
- });
- router.post('/'+ version +'/application/outofUK-check-answers', function(req, res) {
-   req.session.data['outofUKStatus'] =  'completed'
+});
+router.post('/' + version + '/application/outofUK-check-answers', function (req, res) {
+   req.session.data['outofUKStatus'] = 'completed'
    res.redirect("application-tasklist")
- });
+});
 
 
 ////// HOSPITAL STAYS //////
-router.post('/'+ version +'/application/hospital-stays', function(req, res) {
-   if(req.session.data['HospitalStill']=="Yes"){
+router.post('/' + version + '/application/hospital-stays', function (req, res) {
+   if (req.session.data['HospitalStill'] == "Yes") {
       res.redirect("hospital-you-are-in")
    }
-   else{
+   else {
       res.redirect("hospital-now-check-answers")
    }
- });
+});
 
-router.post('/'+ version +'/application/hospital-still', function(req, res) {
+router.post('/' + version + '/application/hospital-still', function (req, res) {
    req.session.data['HospitalStill' + String(req.session.data['CurrentHospital'])] = req.session.data['HospitalStill'];
-   if(req.session.data['HospitalStill']=="Yes"){
+   if (req.session.data['HospitalStill'] == "Yes") {
       res.redirect("hospital-you-are-in")
    }
-   else{
+   else {
       res.redirect("hospital-previous-stays")
    }
 });
 
 
-router.post('/'+ version +'/application/hospital-you-are-in', function(req, res) {
-     res.redirect("hospital-in") 
+router.post('/' + version + '/application/hospital-you-are-in', function (req, res) {
+   res.redirect("hospital-in")
 });
 
-router.post('/'+ version +'/application/hospital-in', function(req, res) {
+router.post('/' + version + '/application/hospital-in', function (req, res) {
    req.session.data['hospitalIn'] = new Date(req.session.data['hospitalIn-year'] + "-" + req.session.data['hospitalIn-month'] + "-" + req.session.data['hospitalIn-day'])
-   res.redirect("hospital-expected-discharge") 
+   res.redirect("hospital-expected-discharge")
 });
 
-router.post('/'+ version +'/application/hospital-expected-discharge', function(req, res) {
-   if(req.session.data['HospitalExpectedDischarge']=="Yes"){
-      res.redirect("hospital-discharge-date") 
+router.post('/' + version + '/application/hospital-expected-discharge', function (req, res) {
+   if (req.session.data['HospitalExpectedDischarge'] == "Yes") {
+      res.redirect("hospital-discharge-date")
    }
-   else{
-      res.redirect("hospital-now-check-answers") 
+   else {
+      res.redirect("hospital-now-check-answers")
    }
 });
 
-router.post('/'+ version +'/application/hospital-discharge-date', function(req, res) {
+router.post('/' + version + '/application/hospital-discharge-date', function (req, res) {
    req.session.data['hospitalOut'] = new Date(req.session.data['hospitalOut-year'] + "-" + req.session.data['hospitalOut-month'] + "-" + req.session.data['hospitalOut-day'])
-   res.redirect("hospital-now-check-answers") 
+   res.redirect("hospital-now-check-answers")
 });
 
-router.post('/'+ version +'/application/hospital-now-check-answers', function(req, res) {
+router.post('/' + version + '/application/hospital-now-check-answers', function (req, res) {
    res.redirect("hospital-previous-stays")
 });
 
-router.post('/'+ version +'/application/hospital-previous-stays', function(req, res) {
-   if(req.session.data['otherHospitalStays']=="Yes"){
+router.post('/' + version + '/application/hospital-previous-stays', function (req, res) {
+   if (req.session.data['otherHospitalStays'] == "Yes") {
       req.session.data['hospitalLocation'] = null;
       req.session.data['hospitalNHS'] = null;
       req.session.data['hospitalIn-day'] = null;
@@ -664,15 +711,15 @@ router.post('/'+ version +'/application/hospital-previous-stays', function(req, 
       req.session.data['hospitalOut-month'] = null;
       req.session.data['hospitalOut-year'] = null;
       req.session.data['hospitalOut'] = null;
-      
-      res.redirect("hospital-dates") 
+
+      res.redirect("hospital-dates")
    }
-   else{
-      res.redirect("hospital-other-check-answers") 
+   else {
+      res.redirect("hospital-other-check-answers")
    }
 });
 
-router.post('/'+ version +'/application/hospital-dates', function(req, res) {
+router.post('/' + version + '/application/hospital-dates', function (req, res) {
    req.session.data['hospitalIn'] = new Date(req.session.data['hospitalIn-year'] + '-' + req.session.data['hospitalIn-month'] + '-' + req.session.data['hospitalIn-day']);
    req.session.data['hospitalOut'] = new Date(req.session.data['hospitalOut-year'] + '-' + req.session.data['hospitalOut-month'] + '-' + req.session.data['hospitalOut-day']);
    res.redirect("hospital-other-check-answers")
@@ -680,11 +727,11 @@ router.post('/'+ version +'/application/hospital-dates', function(req, res) {
 
 
 
-router.post('/'+ version +'/application/hospital-add-another', function(req, res) {
-   if(req.session.data['Hospitaladdanother'] == "No"){
+router.post('/' + version + '/application/hospital-add-another', function (req, res) {
+   if (req.session.data['Hospitaladdanother'] == "No") {
       res.redirect("application-tasklist?hospitalstaysStatus=completed")
    }
-   else{
+   else {
       req.session.data['hospitalLocation'] = null;
       req.session.data['hospitalNHS'] = null;
       req.session.data['hospitalIn-day'] = null;
@@ -700,10 +747,10 @@ router.post('/'+ version +'/application/hospital-add-another', function(req, res
 
 });
 
-router.post('/'+ version +'/application/hospital-other-check-answers', function(req, res) {
+router.post('/' + version + '/application/hospital-other-check-answers', function (req, res) {
    let tempArray = []
 
-   if(req.session.data['hospitalStaysArray']){
+   if (req.session.data['hospitalStaysArray']) {
       tempArray = req.session.data['hospitalStaysArray']
    }
 
@@ -720,10 +767,10 @@ router.post('/'+ version +'/application/hospital-other-check-answers', function(
    res.redirect("hospital-add-another")
 });
 
-router.get('/'+ version + '/application/hospital-delete', function(req, res) {
+router.get('/' + version + '/application/hospital-delete', function (req, res) {
    var i = req.query.hospital;
-   req.session.data['hospitalIn'+i] = null;
-   req.session.data['hospitalOut'+i] = null;
+   req.session.data['hospitalIn' + i] = null;
+   req.session.data['hospitalOut' + i] = null;
    req.session.data['ActualHospitalCount'] = req.session.data['ActualHospitalCount'] - 1;
    res.redirect("hospital-add-another")
 });
@@ -731,60 +778,60 @@ router.get('/'+ version + '/application/hospital-delete', function(req, res) {
 
 
 
-router.get('/'+ version + '/application/hospital-change', function(req, res) {
-  var i = req.query.hospital;
-  req.session.data['CurrentHospital'] = i;
-  res.redirect("hospital-check-answers")
+router.get('/' + version + '/application/hospital-change', function (req, res) {
+   var i = req.query.hospital;
+   req.session.data['CurrentHospital'] = i;
+   res.redirect("hospital-check-answers")
 });
 
 
 ////// SAVE AND RETURN //////
 
-router.post('/'+ version +'/application/save-and-return', function(req, res) { 
-      res.redirect("save-and-return-information")
+router.post('/' + version + '/application/save-and-return', function (req, res) {
+   res.redirect("save-and-return-information")
 });
 
-router.post('/'+ version +'/application/save-and-return-challenge', function(req, res) { 
+router.post('/' + version + '/application/save-and-return-challenge', function (req, res) {
    // Get access code challenge and convert to uppercase
    let accessCodeChallenge = req.session.data['accessCodeChallenge'].toUpperCase();
    // remove any whitespace from the challenge input
-   accessCodeChallenge = accessCodeChallenge.replace(/ /g,'')
-   
+   accessCodeChallenge = accessCodeChallenge.replace(/ /g, '')
 
-   if(accessCodeChallenge == req.session.data['accessCode']){
+
+   if (accessCodeChallenge == req.session.data['accessCode']) {
       res.redirect("save-and-return-information")
    }
-   else{
+   else {
       res.redirect("save-and-return-error")
    }
 
-   
+
 });
 
-router.post('/'+ version +'/application/application-restart-section*', function(req, res) {
-   if(req.session.data['restartSection'] == 'yes'){
-    if(req.session.data['section'] == 'eligibility'){
-      req.session.data['eligibilityStatus'] = 'inprogress'
-      res.redirect("eligibility-start-dob")
-    }
-    else if(req.session.data['section'] == 'backdate'){
-      req.session.data['backdateStatus'] = 'inprogress'
-      res.redirect("backdate-offered-date")
-    }
-    else if(req.session.data['section'] == 'personaldetails'){
-      req.session.data['personaldetailsStatus'] = 'inprogress'
-      res.redirect("personaldetails-name")
-    }
-    else if(req.session.data['section'] == 'outofUk'){
-      req.session.data['outofUKStatus'] = 'inprogress'
-      res.redirect("outofuk")
-    }
-    else if(req.session.data['section'] == 'hospitalstays'){
-      req.session.data['hospitalstaysStatus'] = 'inprogress'
-      res.redirect("hospital-stays")
-    }
+router.post('/' + version + '/application/application-restart-section*', function (req, res) {
+   if (req.session.data['restartSection'] == 'yes') {
+      if (req.session.data['section'] == 'eligibility') {
+         req.session.data['eligibilityStatus'] = 'inprogress'
+         res.redirect("eligibility-start-dob")
+      }
+      else if (req.session.data['section'] == 'backdate') {
+         req.session.data['backdateStatus'] = 'inprogress'
+         res.redirect("backdate-offered-date")
+      }
+      else if (req.session.data['section'] == 'personaldetails') {
+         req.session.data['personaldetailsStatus'] = 'inprogress'
+         res.redirect("personaldetails-name")
+      }
+      else if (req.session.data['section'] == 'outofUk') {
+         req.session.data['outofUKStatus'] = 'inprogress'
+         res.redirect("outofuk")
+      }
+      else if (req.session.data['section'] == 'hospitalstays') {
+         req.session.data['hospitalstaysStatus'] = 'inprogress'
+         res.redirect("hospital-stays")
+      }
    }
-   else{
+   else {
       res.redirect("application-tasklist")
    }
 });

@@ -1,0 +1,69 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "What is your nationality?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <form method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="f-rightToReside-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l">
+              <span class="govuk-caption-l">About your nationality and immigration status</span>
+              What is your nationality?
+            </h1>
+          </legend>
+          <div id="f-rightToReside-hint" class="govuk-hint">
+            Select the nationality that is on your passport or travel document.
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="nationality" name="nationality-option" type="radio" value="British">
+            <label class="govuk-label govuk-radios__label" for="nationality">
+              British
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="nationality-2" name="nationality-option" type="radio" value="Irish">
+            <label class="govuk-label govuk-radios__label" for="nationality-2">
+              Irish
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="nationality-3" name="nationality-option" type="radio" value="European Economic area (EEA) or Swiss national">
+            <label class="govuk-label govuk-radios__label" for="nationality-3">
+              European Economic area (EEA) or Swiss national
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="nationality-4" name="nationality-option" type="radio" value="Something else">
+            <label class="govuk-label govuk-radios__label" for="nationality-4">
+              Something else
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group"></div>
+          <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button"
+            id="continue-button">
+            Continue
+          </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

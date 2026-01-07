@@ -1,0 +1,78 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "What best describes your status in the UK?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <form method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l">
+              <span class="govuk-caption-l">About your nationality and immigration status</span>
+              What best describes your status in the UK?
+            </h1>
+          </legend>
+          
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="settledStatus" name="settledStatus" type="radio" value="I have settled or pre-settled settled status">
+            <label class="govuk-label govuk-radios__label" for="settledStatus">
+              I have settled or pre-settled settled status
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="settledStatus-2" name="settledStatus" type="radio" value="I have applied to the EU settlement scheme and am waiting for a status">
+            <label class="govuk-label govuk-radios__label" for="settledStatus-2">
+              I have applied to the EU settlement scheme and am waiting for a status
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="settledStatus-3" name="settledStatus" type="radio" value="I have indefinite leave to remain in the UK">
+            <label class="govuk-label govuk-radios__label" for="settledStatus-3">
+              I have indefinite leave to remain in the UK
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="settledStatus-4" name="settledStatus" type="radio" value="Something else">
+            <label class="govuk-label govuk-radios__label" for="settledStatus-4">
+              Something else
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="settledStatus-5" name="settledStatus" type="radio" value="I do not know">
+            <label class="govuk-label govuk-radios__label" for="settledStatus-5">
+              I do not know
+            </label>
+          </div>
+
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group"></div>
+          <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button"
+            id="continue-button">
+            Continue
+          </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

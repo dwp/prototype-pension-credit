@@ -1,0 +1,56 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Did you start living in the UK before 1 January 1973?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <form method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="f-rightToReside-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l">
+              <span class="govuk-caption-l">About your nationality and immigration status</span>
+              Did you start living in the UK before 1 January 1973?
+            </h1>
+          </legend>
+          
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="settledPre73" name="settledPre73" type="radio" value="Yes">
+            <label class="govuk-label govuk-radios__label" for="settledPre73">
+              Yes
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="settledPre73-2" name="settledPre73" type="radio" value="No">
+            <label class="govuk-label govuk-radios__label" for="settledPre73-2">
+              No
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group"></div>
+          <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button"
+            id="continue-button">
+            Continue
+          </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

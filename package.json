@@ -10,6 +10,7 @@
     "@govuk-prototype-kit/step-by-step": "2.2.4",
     "@govuk-prototype-kit/task-list": "2.0.0",
     "@ministryofjustice/frontend": "8.0.0",
+    "@x-govuk/govuk-prototype-components": "^5.0.2",
     "@x-govuk/govuk-prototype-filters": "^2.1.0",
     "govuk-frontend": "^5.10.2",
     "govuk-prototype-kit": "13.18.1",
