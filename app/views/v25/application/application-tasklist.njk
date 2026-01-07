@@ -29,7 +29,13 @@
             <ul class="govuk-task-list">
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="application-restart-section?section=eligibility" aria-describedby="company-details-1-status">
+                    <a class="govuk-link govuk-task-list__link" href="
+                    {% if data.eligibilityStatus == 'completed' or data.eligibilityStatus == 'inprogress'%}
+                        application-restart-section?section=eligibility
+                    {% else %}    
+                        eligibility-start-dob?eligibilityStatus=inprogress
+                    {% endif %}
+                    " aria-describedby="company-details-1-status">
                         {% if data['checkApply'] == 'no' %}
                         Initial details
                         {% else %}    
@@ -58,7 +64,13 @@
 
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="application-restart-section?section=backdate" aria-describedby="company-details-5-status">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.backdateStatus == 'completed' or data.backdateStatus == 'inprogress'%}
+                            application-restart-section?section=backdate
+                        {% else %}    
+                            backdate-offered-date?backdateStatus=inprogress
+                        {% endif %}
+                        " aria-describedby="company-details-5-status">
                         Backdate your application
                     </a>
                     </div>
@@ -88,7 +100,13 @@
 
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="application-restart-section?section=personaldetails" aria-describedby="company-details-5-status">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.personaldetailsStatus == 'completed' or data.personaldetailsStatus == 'inprogress'%}
+                            application-restart-section?section=personaldetails
+                        {% else %}    
+                            personaldetails-name?personaldetailsStatus=inprogress
+                        {% endif %}
+                        " aria-describedby="company-details-5-status">
                         Your personal details
                     </a>
                     </div>
@@ -108,7 +126,7 @@
                                 To do
                             </strong>
                         </div>
-                    {%endif%}
+                    {% endif %}
                 </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
@@ -124,7 +142,13 @@
                 </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="application-restart-section?section=outofUk" aria-describedby="company-details-5-status">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.outofUKStatus == 'completed' or data.outofUKStatus == 'inprogress' %}
+                            application-restart-section?section=outofUk
+                        {% else %}
+                            outofUK?outofUKStatus=inprogress
+                        {% endif %}
+                    " aria-describedby="company-details-5-status">
                         Time you have spent outside of the UK
                     </a>
                     </div>
@@ -148,7 +172,14 @@
                 </li>
                 <li class="govuk-task-list__item govuk-task-list__item--with-link">
                     <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="application-restart-section?section=hospitalstays" aria-describedby="company-details-5-status">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.hospitalstaysStatus == 'completed' or data.hospitalstaysStatus == 'inprogress' %}
+                            application-restart-section?section=hospitalstays
+                        {% else %}
+                            hospital-stays?hospitalstaysStatus=inprogress
+                        {% endif %}
+                        
+                        " aria-describedby="company-details-5-status">
                         Time you have spent in hospital
                     </a>
                     </div>

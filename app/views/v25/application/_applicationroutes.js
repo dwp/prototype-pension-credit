@@ -761,7 +761,7 @@ router.post('/'+ version +'/application/save-and-return-challenge', function(req
    
 });
 
-router.post('/'+ version +'/application/application-restart-section', function(req, res) {
+router.post('/'+ version +'/application/application-restart-section*', function(req, res) {
    if(req.session.data['restartSection'] == 'yes'){
     if(req.session.data['section'] == 'eligibility'){
       req.session.data['eligibilityStatus'] = 'inprogress'
@@ -775,20 +775,14 @@ router.post('/'+ version +'/application/application-restart-section', function(r
       req.session.data['personaldetailsStatus'] = 'inprogress'
       res.redirect("personaldetails-name")
     }
-    else if(req.session.data['section'] == 'personaldetails'){
-      req.session.data['personaldetailsStatus'] = 'inprogress'
-      res.redirect("personaldetails-name")
-    }
-    else if(req.session.data['section'] == 'outofUK'){
+    else if(req.session.data['section'] == 'outofUk'){
       req.session.data['outofUKStatus'] = 'inprogress'
-      res.redirect("outofUK")
+      res.redirect("outofuk")
     }
     else if(req.session.data['section'] == 'hospitalstays'){
       req.session.data['hospitalstaysStatus'] = 'inprogress'
       res.redirect("hospital-stays")
     }
-
-
    }
    else{
       res.redirect("application-tasklist")
