@@ -1,0 +1,346 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Check your nationality and immigration status answers" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      <span class="govuk-caption-l">About your nationality and immigration status</span>
+      Check your answers
+    </h1>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Your nationality
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.nationality}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+
+      {% if data.settledStatus %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          What best describes your status in the UK?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.settledStatus}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.settledPre73 %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Did you start living in the UK before 1 January 1973?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.settledPre73}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.rightToReside %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Do you have the right to live or work in the UK without any immigration restrictions?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.rightToReside}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.lived6months %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Have you lived permanently in the UK for the last 6 months?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.lived6months}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.returnedtoUK %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           At any time, have you come to live in the UK or returned to the UK to live from abroad?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.returnedtoUK}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.originalCountry %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Which country have you come from?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.originalCountry}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.returnedtoUKDate %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           What date did you last come to the UK?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.returnedtoUKDate | govukDate}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.workinUK %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Did you come to work in the UK?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.workinUK}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.recourseToFunds %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Does your passport say you have recourse to public funds?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.recourseToFunds}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.livedUKBefore %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Have you lived in the UK before?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.livedUKBefore}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.lastLeftUK %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           What date did you last leave the UK?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.lastLeftUK | govukDate }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.familyReunionScheme %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Have you lived come to the UK under the Family Reunion Scheme?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.familyReunionScheme}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.sponsorName %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           What is the name of your sponsor?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.sponsorName}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.HOreference %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           What is your Home Office reference number?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.HOreference}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.sponsorshipSignedDate %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           What date was your sponsorship undertaking signed?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.sponsorshipSignedDate | govukDate}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.sponsorshipSignedDate %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Sponsors home address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.sponsorAddress}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.seekingAsylum %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Are you an asylum seeker?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.seekingAsylum}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.asylumPre2000 %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Did you first apply for asylum before 3 April 2000?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.asylumPre2000}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.asylumDecision %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Have you recently had a successful decision on your asylum application?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.asylumDecision}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.asylumDecisionDate %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           What date did you get a successful decision on your application?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.asylumDecisionDate | govukDate}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if data.HOsupported %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+           Have you been supported bythe Home Office while waiting for a decision on your application?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data.HOsupported}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link govuk-link--no-visited-state" href="#">Change <span class="govuk-visually-hidden">your date of birth</span></a>
+        </dd>
+      </div>
+      {% endif %}
+
+      
+      
+
+    </dl>
+    <form method="post">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

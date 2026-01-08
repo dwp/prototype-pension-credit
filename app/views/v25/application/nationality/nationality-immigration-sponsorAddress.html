@@ -1,0 +1,86 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "What is your sponsor's home address?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    
+    <h1 class="govuk-heading-l">
+      <span class="govuk-caption-l">About your nationality and immigration status</span>
+      What is your sponsor's home address?
+    </h1>
+
+    <form method="post">
+      <div class="govuk-form-group">
+        <div class="govuk-form-group">
+          <h2 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--s" for="sponsorAddress-1">
+              Building and street
+            </label>
+          </h2>
+          <p><input class="govuk-input" id="sponsorAddress-1" name="sponsorAddress-1" type="text"></p>
+          <p><input class="govuk-input" id="sponsorAddress-2" name="sponsorAddress-2" type="text"></p>
+        </div>
+      </div>
+
+      <div class="govuk-form-group">
+        <div class="govuk-form-group">
+          <h2 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--s" for="ponsorAddress-3">
+              Town
+            </label>
+          </h2>
+          <p><input class="govuk-input govuk-input--width-20" id="sponsorAddress-3" name="sponsorAddress-3" type="text"></p>
+         </div>
+      </div>
+
+      <div class="govuk-form-group">
+        <div class="govuk-form-group">
+          <h2 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--s" for="sponsorAddress-4">
+              County
+            </label>
+          </h2>
+          <p><input class="govuk-input govuk-input--width-20" id="sponsorAddress-4" name="sponsorAddress-4" type="text"></p>
+        </div>
+      </div>
+
+      <div class="govuk-form-group">
+        <div class="govuk-form-group">
+          <h2 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--s" for="sponsorAddress-5">
+              Postcode
+            </label>
+          </h2>
+          <p><input class="govuk-input govuk-input--width-20" id="sponsorAddress-5" name="sponsorAddress-5" type="text"></p>
+        </div>
+      </div>
+
+
+
+      <div class="govuk-button-group">
+        <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button"
+          id="continue-button">
+          Continue
+        </button>
+      </div>
+      <p><a class="govuk-link" href="nationality-immigration-sponsorPostcode">Use the postcode to find an address</a></p>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

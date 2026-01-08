@@ -10,9 +10,10 @@ var date = new Date(); //get todays date
 var version = "v25";
 
 
-////////////////////
-////////////////////    ELIGIBILITY
-////////////////////
+/////////////////////////////////////
+//////////// ELIGIBILITY ////////////
+/////////////////////////////////////
+
 router.post('/' + version + '/application/eligibility-before-service-start', function (req, res) {
    if (req.session.data["checkPrevious"] == "Yes, I have an application reference") {
       res.redirect("save-and-return-challenge")
@@ -505,9 +506,11 @@ router.post('/' + version + '/application/eligibility-successful', function (req
 
 });
 
-////// BACKDATE SECTION //////
+//////////////////////////////////////////
+//////////// BACKDATE SECTION ////////////
+//////////////////////////////////////////
 
-router.post('/' + version + '/application/backdate-offered-date', function (req, res) {
+router.post('/' + version + '/application/backdating/backdate-offered-date', function (req, res) {
    let result = req.session.data['chooseBackdateOfferedDate'];
    if (result.includes("Yes")) {
       req.session.data['backdateDatedd'] = null
@@ -518,21 +521,23 @@ router.post('/' + version + '/application/backdate-offered-date', function (req,
    }
 });
 
-router.post('/' + version + '/application/backdate-choose-date', function (req, res) {
+router.post('/' + version + '/application/backdating/backdate-choose-date', function (req, res) {
    if (req.session.data['backdateDatemm'] < 10) {
       req.session.data['backdateDatemm'] = "0" + req.session.data['backdateDatemm']
    }
    req.session.data['backdateDateString'] = req.session.data['backdateDateyy'] + "-" + req.session.data['backdateDatemm'] + "-" + req.session.data['backdateDatedd'] + "T00:00:00.000"
    res.redirect("backdate-cya")
 });
-router.post('/' + version + '/application/backdate-cya', function (req, res) {
+router.post('/' + version + '/application/backdating/backdate-cya', function (req, res) {
    req.session.data['backdateStatus'] = "completed"
-   res.redirect("application-tasklist")
+   res.redirect("../application-tasklist")
 });
 
+//////////////////////////////////////////
+//////////// PERSONAL DETAILS ////////////
+//////////////////////////////////////////
 
-////// PERSONAL DETAILS //////
-router.post('/' + version + '/application/personaldetails-name', function (req, res) {
+router.post('/' + version + '/application/personal-details/personaldetails-name', function (req, res) {
 
    // clear down previous data
    req.session.data['regBlindDate'] = null
@@ -544,10 +549,10 @@ router.post('/' + version + '/application/personaldetails-name', function (req, 
 
    res.redirect("personaldetails-NI")
 });
-router.post('/' + version + '/application/personaldetails-NI', function (req, res) {
+router.post('/' + version + '/application/personal-details/personaldetails-NI', function (req, res) {
    res.redirect("personaldetails-registered-blind")
 });
-router.post('/' + version + '/application/personaldetails-registered-blind', function (req, res) {
+router.post('/' + version + '/application/personal-details/personaldetails-registered-blind', function (req, res) {
    if (req.session.data['registeredBlind'] == "Yes") {
       res.redirect("personaldetails-registered-blind-date")
    }
@@ -555,7 +560,7 @@ router.post('/' + version + '/application/personaldetails-registered-blind', fun
       res.redirect("personaldetails-cya")
    }
 });
-router.post('/' + version + '/application/personaldetails-registered-blind-date', function (req, res) {
+router.post('/' + version + '/application/personal-details/personaldetails-registered-blind-date', function (req, res) {
    if (req.session.data['registeredBlindAtBackdate'] == "No") {
       res.redirect("personaldetails-registered-blind-date-entry")
    }
@@ -563,17 +568,20 @@ router.post('/' + version + '/application/personaldetails-registered-blind-date'
       res.redirect("personaldetails-cya")
    }
 });
-router.post('/' + version + '/application/personaldetails-registered-blind-date-entry', function (req, res) {
+router.post('/' + version + '/application/personal-details/personaldetails-registered-blind-date-entry', function (req, res) {
    req.session.data['regBlindDate'] = new Date(req.session.data['blindYY'] + "-" + req.session.data['blindMM'] + "-" + req.session.data['blindDD'])
    res.redirect("personaldetails-cya")
 });
-router.post('/' + version + '/application/personaldetails-cya', function (req, res) {
+router.post('/' + version + '/application/personal-details/personaldetails-cya', function (req, res) {
    req.session.data['personaldetailsStatus'] = 'completed'
-   res.redirect("application-tasklist")
+   res.redirect("../application-tasklist")
 });
 
-////// NATIONALITY AND IMMIGRATION //////
-router.post('/' + version + '/application/nationality', function (req, res) {
+/////////////////////////////////////////////////////
+//////////// NATIONALITY AND IMMIGRATION ////////////
+/////////////////////////////////////////////////////
+
+router.post('/' + version + '/application/nationality/nationality', function (req, res) {
    if (req.session.data['nationality-option'] == "British" || req.session.data['nationality-option'] == "Irish") {
       req.session.data['nationality'] = req.session.data['nationality-option']
       res.redirect("nationality-immigration")
@@ -583,7 +591,7 @@ router.post('/' + version + '/application/nationality', function (req, res) {
    }
 });
 
-router.post('/' + version + '/application/nationality-select', function (req, res) {
+router.post('/' + version + '/application/nationality/nationality-select', function (req, res) {
    if (req.session.data['nationality-option'] == "European Economic area (EEA) or Swiss national") {
       res.redirect("nationality-settled-status")
    }
@@ -592,7 +600,7 @@ router.post('/' + version + '/application/nationality-select', function (req, re
    }
 });
 
-router.post('/' + version + '/application/nationality-settled-status', function (req, res) {
+router.post('/' + version + '/application/nationality/nationality-settled-status', function (req, res) {
    if (req.session.data['settledStatus'] == "Something else" || req.session.data['settledStatus'] == "I do not know") {
       res.redirect("nationality-pre73")
    }
@@ -601,7 +609,7 @@ router.post('/' + version + '/application/nationality-settled-status', function 
    }
 });
 
-router.post('/' + version + '/application/nationality-pre73', function (req, res) {
+router.post('/' + version + '/application/nationality/nationality-pre73', function (req, res) {
    if (req.session.data['settledPre73'] == "Yes") {
       res.redirect("nationality-immigration")
    }
@@ -610,18 +618,104 @@ router.post('/' + version + '/application/nationality-pre73', function (req, res
    }
 });
 
-router.post('/' + version + '/application/nationality-immigration', function (req, res) {
+router.post('/' + version + '/application/nationality/nationality-immigration', function (req, res) {
    if (req.session.data['rightToReside'] == "No" || req.session.data['lived6months'] == "No") {
-      res.redirect("nationality-immigration")
+      res.redirect("nationality-immigration-returnedtouk")
    }
    else {
       res.redirect("nationality-check-answers")
    }
 });
 
+router.post('/' + version + '/application/nationality/nationality-immigration-returnedtouk', function (req, res) {
+   if (req.session.data['returnedtoUK'] == "Yes") {
+      res.redirect("nationality-immigration-livingintheUK")
+   }
+   else {
+      res.redirect("nationality-immigration-undersponsorship")
+   }
+});
 
-////// TIME OUT OF THE UK //////
-router.post('/' + version + '/application/outofUK', function (req, res) {
+router.post('/' + version + '/application/nationality/nationality-immigration-livingintheUK', function (req, res) {
+
+   if (req.session.data['lastLeftUK-day']) {
+      req.session.data['lastLeftUK'] = new Date(req.session.data['lastLeftUK-year'] + '-' + req.session.data['lastLeftUK-month'] + '-' + req.session.data['lastLeftUK-day'])
+   }
+
+   req.session.data['returnedtoUKDate'] = new Date(req.session.data['returnedtoUK-year'] + '-' + req.session.data['returnedtoUK-month'] + '-' + req.session.data['returnedtoUK-day'])
+   res.redirect("nationality-immigration-undersponsorship")
+
+});
+
+router.post('/' + version + '/application/nationality/nationality-immigration-undersponsorship', function (req, res) {
+   if (req.session.data['underSponsorship'] == "Yes") {
+      res.redirect("nationality-immigration-sponsorshipDetails")
+   }
+   else {
+      res.redirect("nationality-immigration-seekingAsylum")
+   }
+});
+
+router.post('/' + version + '/application/nationality/nationality-immigration-sponsorshipDetails', function (req, res) {
+   req.session.data['sponsorshipSignedDate'] = new Date(req.session.data['sponsorshipSigned-year'] + '-' + req.session.data['sponsorshipSigned-month'] + '-' + req.session.data['sponsorshipSigned-day'])
+   res.redirect("nationality-immigration-sponsorPostcode")
+});
+
+router.post('/' + version + '/application/nationality/nationality-immigration-sponsorSelectAddress', function (req, res) {
+   res.redirect("nationality-immigration-seekingAsylum")
+});
+
+router.post('/' + version + '/application/nationality/nationality-immigration-sponsorAddress', function (req, res) {
+   let address = ""
+
+   if (req.session.data['sponsorAddress-1']) {
+      address += req.session.data['sponsorAddress-1']
+   }
+   if (req.session.data['sponsorAddress-2']) {
+      address += ", " + req.session.data['sponsorAddress-2']
+   }
+   if (req.session.data['sponsorAddress-3']) {
+      address += ", " + req.session.data['sponsorAddress-3']
+   }
+   if (req.session.data['sponsorAddress-4']) {
+      address += ", " + req.session.data['sponsorAddress-4']
+   }
+   if (req.session.data['sponsorAddress-5']) {
+      address += ", " + req.session.data['sponsorAddress-5']
+   }
+   console.log(address)
+   req.session.data['sponsorAddress'] = address
+   res.redirect("nationality-immigration-seekingAsylum")
+});
+
+router.post('/' + version + '/application/nationality/nationality-immigration-seekingAsylum', function (req, res) {
+   if (req.session.data['seekingAsylum'] == 'Yes') {
+      res.redirect("nationality-immigration-asylumApplication")
+   }
+   else {
+      res.redirect("nationality-check-answers")
+   }
+
+});
+
+router.post('/' + version + '/application/nationality/nationality-immigration-asylumApplication', function (req, res) {
+   req.session.data['asylumDecisionDate'] = new Date(req.session.data['asylumDecisionDate-year'] + '-' + req.session.data['asylumDecisionDate-month'] + '-' + req.session.data['asylumDecisionDate-day'])
+
+   res.redirect("nationality-check-answers")
+});
+
+
+
+router.post('/' + version + '/application/nationality/nationality-check-answers', function (req, res) {
+   req.session.data['nationalitysectionStatus'] = 'completed'
+   res.redirect("../application-tasklist")
+});
+
+////////////////////////////////////////////
+//////////// TIME OUT OF THE UK ////////////
+////////////////////////////////////////////
+
+router.post('/' + version + '/application/outofUK/outofUK', function (req, res) {
    if (req.session.data['timeoutUK'] == "Yes") {
       res.redirect("outofUK-periods")
    }
@@ -629,10 +723,10 @@ router.post('/' + version + '/application/outofUK', function (req, res) {
       res.redirect("outofUK-check-answers")
    }
 });
-router.post('/' + version + '/application/outofUK-periods', function (req, res) {
+router.post('/' + version + '/application/outofUK/outofUK-periods', function (req, res) {
    res.redirect("outofUK-medical-treatment")
 });
-router.post('/' + version + '/application/outofUK-medical-treatment', function (req, res) {
+router.post('/' + version + '/application/outofUK/outofUK-medical-treatment', function (req, res) {
    if (req.session.data['medicalOutUK'] == 'No') {
       res.redirect("outofUK-dates")
    }
@@ -640,19 +734,21 @@ router.post('/' + version + '/application/outofUK-medical-treatment', function (
       res.redirect("outofUK-check-answers")
    }
 });
-router.post('/' + version + '/application/outofUK-dates', function (req, res) {
+router.post('/' + version + '/application/outofUK/outofUK-dates', function (req, res) {
    req.session.data['outofUK-date'] = new Date(req.session.data['outofUK-yy'] + "-" + req.session.data['outofUK-mm'] + "-" + req.session.data['outofUK-dd'])
    req.session.data['returnedtoUK-date'] = new Date(req.session.data['returnedtoUK-yy'] + "-" + req.session.data['returnedtoUK-mm'] + "-" + req.session.data['returnedtoUK-dd'])
    res.redirect("outofUK-check-answers")
 });
-router.post('/' + version + '/application/outofUK-check-answers', function (req, res) {
+router.post('/' + version + '/application/outofUK/outofUK-check-answers', function (req, res) {
    req.session.data['outofUKStatus'] = 'completed'
-   res.redirect("application-tasklist")
+   res.redirect("../application-tasklist")
 });
 
+//////////////////////////////////////////
+///////////// HOSPITAL STAYS /////////////
+//////////////////////////////////////////
 
-////// HOSPITAL STAYS //////
-router.post('/' + version + '/application/hospital-stays', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-stays', function (req, res) {
    if (req.session.data['HospitalStill'] == "Yes") {
       res.redirect("hospital-you-are-in")
    }
@@ -661,7 +757,7 @@ router.post('/' + version + '/application/hospital-stays', function (req, res) {
    }
 });
 
-router.post('/' + version + '/application/hospital-still', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-still', function (req, res) {
    req.session.data['HospitalStill' + String(req.session.data['CurrentHospital'])] = req.session.data['HospitalStill'];
    if (req.session.data['HospitalStill'] == "Yes") {
       res.redirect("hospital-you-are-in")
@@ -672,16 +768,16 @@ router.post('/' + version + '/application/hospital-still', function (req, res) {
 });
 
 
-router.post('/' + version + '/application/hospital-you-are-in', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-you-are-in', function (req, res) {
    res.redirect("hospital-in")
 });
 
-router.post('/' + version + '/application/hospital-in', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-in', function (req, res) {
    req.session.data['hospitalIn'] = new Date(req.session.data['hospitalIn-year'] + "-" + req.session.data['hospitalIn-month'] + "-" + req.session.data['hospitalIn-day'])
    res.redirect("hospital-expected-discharge")
 });
 
-router.post('/' + version + '/application/hospital-expected-discharge', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-expected-discharge', function (req, res) {
    if (req.session.data['HospitalExpectedDischarge'] == "Yes") {
       res.redirect("hospital-discharge-date")
    }
@@ -690,16 +786,16 @@ router.post('/' + version + '/application/hospital-expected-discharge', function
    }
 });
 
-router.post('/' + version + '/application/hospital-discharge-date', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-discharge-date', function (req, res) {
    req.session.data['hospitalOut'] = new Date(req.session.data['hospitalOut-year'] + "-" + req.session.data['hospitalOut-month'] + "-" + req.session.data['hospitalOut-day'])
    res.redirect("hospital-now-check-answers")
 });
 
-router.post('/' + version + '/application/hospital-now-check-answers', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-now-check-answers', function (req, res) {
    res.redirect("hospital-previous-stays")
 });
 
-router.post('/' + version + '/application/hospital-previous-stays', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-previous-stays', function (req, res) {
    if (req.session.data['otherHospitalStays'] == "Yes") {
       req.session.data['hospitalLocation'] = null;
       req.session.data['hospitalNHS'] = null;
@@ -719,7 +815,7 @@ router.post('/' + version + '/application/hospital-previous-stays', function (re
    }
 });
 
-router.post('/' + version + '/application/hospital-dates', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-dates', function (req, res) {
    req.session.data['hospitalIn'] = new Date(req.session.data['hospitalIn-year'] + '-' + req.session.data['hospitalIn-month'] + '-' + req.session.data['hospitalIn-day']);
    req.session.data['hospitalOut'] = new Date(req.session.data['hospitalOut-year'] + '-' + req.session.data['hospitalOut-month'] + '-' + req.session.data['hospitalOut-day']);
    res.redirect("hospital-other-check-answers")
@@ -727,9 +823,9 @@ router.post('/' + version + '/application/hospital-dates', function (req, res) {
 
 
 
-router.post('/' + version + '/application/hospital-add-another', function (req, res) {
+router.post('/' + version + '/application/hospital-stays/hospital-add-another', function (req, res) {
    if (req.session.data['Hospitaladdanother'] == "No") {
-      res.redirect("application-tasklist?hospitalstaysStatus=completed")
+      res.redirect("../application-tasklist?hospitalstaysStatus=completed")
    }
    else {
       req.session.data['hospitalLocation'] = null;
@@ -747,42 +843,31 @@ router.post('/' + version + '/application/hospital-add-another', function (req, 
 
 });
 
-router.post('/' + version + '/application/hospital-other-check-answers', function (req, res) {
-   let tempArray = []
-
-   if (req.session.data['hospitalStaysArray']) {
-      tempArray = req.session.data['hospitalStaysArray']
+router.post('/' + version + '/application/hospital-stays/hospital-other-check-answers', function (req, res) {
+   if (req.session.data['otherHospitalStays'] == 'No') {
+      res.redirect("../application-tasklist?hospitalstaysStatus=completed")
    }
+   else {
+      let tempArray = []
 
-   let tempObject = {
-      hospitalName: req.session.data['hospitalName'],
-      hospitalLocation: req.session.data['hospitalLocation'],
-      dateIn: req.session.data['hospitalIn'],
-      dateOut: req.session.data['hospitalOut'],
-      nhsTreatment: req.session.data['hospitalNHS']
+      if (req.session.data['hospitalStaysArray']) {
+         tempArray = req.session.data['hospitalStaysArray']
+      }
+
+      let tempObject = {
+         hospitalName: req.session.data['hospitalName'],
+         hospitalLocation: req.session.data['hospitalLocation'],
+         dateIn: req.session.data['hospitalIn'],
+         dateOut: req.session.data['hospitalOut'],
+         nhsTreatment: req.session.data['hospitalNHS']
+      }
+
+      tempArray.push(tempObject)
+      req.session.data['hospitalStaysArray'] = tempArray
+      res.redirect("hospital-add-another")
    }
-
-   tempArray.push(tempObject)
-   req.session.data['hospitalStaysArray'] = tempArray
-   res.redirect("hospital-add-another")
 });
 
-router.get('/' + version + '/application/hospital-delete', function (req, res) {
-   var i = req.query.hospital;
-   req.session.data['hospitalIn' + i] = null;
-   req.session.data['hospitalOut' + i] = null;
-   req.session.data['ActualHospitalCount'] = req.session.data['ActualHospitalCount'] - 1;
-   res.redirect("hospital-add-another")
-});
-
-
-
-
-router.get('/' + version + '/application/hospital-change', function (req, res) {
-   var i = req.query.hospital;
-   req.session.data['CurrentHospital'] = i;
-   res.redirect("hospital-check-answers")
-});
 
 
 ////// SAVE AND RETURN //////
@@ -816,19 +901,23 @@ router.post('/' + version + '/application/application-restart-section*', functio
       }
       else if (req.session.data['section'] == 'backdate') {
          req.session.data['backdateStatus'] = 'inprogress'
-         res.redirect("backdate-offered-date")
+         res.redirect("backdating/backdate-offered-date")
       }
       else if (req.session.data['section'] == 'personaldetails') {
          req.session.data['personaldetailsStatus'] = 'inprogress'
-         res.redirect("personaldetails-name")
+         res.redirect("personal-details/personaldetails-name")
+      }
+      else if (req.session.data['section'] == 'nationality') {
+         req.session.data['nationalitysectionStatus'] = 'inprogress'
+         res.redirect("nationality/nationality")
       }
       else if (req.session.data['section'] == 'outofUk') {
          req.session.data['outofUKStatus'] = 'inprogress'
-         res.redirect("outofuk")
+         res.redirect("outofUK/outofuk")
       }
       else if (req.session.data['section'] == 'hospitalstays') {
          req.session.data['hospitalstaysStatus'] = 'inprogress'
-         res.redirect("hospital-stays")
+         res.redirect("hospital-stays/hospital-stays")
       }
    }
    else {

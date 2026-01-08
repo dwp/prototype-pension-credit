@@ -20,14 +20,17 @@
       <div class="govuk-grid-column-two-thirds">
        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
 
-        <h1 class="govuk-heading-l">Check your overnight stay in hospital</h1>
+        <h1 class="govuk-heading-l">
+          <span class="govuk-caption-l">About time you have spent in hospital</span>
+          Check your overnight stay in hospital
+        </h1>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
       
           {% if data['HospitalStill'] %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              <span class="govuk-caption-l">About time you have spent in hospital</span>
+              
               Are you still in hospital at the moment?
             </dt>
             <dd class="govuk-summary-list__value">

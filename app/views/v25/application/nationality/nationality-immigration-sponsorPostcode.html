@@ -1,0 +1,47 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Your sponsorship details" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+    <form method="post">
+      <div class="govuk-form-group">
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="sponsorName">
+              <span class="govuk-caption-l">About your nationality and immigration status</span>
+              What is your sponsor's home postcode?
+            </label>
+          </h1>
+          <input class="govuk-input govuk-input--width-20" id="sponsorName" name="sponsorName" type="text">
+        </div>
+      </div>
+
+      
+
+      <div class="govuk-button-group">
+        <a href="nationality-immigration-sponsorSelectAddress" class="govuk-button">
+          Continue
+        </a>
+      </div>
+      <p><a class="govuk-link" href="nationality-immigration-sponsorAddress">Enter address manually</a></p>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

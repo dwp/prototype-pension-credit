@@ -1,0 +1,159 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Living in the UK" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <h1 class="govuk-heading-l">
+      <span class="govuk-caption-l">About your nationality and immigration status</span>
+      Your asylum application
+    </h1>
+
+    <form method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-fieldset__heading">
+              Did you first apply for asylum before 3 April 2000?
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="asylumPre2000" name="asylumPre2000" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="asylumPre2000">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="asylumPre2000-2" name="asylumPre2000" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="asylumPre2000-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-fieldset__heading">
+              Have you recently had a successful decision on your asylum application?
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="asylumDecision" name="asylumDecision" type="radio" value="Yes"
+                data-aria-controls="conditional-contact">
+              <label class="govuk-label govuk-radios__label" for="asylumDecision">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" role="group" aria-describedby="returnedtoUK-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-fieldset__heading">
+                      What date did you get a successful decision on your application?
+                    </h1>
+                  </legend>
+                  <div id="returnedtoUK-hint" class="govuk-hint">
+                    For example, 27 3 2007
+                  </div>
+                  <div class="govuk-date-input" id="lastLeftUK">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="asylumDecisionDate-day">
+                          Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="asylumDecisionDate-day"
+                          name="asylumDecisionDate-day" type="text" inputmode="numeric">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="asylumDecisionDate-month">
+                          Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="asylumDecisionDate-month"
+                          name="asylumDecisionDate-month" type="text" inputmode="numeric">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="asylumDecisionDate-year">
+                          Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="asylumDecisionDate-year"
+                          name="asylumDecisionDate-year" type="text" inputmode="numeric">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="asylumDecision-2" name="asylumDecision" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="asylumDecision-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+
+      
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-fieldset__heading">
+              Have you been supported bythe Home Office while waiting for a decision on your application?
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="HOsupported" name="HOsupported" type="radio"
+                value="Yes">
+              <label class="govuk-label govuk-radios__label" for="HOsupported">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="HOsupported-2" name="HOsupported" type="radio"
+                value="No">
+              <label class="govuk-label govuk-radios__label" for="HOsupported-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button"
+          id="continue-button">
+          Continue
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
