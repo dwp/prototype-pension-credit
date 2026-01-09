@@ -871,7 +871,11 @@ router.post('/' + version + '/application/hospital-stays/hospital-other-check-an
 
 
 ////// SAVE AND RETURN //////
-
+router.get('/' + version + '/application/eligibility-calculate', function (req, res) {
+   if(req.session.data['restartSection']=='yes'){
+      res.redirect("application-tasklist")
+   }
+});
 router.post('/' + version + '/application/save-and-return', function (req, res) {
    res.redirect("save-and-return-information")
 });
@@ -897,6 +901,7 @@ router.post('/' + version + '/application/application-restart-section*', functio
    if (req.session.data['restartSection'] == 'yes') {
       if (req.session.data['section'] == 'eligibility') {
          req.session.data['eligibilityStatus'] = 'inprogress'
+         req.session.data['hasPartner'] = null
          res.redirect("eligibility-start-dob")
       }
       else if (req.session.data['section'] == 'backdate') {
