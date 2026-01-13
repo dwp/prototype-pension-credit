@@ -28,7 +28,7 @@
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half">
-          Have you been outside the UK for a period of more than four weeks since {{data.backdateDateString | govukDate}}?
+          Have you been outside the UK for a period of more than four weeks since {{data['backdateDateString']| govukDate}}?
         </dt>
         <dd class="govuk-summary-list__value">
           {{data.timeoutUK}}
@@ -41,7 +41,7 @@
       {% if data['periodsOutUK'] %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half">
-          How many periods of more than four weeks have you spent outside the UK since {{data.backdateDateString | govukDate}}?
+          How many periods of more than four weeks have you spent outside the UK since {{data['backdateDateString'] | govukDate}}?
         </dt>
         <dd class="govuk-summary-list__value">
           {{data.periodsOutUK}}

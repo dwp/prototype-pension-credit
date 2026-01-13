@@ -29,7 +29,7 @@
           {% if data['HospitalStill'] %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Have you had any other overnight stays in hospital between {{data.backdateDateString | govukDate}} and {{ "today" | govukDate}}
+              Have you had any other overnight stays in hospital between {{data['backdateDateString'] | govukDate}} and {{ "today" | govukDate}}
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['HospitalStill']}}

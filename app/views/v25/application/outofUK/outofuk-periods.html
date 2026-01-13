@@ -2,7 +2,7 @@
 {% set serviceName = 'Apply for Pension Credit' %}
 {% extends "/layouts/main.html" %}
 
-{% set pageName = "Have you periods of more that four weeks have you spent out of the UK since {{data.backdateDateString | govukDate}}" %}
+{% set pageName = "Have you periods of more that four weeks have you spent out of the UK since {{data['backdateDateString'] | govukDate}}" %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -27,7 +27,7 @@
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
                     <span class="govuk-caption-l">About time you have spent outside the UK</span>
-                    How many periods of more than four weeks have you spent outside the UK since {{data.backdateDateString | govukDate}}?
+                    How many periods of more than four weeks have you spent outside the UK since {{data['backdateDateString'] | govukDate}}?
                 </h1>
                 </legend>
                 <div class="govuk-radios govuk-radios" data-module="govuk-radios">

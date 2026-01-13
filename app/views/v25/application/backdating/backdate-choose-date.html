@@ -25,7 +25,7 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
             If you are not entitled to Pension Credit from the date you enter, we will try to backdate your application to the earliest possible date after.
         </p>
         <p>
-            The earliest date that you can enter is <strong>{{data.backdateDateString | govukDate}}</strong>.
+            The earliest date that you can enter is <strong>{{data['backdateDateString'] | govukDate}}</strong>.
         </p>
         <form method="post">
             <div class="govuk-form-group">

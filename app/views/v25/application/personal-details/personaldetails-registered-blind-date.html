@@ -24,7 +24,7 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
         <span class="govuk-caption-l">About your personal details</span>
-        Were you registered blind or severely sight impaired on or before {{data.backdateDateString | govukDate}}?
+        Were you registered blind or severely sight impaired on or before {{data['backdateDateString'] | govukDate}}?
       </h1>
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">

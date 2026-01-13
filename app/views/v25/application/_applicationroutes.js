@@ -186,7 +186,7 @@ router.post('/' + version + '/application/eligibility-benefits-claimant', functi
    }
 
    if (req.session.data['claimantCarers'] == 'true' && req.session.data['claimantEASD'] == 'true') {
-      res.redirect("eligibility-income-from-employment");
+      res.redirect("eligibility-underlying-carers");
    }
    else {
       res.redirect("eligibility-benefits-awaiting-claimant");

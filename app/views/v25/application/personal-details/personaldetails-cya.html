@@ -66,7 +66,7 @@
       {% if data.registeredBlindAtBackdate %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-half">
-          Were you registered blind or severely sight impaired on or before {{data.backdateDateString | govukDate}}?
+          Were you registered blind or severely sight impaired on or before {{data['backdateDateString'] | govukDate}}?
         </dt>
         <dd class="govuk-summary-list__value">
           {{data.registeredBlindAtBackdate}}

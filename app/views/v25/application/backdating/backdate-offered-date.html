@@ -29,7 +29,7 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             <h2 class="govuk-fieldset__heading">
-              Do you want us to try to backdate your application to {{data.backdateDateString | govukDate}}?
+              Do you want us to try to backdate your application to {{data['backdateDateString'] | govukDate}}?
             </h2>
           </legend>
           <div class="govuk-radios" data-module="govuk-radios">
@@ -40,9 +40,9 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="chooseBackdateOfferedDate-2" name="chooseBackdateOfferedDate" type="radio" value="No, I want to choose a different date between {{data.backdateDateString | govukDate}} and today">
+              <input class="govuk-radios__input" id="chooseBackdateOfferedDate-2" name="chooseBackdateOfferedDate" type="radio" value="No, I want to choose a different date between {{data['backdateDateString'] | govukDate}} and today">
               <label class="govuk-label govuk-radios__label" for="chooseBackdateOfferedDate-2">
-                No, I want to choose a different date between {{data.backdateDateString | govukDate}} and today
+                No, I want to choose a different date between {{data['backdateDateString'] | govukDate}} and today
               </label>
             </div>
           </div>
