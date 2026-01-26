@@ -7,8 +7,19 @@ const SPa_Boundry_End = new Date(Date.parse('06 April 1953 00:00:00 GMT'))
 
 var date = new Date(); //get todays date
 
+function createBackdatingDate() {
+   var backdateDate = new Date()
+   backdateDate.setMonth(backdateDate.getMonth() - 3)
+   return backdateDate
+ }
+
 var version = "v25";
 
+router.get('/' + version +'/application/guidance/how-to-claim', function(req, res) {
+   req.session.data['backdateDateString'] = createBackdatingDate()
+   console.log('Backdating date: ' + req.session.data['backdateDateString'])
+   res.render(version +'/application/guidance/how-to-claim')
+});
 
 /////////////////////////////////////
 //////////// ELIGIBILITY ////////////
