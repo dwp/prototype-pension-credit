@@ -24,12 +24,15 @@
             <p class="govuk-body">Based on your answers and your estimated monthly income you are unlikely to get any Pension Credit at this time.</p>
 
               <p class="govuk-body">  To get Pension Credit your total weekly income must be less than £{{data['applicableamount']}} a week.</p>
-            <p class="govuk-body">Your estimated monthly income is more than £{{data['applicableamount']}} a week.</p>
+            <p class="govuk-body">Your estimated monthly income of more than £{{ data['monthlyapplicableamount'] }} works out at more than £{{data['applicableamount']}} a week.</p>
+            
+            <p class="govuk-body">If you think you have told us the wrong income you can <a href="eligibility-income">go back and try again</a>.</p>
+            
             <p class="govuk-body">
-                You should try again if:
+                You can check again if your circumstances change. For example, if: 
                 <ul class="govuk-list govuk-list--bullet">
                     <li>you start getting another benefit</li>
-                  <li>someone starts or stops caring for you</li>
+                    <li>someone starts or stops caring for you</li>
                     <li>your income changes</li>
                     <li>anyone moves into or out of your home</li>
                 </ul>
