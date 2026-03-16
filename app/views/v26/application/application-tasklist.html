@@ -1,0 +1,468 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Your Pension Credit application" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+
+            <div class="govuk-form-group">
+                <h1 class="govuk-heading-l">
+                    Your Pension Credit application
+                </h1>
+            </div>
+
+            <p class="govuk-body">You need to complete all sections before you can submit your application for Pension Credit. 'Completed' sections have been saved.</p>
+
+
+            <ul class="govuk-task-list">
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="
+                    {% if data.eligibilityStatus == 'completed' or data.eligibilityStatus == 'inprogress'%}
+                        application-restart-section?section=eligibility
+                    {% else %}    
+                        eligibility-start-dob?eligibilityStatus=inprogress
+                    {% endif %}
+                    " aria-describedby="company-details-1-status">
+                        {% if data['checkApply'] == 'no' %}
+                        Initial details
+                        {% else %}    
+                        Check if you should apply
+                        {% endif %}
+                    </a>
+                    </div>
+                    {% if data.eligibilityStatus == 'completed' %}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                            Completed
+                        </div>
+                    {% elif data.eligibilityStatus == 'inprogress'%}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--orange">
+                                In progress
+                            </strong>
+                        </div>
+                    {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                Not started yet
+                            </strong>
+                        </div>
+                    {%endif%}
+                </li>
+
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.backdateStatus == 'completed' or data.backdateStatus == 'inprogress'%}
+                            application-restart-section?section=backdate
+                        {% else %}    
+                            backdating/backdate-offered-date?backdateStatus=inprogress
+                        {% endif %}
+                        " aria-describedby="company-details-5-status">
+                        Backdate your application
+                    </a>
+                    </div>
+                    {% if data.backdateStatus == 'completed' %}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                            Completed
+                        </div>
+                    {% elif data.backdateStatus == 'inprogress'%}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--orange">
+                                In progress
+                            </strong>
+                        </div>
+                    {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                Not started yet
+                            </strong>
+                        </div>
+                    {%endif%}
+                </li>
+            </ul>
+
+            <h2 class="govuk-heading-m">About you</h2>
+            <ul class="govuk-task-list">
+
+
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.personaldetailsStatus == 'completed' or data.personaldetailsStatus == 'inprogress'%}
+                            application-restart-section?section=personaldetails
+                        {% else %}    
+                            personal-details/personaldetails-name?personaldetailsStatus=inprogress
+                        {% endif %}
+                        " aria-describedby="company-details-5-status">
+                        Your personal details
+                    </a>
+                    </div>
+                   {% if data.personaldetailsStatus == 'completed' %}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                            Completed
+                        </div>
+                    {% elif data.personaldetailsStatus == 'inprogress'%}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--orange">
+                                In progress
+                            </strong>
+                        </div>
+                    {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                Not started yet
+                            </strong>
+                        </div>
+                    {% endif %}
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="
+                    {% if data.nationalitysectionStatus == 'completed' or data.nationalitysectionStatus == 'inprogress'%}
+                            application-restart-section?section=nationality
+                        {% else %}    
+                            nationality/nationality?nationalitysectionStatus=inprogress
+                        {% endif %}
+                    " aria-describedby="company-details-5-status">
+                        Your nationality and immigration status
+                    </a>
+                    </div>
+                    {% if data.nationalitysectionStatus == 'completed' %}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                            Completed
+                        </div>
+                    {% elif data.nationalitysectionStatus == 'inprogress'%}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--orange">
+                                In progress
+                            </strong>
+                        </div>
+                    {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                Not started yet
+                            </strong>
+                        </div>
+                    {%endif%}
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.outofUKStatus == 'completed' or data.outofUKStatus == 'inprogress' %}
+                            application-restart-section?section=outofUk
+                        {% else %}
+                            outofUK/outofuk?outofUKStatus=inprogress
+                        {% endif %}
+                    " aria-describedby="company-details-5-status">
+                        Time you have spent outside of the UK
+                    </a>
+                    </div>
+                    {% if data.outofUKStatus == 'completed' %}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                            Completed
+                        </div>
+                    {% elif data.outofUKStatus == 'inprogress'%}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--orange">
+                                In progress
+                            </strong>
+                        </div>
+                    {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                Not started yet
+                            </strong>
+                        </div>
+                    {%endif%}
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="
+                        {% if data.hospitalstaysStatus == 'completed' or data.hospitalstaysStatus == 'inprogress' %}
+                            application-restart-section?section=hospitalstays
+                        {% else %}
+                            hospital-stays/hospital-stays?hospitalstaysStatus=inprogress
+                        {% endif %}
+                        
+                        " aria-describedby="company-details-5-status">
+                        Time you have spent in hospital
+                    </a>
+                    </div>
+                    {% if data.hospitalstaysStatus == 'completed' %}
+                        <div class="govuk-task-list__status" id="company-details-1-status">
+                            Completed
+                        </div>
+                    {% elif data.hospitalstaysStatus == 'inprogress'%}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--orange">
+                                In progress
+                            </strong>
+                        </div>
+                    {% else %}
+                        <div class="govuk-task-list__status" id="company-details-5-status">
+                            <strong class="govuk-tag govuk-tag--blue">
+                                Not started yet
+                            </strong>
+                        </div>
+                    {%endif%}
+                </li>
+            </ul>
+            {% if data.hasPartner == 'Yes, we live together'%}
+            <h2 class="govuk-heading-m">About your partner</h2>
+            <ul class="govuk-task-list">
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Their personal details
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Not started yet
+                        </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Their immigration status
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Not started yet
+                        </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Time they have spent in hospital
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Not started yet
+                        </strong>
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
+
+            <h2 class="govuk-heading-m">Your home and household</h2>
+            <ul class="govuk-task-list">
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Your address
+                    </a>
+                    </div>
+                   <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Not started yet
+                        </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        About the place you live
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Not started yet
+                        </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Other property or land you own
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Not started yet
+                        </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        People who live with you
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+            </ul>
+
+            <h2 class="govuk-heading-m">Your income, money and investments</h2>
+            <ul class="govuk-task-list">
+              {% if data.hasEmploymentIncome == 'Yes' or data.partnerHasEmploymentIncome == 'Yes'%}
+              <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                  <div class="govuk-task-list__name-and-hint">
+                  <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                      Income from working
+                  </a>
+                  </div>
+                  <div class="govuk-task-list__status" id="company-details-5-status">
+                  <strong class="govuk-tag govuk-tag--blue">
+                      Not started yet
+                  </strong>
+                  </div>
+              </li>
+              {% endif %}
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Income from benefits
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Income from pensions
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Other income
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Money and investments
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Other payments and payouts
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+            </ul>
+
+            <h2 class="govuk-heading-m">How we contact you</h2>
+            <ul class="govuk-task-list">
+              <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                  <div class="govuk-task-list__name-and-hint">
+                  <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
+                      Applying for yourself or someone else
+                  </a>
+                  </div>
+                  <div class="govuk-task-list__status" id="company-details-5-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                            Not started yet
+                        </strong>
+                    </div>
+              </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        Contact details
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                    <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+                        How we will contact you
+                    </a>
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                    <strong class="govuk-tag govuk-tag--blue">
+                        Not started yet
+                    </strong>
+                    </div>
+                </li>
+            </ul>
+
+            <h2 class="govuk-heading-m">Finalise your application</h2>
+            <ul class="govuk-task-list govuk-!-padding-bottom-9">
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                       Security questions
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                        Cannot start yet
+                    </div>
+                </li>
+
+                <li class="govuk-task-list__item govuk-task-list__item--with-link">
+                    <div class="govuk-task-list__name-and-hint">
+                        Submit your application
+                    </div>
+                    <div class="govuk-task-list__status" id="company-details-5-status">
+                        Cannot start yet
+                    </div>
+                </li>
+            </ul>
+
+
+
+{% include '../partials/getHelp.html' %}
+    </div>
+</div>
+
+
+
+{% endblock %}

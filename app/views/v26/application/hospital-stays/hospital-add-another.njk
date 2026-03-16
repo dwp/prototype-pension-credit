@@ -1,0 +1,92 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Add another hospital stay" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <h1 class="govuk-heading-l govuk-!-padding-top-7">
+      You have added {{ data['hospitalStaysArray'].length | plural("overnight stay") }} in hospital
+
+    </h1>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><div class="govuk-visually-hidden">Hospital stays</div></th>
+          <th scope="col" class="govuk-table__header"><div class="govuk-visually-hidden">Actions</div></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for stays in data['hospitalStaysArray'] %}
+         <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              {{stays.dateIn | govukDate}} to {{stays.dateOut|govukDate}}
+            </td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="hospital-change?hospital={{i}}">Change</a>  |  <a href="hospital-delete?hospital={{i}}">Delete</a></td>
+          </tr>
+        {% endfor %}
+
+        
+      </tbody>
+    </table>
+
+    <form method="post" >
+            <div class="govuk-form-group govuk-body govuk-!-margin-top-9">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                    <span class="govuk-caption-l">About time you have spent in hospital</span>
+                    Add another overnight stay in hospital?
+                </h1>
+                <p class="govuk-hint">We only need to know about hospital stays since {{data['backdateDateString']|govukDate}}.</p>
+
+                </legend>
+
+
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Hospitaladdanother" name="Hospitaladdanother" type="radio" value="Yes">
+                    <label class="govuk-label govuk-radios__label" for="Hospitaladdanother">
+                    Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="Hospitaladdanother-2" name="Hospitaladdanother" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="Hospitaladdanother-2">
+                    No
+                    </label>
+                </div>
+
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+
+
+  </div>
+</div>
+
+{% endblock %}

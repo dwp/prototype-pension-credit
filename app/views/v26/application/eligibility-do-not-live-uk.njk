@@ -1,0 +1,29 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Information you will need to apply online" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">We can only accept applications from people who live in England, Scotland, Wales or Northern Ireland</h1>
+        <p class="govuk-body-l">We cannot take your application for Pension Credit.</p>
+        <h2 class="govuk-heading-m">Help us improve Pension Credit</h2>
+        <p><a href="#">Take a short survey</a></p>
+
+</div>
+</div>
+
+{% endblock %}

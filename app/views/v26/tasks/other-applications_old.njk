@@ -1,0 +1,118 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Recent applications" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+        {% if data['OtherApplicationError'] == 'true' %}
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#error">You must check CAM for all of these applications</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <h2 class="govuk-heading-l">Recent applications </h2>
+
+
+            <p class="govuk-body">Check for applications that are waiting to be processed.</p>    <br>
+            <h1 class="govuk-heading-m">
+                1. Check CAM for applications
+            </h1>
+              <div id="error" class="govuk-body {% if data['OtherApplicationError'] == 'true' %}govuk-form-group--error{% endif %}">
+            {% if data['OtherApplicationError'] == 'true' %}
+            <p id="passport-issued-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error: </span>You must check CAM for all of these applications 
+            </p>
+
+            {% endif %}
+        <form method="post">
+
+        <div class="govuk-form-group ">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="telephone" name="telephone" type="checkbox" value="yes" {%if data['telephone'] == 'yes'%}checked='checked'{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="telephone">
+                  Telephone applications checked
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="IDOC" name="IDOC" type="checkbox" value="yes"{%if data['IDOC'] == 'yes'%}checked='checked'{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="IDOC">
+                  IDOCs between {{data['backdatingDate']}} and today checked
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="online" name="online" type="checkbox" value="yes"{%if data['online'] == 'yes'%}checked='checked'{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="online">
+                  Online applications checked
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="paper" name="paper" type="checkbox" value="yes"{%if data['paper'] == 'yes'%}checked='checked'{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="paper">
+                  Paper applications (PC1) checked
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        </div>
+
+
+<br>
+            <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                    2. Are there any applications waiting to be processed?
+                </h1>
+                </legend>
+
+                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="OtherApplications" name="OtherApplications" type="radio" value="yes" {%if data['OtherApplications'] == 'yes'%}checked='checked'{% endif %}>
+                    <label class="govuk-label govuk-radios__label" for="OtherApplications">
+                    Yes
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="OtherApplications-2" name="OtherApplications" type="radio" value="no" {%if data['OtherApplications'] == 'no'%}checked='checked'{% endif %}>
+                    <label class="govuk-label govuk-radios__label" for="OtherApplications-2">
+                    No
+                    </label>
+                </div>
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+
+</div>
+</div>
+
+{% endblock %}

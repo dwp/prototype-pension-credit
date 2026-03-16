@@ -1,0 +1,38 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "You must have the right information ready" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <h1 class="govuk-heading-l">You must have the right information ready</h1>
+        <p>You need to make sure you have certain information to hand while you make your application online.</p>
+        <p>You will need this information for you and your partner (if you live with one).</p>
+
+        <h2 class="govuk-heading-m">What to do if you do not have a National Insurance number</h2>
+        <p>You can still apply for Pension Credit by phone or post if you do not have a National Insurance number.</p>
+
+        <h3 class="govuk-heading-s">Apply by phone or by post</h3>
+        <p>Apply if you live in <a href="#">England, Sotland or Wales</a></p>
+        <p>Apply if you live in <a href="#">Northern Ireland</a></p>
+
+        <p class="govuk-!-padding-top-4"><a href="eligibility-service-start" class="govuk-button">Return to Apply for Pension Credit</a></p>
+
+</div>
+</div>
+
+{% endblock %}

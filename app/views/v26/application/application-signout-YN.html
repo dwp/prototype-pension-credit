@@ -1,0 +1,56 @@
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Are you sure you want to sign out?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+        <form method="post">
+          <h1 class="govuk-heading-l">Before you sign out</h1>
+          <p class="govuk-body">Any sections that are 'In progress' will not be saved and you will have to start them again. </p>
+          <p class="govuk-body">When you return to your application you will not be able to see your saved answers, but you can complete a section again.</p>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="signOut-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">
+                  Are you sure you want to sign out?
+                </h2> 
+              </legend>
+              <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="signOutYN" name="signOutYN" type="radio" value="yes">
+                  <label class="govuk-label govuk-radios__label" for="signOutYN">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="signOutYN-2" name="signOutYN" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="signOutYN-2">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
