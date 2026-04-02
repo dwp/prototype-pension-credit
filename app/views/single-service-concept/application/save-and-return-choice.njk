@@ -1,0 +1,76 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Your access code" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Important
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            GOV.UK One Login is the new way to sign in to government services.
+          </p>
+          <p class="govuk-body">You can use a GOV.UK One Login to sign in to this service. You'll be able to create a GOV.UK One Login if you do not already have one.</p>
+        </div>
+      </div>
+
+    <h1 class="govuk-heading-l">Sign in to your Apply for Pension Credit application</h1>
+   
+    <p class="govuk-body">You can now sign in using one of the following options. You cannot use your Universal Credit or Government Gateway account to sign in.</p>
+    
+    <form method="post">
+      <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+   
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="signInOption" name="signInOption" type="radio" value="OneLogin">
+        <label class="govuk-label govuk-radios__label" for="signInOption">
+          <strong>Sign in with or create a GOV.UK One Login</strong><br>
+          To keep your information safe you will need and email address and mobile phone
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="signInOption-2" name="signInOption" type="radio" value="AfPC">
+        <label class="govuk-label govuk-radios__label" for="signInOption-2">
+          <strong>{% if data.return == 'true' %}Sign in with{% else %}Create{%endif%} an application access code</strong>
+        </label>
+      </div>
+      
+    </div>
+  </fieldset>
+</div>
+        
+     
+      <div class="govuk-form-group">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+              Continue
+          </button>
+      </div>
+
+    </form>
+
+
+</div>
+</div>
+
+{% endblock %}

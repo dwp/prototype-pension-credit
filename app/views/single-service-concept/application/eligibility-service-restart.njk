@@ -1,0 +1,28 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "You need to start a new application" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+    <h1 class="govuk-heading-l">You need to start a new application</h1>
+    <p class="govuk-body">You need an application reference to return to a saved application. If you do not have one, you will need to start a new application.</p>
+    <p class="govuk-body">We can send you your application reference by email or text.</p>
+    <p class="govuk-body"><a href="eligibility-service-start">Start a new application.</p>
+  </div>
+</div>
+
+{% endblock %}

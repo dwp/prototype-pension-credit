@@ -1,0 +1,66 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Have you already started an application?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <form method="post" >
+
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  <h1 class="govuk-fieldset__heading">
+                    Have you already started an application?
+                  </h1>
+                </legend>
+
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="checkPrevious" name="checkPrevious" type="radio" value="Yes, I have an application reference">
+                    <label class="govuk-label govuk-radios__label" for="checkPrevious">
+                      Yes, I have an application reference
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="checkPrevious-1" name="checkPrevious" type="radio" value="Yes, but I do not have an application reference">
+                    <label class="govuk-label govuk-radios__label" for="checkPrevious-1">
+                      Yes, but I do not have an application reference
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="checkPrevious-2" name="checkPrevious" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="checkPrevious-2">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                  Continue
+              </button>
+
+          </div>
+        </form>
+</div>
+</div>
+
+{% endblock %}
