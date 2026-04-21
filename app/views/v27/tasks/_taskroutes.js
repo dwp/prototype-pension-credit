@@ -156,6 +156,38 @@ router.post('/' + version + '/tasks/other-applications-partner', function(req, r
     // }
 });
 
+router.post('/' + version + '/tasks/letter-housing-costs', function(req, res) {
+    // if(req.session.data['telephone']=='yes' && req.session.data['IDOC']=='yes' && req.session.data['online']=='yes'&& req.session.data['paper']=='yes'){
+    //     req.session.data['OtherApplicationPartnerError'] = 'false';
+        if(req.session.data['letterHousingCosts'] == 'yes') {
+            res.redirect("tasklist?send-hc-letter=complete")
+        } 
+        else{
+            res.redirect("tasklist?send-hc-letter=incomplete")
+        }
+    // }
+    // else{
+    //     req.session.data['OtherApplicationError'] = 'true';
+    //     res.redirect("other-applications")
+    // }
+});
+
+router.post('/' + version + '/tasks/letter-smi', function(req, res) {
+    // if(req.session.data['telephone']=='yes' && req.session.data['IDOC']=='yes' && req.session.data['online']=='yes'&& req.session.data['paper']=='yes'){
+    //     req.session.data['OtherApplicationPartnerError'] = 'false';
+        if(req.session.data['letterSMI'] == 'yes') {
+            res.redirect("tasklist?send-smi-letter=complete")
+        } 
+        else{
+            res.redirect("tasklist?send-smi-letter=incomplete")
+        }
+    // }
+    // else{
+    //     req.session.data['OtherApplicationError'] = 'true';
+    //     res.redirect("other-applications")
+    // }
+});
+
 router.post('/' + version + '/tasks/personal-details', function(req, res) {
     if(req.session.data['taskType']=='pay')
         if(req.session.data['PersonalDetails'] == 'yes') {
