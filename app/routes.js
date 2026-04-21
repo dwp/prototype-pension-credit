@@ -29,6 +29,8 @@ return `${day} ${monthName} ${year}`;
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+const radioButtonRedirect = require('radio-button-redirect')
+router.use(radioButtonRedirect)
 
 
 // import individual routes files
@@ -77,6 +79,7 @@ require('./views/v23/application/_applicationroutes')
 require('./views/v24/tasks/_taskroutes')
 require('./views/v25/application/_applicationroutes')
 require('./views/v26/application/_applicationroutes')
+require('./views/v27/tasks/_taskroutes')
 
 
 // One Login journeys

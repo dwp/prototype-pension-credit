@@ -1,0 +1,89 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Other benefits" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+       
+            <h2 class="govuk-heading-l">Other benefits</h2>
+
+            <div class="govuk-body">
+                Check if the claimant has received any qualifying benefits since {{data['backdatingDate']}}.
+            </div>
+
+            <details class="govuk-details" data-module="govuk-details" >
+                <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Qualifying benefits
+                </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                            <p class=" govuk-!-margin-bottom-2">Qualifying benefits include:</p>
+                            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+
+                            <li>Adult Disability Payment daily living component</li>
+                            <li>Armed Forces Independence Payment</li>
+                            <li>Attendance Allowance</li>
+                            <li>Carer's Allowance, including an underlying entitlement</li>
+                            <li>Carer Support Payment, including an underlying entitlement</li>
+                            <li>Constant Attendance Allowance</li>
+                            <li>Disability Living Allowance care component (middle or highest rate)</li>
+                            <li>Personal Independence Payment daily living component</li>
+
+                            </ul>
+
+
+                </div>
+            </details>
+<br>
+            <form method="post">
+
+                <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-fieldset__heading">
+                        Has the claimant received any qualifying benefits since {{data['backdatingDate']}}?
+                    </h1>
+                    </legend>
+                    <div id="signIn-hint" class="govuk-hint">
+ Check for open and closed interests in Searchlight.</div>
+                    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ClaimantBenefitInterests" name="ClaimantBenefitInterests" type="radio" value="yes"
+                        {%if data['ClaimantBenefitInterests']=="yes"%}checked="checked"{%endif%}
+                        >
+                        <label class="govuk-label govuk-radios__label" for="ClaimantBenefitInterests">
+                        Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="ClaimantBenefitInterests-2" name="ClaimantBenefitInterests" type="radio" value="no"
+                        {%if data['ClaimantBenefitInterests']=="no"%}checked="checked"{%endif%}
+                        >
+                        <label class="govuk-label govuk-radios__label" for="ClaimantBenefitInterests-2">
+                        No
+                        </label>
+                    </div>
+                    </div>
+                </fieldset>
+                </div>
+
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+
+            </form>
+       
+
+    </div>
+</div>
+
+{% endblock %}

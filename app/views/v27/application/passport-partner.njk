@@ -1,0 +1,114 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "What is your nationality?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+
+
+
+
+
+        <form method="post">
+            <div class="govuk-form-group govuk-!-padding-top-7">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    What is your partner's nationality?
+                </h1>
+                <div class="govuk-hint govuk-!-margin-top-3">
+          Select the nationality that is on their passport or travel document.</div>
+
+                </legend>
+
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="passport" name="passport" type="radio" value="British">
+                    <label class="govuk-label govuk-radios__label" for="passport">
+                    British
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="passport" name="passport" type="radio" value="Irish">
+                    <label class="govuk-label govuk-radios__label" for="passport">
+                    Irish
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="passport" name="passport" type="radio" value="EEA">
+                    <label class="govuk-label govuk-radios__label" for="passport">
+                    European Economic area (EEA) or Swiss national
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="passport" name="passport" type="radio" value="Other">
+                    <label class="govuk-label govuk-radios__label" for="passport">
+                    Something else
+                    </label>
+                </div>
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+      </div>
+        <div class="govuk-grid-row pc-assisted-digital">
+          <div class="govuk-grid-column-two-thirds">
+            <aside class="govuk-!-margin-bottom-5">
+              <h2 class="govuk-heading-m">
+                Get help with your application
+              </h2>
+
+
+
+
+
+        <dl class="govuk-body contact-numbers">
+        <div>
+          <dt>Telephone: 0800 99 1234</dt>
+
+        </div>
+        <div>
+          <dt>Textphone: 0800 169 0133</dt>
+
+        </div>
+        </dl>
+        <p class="govuk-body">
+        If you cannot hear or speak on the phone, use <br><a class="govuk-link" href="https://www.relayuk.bt.com" target="_blank" rel="noopener noreferrer">Relay UK (opens in a new tab)</a>: 18001 then 0800 99 1234
+        </p>
+        <p class="govuk-body">
+        <a class="govuk-link" href="https://connect.interpreterslive.co.uk/vrs?ilc=DWP" target="_blank" rel="noopener noreferrer">Video relay service (opens in a new tab)</a> for British Sign Language (BSL) users - <a class="govuk-link" href="https://www.youtube.com/watch?v=oELNMfAvDxw" target="_blank" rel="noopener noreferrer">check you can use this service (opens in a new tab)</a>
+        </p>
+        <p class="govuk-body">
+        Monday to Friday, 8:30am to 6pm (closed on bank holidays).<br> <a class="govuk-link" href="https://www.gov.uk/call-charges">Find out about call charges</a>
+        </p>
+
+
+            </aside>
+          </div>
+        </div>
+</div>
+</div>
+
+{% endblock %}

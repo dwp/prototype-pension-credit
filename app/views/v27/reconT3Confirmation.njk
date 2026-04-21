@@ -1,0 +1,56 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'find-someone' %}
+
+{# Set which primary nav tab to highlight #}
+{% set primaryNavSection = 'personal' %}
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+     {% include './partials/name/TS3.njk' %}
+
+
+
+      <div class="govuk-form-group">
+
+          <h1 class="govuk-heading-l">
+            {% if data['T3_MR']=="yes"%}
+              Explanation accepted
+            {% else %}
+              Request a mandatory reconsideration
+            {% endif %}
+          </h1>
+
+          <p class="govuk-body">
+              {% if data['T3_MR']=="yes"%}
+                Complete a DR6 form, include details of: 
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>the claimant's query</li>
+                  <li>your explanation</li>
+                </ul>
+              <p>Once completed, upload it to DRS.</p>
+              {% else %}
+                Complete a DR6 form and send it to pdrt.team@dwp.gov.uk
+              {% endif %}
+          </p>
+
+      </div>
+
+
+      <a href="award-detail"  class="govuk-button" data-module="govuk-button">
+        {% if data['T3_MR']=="yes" %}
+          Confirm DR6 uploaded
+        {% else %}
+          Confirm DR6 sent
+        {% endif %}
+      </a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
