@@ -1,0 +1,86 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'tasks' %}
+
+{% extends "../layout.njk" %}
+
+{% set pageName = "Pension providers" %}
+{% set providers = data.realpensions.data.citizen.pensionAccounts[data.pensionCount] %}
+
+{% block content %}
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% include '../partials/name/eric.njk' %}
+        <p><a href="javascript:history.back()" class="govuk-back-link">Back</a></p>
+
+
+        <span class="govuk-caption-l">Workplace and private pensions</span>
+        <h1 class="govuk-heading-l">You have added {{ (data.investigationArray.length + data.confirmedPensions.length)}} {{ (data.investigationArray.length + data.confirmedPensions.length) | plural("pension", showNumber=false) }}</h1>
+          {% if data.confirmedPensions %}
+          <h2 class="govuk-heading-m">Already determined</h2>
+                <table class="govuk-table govuk-!-margin-bottom-5">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Provider</th>
+                      <th scope="col" class="govuk-table__header">Frequency</th>
+                      <th scope="col" class="govuk-table__header">Net amount</th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="govuk-table__body">
+                    {% for payments in data.confirmedPensions %}
+                        <tr class="govuk-table__row">
+                          <th scope="row" class="govuk-table__header">{{payments.provider }}</th>
+                          <td class="govuk-table__cell">{{payments.frequency | paymentFrequency}}</td>
+                          <td class="govuk-table__cell">{{payments.amount  | currency }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+        {% endif %}
+
+        {% if data.investigationArray.length > 0 %}
+          <h2 class="govuk-heading-m">More information needed</h2>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Provider</th>
+                <th scope="col" class="govuk-table__header "><span class="govuk-visually-hidden">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              {% for payments in data.investigationArray %}
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">{{payments.provider }}</th>
+                    <td class="govuk-table__cell"><a href="pension-revisit-provider?tempIndex={{loop.index0}}">View<span class="govuk-visually-hidden">{{payments.provider}} pension</span> details</a></td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        {% endif %}
+
+        <div class="govuk-form-group govuk-!-padding-top-4 ">
+          <p><a href="pension-manual-entry">Add a pension manually</a></p>
+        </div>
+        
+        <form method="post">
+          <div class="govuk-button-group">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+              Continue
+            </button>
+            <a class="govuk-button govuk-button--warning" href="pension-confirm-restart">Restart task</a>
+          </div>
+        </form>
+
+
+
+          </div>
+        </div>
+
+
+
+
+
+{% endblock %}

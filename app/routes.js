@@ -80,6 +80,8 @@ require('./views/v25/application/_applicationroutes')
 require('./views/v26/application/_applicationroutes')
 require('./views/v27/tasks/_taskroutes')
 
+require('./views/v28/tasks/_taskroutes')
+
 
 // One Login journeys
 router.post('/authentication/create-account/enter-email', function(req, res) {

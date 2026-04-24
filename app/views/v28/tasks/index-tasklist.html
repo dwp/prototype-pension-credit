@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="index-tasklist" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-xl">
+      Task list variations
+    </h1>
+
+    <p class="govuk-body">Before you start: This prototype uses URL query parameters to show/hide variations in content and journeys. <a href="/manage-prototype/clear-data" class="govuk-link">Clear prototype data</a> and check your URL if something doesn't look right.</p>
+
+
+
+    <h1 class="govuk-heading-l">
+      Pay (Later Life)
+    </h1>
+
+    <ol class="govuk-list govuk-list--number">
+      <li><a href="/v28/tasks/tasklist?taskType=pay&hasPension=true&hasPartner=false&letters=false" class="govuk-link">A single claimant, with Workplace & Private Pensions(W&PP)</a></li>
+      <li><a href="/v28/tasks/tasklist?taskType=pay&hasPension=false&hasPartner=true&letters=false" class="govuk-link">A claimant with a partner</a></li>
+      <li><a href="/v28/tasks/tasklist?taskType=pay&hasPension=false&hasPartner=true&letters=true" class="govuk-link">A claimant with a partner and housing costs</a></li>
+    </ol>
+
+    <p class="govuk-body">N.B.1 Claimant's with a Partner as well as W&PP will not be allowed through Later Life filters
+      for
+      the initial release (June 2026) </p>
+
+    <p class="govuk-body">N.B.2 Claimant's with either a Partner or W&PP could have housing cost tasks</p>
+
+    <h1 class="govuk-heading-l">
+      Nil (AfPC)
+    </h1>
+
+    <ol class="govuk-list govuk-list--number">
+      <li><a href="/v28/tasks/tasklist?taskType=nil&hasPension=false&letters=false" class="govuk-link">A nil award claim where State Pension alone exceeds Guarantee Credit amount </a></li>
+      <li><a href="/v28/tasks/tasklist?taskType=nil&hasPension=true&letters=false" class="govuk-link">A nil award claim with Workplace & Private Pensions</a></li>
+    </ol>
+
+<div class="govuk-inset-text">
+The nil award claim journey uses a query parameter of <strong>taskType=nil</strong>.
+</div>
+
+  </div>  
+</div>
+
+
+
+{% endblock %}
