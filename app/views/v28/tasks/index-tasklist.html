@@ -14,6 +14,16 @@
 
     <p class="govuk-body">Before you start: This prototype uses URL query parameters to show/hide variations in content and journeys. <a href="/manage-prototype/clear-data" class="govuk-link">Clear prototype data</a> and check your URL if something doesn't look right.</p>
 
+      <div class="govuk-inset-text">
+      <h2 class="govuk-heading-m">Query parameters for reference</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Nil award: <strong>taskType=nil</strong></li>
+        <li>Pay award: <strong>taskType=pay</strong></li>
+        <li>Single claim: <strong>hasPartner=false</strong></li>
+        <li>Partner claim: <strong>hasPartner=true</strong></li>
+        <li>Show letters journey: <strong>letters=true</strong></li>
+      </ul>
+    </div>
 
 
     <h1 class="govuk-heading-l">
@@ -25,6 +35,7 @@
       <li><a href="/v28/tasks/tasklist?taskType=pay&hasPension=false&hasPartner=true&letters=false" class="govuk-link">A claimant with a partner</a></li>
       <li><a href="/v28/tasks/tasklist?taskType=pay&hasPension=false&hasPartner=true&letters=true" class="govuk-link">A claimant with a partner and housing costs</a></li>
     </ol>
+
 
     <p class="govuk-body">N.B.1 Claimant's with a Partner as well as W&PP will not be allowed through Later Life filters
       for
@@ -40,11 +51,10 @@
       <li><a href="/v28/tasks/tasklist?taskType=nil&hasPension=false&letters=false" class="govuk-link">A nil award claim where State Pension alone exceeds Guarantee Credit amount </a></li>
       <li><a href="/v28/tasks/tasklist?taskType=nil&hasPension=true&letters=false" class="govuk-link">A nil award claim with Workplace & Private Pensions</a></li>
     </ol>
+ 
 
-<div class="govuk-inset-text">
-The nil award claim journey uses a query parameter of <strong>taskType=nil</strong>.
-</div>
 
+  
   </div>  
 </div>
 
