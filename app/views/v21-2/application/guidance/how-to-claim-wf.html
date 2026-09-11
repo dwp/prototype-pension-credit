@@ -1,0 +1,199 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Pension Credit: How to claim
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for this page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Working, jobs and pensions",
+        href: "#"
+      },
+      {
+        text: "State Pension"
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Pension Credit
+      </h1>
+
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              <a href="overview.html">
+                Overview
+              </a>
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="eligibility.html">
+                Eligibility
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="what-you-will-get.html">
+                What you'll get
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+                How to claim
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="report-a-change.html">
+                Report a change of circumstances
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+
+      <h2 class="govuk-heading-l">
+        How to claim
+      </h2>
+
+      <p>You can start your application up to 4 months before you reach <a href="#">State Pension age</a>.</p>
+      <p>If you apply after you reach State Pension age your application can be backdated by up to 3 months.</p>
+
+      <h3 class="govuk-heading-m">If you’re applying to qualify for a Winter Fuel Payment</h3>
+<p>You can get a Winter Fuel Payment for winter 2024 to 2025 if:
+  <ul class="govuk-list govuk-list--bullet">
+    <li>you were born before 23 September 1958</li>
+<li>you apply for Pension Credit before 21 December 2024</li>
+<li>your Pension Credit application is successful</li>
+</ul>
+<p>When you apply you should backdate your application to a date before 23 September 2024. </p>
+      <h3 class="govuk-heading-m">Information you’ll need</h3>
+      <p>You’ll need the following information about you and your partner if you have one:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>National Insurance number</li>
+        <li>information about any income, savings and investments you have</li>
+        <li>information about your income, savings and investments on the date you want to backdate your application to (usually 3 months ago or the date you reached State Pension age)</li>
+      </ul>
+      <p>You’ll also need your bank account details. Depending on how you apply, you may also be asked for your bank or building society name, sort code and account number.</p>
+
+      <h3 class="govuk-heading-m">Apply online</h3>
+      <p>You can use the online service if you have already applied for your State Pension.</p>
+      <a href="../eligibility-service-start" class="govuk-button">Apply now</a>
+
+      <h3 class="govuk-heading-m govuk-!-padding-top-7">Apply by phone</h3>
+      <p>A friend or family member can call for you if you cannot use the phone.</p>
+      <div class="contact">
+        <p>Pension Credit claim line<br>
+        Telephone: 0800 99 1234<br>
+        Textphone: 0800 169 0133<br>
+        <a href="https://www.relayuk.bt.com">Relay UK</a> (if you cannot hear or speak on the phone): 18001 then 0800 99 1234<br>
+        British Sign Language (BSL) <a href="https://connect.interpreterslive.co.uk/vrs?ilc=DWP">video relay service</a> if you’re on a computer - find out how to <a href="https://www.youtube.com/watch?v=oELNMfAvDxw">use the service on mobile or tablet</a><br>
+        Monday to Friday, 8am to 6pm<br>
+        <a href="/call-charges">Find out about call charges</a></p>
+      </div>
+
+      <h3 class="govuk-heading-m">Apply by post</h3>
+      <p>To apply by post, <a href="/https://www.gov.uk/government/publications/pension-credit-claim-form--2">print out and fill in the Pension Credit claim form</a> or call the claim line to request a form.</p>
+      <p>Send the claim form to the Pension Service, or ask someone to do it for you.</p>
+      <div class="address">
+        <div class="adr org fn"><p>
+          Freepost DWP Pensions Service 3
+          <br>
+          </p>
+        </div>
+      </div>
+      <p>Do not write anything except the freepost address on the envelope. You do not need a postcode or a stamp.</p>
+      <p>Contact a voluntary organisation like <a href="#">Citizens Advice</a> or <a href="#">Age UK</a> if you need help with the form.</p>
+
+      <h3 class="govuk-heading-m">If you disagree with a decision</h3>
+      <p>You can <a href="#">challenge a decision</a> about your Pension Credit application. This is called asking for mandatory reconsideration.</p>
+
+
+      <nav class="govuk-prototype-kit-common-templates-pagination" role="navigation" aria-label="Pagination">
+
+      {{ govukPagination({
+        previous: {
+          labelText: "What you'll get",
+          href: "what-you-will-get"
+        },
+        next: {
+          labelText: "Report a change of circumstances",
+          href: "report-a-change"
+        }
+      }) }}
+
+
+      <p>
+        <a href="#">
+          View a printable version of the whole guide
+        </a>
+      </p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                The basic State Pension
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Get help with benefits and pensions if you have accessibility needs
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Going into a care home if you get benefits
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+
+  </main>
+</div>
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

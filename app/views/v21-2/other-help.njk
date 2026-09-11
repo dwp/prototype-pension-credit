@@ -1,0 +1,103 @@
+{# Set which global nav link to highlight #}
+{% set globalNavSection = 'other-help' %}
+
+{% extends "./layout.njk" %}
+
+{% set pageName = "Other help" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      You might be entitled to other help
+    </h1>
+
+    {{ govukAccordion({
+      items: [
+        {
+          heading: {
+            text: "Help with your health"
+          },
+          content: {
+            html: "<p class='govuk-body'><strong>Attendance Allowance</strong> helps with extra costs if you have a disability severe enough that you need someone to help look after you.</p>"
+              + "<p class='govuk-body'>Go to GOV.UK and search for “attendance allowance”.</p>"
+              + "<p class='govuk-body'>You can also call 0800 731 0122 (Monday to Friday, 9:30am to 3:30pm).</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Help with the cost of living"
+          },
+          content: {
+            html: "<p class='govuk-body'>You may be entitled to extra payments to help with the cost of living.</p>"
+              + "<p class='govuk-body'>Go to GOV.UK and search for “cost of living payment”.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Help with heating your home"
+          },
+          content: {
+            html: "<p class='govuk-body'>If you were born on or before 26 September 1956 you could get between £250 and £600 to help you pay your heating bills. This is known as a <strong>Winter Fuel Payment</strong>.</p>"
+              + "<p class='govuk-body'>To help with the cost of living, there’s also going to be an extra Winter Fuel Payment in winter 2022 to 2023.</p>"
+              + "<p class='govuk-body'>Go to GOV.UK and search for “winter fuel payment”.</p>"
+              + "<p class='govuk-body'>You can also call 0800 731 0160 (Monday to Friday, 8am to 6pm).</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Information about free bus passes"
+          },
+          content: {
+            html: "<p class='govuk-body'>You can get a <strong>bus pass for free travel</strong>. You can get this when you reach State Pension age if you live in England, or when you reach age 60 if you live in Scotland or Wales.</p>"
+              + "<p class='govuk-body'>Go to GOV.UK and search for “free bus pass”.</p>"
+              + "<p class='govuk-body'>You can also call your local council as they issue the bus passes.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Help with renting your house or flat"
+          },
+          content: {
+            html: "<p class='govuk-body'><strong>Housing Benefit</strong> can help you pay your rent if you are unemployed, on a low income or claiming benefits.</p>"
+              + "<p class='govuk-body'>Go to GOV.UK and search for “housing benefit”.</p>"
+              + "<p class='govuk-body'>You can call your local council to apply.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Help with your Council Tax"
+          },
+          content: {
+            html: "<p class='govuk-body'><strong>Council Tax Reduction</strong> can help you pay your Council Tax if you’re on a low income or claim benefits.</p>"
+              + "<p class='govuk-body'>Go to GOV.UK and search for “Apply for Council Tax Reduction”.</p>"
+              + "<p class='govuk-body'>You can call your local council to apply.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Help with your pensions"
+          },
+          content: {
+            html: "<p class='govuk-body'><strong>MoneyHelper</strong> offers free information and advice about your money. This includes help with the State Pension or your company, personal, stakeholder or occupational pensions.</p>"
+              + "<p class='govuk-body'>Go to GOV.UK and search for “MoneyHelper”.</p>"
+              + "<p class='govuk-body'>You can also call 0800 011 3797 (Monday to Friday, 9am to 5pm).</p>"
+          }
+        },
+        {
+          heading: {
+            text: "General help with benefits"
+          },
+          content: {
+            html: "<p class='govuk-body'>Go to GOV.UK and search for “benefits checker”.</p>"
+              + "<p class='govuk-body'>You will find links to a number of independent benefits calculators to help you find out what benefits you could get, how to claim and how your benefits will be affected if you start work.</p>"
+          }
+        }
+      ]
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

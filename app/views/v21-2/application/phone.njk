@@ -1,0 +1,115 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "What is your nationality as shown on your passport or travel document?" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds"> 
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+        <form method="post">
+            
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="phone-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-heading-l">
+                      <span class="govuk-caption-l">Protecting your identity</span>
+                      Which phone number do we use to contact you?
+                    </h1>
+                    </legend>
+                    <div id="phone-hint" class="govuk-hint">
+                    You can provide more than one phone number.
+                    </div>
+                    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" onclick="hideShow('homeinput')" id="phone" name="phone" type="checkbox" value="home">
+                        <label class="govuk-label govuk-checkboxes__label" for="phone">
+                        Home phone
+                        </label>
+                    </div>
+                    <div class="govuk-inset-text" style="display:none;" id="homeinput">
+                        <div class="govuk-form-group">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--s" for="event-name">
+                            What is your home phone number?
+                            </label>
+                        </h1>
+                        <input class="govuk-input govuk-input--width-20" id="event-name" name="eventName" type="number">
+                        </div>
+                    </div>
+                    
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="phone-2" onclick="hideShow('mobileinput')" name="phone" type="checkbox" value="mobile">
+                        <label class="govuk-label govuk-checkboxes__label" for="phone-2">
+                        Mobile phone
+                        </label>
+                    </div>
+                    <div class="govuk-inset-text" style="display:none;" id="mobileinput">
+                        <div class="govuk-form-group">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--s" for="event-name">
+                            What is your mobile phone number?
+                            </label>
+                        </h1>
+                        <input class="govuk-input govuk-input--width-20" id="event-name" name="eventName" type="number">
+                        </div>
+                    </div>
+
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="phone-3" onclick="hideShow('workinput')" name="phone" type="checkbox" value="work">
+                        <label class="govuk-label govuk-checkboxes__label" for="phone-3">
+                        Work phone
+                        </label>
+                    </div>
+                    <div class="govuk-inset-text" style="display:none;" id="workinput">
+                        <div class="govuk-form-group">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--s" for="event-name">
+                            What is your work phone number?
+                            </label>
+                        </h1>
+                        <input class="govuk-input govuk-input--width-20" id="event-name" name="eventName" type="number">
+                        </div>
+                    </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="govuk-form-group">
+                <button type="submit" class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
+            </div>
+        </form>
+         <div class="govuk-form-group">
+         <p class="govuk-body"><a href="phone2">Alternative version</a></p>
+
+    </div>
+</div>
+
+{% endblock %}
+{% block pageScripts %}
+<script>
+   function hideShow(element){
+    var type = document.getElementById(element);
+    
+    if (type.style.display === "none") {
+        type.style.display = "block";
+    } else {
+        type.style.display = "none";
+    }
+   };
+</script>
+{% endblock %}

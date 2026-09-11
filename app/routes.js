@@ -73,6 +73,7 @@ require('./views/v19/application/_applicationroutes')
 
 require('./views/v20/tasks/_taskroutes')
 require('./views/v21/application/_applicationroutes')
+require('./views/v21-2/application/_applicationroutes')
 require('./views/v22/application/_applicationroutes')
 require('./views/v23/application/_applicationroutes')
 require('./views/v24/tasks/_taskroutes')

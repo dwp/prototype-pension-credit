@@ -1,0 +1,39 @@
+
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Check your overnight stay in hospital" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row ">
+      <div class="govuk-grid-column-two-thirds">
+       <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+       <div class="govuk-grid-row govuk-!-padding-top-7">
+            
+               <h1 class="govuk-heading-l">You can only add 100 overnight stays in hospital</h1>
+               <p class="govuk-body">We will contact you to get the details of any other overnight stays you have had. We will contact you before ((date_contact)). </p>
+
+
+
+        <form method="post" novalidate>
+          <input type="hidden" name="answers-checked" value="true">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+
+{% endblock %}
