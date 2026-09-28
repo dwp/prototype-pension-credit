@@ -372,24 +372,34 @@ router.post('/'+ version +'/application/eligibility-underlying-carers-partner', 
 
 
 router.get('/'+ version +'/application/eligibility-route', function(req, res) {
+   // check if they opted in, skip CYA if so
+    if(req.session.data['checkApply'] == 'no'){
+         res.redirect("tell-us-about-UK-state-pension");
+   
    // this is used to logically determine if its a complex case
-   if(
+     } else if(
       req.session.data['hasPartner'] == 'Yes, we live together' 
       &&
       (req.session.data['ClaimantBenefitsEntitled'] && (req.session.data['ClaimantBenefitsEntitled'].includes("Attendance Allowance")  || req.session.data['ClaimantBenefitsAwaiting'].includes("Attendance Allowance") ))
       &&
       (req.session.data['PartnerBenefitsEntitled'] && (req.session.data['PartnerBenefitsEntitled'].includes("Attendance Allowance") || req.session.data['PartnerBenefitsAwaiting'].includes("Attendance Allowance") ))
    ){
-      console.log('Couples AA dropout')
+      console.log('Couples AA dropout1')
       res.redirect("eligibility-cya");
    }
    else if(req.session.data['canPerformEligibility'] == 'false'){
-      console.log('Couples AA dropout')
+      console.log('Couples AA dropout2')
       res.redirect("eligibility-cya");
+      // res.redirect("tell-us-about-UK-state-pension");
    }
    else{
       res.redirect("eligibility-calculate");
    }
+});
+
+
+router.post('/'+ version +'/application/tell-us-about-UK-state-pension', function(req, res) {
+   res.redirect("end-journey");
 });
 
 

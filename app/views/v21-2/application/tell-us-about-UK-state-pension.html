@@ -1,0 +1,72 @@
+
+{% set serviceName = 'Apply for Pension Credit' %}
+{% extends "/layouts/main.html" %}
+
+{% set pageName = "Tell us about your UK State Pension" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+
+        <p><a href="javascript:history.back()" class="govuk-back-link govuk-!-static-margin-0">Back</a></p>
+
+        <form method="post" >
+            <div class="govuk-form-group govuk-!-padding-top-7">
+            <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    Tell us about your UK State Pension
+                </h1>
+                </legend>
+
+                <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="uk-sp" name="uk-sp" type="radio" value="receiving">
+                    <label class="govuk-label govuk-radios__label" for="uk-sp">
+                    I am receiving my UK State Pension
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="uk-sp-1" name="uk-sp" type="radio" value="claimed">
+                    <label class="govuk-label govuk-radios__label" for="uk-sp-1">
+                    I have claimed my UK State Pension and I am waiting for the first payment
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="uk-sp-2" name="uk-sp" type="radio" value="not-entitled">
+                    <label class="govuk-label govuk-radios__label" for="uk-sp-2">
+                    I applied for a UK State Pension but I am not entitled to one
+                    </label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="uk-sp-2" name="uk-sp" type="radio" value="No">
+                    <label class="govuk-label govuk-radios__label" for="uk-sp-2">
+                   I have not applied for a UK State Pension
+                    </label>
+                </div>
+                </div>
+            </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+
+</div>
+</div>
+
+{% endblock %}
