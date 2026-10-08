@@ -24,7 +24,8 @@
     "nhsapp-frontend": "5.3.0",
     "notifications-node-client": "8.5.0",
     "path-to-regexp": "8.4.2",
-    "qs": "6.16.0"
+    "qs": "6.16.0",
+    "to-words": "^7.1.0"
   },
   "overrides": {
     "marked": "4.3.0",
@@ -32,7 +33,4 @@
     "ws": "8.22.0",
     "uuid": "11.1.1"
   }
-  
 }
-
-
